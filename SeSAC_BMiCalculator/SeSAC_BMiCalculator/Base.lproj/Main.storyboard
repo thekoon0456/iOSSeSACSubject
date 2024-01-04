@@ -114,12 +114,27 @@
                                     <action selector="secureModeButtomTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GwJ-Zl-uMH"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-YU-c0A">
+                                <rect key="frame" x="30" y="231" width="193" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameTextFieldInput:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="5qN-Tm-l8h"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iC8-c6-aW4">
+                                <rect key="frame" x="40" y="205" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VZm-hW-MvK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="26f-A1-pYD"/>
+                            <constraint firstItem="iC8-c6-aW4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="4V5-J0-JHr"/>
                             <constraint firstItem="fsY-cr-jh6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="4bT-xq-jQu"/>
                             <constraint firstItem="UVa-7i-BHY" firstAttribute="top" secondItem="Zpq-rc-XRk" secondAttribute="bottom" constant="30" id="7zM-6X-24Q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zpq-rc-XRk" secondAttribute="trailing" constant="30" id="82h-Rl-L1V"/>
@@ -131,17 +146,21 @@
                             <constraint firstItem="Vqi-Km-JIs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="LtP-aB-luq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O4d-uL-vpd" secondAttribute="trailing" constant="30" id="Mxk-Vu-oSO"/>
                             <constraint firstItem="r3O-tF-Cwp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="NuI-RR-bZG"/>
+                            <constraint firstItem="fsY-cr-jh6" firstAttribute="leading" secondItem="Cjg-YU-c0A" secondAttribute="trailing" constant="10" id="PSo-8n-ooR"/>
                             <constraint firstItem="fsY-cr-jh6" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Vqi-Km-JIs" secondAttribute="trailing" constant="10" id="RAK-Xl-XI6"/>
                             <constraint firstItem="O4d-uL-vpd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Rrw-ZI-UnW"/>
                             <constraint firstItem="Zpq-rc-XRk" firstAttribute="top" secondItem="r3O-tF-Cwp" secondAttribute="bottom" constant="10" id="V3a-nk-rml"/>
                             <constraint firstItem="O4d-uL-vpd" firstAttribute="top" secondItem="fsY-cr-jh6" secondAttribute="bottom" id="XRf-8Q-XAK"/>
                             <constraint firstItem="O4d-uL-vpd" firstAttribute="top" secondItem="n8W-84-aJr" secondAttribute="bottom" constant="3" id="Z2c-zy-YoF"/>
+                            <constraint firstItem="Cjg-YU-c0A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="b2j-C0-oS2"/>
                             <constraint firstItem="n8W-84-aJr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="bIB-zw-lDg"/>
                             <constraint firstItem="fsY-cr-jh6" firstAttribute="leading" relation="lessThanOrEqual" secondItem="m2U-6g-Cby" secondAttribute="trailing" constant="10" id="bV6-27-eVf"/>
                             <constraint firstItem="m2U-6g-Cby" firstAttribute="top" secondItem="Vqi-Km-JIs" secondAttribute="bottom" constant="5" id="e31-jl-hxq"/>
+                            <constraint firstItem="iC8-c6-aW4" firstAttribute="top" secondItem="m2U-6g-Cby" secondAttribute="bottom" constant="50" id="gBc-gK-prt"/>
                             <constraint firstItem="UVa-7i-BHY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="hdS-CM-6nP"/>
                             <constraint firstItem="UbV-rP-7E5" firstAttribute="trailing" secondItem="r3O-tF-Cwp" secondAttribute="trailing" constant="-8" id="sDR-xD-V23"/>
                             <constraint firstItem="UbV-rP-7E5" firstAttribute="centerY" secondItem="r3O-tF-Cwp" secondAttribute="centerY" id="sDp-XM-EHp"/>
+                            <constraint firstItem="Cjg-YU-c0A" firstAttribute="top" secondItem="iC8-c6-aW4" secondAttribute="bottom" constant="5" id="sMF-GX-gkn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fsY-cr-jh6" secondAttribute="trailing" id="snL-MT-Mav"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UVa-7i-BHY" secondAttribute="trailing" constant="30" id="u1w-1Z-sRC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r3O-tF-Cwp" secondAttribute="trailing" constant="30" id="xLD-EY-3qD"/>
@@ -152,6 +171,8 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="nameLabel" destination="iC8-c6-aW4" id="riz-J9-eGU"/>
+                        <outlet property="nameTextField" destination="Cjg-YU-c0A" id="fMk-Eh-phd"/>
                         <outlet property="peopleImage" destination="fsY-cr-jh6" id="BGh-QM-r2m"/>
                         <outlet property="randomInputButton" destination="Zpq-rc-XRk" id="nEa-us-q9s"/>
                         <outlet property="resultButton" destination="UVa-7i-BHY" id="bhj-iK-z8C"/>

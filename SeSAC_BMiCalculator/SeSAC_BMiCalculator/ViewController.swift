@@ -10,11 +10,14 @@ import UIKit
 final class ViewController: UIViewController {
     
     enum InputType: String {
+        case name
         case tall
         case weight
         
         var type: String {
             switch self {
+            case .name:
+                return "name"
             case .tall:
                 return "tall"
             case .weight:
@@ -58,6 +61,9 @@ final class ViewController: UIViewController {
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var peopleImage: UIImageView!
     
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var nameTextField: UITextField!
+    
     @IBOutlet var tallLabel: UILabel!
     @IBOutlet var weightLabel: UILabel!
     
@@ -88,6 +94,10 @@ final class ViewController: UIViewController {
         configureUI()
         configureButton()
         
+        if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
+            nameTextField.text = oldName
+        }
+        
         if let oldTall = UserDefaults.standard.string(forKey: InputType.tall.type),
            let oldWeight = UserDefaults.standard.string(forKey: InputType.weight.type) {
             tallTextField.text = oldTall
@@ -100,6 +110,16 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - IBAction
+    @IBAction func nameTextFieldInput(_ sender: UITextField) {
+        guard let name = sender.text else {
+            setPresentAlert(title: "이름을 입력해주세요",
+                            message: "다시 입력해주세요")
+            resetTextField()
+            return
+        }
+        
+        UserDefaults.standard.set(name, forKey: InputType.name.type)
+    }
     
     @IBAction func tallTextFieldInput(_ sender: UITextField) {
         
@@ -238,6 +258,9 @@ final class ViewController: UIViewController {
                  font: .systemFont(ofSize: 15, weight: .semibold),
                  lines: 2)
         
+        setLabel(nameLabel, title: "당신의 닉네임은?",
+                 font: .systemFont(ofSize: 15, weight: .semibold))
+        
         setLabel(tallLabel, title: "키가 어떻게 되시나요?",
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
@@ -246,6 +269,7 @@ final class ViewController: UIViewController {
         
         setTextField(tallTextField, tag: 0)
         setTextField(weightTextField, tag: 1)
+        setTextField(nameTextField, tag: 2, keyboardType: .default, cornerRadius: 15)
         
         peopleImage.image = .image
         peopleImage.contentMode = .scaleAspectFill
@@ -279,12 +303,15 @@ final class ViewController: UIViewController {
         label.textAlignment = .left
     }
     
-    func setTextField(_ textField: UITextField, tag: Int) {
+    func setTextField(_ textField: UITextField,
+                      tag: Int,
+                      keyboardType: UIKeyboardType = .numberPad,
+                      cornerRadius: CGFloat = 20) {
         textField.tag = tag
-        textField.keyboardType = .numberPad
+        textField.keyboardType = keyboardType
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.layer.borderWidth = 2
-        textField.layer.cornerRadius = 20
+        textField.layer.cornerRadius = cornerRadius
         textField.clipsToBounds = true
     }
     

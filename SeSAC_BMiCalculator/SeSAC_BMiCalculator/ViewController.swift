@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         guard tallRangeArray.contains(inputInt) else {
             let title = "\(tallRangeArray.first ?? 0)cm ~ \(tallRangeArray.last ?? 0)cm 사이의 키를 입력해주세요"
             let message = "다시 입력해주세요"
+            
             setPresentAlert(title: title,
                             message: message)
             resetTextField()
@@ -77,6 +78,7 @@ class ViewController: UIViewController {
         guard weightRangeArray.contains(Int(inputInt)) else {
             let title = "\(weightRangeArray.first ?? 0)kg ~ \(weightRangeArray.last ?? 0)kg 사이의 몸무게를 입력해주세요"
             let message = "다시 입력해주세요"
+            
             setPresentAlert(title: title,
                             message: message)
             resetTextField()
@@ -142,6 +144,7 @@ class ViewController: UIViewController {
         let computedTall = doubleTall / 100
         let result = doubleWeight / (computedTall * computedTall)
         let stringResult = getResultString(result)
+        
         //결과값
         finalResult = String(format: "%.2f",  result)
         
@@ -191,7 +194,7 @@ class ViewController: UIViewController {
     
     func configureButton() {
         resultButton.setTitle("결과 확인", for: .normal)
-        resultButton.setTitle("입력해주세요", for: .disabled)
+        resultButton.setTitle("모두 입력해주세요", for: .disabled)
         resultButton.setTitleColor(.white, for: .normal)
         resultButton.setTitleColor(.lightGray, for: .disabled)
         resultButton.backgroundColor = .purple
@@ -246,16 +249,21 @@ class ViewController: UIViewController {
     
     //입력 공통 확인 로직
     func checkInput(_ textfieldInput: String?) -> Int? {
-        guard let input = textfieldInput else {
+        guard 
+            let input = textfieldInput,
+            !input.isEmpty
+        else {
+            setPresentAlert(title: "값을 입력해주세요",
+                            message: "다시 입력해주세요")
             return nil
         }
         
         guard
-            let intInput = Int(input),
-            !input.isEmpty
+            let intInput = Int(input)
         else {
             setPresentAlert(title: "숫자를 입력해주세요",
                             message: "다시 입력해주세요")
+            resetTextField()
             return nil
         }
         

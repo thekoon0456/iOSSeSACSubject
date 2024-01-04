@@ -47,8 +47,8 @@ class ViewController: UIViewController {
     // MARK: - IBAction
     
     @IBAction func tallTextFieldInput(_ sender: UITextField) {
-        let inputInt = checkInput(sender.text)
-        guard inputInt != 0 else {
+        
+        guard let inputInt = checkInput(sender.text) else {
             setPresentAlert(title: "숫자를 입력해주세요",
                             message: "다시 입력해주세요")
             resetTextField()
@@ -66,8 +66,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func weightTextFieldInput(_ sender: UITextField) {
-        let inputInt = checkInput(sender.text)
-        guard inputInt != 0 else {
+
+        guard let inputInt = checkInput(sender.text) else {
             setPresentAlert(title: "숫자를 입력해주세요",
                             message: "다시 입력해주세요")
             resetTextField()
@@ -85,8 +85,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func checkValidInput(_ sender: UITextField) {
-        guard let input = sender.text,
-              !input.isEmpty
+        guard
+            let input = sender.text,
+            !input.isEmpty
         else {
             resultButton.isEnabled = false
             return
@@ -108,8 +109,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func randomInputButtonTapped(_ sender: UIButton) {
-        guard let randomTall = tallRangeArray.randomElement(),
-              let randomWeight = weightRangeArray.randomElement()
+        guard
+            let randomTall = tallRangeArray.randomElement(),
+            let randomWeight = weightRangeArray.randomElement()
         else {
             setPresentAlert(title: "랜덤 값이 없습니다",
                             message: "다시 입력해주세요")
@@ -125,22 +127,24 @@ class ViewController: UIViewController {
     }
     
     @IBAction func resultButtonTapped(_ sender: UIButton) {
-        guard let tall = tallTextField.text,
-              let weight = weightTextField.text,
-              let doubleTall = Double(tall),
-              let doubleWeight = Double(weight)
+        guard
+            let tall = tallTextField.text,
+            let weight = weightTextField.text,
+            let doubleTall = Double(tall),
+            let doubleWeight = Double(weight)
         else {
             setPresentAlert(title: "입력이 잘못되었습니다",
                             message: "다시 입력해주세요")
             resetTextField()
             return
         }
+        
         let computedTall = doubleTall / 100
         let result = doubleWeight / (computedTall * computedTall)
-        
         let stringResult = getResultString(result)
+        //결과값
         finalResult = String(format: "%.2f",  result)
-    
+        
         setPresentAlert(title: "당신의 BMI는",
                         message: "\(finalResult)\n\(stringResult)입니다")
     }
@@ -178,14 +182,11 @@ class ViewController: UIViewController {
         setLabel(weightLabel, title: "몸무게는 어떻게 되시나요?",
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
-        setTextField(tallTextField)
-        setTextField(weightTextField)
+        setTextField(tallTextField, tag: 0)
+        setTextField(weightTextField, tag: 1)
         
         peopleImage.image = .image
         peopleImage.contentMode = .scaleAspectFill
-        
-        tallTextField.tag = 0
-        weightTextField.tag = 1
     }
     
     func configureButton() {
@@ -216,7 +217,9 @@ class ViewController: UIViewController {
         label.textAlignment = .left
     }
     
-    func setTextField(_ textField: UITextField) {
+    func setTextField(_ textField: UITextField, tag: Int) {
+        textField.tag = tag
+        textField.keyboardType = .numberPad
         textField.layer.borderColor = UIColor.darkGray.cgColor
         textField.layer.borderWidth = 2
         textField.layer.cornerRadius = 20
@@ -242,16 +245,18 @@ class ViewController: UIViewController {
     }
     
     //입력 공통 확인 로직
-    func checkInput(_ textfieldInput: String?) -> Int {
+    func checkInput(_ textfieldInput: String?) -> Int? {
         guard let input = textfieldInput else {
-            return 0
+            return nil
         }
         
-        guard let intInput = Int(input),
-              !input.isEmpty else {
+        guard
+            let intInput = Int(input),
+            !input.isEmpty
+        else {
             setPresentAlert(title: "숫자를 입력해주세요",
                             message: "다시 입력해주세요")
-            return 0
+            return nil
         }
         
         return intInput

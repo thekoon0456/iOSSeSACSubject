@@ -9,53 +9,7 @@ import UIKit
 
 final class ViewController: UIViewController {
     
-    enum InputType: String {
-        case name
-        case tall
-        case weight
-        
-        var type: String {
-            switch self {
-            case .name:
-                return "name"
-            case .tall:
-                return "tall"
-            case .weight:
-                return "weight"
-            }
-        }
-    }
-    
-    enum InputError: Error {
-        case emptyInput
-        case notIntInput
-        case faultInput
-        case faultTallInput
-        case faultWeightInput
-    }
-    
-    enum ResultValue {
-        case 저체중
-        case 정상체중
-        case 과체중
-        case 비만
-        case 고도비만
-        
-        var name: String {
-            switch self {
-            case .저체중:
-                return "저체중"
-            case .정상체중:
-                return "정상 체중"
-            case .과체중:
-                return "과체중"
-            case .비만:
-                return "비만"
-            case .고도비만:
-                return "고도비만"
-            }
-        }
-    }
+    // MARK: - Properties
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
@@ -87,36 +41,49 @@ final class ViewController: UIViewController {
     var isWeightInput = false
     
     //버튼 Secure표시
+    //TODO: - 설정값 저장
     var isSecure: Bool = false
+    
+    // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //UI구성
         configureUI()
         configureButton()
         
-        if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
-            tallLabel.text = "\(oldName)의 키는 어떻게 되시나요?"
-            weightLabel.text = "\(oldName)의 몸무게는 어떻게 되시나요?"
+        //저장값 load
+        loadNameData(input: InputType.name.type)
+        loadTallWeightData(tall: InputType.tall.type, weight: InputType.weight.type)
+    }
+    
+    func loadNameData(input: String) {
+        if let oldName = UserDefaults.standard.string(forKey: input) {
+            setTitleLabel(name: oldName)
+//            tallLabel.text = TitleLabel.tall(name: oldName).setTitle
+//            weightLabel.text = TitleLabel.weight(name: oldName).setTitle
             nameTextField.text = oldName
         }
-        
-        if let oldTall = UserDefaults.standard.string(forKey: InputType.tall.type),
-           let oldWeight = UserDefaults.standard.string(forKey: InputType.weight.type) {
+    }
+    
+    func loadTallWeightData(tall: String, weight: String) {
+        if let oldTall = UserDefaults.standard.string(forKey: tall),
+           let oldWeight = UserDefaults.standard.string(forKey: weight) {
             tallTextField.text = oldTall
             weightTextField.text = oldWeight
             
+            //유효성 검사
             checkValidInput(tallTextField)
             checkValidInput(weightTextField)
         }
-        
     }
     
     // MARK: - IBAction
+    
     @IBAction func nameTextFieldInput(_ sender: UITextField) {
         guard let name = sender.text else {
-            setPresentAlert(title: "이름을 입력해주세요",
-                            message: "다시 입력해주세요")
+            setPresentAlert(title: "이름을 입력해주세요")
             resetTextField()
             return
         }
@@ -127,42 +94,38 @@ final class ViewController: UIViewController {
     @IBAction func tallTextFieldInput(_ sender: UITextField) {
         
         guard let inputInt = checkInput(sender.text) else {
-            setPresentAlert(title: "숫자를 입력해주세요",
-                            message: "다시 입력해주세요")
+            setPresentAlert(title: "숫자를 입력해주세요")
             resetTextField()
             return
         }
         
         guard tallRangeArray.contains(inputInt) else {
             let title = "\(tallRangeArray.first ?? 0)cm ~ \(tallRangeArray.last ?? 0)cm 사이의 키를 입력해주세요"
-            let message = "다시 입력해주세요"
             
-            setPresentAlert(title: title,
-                            message: message)
+            setPresentAlert(title: title)
             resetTextField()
             return
         }
     }
     
     @IBAction func weightTextFieldInput(_ sender: UITextField) {
-
+        
         guard let inputInt = checkInput(sender.text) else {
-            setPresentAlert(title: "숫자를 입력해주세요",
-                            message: "다시 입력해주세요")
+            setPresentAlert(title: "숫자를 입력해주세요")
             resetTextField()
             return
         }
         
         guard weightRangeArray.contains(Int(inputInt)) else {
             let title = "\(weightRangeArray.first ?? 0)kg ~ \(weightRangeArray.last ?? 0)kg 사이의 몸무게를 입력해주세요"
-            let message = "다시 입력해주세요"
             
-            setPresentAlert(title: title,
-                            message: message)
+            setPresentAlert(title: title)
             resetTextField()
             return
         }
     }
+    
+    //TODO: -중복호출 정리
     
     @IBAction func checkValidInput(_ sender: UITextField) {
         guard
@@ -193,8 +156,7 @@ final class ViewController: UIViewController {
             let randomTall = tallRangeArray.randomElement(),
             let randomWeight = weightRangeArray.randomElement()
         else {
-            setPresentAlert(title: "랜덤 값이 없습니다",
-                            message: "다시 입력해주세요")
+            setPresentAlert(title: "랜덤 값이 없습니다")
             return
         }
         
@@ -207,28 +169,36 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
+        
         let keys: [String] = [InputType.name.type,
-                                 InputType.tall.type,
-                                 InputType.weight.type]
+                              InputType.tall.type,
+                              InputType.weight.type]
+        
         let textField: [UITextField] = [nameTextField,
                                         tallTextField,
                                         weightTextField]
         
-        keys.forEach { key in
-            UserDefaults.standard.removeObject(forKey: key)
+        setPresentAlert(title: "리셋",
+                        message: "값을 초기화하시겠습니까?",
+                        defaultButton: "취소",
+                        customSetting: true,
+                        customTitle: "예") {
+            //값 삭제
+            keys.forEach { key in
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+            
+            //textField 초기화
+            textField.forEach { tf in
+                tf.text = ""
+            }
+            
+            self.setTitleLabel(name: nil)
+            
+            self.checkValidInput(self.tallTextField)
+            self.checkValidInput(self.weightTextField)
         }
-        
-        textField.forEach { tf in
-            tf.text = ""
-        }
-        
-        tallLabel.text = "당신의 키는 어떻게 되시나요?"
-        weightLabel.text = "당신의 몸무게는 어떻게 되시나요?"
-        
-        checkValidInput(tallTextField)
-        checkValidInput(weightTextField)
     }
-    
     
     @IBAction func resultButtonTapped(_ sender: UIButton) {
         guard
@@ -237,8 +207,7 @@ final class ViewController: UIViewController {
             let doubleTall = Double(tall),
             let doubleWeight = Double(weight)
         else {
-            setPresentAlert(title: "입력이 잘못되었습니다",
-                            message: "다시 입력해주세요")
+            setPresentAlert(title: "입력이 잘못되었습니다")
             resetTextField()
             return
         }
@@ -255,9 +224,7 @@ final class ViewController: UIViewController {
         finalResult = String(format: "%.2f",  result)
         
         if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
-            tallLabel.text = "\(oldName)의 키는 어떻게 되시나요?"
-            weightLabel.text = "\(oldName)의 몸무게는 어떻게 되시나요?"
-            nameTextField.text = oldName
+            setTitleLabel(name: oldName)
         }
         
         if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
@@ -288,7 +255,57 @@ final class ViewController: UIViewController {
     
     // MARK: - Helpers
     
+    //입력 공통 확인 로직
+    func checkInput(_ textfieldInput: String?) -> Int? {
+        //값이 비어있는지
+        guard
+            let input = textfieldInput,
+            !input.isEmpty
+        else {
+            setPresentAlert(title: "값을 입력해주세요")
+            return nil
+        }
+        
+        //값이 숫자인지
+        guard
+            let intInput = Int(input)
+        else {
+            setPresentAlert(title: "숫자를 입력해주세요")
+            resetTextField()
+            return nil
+        }
+        
+        return intInput
+    }
+    
+    //결과 리턴 로직
+    func getResultString(_ input: Double) -> String {
+        switch input {
+        case 0..<18.5:
+            return ResultValue.저체중.name
+        case 18.5..<23:
+            return ResultValue.정상체중.name
+        case 23..<25:
+            return ResultValue.과체중.name
+        case 25..<30:
+            return ResultValue.비만.name
+        default:
+            return ResultValue.고도비만.name
+        }
+    }
+}
+
+// MARK: - Logic
+
+extension ViewController {
+    
+}
+
+// MARK: - UI
+
+extension ViewController {
     func configureUI() {
+        //label 설정
         setLabel(titleLabel, title: "BMI Calculator",
                  font: .boldSystemFont(ofSize: 25))
         
@@ -296,19 +313,21 @@ final class ViewController: UIViewController {
                  font: .systemFont(ofSize: 15, weight: .semibold),
                  lines: 2)
         
-        setLabel(nameLabel, title: "당신의 닉네임은?",
+        setLabel(nameLabel, title: TitleLabel.name(name: "").defaultTitle,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
-        setLabel(tallLabel, title: "키가 어떻게 되시나요?",
+        setLabel(tallLabel, title: TitleLabel.tall(name: "").defaultTitle,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
-        setLabel(weightLabel, title: "몸무게는 어떻게 되시나요?",
+        setLabel(weightLabel, title: TitleLabel.weight(name: "").defaultTitle,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
+        //textfield 설정
         setTextField(tallTextField, tag: 0)
         setTextField(weightTextField, tag: 1)
         setTextField(nameTextField, tag: 2, keyboardType: .default, cornerRadius: 15)
         
+        //image 설정
         peopleImage.image = .image
         peopleImage.contentMode = .scaleAspectFill
     }
@@ -336,13 +355,27 @@ final class ViewController: UIViewController {
     func setLabel(_ label: UILabel,
                   title: String,
                   font: UIFont = .systemFont(ofSize: 18),
-                  lines: Int = 1
-    ) {
+                  lines: Int = 1) {
         label.text = title
         label.font = font
         label.numberOfLines = lines
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = .random()
+    }
+    
+    //label 멘트 설정
+    func setTitleLabel(name: String?) {
+        //이름 있으면 이름 설정
+        if let name {
+            nameLabel.text = TitleLabel.name(name: name).setTitle
+            tallLabel.text = TitleLabel.tall(name: name).setTitle
+            weightLabel.text = TitleLabel.weight(name: name).setTitle
+        } else {
+            //이름 없으면 기본 label 설정
+            nameLabel.text = TitleLabel.name(name: "").defaultTitle
+            tallLabel.text = TitleLabel.tall(name: "").defaultTitle
+            weightLabel.text = TitleLabel.weight(name: "").defaultTitle
+        }
     }
     
     func setTextField(_ textField: UITextField,
@@ -362,56 +395,134 @@ final class ViewController: UIViewController {
         weightTextField.text = ""
     }
     
-    //Alert
-    func setPresentAlert(title: String, message: String) {
+    //Alert 설정, present
+    func setPresentAlert(title: String,
+                         message: String = "다시 입력해주세요",
+                         defaultButton: String = "확인",
+                         customSetting: Bool = false,
+                         customTitle: String? = nil,
+                         customAction: (() -> ())? = nil) {
+        //기본 설정
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
-        let defaultButton = UIAlertAction(title: "확인", style: .default)
-        
+        let defaultButton = UIAlertAction(title: defaultButton, style: .cancel)
         alert.addAction(defaultButton)
+        
+        //추가 설정시 title, 액션 전달
+        if customSetting {
+            let customButton = UIAlertAction(title: customTitle, style: .default) { action in
+                customAction?()
+            }
+            alert.addAction(customButton)
+        }
         
         present(alert, animated: true)
     }
-    
-    //입력 공통 확인 로직
-    func checkInput(_ textfieldInput: String?) -> Int? {
-        guard 
-            let input = textfieldInput,
-            !input.isEmpty
-        else {
-            setPresentAlert(title: "값을 입력해주세요",
-                            message: "다시 입력해주세요")
-            return nil
-        }
+}
+
+//TextField 입력 타입
+extension ViewController {
+    enum InputType: String {
+        case name
+        case tall
+        case weight
         
-        guard
-            let intInput = Int(input)
-        else {
-            setPresentAlert(title: "숫자를 입력해주세요",
-                            message: "다시 입력해주세요")
-            resetTextField()
-            return nil
-        }
-        
-        return intInput
-    }
-    
-    //결과 리턴 로직
-    func getResultString(_ input: Double) -> String {
-        switch input {
-        case 0..<18.5:
-            return ResultValue.저체중.name
-        case 18.5..<23:
-            return ResultValue.정상체중.name
-        case 23..<25:
-            return ResultValue.과체중.name
-        case 25..<30:
-            return ResultValue.비만.name
-        default:
-            return ResultValue.고도비만.name
+        var type: String {
+            switch self {
+            case .name:
+                return "name"
+            case .tall:
+                return "tall"
+            case .weight:
+                return "weight"
+            }
         }
     }
 }
 
+//error 타입
+extension ViewController {
+    enum InputError: Error {
+        case emptyInput
+        case notIntInput
+        case faultInput
+        case faultTallInput(min: Int, max: Int)
+        case faultWeightInput(min: Int, max: Int)
+        
+        var description: String {
+            switch self {
+            case .emptyInput:
+                return "값을 입력해주세요"
+            case .faultInput:
+                return "입력이 잘못되었습니다"
+            case .faultTallInput(min: let min, max: let max):
+                return "\(min)kg ~ \(max)cm 사이의 키를 입력해주세요"
+            case .faultWeightInput(min: let min, max: let max):
+                return "\(min)kg ~ \(max)kg 사이의 몸무게를 입력해주세요"
+            case .notIntInput:
+                return "숫자를 입력해주세요"
+            }
+        }
+    }
+}
+
+//체중
+extension ViewController {
+    enum ResultValue {
+        case 저체중
+        case 정상체중
+        case 과체중
+        case 비만
+        case 고도비만
+        
+        var name: String {
+            switch self {
+            case .저체중:
+                return "저체중"
+            case .정상체중:
+                return "정상 체중"
+            case .과체중:
+                return "과체중"
+            case .비만:
+                return "비만"
+            case .고도비만:
+                return "고도비만"
+            }
+        }
+    }
+}
+
+//titleLabel 설정
+extension ViewController {
+    enum TitleLabel {
+        case name(name: String)
+        case tall(name: String)
+        case weight(name: String)
+        
+        //nickname 없을때 title
+        var defaultTitle: String {
+            switch self {
+            case .name:
+                return "당신의 닉네임은?"
+            case .tall:
+                return "당신의 키는 어떻게 되시나요?"
+            case .weight:
+                return "당신의 몸무게는 어떻게 되시나요?"
+            }
+        }
+        
+        //nickname 설정 시 타이틀
+        var setTitle: String {
+            switch self {
+            case .name(name: let name):
+                return "\(name)님 안녕하세요."
+            case .tall(name: let name):
+                return "\(name)의 키는 어떻게 되시나요?"
+            case .weight(name: let name):
+                return "\(name)의 몸무게는 어떻게 되시나요?"
+            }
+        }
+    }
+}

@@ -224,6 +224,9 @@ final class ViewController: UIViewController {
         
         tallLabel.text = "당신의 키는 어떻게 되시나요?"
         weightLabel.text = "당신의 몸무게는 어떻게 되시나요?"
+        
+        checkValidInput(tallTextField)
+        checkValidInput(weightTextField)
     }
     
     

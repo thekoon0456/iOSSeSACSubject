@@ -7,7 +7,52 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    
+    enum InputType: String {
+        case tall
+        case weight
+        
+        var type: String {
+            switch self {
+            case .tall:
+                return "tall"
+            case .weight:
+                return "weight"
+            }
+        }
+    }
+    
+    enum InputError: Error {
+        case emptyInput
+        case notIntInput
+        case faultInput
+        case faultTallInput
+        case faultWeightInput
+    }
+    
+    enum ResultValue {
+        case 저체중
+        case 정상체중
+        case 과체중
+        case 비만
+        case 고도비만
+        
+        var name: String {
+            switch self {
+            case .저체중:
+                return "저체중"
+            case .정상체중:
+                return "정상 체중"
+            case .과체중:
+                return "과체중"
+            case .비만:
+                return "비만"
+            case .고도비만:
+                return "고도비만"
+            }
+        }
+    }
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
@@ -42,6 +87,16 @@ class ViewController: UIViewController {
         
         configureUI()
         configureButton()
+        
+        if let oldTall = UserDefaults.standard.string(forKey: InputType.tall.type),
+           let oldWeight = UserDefaults.standard.string(forKey: InputType.weight.type) {
+            tallTextField.text = oldTall
+            weightTextField.text = oldWeight
+            
+            checkValidInput(tallTextField)
+            checkValidInput(weightTextField)
+        }
+        
     }
     
     // MARK: - IBAction
@@ -110,7 +165,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func randomInputButtonTapped(_ sender: UIButton) {
+    @IBAction func randomInputButtonTapped(_ sender: UIButton) throws {
         guard
             let randomTall = tallRangeArray.randomElement(),
             let randomWeight = weightRangeArray.randomElement()
@@ -140,6 +195,10 @@ class ViewController: UIViewController {
             resetTextField()
             return
         }
+        
+        //UserDefault저장
+        UserDefaults.standard.set(tall, forKey: InputType.tall.type)
+        UserDefaults.standard.set(weight, forKey: InputType.weight.type)
         
         let computedTall = doubleTall / 100
         let result = doubleWeight / (computedTall * computedTall)
@@ -274,15 +333,15 @@ class ViewController: UIViewController {
     func getResultString(_ input: Double) -> String {
         switch input {
         case 0..<18.5:
-            return "저체중"
+            return ResultValue.저체중.name
         case 18.5..<23:
-            return "정상 체중"
+            return ResultValue.정상체중.name
         case 23..<25:
-            return "과체중"
+            return ResultValue.과체중.name
         case 25..<30:
-            return "비만"
+            return ResultValue.비만.name
         default:
-            return "고도비만"
+            return ResultValue.고도비만.name
         }
     }
 }

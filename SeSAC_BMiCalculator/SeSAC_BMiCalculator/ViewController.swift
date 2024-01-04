@@ -72,6 +72,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet var secureModeButton: UIButton!
     @IBOutlet var randomInputButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     @IBOutlet var resultButton: UIButton!
     
     //키, 몸무게 범위
@@ -205,6 +206,27 @@ final class ViewController: UIViewController {
         checkValidInput(weightTextField)
     }
     
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        let keys: [String] = [InputType.name.type,
+                                 InputType.tall.type,
+                                 InputType.weight.type]
+        let textField: [UITextField] = [nameTextField,
+                                        tallTextField,
+                                        weightTextField]
+        
+        keys.forEach { key in
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+        
+        textField.forEach { tf in
+            tf.text = ""
+        }
+        
+        tallLabel.text = "당신의 키는 어떻게 되시나요?"
+        weightLabel.text = "당신의 몸무게는 어떻게 되시나요?"
+    }
+    
+    
     @IBAction func resultButtonTapped(_ sender: UIButton) {
         guard
             let tall = tallTextField.text,
@@ -228,6 +250,12 @@ final class ViewController: UIViewController {
         
         //결과값
         finalResult = String(format: "%.2f",  result)
+        
+        if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
+            tallLabel.text = "\(oldName)의 키는 어떻게 되시나요?"
+            weightLabel.text = "\(oldName)의 몸무게는 어떻게 되시나요?"
+            nameTextField.text = oldName
+        }
         
         if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
             setPresentAlert(title: "\(oldName) 님의 BMI는",
@@ -297,6 +325,9 @@ final class ViewController: UIViewController {
         
         secureModeButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
         secureModeButton.tintColor = .black
+        
+        resetButton.setTitle("reset", for: .normal)
+        resetButton.setTitleColor(.red, for: .normal)
     }
     
     func setLabel(_ label: UILabel,

@@ -95,6 +95,8 @@ final class ViewController: UIViewController {
         configureButton()
         
         if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
+            tallLabel.text = "\(oldName)의 키는 어떻게 되시나요?"
+            weightLabel.text = "\(oldName)의 몸무게는 어떻게 되시나요?"
             nameTextField.text = oldName
         }
         
@@ -227,8 +229,13 @@ final class ViewController: UIViewController {
         //결과값
         finalResult = String(format: "%.2f",  result)
         
-        setPresentAlert(title: "당신의 BMI는",
-                        message: "\(finalResult)\n\(stringResult)입니다")
+        if let oldName = UserDefaults.standard.string(forKey: InputType.name.type) {
+            setPresentAlert(title: "\(oldName) 님의 BMI는",
+                            message: "\(finalResult)\n\(stringResult)입니다")
+        } else {
+            setPresentAlert(title: "당신의 BMI는",
+                            message: "\(finalResult)\n\(stringResult)입니다")
+        }
     }
     
     @IBAction func secureModeButtomTapped(_ sender: UIButton) {
@@ -301,6 +308,7 @@ final class ViewController: UIViewController {
         label.font = font
         label.numberOfLines = lines
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = .random()
     }
     
     func setTextField(_ textField: UITextField,

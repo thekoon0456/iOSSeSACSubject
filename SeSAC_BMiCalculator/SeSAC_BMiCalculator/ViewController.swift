@@ -412,9 +412,11 @@ extension ViewController {
         
         //추가 설정시 title, 액션 전달
         if customSetting {
-            let customButton = UIAlertAction(title: customTitle, style: .default) { action in
+            let customButton = UIAlertAction(title: customTitle,
+                                             style: .default) { action in
                 customAction?()
             }
+            
             alert.addAction(customButton)
         }
         

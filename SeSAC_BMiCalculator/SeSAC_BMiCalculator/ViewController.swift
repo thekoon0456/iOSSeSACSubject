@@ -78,8 +78,8 @@ final class ViewController: UIViewController {
         }
         
         guard tallRangeArray.contains(inputInt) else {
-            showAlert(input: .faultTallInput(min: tallRangeArray.first ?? 0,
-                                             max: tallRangeArray.last ?? 0))
+            showAlert(input: .faultTallInput(min: ConstInt.minTall.value,
+                                             max: ConstInt.maxTall.value))
             return
         }
     }
@@ -91,8 +91,8 @@ final class ViewController: UIViewController {
         }
         
         guard weightRangeArray.contains(Int(inputInt)) else {
-            showAlert(input: .faultWeightInput(min: weightRangeArray.first ?? 0,
-                                               max: weightRangeArray.last ?? 0))
+            showAlert(input: .faultWeightInput(min: ConstInt.minWeight.value,
+                                               max: ConstInt.maxWeight.value))
             return
         }
     }
@@ -126,6 +126,7 @@ final class ViewController: UIViewController {
     
     @IBAction func randomInputButtonTapped(_ sender: UIButton) {
         let randomName = ["아이네", "징버거", "릴파", "주르르", "고세구", "비챤"]
+        
         guard
             let randomTall = tallRangeArray.randomElement(),
             let randomWeight = weightRangeArray.randomElement()
@@ -144,7 +145,6 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        
         let keys: [String] = [InputType.name.type,
                               InputType.tall.type,
                               InputType.weight.type]

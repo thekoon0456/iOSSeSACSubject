@@ -8,6 +8,9 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController {
+    
+    
+    
     let sections = ["전체 설정", "개인 설정", "기타"]
     let wholeSetting = ["공지사항", "실험실", "버전 정보"]
     let personalSetting = ["개인/보안", "알림", "채팅", "멀티프로필"]

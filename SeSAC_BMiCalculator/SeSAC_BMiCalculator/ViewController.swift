@@ -30,18 +30,18 @@ final class ViewController: UIViewController {
     @IBOutlet var resultButton: UIButton!
     
     //키, 몸무게 범위
-    let tallRangeArray = Array(100...250)
-    let weightRangeArray = Array(30...200)
+    let tallRangeArray = Array(ConstInt.minTall.value...ConstInt.maxTall.value)
+    let weightRangeArray = Array(ConstInt.minWeight.value...ConstInt.maxWeight.value)
     
     //alert에 띄울 결과값
-    var finalResult: String = ""
+    var formattedResult: String = ""
     
     //입력 유효성 검사
     var isTallInput = false
     var isWeightInput = false
     
     //버튼 Secure표시
-    var isSecure: Bool = UserDefaults.standard.bool(forKey: "isSecure")
+    var isSecure: Bool = UserDefaults.standard.bool(forKey: ConstSecure.secureKey.rawValue)
     //기본값 false 반환
     
     // MARK: - Lifecycles
@@ -55,8 +55,8 @@ final class ViewController: UIViewController {
         
         //저장값 load
         loadNameData(input: InputType.name.type)
-        loadTallWeightData(tall: InputType.tall.type, weight: InputType.weight.type)
-        
+        loadTallWeightData(tall: InputType.tall.type,
+                           weight: InputType.weight.type)
     }
     
     // MARK: - IBAction
@@ -168,7 +168,7 @@ final class ViewController: UIViewController {
                 tf.text = ""
             }
             
-            //alert컨트롤러에서 뷰컨을 참조하는건 맞지만, 뷰컨에 종속되어있는 컨트롤러라서 순환참조는 일어나지 않는다고 생각
+            //alert컨트롤러에서 뷰컨을 참조하는건 맞지만, 뷰컨에 종속되어있는 컨트롤러라서 self캡쳐해도 순환참조는 일어나지 않는다고 생각
             setTitleLabel(name: nil)
             
             checkWholeTextFieldInput(tall: tallTextField,
@@ -196,35 +196,20 @@ final class ViewController: UIViewController {
         //로직 계산
         let computedTall = doubleTall / 100
         let result = doubleWeight / (computedTall * computedTall)
-        let stringResult = getResultString(result)
+        let resultString = getResultString(result)
         
         //결과값
-        finalResult = String(format: "%.2f",  result)
+        formattedResult = String(format: "%.2f",  result)
         
-        //label, alert 설정
-        guard
-            let inputName = UserDefaults.standard.string(forKey: InputType.name.type),
-            !inputName.isEmpty
-        else {
-            setPresentAlert(title: "당신의 BMI는",
-                            message: "\(finalResult)\n\(stringResult)입니다")
-            setTitleLabel(name: nil)
-            return
-        }
-        
-        setPresentAlert(title: "\(inputName) 님의 BMI는",
-                        message: "\(finalResult)\n\(stringResult)입니다")
-        
-        setTitleLabel(name: inputName)
+        showResultAlert(resultInt: formattedResult, resultStr: resultString)
     }
-    
     
     @IBAction func secureModeButtomTapped(_ sender: UIButton) {
         isSecure.toggle()
         weightTextField.isSecureTextEntry = isSecure
         
         //설정값 저장
-        UserDefaults.standard.set(isSecure, forKey: "isSecure")
+        UserDefaults.standard.set(isSecure, forKey: ConstSecure.secureKey.rawValue)
         
         //버튼 설정
         setSecureButtonImage(isSecure)
@@ -263,10 +248,10 @@ final class ViewController: UIViewController {
     
     func setSecureButtonImage(_ isSecure: Bool) {
         if isSecure {
-            secureModeButton.setImage(UIImage(systemName: "eye.slash.fill"),
+            secureModeButton.setImage(UIImage(systemName: ConstSecure.secureIcon.rawValue),
                                       for: .normal)
         } else {
-            secureModeButton.setImage(UIImage(systemName: "eye.fill"),
+            secureModeButton.setImage(UIImage(systemName: ConstSecure.normalIcon.rawValue),
                                       for: .normal)
         }
     }
@@ -297,19 +282,38 @@ final class ViewController: UIViewController {
         checkValidInput(weightTextField)
     }
     
-    //결과 리턴 로직
+    //결과 Alert설정, label의 title설정
+    func showResultAlert(resultInt: String, resultStr: String) {
+        //label, alert 설정
+        guard
+            let inputName = UserDefaults.standard.string(forKey: InputType.name.type),
+            !inputName.isEmpty
+        else {
+            setPresentAlert(title: "당신의 BMI는",
+                            message: "\(resultInt)\n\(resultStr)입니다")
+            setTitleLabel(name: nil)
+            return
+        }
+        
+        setPresentAlert(title: "\(inputName) 님의 BMI는",
+                        message: "\(resultInt)\n\(resultStr)입니다")
+        
+        setTitleLabel(name: inputName)
+    }
+    
+    //결과 리턴
     func getResultString(_ input: Double) -> String {
         switch input {
         case 0..<18.5:
-            return ResultValue.underweight.name
+            return ResultValue.underweight.result
         case 18.5..<23:
-            return ResultValue.normalweight.name
+            return ResultValue.normalweight.result
         case 23..<25:
-            return ResultValue.overweight.name
+            return ResultValue.overweight.result
         case 25..<30:
-            return ResultValue.obesity.name
+            return ResultValue.obesity.result
         default:
-            return ResultValue.severeObesity.name
+            return ResultValue.severeObesity.result
         }
     }
 }
@@ -320,17 +324,17 @@ extension ViewController {
     func showAlert(input: InputError) {
         switch input {
         case .emptyName:
-            setPresentAlert(title: "닉네임을 입력해주세요")
+            setPresentAlert(title: ConstMent.emptyName)
         case .emptyInput:
-            setPresentAlert(title: "값을 입력해주세요")
+            setPresentAlert(title: ConstMent.emptyInput)
         case .faultInput:
-            setPresentAlert(title: "입력이 잘못되었습니다")
-        case .faultTallInput(min: let min, max: let max):
-            setPresentAlert(title: "\(min)kg ~ \(max)cm 사이의 키를 입력해주세요")
-        case .faultWeightInput(min: let min, max: let max):
-            setPresentAlert(title: "\(min)kg ~ \(max)kg 사이의 몸무게를 입력해주세요")
+            setPresentAlert(title: ConstMent.faultInput)
+        case .faultTallInput:
+            setPresentAlert(title: ConstMent.faultTallInput)
+        case .faultWeightInput:
+            setPresentAlert(title: ConstMent.faultWeightInput)
         case .notIntInput:
-            setPresentAlert(title: "숫자를 입력해주세요")
+            setPresentAlert(title: ConstMent.notIntInput)
         }
         
         //textField 초기화
@@ -359,12 +363,21 @@ extension ViewController {
         setLabel(weightLabel,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
+        //가변적인 label 멘트 설정
         setTitleLabel(name: UserDefaults.standard.string(forKey: InputType.name.type))
         
         //textfield 설정
-        setTextField(tallTextField, tag: 0)
-        setTextField(weightTextField, tag: 1)
-        setTextField(nameTextField, tag: 2, keyboardType: .default, cornerRadius: 15)
+        setTextField(tallTextField,
+                     placeHolder: ConstMent.faultTallInput,
+                     tag: 0)
+        setTextField(weightTextField,
+                     placeHolder: ConstMent.faultWeightInput,
+                     tag: 1)
+        setTextField(nameTextField,
+                     placeHolder:  ConstMent.emptyName,
+                     tag: 2,
+                     keyboardType: .default,
+                     cornerRadius: 15)
         //secure 설정 로드
         weightTextField.isSecureTextEntry = isSecure
         
@@ -401,7 +414,7 @@ extension ViewController {
         label.font = font
         label.numberOfLines = lines
         label.textAlignment = .left
-        label.adjustsFontSizeToFitWidth = .random()
+        label.adjustsFontSizeToFitWidth = true
     }
     
     //label 멘트 설정
@@ -423,9 +436,11 @@ extension ViewController {
     }
     
     func setTextField(_ textField: UITextField,
+                      placeHolder: String,
                       tag: Int,
                       keyboardType: UIKeyboardType = .numberPad,
                       cornerRadius: CGFloat = 20) {
+        textField.placeholder = placeHolder
         textField.tag = tag
         textField.keyboardType = keyboardType
         textField.layer.borderColor = UIColor.darkGray.cgColor
@@ -521,7 +536,7 @@ extension ViewController {
         case obesity
         case severeObesity
         
-        var name: String {
+        var result: String {
             switch self {
             case .underweight:
                 return "저체중"
@@ -571,7 +586,44 @@ extension ViewController {
     }
 }
 
-// MARK: - alert컨트롤러 해제 test
+extension ViewController {
+    enum ConstSecure: String {
+        case secureKey
+        case secureIcon = "eye.slash.fill"
+        case normalIcon = "eye.fill"
+    }
+    
+    enum ConstInt {
+        case minTall
+        case maxTall
+        case minWeight
+        case maxWeight
+        
+        var value: Int {
+            switch self {
+            case .minTall:
+                return 50
+            case .maxTall:
+                return 250
+            case .minWeight:
+                return 30
+            case .maxWeight:
+                return 200
+            }
+        }
+    }
+    
+    enum ConstMent {
+        static let emptyName = "닉네임을 입력해주세요"
+        static let emptyInput = "값을 입력해주세요"
+        static let faultInput = "입력이 잘못되었습니다"
+        static let faultTallInput = "\(ConstInt.minTall.value)cm ~ \(ConstInt.maxTall.value)cm 사이의 키를 입력해주세요"
+        static let faultWeightInput = "\(ConstInt.minWeight.value)kg ~ \(ConstInt.maxWeight.value)kg 사이의 몸무게를 입력해주세요"
+        static let notIntInput = "숫자를 입력해주세요"
+    }
+}
+
+// MARK: - alert컨트롤러 메모리 해제 test
 
 class CustomAlert: UIAlertController {
     

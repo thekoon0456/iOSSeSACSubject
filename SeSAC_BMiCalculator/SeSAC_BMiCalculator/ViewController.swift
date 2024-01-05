@@ -189,9 +189,7 @@ final class ViewController: UIViewController {
         }
         
         //UserDefault저장
-        UserDefaults.standard.set(name, forKey: InputType.name.type)
-        UserDefaults.standard.set(tall, forKey: InputType.tall.type)
-        UserDefaults.standard.set(weight, forKey: InputType.weight.type)
+        saveUserDefaults(name: name, tall: tall, weight: weight)
         
         //로직 계산
         let computedTall = doubleTall / 100
@@ -218,8 +216,37 @@ final class ViewController: UIViewController {
     @IBAction func dismissKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
+}
+
+// MARK: - Helpers
+
+extension ViewController {
     
-    // MARK: - Helpers
+    func showAlert(input: InputError) {
+        switch input {
+        case .emptyName:
+            setPresentAlert(title: ConstMent.emptyName)
+        case .emptyInput:
+            setPresentAlert(title: ConstMent.emptyInput)
+        case .faultInput:
+            setPresentAlert(title: ConstMent.faultInput)
+        case .faultTallInput:
+            setPresentAlert(title: ConstMent.faultTallInput)
+        case .faultWeightInput:
+            setPresentAlert(title: ConstMent.faultWeightInput)
+        case .notIntInput:
+            setPresentAlert(title: ConstMent.notIntInput)
+        }
+        
+        //textField 초기화
+        resetTextField()
+    }
+    
+    func saveUserDefaults(name: String, tall: String, weight: String) {
+        UserDefaults.standard.set(name, forKey: InputType.name.type)
+        UserDefaults.standard.set(tall, forKey: InputType.tall.type)
+        UserDefaults.standard.set(weight, forKey: InputType.weight.type)
+    }
     
     func loadNameData(input: String) {
         if let oldName = UserDefaults.standard.string(forKey: input) {
@@ -235,24 +262,6 @@ final class ViewController: UIViewController {
             
             //유효성 검사
             checkWholeTextFieldInput(tall: tallTextField, weight: weightTextField)
-        }
-    }
-    
-    func setTextFieldText(name: String? = nil, tall: String, weight: String) {
-        if let name {
-            nameTextField.text = name
-        }
-        tallTextField.text = tall
-        weightTextField.text = weight
-    }
-    
-    func setSecureButtonImage(_ isSecure: Bool) {
-        if isSecure {
-            secureModeButton.setImage(UIImage(systemName: ConstSecure.secureIcon.rawValue),
-                                      for: .normal)
-        } else {
-            secureModeButton.setImage(UIImage(systemName: ConstSecure.normalIcon.rawValue),
-                                      for: .normal)
         }
     }
     
@@ -315,30 +324,6 @@ final class ViewController: UIViewController {
         default:
             return ResultValue.severeObesity.result
         }
-    }
-}
-
-// MARK: - Logic
-
-extension ViewController {
-    func showAlert(input: InputError) {
-        switch input {
-        case .emptyName:
-            setPresentAlert(title: ConstMent.emptyName)
-        case .emptyInput:
-            setPresentAlert(title: ConstMent.emptyInput)
-        case .faultInput:
-            setPresentAlert(title: ConstMent.faultInput)
-        case .faultTallInput:
-            setPresentAlert(title: ConstMent.faultTallInput)
-        case .faultWeightInput:
-            setPresentAlert(title: ConstMent.faultWeightInput)
-        case .notIntInput:
-            setPresentAlert(title: ConstMent.notIntInput)
-        }
-        
-        //textField 초기화
-        resetTextField()
     }
 }
 
@@ -454,6 +439,24 @@ extension ViewController {
         weightTextField.text = ""
     }
     
+    func setTextFieldText(name: String? = nil, tall: String, weight: String) {
+        if let name {
+            nameTextField.text = name
+        }
+        tallTextField.text = tall
+        weightTextField.text = weight
+    }
+    
+    func setSecureButtonImage(_ isSecure: Bool) {
+        if isSecure {
+            secureModeButton.setImage(UIImage(systemName: ConstSecure.secureIcon.rawValue),
+                                      for: .normal)
+        } else {
+            secureModeButton.setImage(UIImage(systemName: ConstSecure.normalIcon.rawValue),
+                                      for: .normal)
+        }
+    }
+    
     //Alert 설정, present
     func setPresentAlert(title: String,
                          message: String = "다시 입력해주세요",
@@ -483,7 +486,7 @@ extension ViewController {
     }
 }
 
-//TextField 입력 타입
+// MARK: - enum
 
 extension ViewController {
     enum InputType: String {

@@ -66,7 +66,6 @@ final class ViewController: UIViewController {
             let name = sender.text,
             !name.isEmpty
         else {
-            showAlert(input: .emptyName)
             setTitleLabel(name: nil)
             return
         }
@@ -158,7 +157,7 @@ final class ViewController: UIViewController {
                         message: "값을 초기화하시겠습니까?",
                         defaultButton: "취소",
                         customSetting: true,
-                        customTitle: "예") {
+                        customTitle: "예") { [self] in
             //값 삭제
             keys.forEach { key in
                 UserDefaults.standard.removeObject(forKey: key)
@@ -170,9 +169,10 @@ final class ViewController: UIViewController {
             }
             
             //alert컨트롤러에서 뷰컨을 참조하는건 맞지만, 뷰컨에 종속되어있는 컨트롤러라서 순환참조는 일어나지 않는다고 생각
-            self.setTitleLabel(name: nil)
+            setTitleLabel(name: nil)
             
-            self.checkWholeTextFieldInput(tall: self.tallTextField, weight: self.weightTextField)
+            checkWholeTextFieldInput(tall: tallTextField,
+                                     weight: weightTextField)
         }
     }
     
@@ -350,14 +350,16 @@ extension ViewController {
                  font: .systemFont(ofSize: 15, weight: .semibold),
                  lines: 2)
         
-        setLabel(nameLabel, title: TitleLabel.name(name: "").defaultTitle,
+        setLabel(nameLabel,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
-        setLabel(tallLabel, title: TitleLabel.tall(name: "").defaultTitle,
+        setLabel(tallLabel,
                  font: .systemFont(ofSize: 15, weight: .semibold))
         
-        setLabel(weightLabel, title: TitleLabel.weight(name: "").defaultTitle,
+        setLabel(weightLabel,
                  font: .systemFont(ofSize: 15, weight: .semibold))
+        
+        setTitleLabel(name: UserDefaults.standard.string(forKey: InputType.name.type))
         
         //textfield 설정
         setTextField(tallTextField, tag: 0)
@@ -392,7 +394,7 @@ extension ViewController {
     }
     
     func setLabel(_ label: UILabel,
-                  title: String,
+                  title: String? = nil,
                   font: UIFont = .systemFont(ofSize: 18),
                   lines: Int = 1) {
         label.text = title
@@ -404,18 +406,20 @@ extension ViewController {
     
     //label 멘트 설정
     func setTitleLabel(name: String?) {
-        //이름 있으면 이름 설정
-        if let name {
-            nameTextField.text = name
-            nameLabel.text = TitleLabel.name(name: name).setTitle
-            tallLabel.text = TitleLabel.tall(name: name).setTitle
-            weightLabel.text = TitleLabel.weight(name: name).setTitle
-        } else {
-            //이름 없으면 기본 label 설정
+        guard
+            let name,
+            name != ""
+        else {
             nameLabel.text = TitleLabel.name(name: "").defaultTitle
             tallLabel.text = TitleLabel.tall(name: "").defaultTitle
             weightLabel.text = TitleLabel.weight(name: "").defaultTitle
+            return
         }
+        
+        nameTextField.text = name
+        nameLabel.text = TitleLabel.name(name: name).setTitle
+        tallLabel.text = TitleLabel.tall(name: name).setTitle
+        weightLabel.text = TitleLabel.weight(name: name).setTitle
     }
     
     func setTextField(_ textField: UITextField,
@@ -443,7 +447,7 @@ extension ViewController {
                          customTitle: String? = nil,
                          customAction: (() -> ())? = nil) {
         //기본 설정
-        let alert = UIAlertController(title: title,
+        let alert = CustomAlert(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
@@ -496,7 +500,7 @@ extension ViewController {
     }
 }
 
-//error 타입처리하는건..어떻게 구현해야 할 지 잘 모르겠습니다...도움이 필요합니다..
+//잭님..error 타입처리하는건..어떻게 구현해야 할 지 잘 모르겠습니다...도움이 필요합니다..
 extension ViewController {
     enum InputError: Error {
         case emptyName
@@ -564,5 +568,14 @@ extension ViewController {
                 return "\(name)님의 몸무게는 어떻게 되시나요?"
             }
         }
+    }
+}
+
+// MARK: - alert컨트롤러 해제 test
+
+class CustomAlert: UIAlertController {
+    
+    deinit {
+        print("\(self) 해제")
     }
 }

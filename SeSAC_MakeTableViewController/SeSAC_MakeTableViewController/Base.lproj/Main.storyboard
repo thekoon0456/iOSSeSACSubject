@@ -267,17 +267,17 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingTableViewCell" id="fNl-lv-YhI" customClass="ShoppingTableViewCell" customModule="SeSAC_MakeTableViewController" customModuleProvider="target">
-                                <rect key="frame" x="20" y="142.33333206176758" width="353" height="64.333335876464844"/>
+                                <rect key="frame" x="20" y="142.33333206176758" width="353" height="50.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fNl-lv-YhI" id="zgp-gf-oeK">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="64.333335876464844"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="50.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-yE-3td">
-                                            <rect key="frame" x="20" y="10.000000000000004" width="44" height="44.333333333333343"/>
+                                            <rect key="frame" x="10" y="9.9999999999999982" width="30" height="30.333333333333329"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="3ZH-yE-3td" secondAttribute="height" multiplier="1:1" id="aiR-GY-EVV"/>
-                                                <constraint firstAttribute="width" constant="44" id="nOq-sX-yiz"/>
+                                                <constraint firstAttribute="width" constant="30" id="nOq-sX-yiz"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title=""/>
@@ -286,10 +286,10 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sy1-PT-Yl6">
-                                            <rect key="frame" x="289" y="10.000000000000004" width="44" height="44.333333333333343"/>
+                                            <rect key="frame" x="313" y="9.9999999999999982" width="30" height="30.333333333333329"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sy1-PT-Yl6" secondAttribute="height" multiplier="1:1" id="A4P-ro-Qld"/>
-                                                <constraint firstAttribute="width" constant="44" id="O6i-8F-wgA"/>
+                                                <constraint firstAttribute="width" constant="30" id="O6i-8F-wgA"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title=""/>
@@ -298,7 +298,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arT-uv-eBZ">
-                                            <rect key="frame" x="84" y="21.666666666666671" width="195" height="21"/>
+                                            <rect key="frame" x="60" y="14.666666666666664" width="243" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -306,7 +306,7 @@
                                     </subviews>
                                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.80000000000000004"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="sy1-PT-Yl6" secondAttribute="trailing" constant="20" id="LKE-3s-bRc"/>
+                                        <constraint firstAttribute="trailing" secondItem="sy1-PT-Yl6" secondAttribute="trailing" constant="10" id="LKE-3s-bRc"/>
                                         <constraint firstAttribute="bottom" secondItem="sy1-PT-Yl6" secondAttribute="bottom" constant="10" id="MPQ-0o-ZO7"/>
                                         <constraint firstItem="3ZH-yE-3td" firstAttribute="top" secondItem="zgp-gf-oeK" secondAttribute="top" constant="10" id="MWD-zK-YgQ"/>
                                         <constraint firstItem="sy1-PT-Yl6" firstAttribute="leading" secondItem="arT-uv-eBZ" secondAttribute="trailing" constant="10" id="Mve-ab-U28"/>
@@ -314,7 +314,7 @@
                                         <constraint firstItem="arT-uv-eBZ" firstAttribute="leading" secondItem="3ZH-yE-3td" secondAttribute="trailing" constant="20" id="XKe-EH-1yU"/>
                                         <constraint firstAttribute="bottom" secondItem="3ZH-yE-3td" secondAttribute="bottom" constant="10" id="q5y-vM-1zk"/>
                                         <constraint firstItem="arT-uv-eBZ" firstAttribute="centerY" secondItem="zgp-gf-oeK" secondAttribute="centerY" id="reb-kV-c2F"/>
-                                        <constraint firstItem="3ZH-yE-3td" firstAttribute="leading" secondItem="zgp-gf-oeK" secondAttribute="leading" constant="20" id="zbU-Lo-ikm"/>
+                                        <constraint firstItem="3ZH-yE-3td" firstAttribute="leading" secondItem="zgp-gf-oeK" secondAttribute="leading" constant="10" id="zbU-Lo-ikm"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.84999999999999998"/>

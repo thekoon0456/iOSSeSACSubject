@@ -35,6 +35,9 @@ class ShoppingTableViewController: UITableViewController {
         
         customHeaderView.layer.cornerRadius = 10
         customHeaderView.clipsToBounds = true
+//        cellInnerView.layer.cornerRadius = 10
+//        cellInnerView.clipsToBounds = true
+//        cellInnerView.backgroundColor = .systemGray6
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {

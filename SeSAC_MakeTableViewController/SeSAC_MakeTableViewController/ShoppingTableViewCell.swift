@@ -11,13 +11,15 @@ class ShoppingTableViewCell: UITableViewCell {
     
     static let cellID = "ShoppingTableViewCell"
     
+    @IBOutlet var insetView: UIView!
     @IBOutlet var checkButton: UIButton!
     @IBOutlet var starButton: UIButton!
     @IBOutlet var contentLabel: UILabel!
     
-    override func awakeFromNib() {
-//        super.awakeFromNib()
+    var checkButtonSelected = false
+    var starButtonSelected = false
 
+    override func awakeFromNib() {
         configureUI()
     }
     
@@ -26,14 +28,18 @@ class ShoppingTableViewCell: UITableViewCell {
     }
     
     func configureUI() {
-        contentView.backgroundColor = .systemGray6
-        contentView.layer.cornerRadius = 10
-        contentView.clipsToBounds = true
-        
+        setInsetView()
         setButton(checkButton,
                   normalImage: "checkmark.square")
         setButton(starButton,
                   normalImage: "star")
+        contentLabel.font = .systemFont(ofSize: 13)
+    }
+    
+    func setInsetView() {
+        insetView.backgroundColor = .systemGray6
+        insetView.layer.cornerRadius = 10
+        insetView.clipsToBounds = true
     }
     
     func setButton(_ button: UIButton,
@@ -45,12 +51,20 @@ class ShoppingTableViewCell: UITableViewCell {
     }
     
     @IBAction func checkButtonTapped(_ sender: UIButton) {
-        sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
-        print("눌림")
+        checkButtonSelected.toggle()
+        if checkButtonSelected {
+            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        }
     }
     
     @IBAction func starButtonTapped(_ sender: UIButton) {
-        sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        print("눌림")
+        starButtonSelected.toggle()
+        if starButtonSelected {
+            sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "star"), for: .normal)
+        }
     }
 }

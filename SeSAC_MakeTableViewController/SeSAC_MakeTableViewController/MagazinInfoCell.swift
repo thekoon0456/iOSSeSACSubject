@@ -32,7 +32,10 @@ class MagazinInfoCell: UITableViewCell {
     }
     
     func setValue(_ input: Magazine) {
-        cellImageView.kf.setImage(with: URL(string: input.photo_image))
+        let placeHolderImage = UIImage(named: "loadingImage")
+        
+        cellImageView.kf.setImage(with: URL(string: input.photo_image),
+                                  placeholder: placeHolderImage)
         titleLabel.text = input.title
         subTitleLabel.text = input.subtitle
         setDate(input.date)

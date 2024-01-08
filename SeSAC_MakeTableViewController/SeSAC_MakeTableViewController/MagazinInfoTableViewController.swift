@@ -13,8 +13,11 @@ class MagazinInfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.title = "SeSAC TRAVEL"
+        
+        //모든 cell의 기본 높이 자동 설정
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - Table view data source
@@ -32,5 +35,10 @@ class MagazinInfoTableViewController: UITableViewController {
         cell.setValue(magazinInfoList.magazine[indexPath.row])
         return cell
     }
-
+    
+    //각 cell마다 높이 가변 설정
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        //특정 index마다 가변 설정 가능
+//        UITableView.automaticDimension
+//    }
 }

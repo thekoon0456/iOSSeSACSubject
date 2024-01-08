@@ -232,8 +232,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="540"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VQO-cR-c49">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="533"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQO-cR-c49">
+                                            <rect key="frame" x="20" y="20" width="353" height="500"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-lN-GWR">
                                                     <rect key="frame" x="10" y="353" width="247" height="87"/>
@@ -253,8 +253,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-Jl-hL0">
-                                                    <rect key="frame" x="10" y="447" width="42" height="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-Jl-hL0">
+                                                    <rect key="frame" x="10" y="430" width="42" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="WZn-l5-UAh"/>
                                                     </constraints>

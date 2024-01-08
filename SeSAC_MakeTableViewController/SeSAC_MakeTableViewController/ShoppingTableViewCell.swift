@@ -15,31 +15,33 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet var checkButton: UIButton!
     @IBOutlet var starButton: UIButton!
     @IBOutlet var contentLabel: UILabel!
-    
-//    @UserDefault
-//    var list: [Shopping]?
-    
-    var checkButtonSelected = false
-    var starButtonSelected = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         configureUI()
     }
     
     func setValue(shopping: Shopping) {
-        
-        checkButtonSelected = shopping.isChecked
-        starButtonSelected = shopping.isBookmarked
         contentLabel.text = shopping.title
+        
+        //버튼 이미지 설정
+        let checkImage = shopping.isChecked
+        ? "checkmark.square.fill"
+        : "checkmark.square"
+        
+        let starImage = shopping.isBookmarked
+        ? "star.fill"
+        : "star"
+        
+        checkButton.setImage(UIImage(systemName: checkImage), for: .normal)
+        starButton.setImage(UIImage(systemName: starImage), for: .normal)
     }
     
     func configureUI() {
         setInsetView()
-        setButton(checkButton,
-                  normalImage: "checkmark.square")
-        setButton(starButton,
-                  normalImage: "star")
+        setButton(checkButton)
+        setButton(starButton)
         contentLabel.font = .systemFont(ofSize: 13)
     }
     
@@ -49,30 +51,7 @@ class ShoppingTableViewCell: UITableViewCell {
         insetView.clipsToBounds = true
     }
     
-    func setButton(_ button: UIButton,
-                   normalImage: String) {
-        let normalImage = UIImage(systemName: normalImage)
-        
-        button.setImage(normalImage, for: .normal)
+    func setButton(_ button: UIButton) {
         button.tintColor = .label
-    }
-    
-    @IBAction func checkButtonTapped(_ sender: UIButton) {
-        checkButtonSelected.toggle()
-        if checkButtonSelected {
-            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
-        } else {
-            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        }
-        
-    }
-    
-    @IBAction func starButtonTapped(_ sender: UIButton) {
-        starButtonSelected.toggle()
-        if starButtonSelected {
-            sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        } else {
-            sender.setImage(UIImage(systemName: "star"), for: .normal)
-        }
     }
 }

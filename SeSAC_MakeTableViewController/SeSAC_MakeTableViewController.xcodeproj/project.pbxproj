@@ -11,6 +11,7 @@
 		7C382C652B4BE47500AC8236 /* MagazinInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */; };
 		7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */; };
 		7C382C6A2B4BE68900AC8236 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C382C692B4BE68900AC8236 /* Kingfisher */; };
+		7C382C6C2B4BF34500AC8236 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C6B2B4BF34500AC8236 /* UserDefault.swift */; };
 		7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A42B4809BA000C18C7 /* AppDelegate.swift */; };
 		7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */; };
 		7CC905AC2B4809BA000C18C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC905AA2B4809BA000C18C7 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		7C382C622B4BE40800AC8236 /* MagazineInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagazineInfo.swift; sourceTree = "<group>"; };
 		7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoTableViewController.swift; sourceTree = "<group>"; };
 		7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoCell.swift; sourceTree = "<group>"; };
+		7C382C6B2B4BF34500AC8236 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		7CC905A12B4809BA000C18C7 /* SeSAC_MakeTableViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_MakeTableViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */,
 				7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */,
 				7C382C622B4BE40800AC8236 /* MagazineInfo.swift */,
+				7C382C6B2B4BF34500AC8236 /* UserDefault.swift */,
 				7CC905AA2B4809BA000C18C7 /* Main.storyboard */,
 				7CC905AD2B4809BA000C18C7 /* Assets.xcassets */,
 				7CC905AF2B4809BA000C18C7 /* LaunchScreen.storyboard */,
@@ -166,6 +169,7 @@
 				7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */,
 				7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */,
 				7CD73C552B48120600E5F177 /* ShoppingTableViewController.swift in Sources */,
+				7C382C6C2B4BF34500AC8236 /* UserDefault.swift in Sources */,
 				7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */,
 				7C382C652B4BE47500AC8236 /* MagazinInfoTableViewController.swift in Sources */,
 				7C382C632B4BE40800AC8236 /* MagazineInfo.swift in Sources */,

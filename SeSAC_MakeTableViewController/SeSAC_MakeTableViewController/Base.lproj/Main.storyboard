@@ -382,9 +382,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title=""/>
-                                                    <connections>
-                                                        <action selector="starButtonTapped:" destination="fNl-lv-YhI" eventType="touchUpInside" id="FJU-oX-MlQ"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-yE-3td">
                                                     <rect key="frame" x="20" y="16" width="25" height="25"/>
@@ -395,9 +392,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title=""/>
-                                                    <connections>
-                                                        <action selector="checkButtonTapped:" destination="fNl-lv-YhI" eventType="touchUpInside" id="Mf4-VY-icn"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arT-uv-eBZ">
                                                     <rect key="frame" x="50" y="18.333333333333336" width="253" height="20.333333333333336"/>

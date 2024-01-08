@@ -7,36 +7,6 @@
 
 import UIKit
 
-@propertyWrapper
-struct UserDefault<T: Codable> {
-    private var key: String
-    private var defaultData: T?
-    
-    init(key: String, defaultData: T?) {
-        self.key = key
-        self.defaultData = defaultData
-    }
-    
-    var wrappedValue: T? {
-        get {
-            if let savedData = UserDefaults.standard.object(forKey: key) as? Data {
-                let decoder = JSONDecoder()
-                if let loadedData = try? decoder.decode(T.self, from: savedData) {
-                    return loadedData
-                }
-            }
-            return defaultData
-        }
-        set {
-            let encoder = JSONEncoder()
-            if let encodedData = try? encoder.encode(newValue) {
-                UserDefaults.standard.set(encodedData, forKey: key)
-            }
-        }
-    }
-    
-}
-
 struct Shopping: Codable {
     var isChecked: Bool
     let title: String
@@ -61,34 +31,16 @@ class ShoppingTableViewController: UITableViewController {
         }
     }
     
-    let sections = ["header", "list"]
-    
-//    var contentList = ["그립톡 구매하기",
-//                       "사이다 구매",
-//                       "아이패드 케이스 최저가 알아보기",
-//                       "양말"] {
-//        didSet {
-//            print("\(contentList) 수정됨")
-//            tableView.reloadData()
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
     }
     
-    func configureUI() {
-        navigationItem.title = "쇼핑"
-        
-        customHeaderView.layer.cornerRadius = 10
-        customHeaderView.clipsToBounds = true
-    }
-    
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        guard let input = inputTextField.text,
-              input.isEmpty == false
+        guard
+            let input = inputTextField.text,
+            input.isEmpty == false
         else {
             print("입력해주세요")
             return
@@ -97,6 +49,28 @@ class ShoppingTableViewController: UITableViewController {
         let inputShopping = Shopping(isChecked: false, title: input, isBookmarked: false)
         
         shoppingList.append(inputShopping)
+    }
+    
+    @objc func checkButtonTapped(sender: UIButton) {
+        shoppingList[sender.tag].isChecked.toggle()
+    }
+    
+    @objc func starButtonTapped(sender: UIButton) {
+        shoppingList[sender.tag].isBookmarked.toggle()
+    }
+    
+    // MARK: - Helpers
+    
+    func configureUI() {
+        navigationItem.title = "쇼핑"
+        
+        //UserDefaults값 있으면 불러옴
+        if let list {
+            shoppingList = list
+        }
+        
+        customHeaderView.layer.cornerRadius = 10
+        customHeaderView.clipsToBounds = true
     }
     
     // MARK: - TableView 구성
@@ -110,7 +84,20 @@ class ShoppingTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
+        //Data전달
         cell.setValue(shopping: shoppingList[indexPath.row])
+        
+        //각 버튼에 tag추가
+        cell.checkButton.tag = indexPath.row
+        cell.starButton.tag = indexPath.row
+        
+        //버튼 action추가
+        cell.checkButton.addTarget(self,
+                                   action: #selector(checkButtonTapped),
+                                   for: .touchUpInside)
+        cell.starButton.addTarget(self,
+                                  action: #selector(starButtonTapped),
+                                  for: .touchUpInside)
         return cell
     }
     
@@ -118,8 +105,7 @@ class ShoppingTableViewController: UITableViewController {
         return 50
     }
     
-    
-    // MARK: - 삭제 구현
+    // MARK: - 삭제
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true

@@ -7,6 +7,7 @@
 
 import UIKit
 
+//UserDefaults 사용 Data 인코딩, 디코딩 위한 Codable 채택
 struct Shopping: Codable {
     var isChecked: Bool
     let title: String
@@ -18,7 +19,7 @@ class ShoppingTableViewController: UITableViewController {
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
     
-    @UserDefault(key: "shoppingList", defaultData: nil)
+    @UserDefault(key: "shoppingList")
     var list: [Shopping]?
     
     var shoppingList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),

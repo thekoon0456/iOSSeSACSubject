@@ -7,6 +7,15 @@
 
 import Foundation
 
+final class UserDefaultsManager {
+    static let shared = UserDefaultsManager()
+    
+    @UserDefault(key: Shopping.key)
+    var list: [Shopping]?
+    
+    init() { }
+}
+
 @propertyWrapper
 struct UserDefault<T: Codable> {
     private var key: String

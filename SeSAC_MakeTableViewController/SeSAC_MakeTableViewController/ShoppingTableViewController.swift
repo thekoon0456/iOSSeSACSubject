@@ -21,16 +21,13 @@ class ShoppingTableViewController: UITableViewController {
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
     
-    @UserDefault(key: Shopping.key)
-    var list: [Shopping]?
-    
     //기본 값
     var shoppingList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),
                         Shopping(isChecked: false, title: "사이다 구매", isBookmarked: false),
                         Shopping(isChecked: false, title: "아이패드 케이스 최저가 알아보기", isBookmarked: false),
-                        Shopping(isChecked: false, title: "양말", isBookmarked: false),] {
+                        Shopping(isChecked: false, title: "양말", isBookmarked: false)] {
         didSet {
-            list = shoppingList
+            UserDefaultsManager.shared.list = shoppingList
             tableView.reloadData()
         }
     }
@@ -69,7 +66,7 @@ class ShoppingTableViewController: UITableViewController {
         navigationItem.title = "쇼핑"
         
         //UserDefaults값 있으면 불러옴
-        if let list {
+        if let list = UserDefaultsManager.shared.list {
             shoppingList = list
         }
         

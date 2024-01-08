@@ -16,6 +16,9 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet var starButton: UIButton!
     @IBOutlet var contentLabel: UILabel!
     
+    @UserDefault
+    var list: [Shopping]?
+    
     var checkButtonSelected = false
     var starButtonSelected = false
 
@@ -23,8 +26,11 @@ class ShoppingTableViewCell: UITableViewCell {
         configureUI()
     }
     
-    func setValue(content: String) {
-        contentLabel.text = content
+    func setValue(shopping: Shopping) {
+        
+        checkButtonSelected = shopping.isChecked
+        starButtonSelected = shopping.isBookmarked
+        contentLabel.text = shopping.title
     }
     
     func configureUI() {
@@ -57,6 +63,7 @@ class ShoppingTableViewCell: UITableViewCell {
         } else {
             sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         }
+        
     }
     
     @IBAction func starButtonTapped(_ sender: UIButton) {

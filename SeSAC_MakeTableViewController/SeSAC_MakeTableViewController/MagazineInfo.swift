@@ -6,6 +6,14 @@
 
 import Foundation
 
+struct Magazine {
+    let title: String
+    let subtitle: String
+    let photo_image: String
+    let date: String
+    let link: String
+}
+
 struct MagazineInfo {
     let magazine: [Magazine] = [
         Magazine(title: "유럽 여행 쇼핑 성지, OOO은 꼭 가세요!", subtitle: "유럽의 인기 쇼핑 명소 총정리", photo_image: "https://i.namu.wiki/i/1E2wCXUwFym-bYSTtV98bCnbQwdfmQVonirXbFOT_93AAbEOxuBKK44nhvh7RQEdcrPkmOO8L6bmO3K4-NDmnlJT5Y7-tG8VRN-KW9W821rHR2-D7TxbkBm_u-RCHCJEDSaCKjeIFnhXjyRgrJA51A.webp", date: "231118", link: "https://triple.guide/articles/265bd919-3f75-4adc-8d5d-c5cf60201bfe"),

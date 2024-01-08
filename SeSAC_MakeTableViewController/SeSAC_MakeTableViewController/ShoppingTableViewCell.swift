@@ -16,13 +16,14 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet var starButton: UIButton!
     @IBOutlet var contentLabel: UILabel!
     
-    @UserDefault
-    var list: [Shopping]?
+//    @UserDefault
+//    var list: [Shopping]?
     
     var checkButtonSelected = false
     var starButtonSelected = false
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         configureUI()
     }
     

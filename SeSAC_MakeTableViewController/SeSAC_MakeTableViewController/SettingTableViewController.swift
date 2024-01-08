@@ -46,17 +46,15 @@ class SettingTableViewController: UITableViewController {
     // MARK: - Section
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return Section.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        Section.allCases[section].cellTitle.count
+        return Section.allCases[section].cellTitle.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Section.allCases[section].sectionTitle
+        return Section.allCases[section].sectionTitle
     }
     
     // MARK: - confugure
@@ -74,6 +72,6 @@ class SettingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        40
+        return 40
     }
 }

@@ -11,6 +11,8 @@ import Kingfisher
 
 class MagazinInfoCell: UITableViewCell {
     
+    static let cellID = "MagazinInfoCell"
+    
     @IBOutlet var cellImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!

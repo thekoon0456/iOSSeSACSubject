@@ -9,6 +9,26 @@ import UIKit
 
 class ShoppingTableViewCell: UITableViewCell {
     
+    enum Const {
+        case checkButtonSelected
+        case checkButton
+        case starButtonSelected
+        case starButton
+        
+        var value: String {
+            switch self {
+            case .checkButtonSelected:
+                "checkmark.square.fill"
+            case .checkButton:
+                "checkmark.square"
+            case .starButtonSelected:
+                "star.fill"
+            case .starButton:
+                "star"
+            }
+        }
+    }
+    
     static let cellID = "ShoppingTableViewCell"
     
     @IBOutlet var insetView: UIView!
@@ -27,12 +47,12 @@ class ShoppingTableViewCell: UITableViewCell {
         
         //버튼 이미지 설정
         let checkImage = shopping.isChecked
-        ? "checkmark.square.fill"
-        : "checkmark.square"
+        ? Const.checkButtonSelected.value
+        : Const.checkButton.value
         
         let starImage = shopping.isBookmarked
-        ? "star.fill"
-        : "star"
+        ? Const.starButtonSelected.value
+        : Const.starButton.value
         
         checkButton.setImage(UIImage(systemName: checkImage), for: .normal)
         starButton.setImage(UIImage(systemName: starImage), for: .normal)

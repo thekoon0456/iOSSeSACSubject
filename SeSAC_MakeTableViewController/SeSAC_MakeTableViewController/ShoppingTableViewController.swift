@@ -9,6 +9,8 @@ import UIKit
 
 //UserDefaults 사용 Data 인코딩, 디코딩 위한 Codable 채택
 struct Shopping: Codable {
+    static let key = "shoppingList"
+    
     var isChecked: Bool
     let title: String
     var isBookmarked: Bool
@@ -19,9 +21,10 @@ class ShoppingTableViewController: UITableViewController {
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
     
-    @UserDefault(key: "shoppingList")
+    @UserDefault(key: Shopping.key)
     var list: [Shopping]?
     
+    //기본 값
     var shoppingList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),
                         Shopping(isChecked: false, title: "사이다 구매", isBookmarked: false),
                         Shopping(isChecked: false, title: "아이패드 케이스 최저가 알아보기", isBookmarked: false),
@@ -106,7 +109,7 @@ class ShoppingTableViewController: UITableViewController {
         return 50
     }
     
-    // MARK: - 삭제
+    // MARK: - Cell 삭제
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true

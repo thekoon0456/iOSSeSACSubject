@@ -10,6 +10,7 @@ import Foundation
 @propertyWrapper
 struct UserDefault<T: Codable> {
     private var key: String
+    //userDefault를 옵셔널로 사용한다면 defaultValue 구현안해도 됨.
     
     init(key: String) {
         self.key = key

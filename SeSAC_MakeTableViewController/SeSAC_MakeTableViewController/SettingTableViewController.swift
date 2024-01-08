@@ -9,13 +9,34 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
+    enum Section: CaseIterable {
+        case all
+        case personal
+        case etc
+        
+        var sectionTitle: String {
+            switch self {
+            case .all:
+                "전체 설정"
+            case .personal:
+                "개인 설정"
+            case .etc:
+                "기타"
+            }
+        }
+        
+        var cellTitle: [String] {
+            switch self {
+            case .all:
+                ["공지사항", "실험실", "버전 정보"]
+            case .personal:
+                ["개인/보안", "알림", "채팅", "멀티프로필"]
+            case .etc:
+                ["고객센터/도움말"]
+            }
+        }
+    }
     
-    
-    let sections = ["전체 설정", "개인 설정", "기타"]
-    let wholeSetting = ["공지사항", "실험실", "버전 정보"]
-    let personalSetting = ["개인/보안", "알림", "채팅", "멀티프로필"]
-    let etc = ["고객센터/도움말"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,34 +47,16 @@ class SettingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return sections.count
+        return Section.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0:
-            return wholeSetting.count
-        case 1:
-            return personalSetting.count
-        case 2:
-            return etc.count
-        default:
-            return 0
-        }
+        Section.allCases[section].cellTitle.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return sections[0]
-        case 1:
-            return sections[1]
-        case 2:
-            return sections[2]
-        default:
-            return ""
-        }
+        Section.allCases[section].sectionTitle
     }
     
     // MARK: - confugure
@@ -64,16 +67,8 @@ class SettingTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        switch indexPath.section {
-        case 0:
-            cell.textLabel?.text = wholeSetting[indexPath.row]
-        case 1:
-            cell.textLabel?.text = personalSetting[indexPath.row]
-        case 2:
-            cell.textLabel?.text = etc[indexPath.row]
-        default:
-            return cell
-        }
+        let settingType = Section.allCases[indexPath.section]
+        cell.textLabel?.text = settingType.cellTitle[indexPath.row]
         
         return cell
     }

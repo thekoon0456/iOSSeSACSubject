@@ -11,27 +11,21 @@ import UIKit
 struct Shopping: Codable {
     static let key = "shoppingList"
     
+    static let defaultList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),
+                              Shopping(isChecked: false, title: "사이다 구매", isBookmarked: false),
+                              Shopping(isChecked: false, title: "아이패드 케이스 최저가 알아보기", isBookmarked: false),
+                              Shopping(isChecked: false, title: "양말", isBookmarked: false)]
+    
     var isChecked: Bool
     let title: String
     var isBookmarked: Bool
 }
 
 class ShoppingTableViewController: UITableViewController {
-
+    
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
-    
-    //기본 값
-    var shoppingList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),
-                        Shopping(isChecked: false, title: "사이다 구매", isBookmarked: false),
-                        Shopping(isChecked: false, title: "아이패드 케이스 최저가 알아보기", isBookmarked: false),
-                        Shopping(isChecked: false, title: "양말", isBookmarked: false)] {
-        didSet {
-            UserDefaultsManager.shared.list = shoppingList
-            tableView.reloadData()
-        }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,26 +43,24 @@ class ShoppingTableViewController: UITableViewController {
         
         let inputShopping = Shopping(isChecked: false, title: input, isBookmarked: false)
         
-        shoppingList.append(inputShopping)
+        UserDefaultsManager.shared.list.append(inputShopping)
+        tableView.reloadData()
     }
     
     @objc func checkButtonTapped(sender: UIButton) {
-        shoppingList[sender.tag].isChecked.toggle()
+        UserDefaultsManager.shared.list[sender.tag].isChecked.toggle()
+        tableView.reloadData()
     }
     
     @objc func starButtonTapped(sender: UIButton) {
-        shoppingList[sender.tag].isBookmarked.toggle()
+        UserDefaultsManager.shared.list[sender.tag].isBookmarked.toggle()
+        tableView.reloadData()
     }
     
     // MARK: - Helpers
     
     func configureUI() {
         navigationItem.title = "쇼핑"
-        
-        //UserDefaults값 있으면 불러옴
-        if let list = UserDefaultsManager.shared.list {
-            shoppingList = list
-        }
         
         customHeaderView.layer.cornerRadius = 10
         customHeaderView.clipsToBounds = true
@@ -77,7 +69,7 @@ class ShoppingTableViewController: UITableViewController {
     // MARK: - TableView 구성
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingList.count
+        return UserDefaultsManager.shared.list.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,7 +78,7 @@ class ShoppingTableViewController: UITableViewController {
         }
         
         //Data전달
-        cell.setValue(shopping: shoppingList[indexPath.row])
+        cell.setValue(shopping: UserDefaultsManager.shared.list[indexPath.row])
         
         //각 버튼에 tag추가
         cell.checkButton.tag = indexPath.row
@@ -115,7 +107,8 @@ class ShoppingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            shoppingList.remove(at: indexPath.row)
+            UserDefaultsManager.shared.list.remove(at: indexPath.row)
+            tableView.reloadData()
         }
     }
 }

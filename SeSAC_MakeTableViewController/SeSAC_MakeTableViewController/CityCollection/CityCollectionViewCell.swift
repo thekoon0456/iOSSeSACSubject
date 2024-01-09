@@ -1,0 +1,48 @@
+//
+//  CityCollectionViewCell.swift
+//  SeSAC_MakeTableViewController
+//
+//  Created by Deokhun KIM on 1/9/24.
+//
+
+import UIKit
+
+import Kingfisher
+
+class CityCollectionViewCell: UICollectionViewCell {
+    
+    static let cellID = "CityCollectionViewCell"
+    
+    @IBOutlet var cityImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureUI()
+    }
+    
+    func setValus(_ data: City) {
+        let placeHolderImage = UIImage(named: "loadingImage")
+        
+        cityImageView.kf.setImage(with: URL(string: data.city_image),
+                                  placeholder: placeHolderImage)
+        titleLabel.text = "\(data.city_name) | \(data.city_english_name)"
+        descriptionLabel.text = data.city_explain
+    }
+    
+    func configureUI() {
+        cityImageView.contentMode = .scaleAspectFill
+        cityImageView.layer.cornerRadius = ConstFloat.cellCornerRadious.value
+        cityImageView.clipsToBounds = true
+        
+        titleLabel.textAlignment = .center
+        titleLabel.font = .boldSystemFont(ofSize: 15)
+        
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.textColor = .lightGray
+        descriptionLabel.font = .systemFont(ofSize: 12)
+        descriptionLabel.numberOfLines = 0
+    }
+}

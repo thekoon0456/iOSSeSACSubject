@@ -10,8 +10,8 @@ import Foundation
 final class UserDefaultsManager {
     static let shared = UserDefaultsManager()
     
-    @UserDefault(key: Shopping.key)
-    var list: [Shopping]?
+    @UserDefault(key: Shopping.key, defaultValue: Shopping.defaultList)
+    var list: [Shopping]
     
     init() { }
 }
@@ -19,13 +19,15 @@ final class UserDefaultsManager {
 @propertyWrapper
 struct UserDefault<T: Codable> {
     private var key: String
+    private var defaultValue: T
     //userDefault를 옵셔널로 사용한다면 defaultValue 구현안해도 됨.
     
-    init(key: String) {
+    init(key: String, defaultValue: T) {
         self.key = key
+        self.defaultValue = defaultValue
     }
     
-    var wrappedValue: T? {
+    var wrappedValue: T {
         get {
             if let savedData = UserDefaults.standard.object(forKey: key) as? Data {
                 let decoder = JSONDecoder()
@@ -33,7 +35,8 @@ struct UserDefault<T: Codable> {
                     return loadedData
                 }
             }
-            return nil
+            
+            return defaultValue
         }
         set {
             let encoder = JSONEncoder()

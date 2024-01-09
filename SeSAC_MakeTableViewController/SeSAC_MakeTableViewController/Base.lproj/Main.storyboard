@@ -3,7 +3,9 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -134,6 +136,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="zqM-1Y-kXQ" kind="show" id="6zI-jA-5sA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -311,6 +316,67 @@
             </objects>
             <point key="canvasLocation" x="1577.8625954198474" y="774.64788732394368"/>
         </scene>
+        <!--City View Controller-->
+        <scene sceneID="eZy-OQ-1ID">
+            <objects>
+                <viewController id="zqM-1Y-kXQ" customClass="CityViewController" customModule="SeSAC_MakeTableViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="74l-rx-rx4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DCP-dx-6Ez">
+                                <rect key="frame" x="20" y="123" width="353" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="sVh-SS-EM0"/>
+                                </constraints>
+                                <segments>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                </segments>
+                            </segmentedControl>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-7V-iWT">
+                                <rect key="frame" x="0.0" y="173" width="393" height="645"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DKa-2U-9y7">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cGP-bI-JFw">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OKF-K0-aqI">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zyj-ol-w5o"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zyj-ol-w5o" firstAttribute="bottom" secondItem="aTI-7V-iWT" secondAttribute="bottom" id="avW-Rq-muF"/>
+                            <constraint firstItem="Zyj-ol-w5o" firstAttribute="trailing" secondItem="DCP-dx-6Ez" secondAttribute="trailing" constant="20" id="duD-1a-YAW"/>
+                            <constraint firstItem="DCP-dx-6Ez" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" constant="20" id="iOq-DY-3RT"/>
+                            <constraint firstItem="Zyj-ol-w5o" firstAttribute="trailing" secondItem="aTI-7V-iWT" secondAttribute="trailing" id="lTK-4S-AP7"/>
+                            <constraint firstItem="aTI-7V-iWT" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" id="tQp-PV-23N"/>
+                            <constraint firstItem="DCP-dx-6Ez" firstAttribute="top" secondItem="Zyj-ol-w5o" secondAttribute="top" constant="20" id="uLP-P7-71c"/>
+                            <constraint firstItem="aTI-7V-iWT" firstAttribute="top" secondItem="DCP-dx-6Ez" secondAttribute="bottom" constant="20" id="zVr-oM-YoB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xMf-xn-TzS"/>
+                    <connections>
+                        <outlet property="cityCollectionView" destination="aTI-7V-iWT" id="8Jy-hH-uX1"/>
+                        <outlet property="citySegment" destination="DCP-dx-6Ez" id="ZEa-f1-t0D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8TQ-RH-M96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="770"/>
+        </scene>
         <!--Shopping Table View Controller-->
         <scene sceneID="Ixa-bY-ebD">
             <objects>
@@ -476,19 +542,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

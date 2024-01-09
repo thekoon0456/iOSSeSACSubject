@@ -7,6 +7,8 @@
 import Foundation
 
 struct City {
+    static let key = "city"
+    
     let city_name: String
     let city_english_name: String
     let city_explain: String

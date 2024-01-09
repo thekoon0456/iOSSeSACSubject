@@ -332,6 +332,7 @@
                                 <segments>
                                     <segment title=""/>
                                     <segment title=""/>
+                                    <segment title=""/>
                                 </segments>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-7V-iWT">

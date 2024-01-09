@@ -43,17 +43,17 @@ class ShoppingTableViewController: UITableViewController {
         
         let inputShopping = Shopping(isChecked: false, title: input, isBookmarked: false)
         
-        UserDefaultsManager.shared.list.append(inputShopping)
+        UserDefaultsManager.shared.shoppingList.append(inputShopping)
         tableView.reloadData()
     }
     
     @objc func checkButtonTapped(sender: UIButton) {
-        UserDefaultsManager.shared.list[sender.tag].isChecked.toggle()
+        UserDefaultsManager.shared.shoppingList[sender.tag].isChecked.toggle()
         tableView.reloadData()
     }
     
     @objc func starButtonTapped(sender: UIButton) {
-        UserDefaultsManager.shared.list[sender.tag].isBookmarked.toggle()
+        UserDefaultsManager.shared.shoppingList[sender.tag].isBookmarked.toggle()
         tableView.reloadData()
     }
     
@@ -69,7 +69,7 @@ class ShoppingTableViewController: UITableViewController {
     // MARK: - TableView 구성
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserDefaultsManager.shared.list.count
+        return UserDefaultsManager.shared.shoppingList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +78,7 @@ class ShoppingTableViewController: UITableViewController {
         }
         
         //Data전달
-        cell.setValue(shopping: UserDefaultsManager.shared.list[indexPath.row])
+        cell.setValue(shopping: UserDefaultsManager.shared.shoppingList[indexPath.row])
         
         //각 버튼에 tag추가
         cell.checkButton.tag = indexPath.row
@@ -107,7 +107,7 @@ class ShoppingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            UserDefaultsManager.shared.list.remove(at: indexPath.row)
+            UserDefaultsManager.shared.shoppingList.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }

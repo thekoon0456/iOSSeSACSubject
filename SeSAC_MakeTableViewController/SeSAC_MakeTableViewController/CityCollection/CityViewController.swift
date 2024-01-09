@@ -48,10 +48,13 @@ class CityViewController: UIViewController {
         let list = CityInfo().city
         switch sender.selectedSegmentIndex {
         case 0:
+            UserDefaultsManager.shared.citySegIndex = 0
             self.cityList = list
         case 1:
+            UserDefaultsManager.shared.citySegIndex = 1
             self.cityList = list.filter { $0.domestic_travel == true }
         case 2:
+            UserDefaultsManager.shared.citySegIndex = 2
             self.cityList = list.filter { $0.domestic_travel == false }
         default:
             return
@@ -63,13 +66,15 @@ class CityViewController: UIViewController {
     }
     
     func configureSeg() {
+        //Index Userdefaults 저장
+        citySegment.selectedSegmentIndex = UserDefaultsManager.shared.citySegIndex
+        
         citySegment.setTitle(CityCategory.all.value,
                              forSegmentAt: CityCategory.all.rawValue)
         citySegment.setTitle(CityCategory.inside.value,
                              forSegmentAt: CityCategory.inside.rawValue)
-        citySegment.insertSegment(withTitle: CityCategory.outside.value,
-                                  at: CityCategory.outside.rawValue,
-                                  animated: true)
+        citySegment.setTitle(CityCategory.outside.value,
+                             forSegmentAt: CityCategory.outside.rawValue)
         citySegment.addTarget(self,
                               action: #selector(changedSeg),
                               for: .valueChanged)

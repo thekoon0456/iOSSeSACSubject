@@ -114,7 +114,7 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
         
-        cell.setValus(cityList[indexPath.item])
+        cell.configureCellData(data: cityList[indexPath.item])
         
         return cell
     }

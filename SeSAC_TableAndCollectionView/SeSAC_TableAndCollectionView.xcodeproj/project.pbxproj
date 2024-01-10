@@ -34,7 +34,7 @@
 		7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoCell.swift; sourceTree = "<group>"; };
 		7C382C6B2B4BF34500AC8236 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		7C7125942B4E858300227C8F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
-		7CC905A12B4809BA000C18C7 /* SeSAC_MakeTableViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_MakeTableViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_TableAndCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7CC905AB2B4809BA000C18C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		7CC905982B4809BA000C18C7 = {
 			isa = PBXGroup;
 			children = (
-				7CC905A32B4809BA000C18C7 /* SeSAC_MakeTableViewController */,
+				7CC905A32B4809BA000C18C7 /* SeSAC_TableAndCollectionView */,
 				7CC905A22B4809BA000C18C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,12 +82,12 @@
 		7CC905A22B4809BA000C18C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CC905A12B4809BA000C18C7 /* SeSAC_MakeTableViewController.app */,
+				7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7CC905A32B4809BA000C18C7 /* SeSAC_MakeTableViewController */ = {
+		7CC905A32B4809BA000C18C7 /* SeSAC_TableAndCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				7CC905A42B4809BA000C18C7 /* AppDelegate.swift */,
@@ -103,7 +103,7 @@
 				7CC905AF2B4809BA000C18C7 /* LaunchScreen.storyboard */,
 				7CC905B22B4809BA000C18C7 /* Info.plist */,
 			);
-			path = SeSAC_MakeTableViewController;
+			path = SeSAC_TableAndCollectionView;
 			sourceTree = "<group>";
 		};
 		7CF6CD6B2B4D3F79003EBA68 /* Shopping */ = {
@@ -148,9 +148,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CC905A02B4809BA000C18C7 /* SeSAC_MakeTableViewController */ = {
+		7CC905A02B4809BA000C18C7 /* SeSAC_TableAndCollectionView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CC905B52B4809BA000C18C7 /* Build configuration list for PBXNativeTarget "SeSAC_MakeTableViewController" */;
+			buildConfigurationList = 7CC905B52B4809BA000C18C7 /* Build configuration list for PBXNativeTarget "SeSAC_TableAndCollectionView" */;
 			buildPhases = (
 				7CC9059D2B4809BA000C18C7 /* Sources */,
 				7CC9059E2B4809BA000C18C7 /* Frameworks */,
@@ -160,12 +160,12 @@
 			);
 			dependencies = (
 			);
-			name = SeSAC_MakeTableViewController;
+			name = SeSAC_TableAndCollectionView;
 			packageProductDependencies = (
 				7C382C692B4BE68900AC8236 /* Kingfisher */,
 			);
 			productName = SeSAC_MakeTableViewController;
-			productReference = 7CC905A12B4809BA000C18C7 /* SeSAC_MakeTableViewController.app */;
+			productReference = 7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +183,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7CC9059C2B4809BA000C18C7 /* Build configuration list for PBXProject "SeSAC_MakeTableViewController" */;
+			buildConfigurationList = 7CC9059C2B4809BA000C18C7 /* Build configuration list for PBXProject "SeSAC_TableAndCollectionView" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -199,7 +199,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CC905A02B4809BA000C18C7 /* SeSAC_MakeTableViewController */,
+				7CC905A02B4809BA000C18C7 /* SeSAC_TableAndCollectionView */,
 			);
 		};
 /* End PBXProject section */
@@ -390,7 +390,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6X76DS4Z7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSAC_MakeTableViewController/Info.plist;
+				INFOPLIST_FILE = SeSAC_TableAndCollectionView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -401,7 +401,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-MakeTableViewController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-TableAndCollectionView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -418,7 +418,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6X76DS4Z7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSAC_MakeTableViewController/Info.plist;
+				INFOPLIST_FILE = SeSAC_TableAndCollectionView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -429,7 +429,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-MakeTableViewController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-TableAndCollectionView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -440,7 +440,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CC9059C2B4809BA000C18C7 /* Build configuration list for PBXProject "SeSAC_MakeTableViewController" */ = {
+		7CC9059C2B4809BA000C18C7 /* Build configuration list for PBXProject "SeSAC_TableAndCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CC905B32B4809BA000C18C7 /* Debug */,
@@ -449,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CC905B52B4809BA000C18C7 /* Build configuration list for PBXNativeTarget "SeSAC_MakeTableViewController" */ = {
+		7CC905B52B4809BA000C18C7 /* Build configuration list for PBXNativeTarget "SeSAC_TableAndCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CC905B62B4809BA000C18C7 /* Debug */,

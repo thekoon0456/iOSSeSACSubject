@@ -40,7 +40,7 @@ extension MagazinInfoTableViewController {
             return UITableViewCell()
         }
         
-        cell.setValue(magazinInfoList.magazine[indexPath.row])
+        cell.configureCellData(data: magazinInfoList.magazine[indexPath.row])
         return cell
     }
     

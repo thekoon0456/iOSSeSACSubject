@@ -10,7 +10,7 @@ import Foundation
 //protocol
 //@objc사용한 프로토콜은 associatedtype 사용 못하네..
 
-protocol setUI: AnyObject {
+protocol setUI {
     func configureUI()
 }
 

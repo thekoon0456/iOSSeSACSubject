@@ -47,7 +47,6 @@ extension MagazinInfoCell: setUI {
         dateLabel.font = .systemFont(ofSize: 12)
         dateLabel.textColor = .systemGray
     }
-    
 }
 
 extension MagazinInfoCell: setCell {

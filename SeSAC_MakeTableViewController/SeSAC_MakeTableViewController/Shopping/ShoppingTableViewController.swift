@@ -25,7 +25,7 @@ class ShoppingTableViewController: UITableViewController {
     
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,15 +56,18 @@ class ShoppingTableViewController: UITableViewController {
         UserDefaultsManager.shared.shoppingList[sender.tag].isBookmarked.toggle()
         tableView.reloadData()
     }
-    
-    // MARK: - Helpers
-    
+}
+
+extension ShoppingTableViewController: setUI {
     func configureUI() {
         navigationItem.title = "쇼핑"
         
         customHeaderView.layer.cornerRadius = 10
         customHeaderView.clipsToBounds = true
     }
+}
+
+extension ShoppingTableViewController {
     
     // MARK: - TableView 구성
     
@@ -78,7 +81,7 @@ class ShoppingTableViewController: UITableViewController {
         }
         
         //Data전달
-        cell.setValue(shopping: UserDefaultsManager.shared.shoppingList[indexPath.row])
+        cell.configureCellData(data: UserDefaultsManager.shared.shoppingList[indexPath.row])
         
         //각 버튼에 tag추가
         cell.checkButton.tag = indexPath.row

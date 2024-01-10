@@ -21,26 +21,14 @@ class MagazinInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        configureUI()
+    }
+}
+
+extension MagazinInfoCell: setUI {
+    func configureUI() {
         configureImage()
         configureLabel()
-    }
-    
-    func setDate(_ input: String){
-        let formatter = DateFormatter()
-        let inputStringDate = formatter.date(from: input)
-        formatter.dateFormat = "yy년 M월 d일"
-        let result = formatter.string(from: inputStringDate ?? Date())
-        dateLabel.text = result
-    }
-    
-    func setValue(_ input: Magazine) {
-        let placeHolderImage = UIImage(named: "loadingImage")
-        
-        cellImageView.kf.setImage(with: URL(string: input.photo_image),
-                                  placeholder: placeHolderImage)
-        titleLabel.text = input.title
-        subTitleLabel.text = input.subtitle
-        setDate(input.date)
     }
     
     func configureImage() {
@@ -58,5 +46,29 @@ class MagazinInfoCell: UITableViewCell {
         
         dateLabel.font = .systemFont(ofSize: 12)
         dateLabel.textColor = .systemGray
+    }
+    
+}
+
+extension MagazinInfoCell: setCell {
+    
+    typealias T = Magazine
+    
+    func configureCellData(data: Magazine) {
+        let placeHolderImage = UIImage(named: "loadingImage")
+        
+        cellImageView.kf.setImage(with: URL(string: data.photo_image),
+                                  placeholder: placeHolderImage)
+        titleLabel.text = data.title
+        subTitleLabel.text = data.subtitle
+        setDate(data.date)
+    }
+    
+    func setDate(_ input: String){
+        let formatter = DateFormatter()
+        let inputStringDate = formatter.date(from: input)
+        formatter.dateFormat = "yy년 M월 d일"
+        let result = formatter.string(from: inputStringDate ?? Date())
+        dateLabel.text = result
     }
 }

@@ -35,28 +35,15 @@ class ShoppingTableViewCell: UITableViewCell {
     @IBOutlet var checkButton: UIButton!
     @IBOutlet var starButton: UIButton!
     @IBOutlet var contentLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureUI()
     }
-    
-    func setValue(shopping: Shopping) {
-        contentLabel.text = shopping.title
-        
-        //버튼 이미지 설정
-        let checkImage = shopping.isChecked
-        ? Const.checkButtonSelected.value
-        : Const.checkButton.value
-        
-        let starImage = shopping.isBookmarked
-        ? Const.starButtonSelected.value
-        : Const.starButton.value
-        
-        checkButton.setImage(UIImage(systemName: checkImage), for: .normal)
-        starButton.setImage(UIImage(systemName: starImage), for: .normal)
-    }
+}
+
+extension ShoppingTableViewCell: setUI {
     
     func configureUI() {
         setInsetView()
@@ -73,5 +60,26 @@ class ShoppingTableViewCell: UITableViewCell {
     
     func setButton(_ button: UIButton) {
         button.tintColor = .label
+    }
+}
+
+extension ShoppingTableViewCell: setCell {
+    
+    typealias T = Shopping
+    
+    func configureCellData(data: Shopping) {
+        contentLabel.text = data.title
+        
+        //버튼 이미지 설정
+        let checkImage = data.isChecked
+        ? Const.checkButtonSelected.value
+        : Const.checkButton.value
+        
+        let starImage = data.isBookmarked
+        ? Const.starButtonSelected.value
+        : Const.starButton.value
+        
+        checkButton.setImage(UIImage(systemName: checkImage), for: .normal)
+        starButton.setImage(UIImage(systemName: starImage), for: .normal)
     }
 }

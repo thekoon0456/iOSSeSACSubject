@@ -10,15 +10,23 @@ import UIKit
 class MagazinInfoTableViewController: UITableViewController {
     
     let magazinInfoList = MagazineInfo()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "SeSAC TRAVEL"
-        
+        configureUI()
+    }
+}
+
+extension MagazinInfoTableViewController: setUI {
+    func configureUI() {
         //모든 cell의 기본 높이 자동 설정
         tableView.rowHeight = UITableView.automaticDimension
     }
+}
+
+extension MagazinInfoTableViewController {
 
     // MARK: - Table view data source
 

@@ -9,7 +9,7 @@ import UIKit
 
 class CityViewController: UIViewController {
     
-    enum CityCategory: Int {
+    enum CityCategory: Int, CaseIterable {
         case all
         case inside
         case outside
@@ -37,10 +37,8 @@ class CityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureCollectionView()
+        
         configureUI()
-        configureSeg()
     }
     
     @objc
@@ -60,15 +58,19 @@ class CityViewController: UIViewController {
             return
         }
     }
+}
+
+extension CityViewController: setUI {
     
     func configureUI() {
         navigationItem.title = "인기 도시"
+        
+        configureSeg()
+        configureCollectionView()
     }
     
     func configureSeg() {
-        //Index Userdefaults 저장
         citySegment.selectedSegmentIndex = UserDefaultsManager.shared.citySegIndex
-        
         citySegment.setTitle(CityCategory.all.value,
                              forSegmentAt: CityCategory.all.rawValue)
         citySegment.setTitle(CityCategory.inside.value,

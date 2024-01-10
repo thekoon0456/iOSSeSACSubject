@@ -9,6 +9,7 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
+    
     enum Section: CaseIterable {
         case all
         case personal
@@ -40,11 +41,20 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
+    }
+}
+
+extension SettingTableViewController: setUI {
+    func configureUI() {
         navigationItem.title = "설정"
     }
+}
 
+extension SettingTableViewController {
+    
     // MARK: - Section
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
     }

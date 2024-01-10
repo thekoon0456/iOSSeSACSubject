@@ -22,15 +22,9 @@ class CityCollectionViewCell: UICollectionViewCell {
         
         configureUI()
     }
-    
-    func setValus(_ data: City) {
-        let placeHolderImage = UIImage(named: "loadingImage")
-        
-        cityImageView.kf.setImage(with: URL(string: data.city_image),
-                                  placeholder: placeHolderImage)
-        titleLabel.text = "\(data.city_name) | \(data.city_english_name)"
-        descriptionLabel.text = data.city_explain
-    }
+}
+
+extension CityCollectionViewCell: setUI {
     
     func configureUI() {
         cityImageView.contentMode = .scaleAspectFill
@@ -44,5 +38,18 @@ class CityCollectionViewCell: UICollectionViewCell {
         descriptionLabel.textColor = .lightGray
         descriptionLabel.font = .systemFont(ofSize: 12)
         descriptionLabel.numberOfLines = 0
+    }
+}
+    
+extension CityCollectionViewCell: setCell {
+    typealias T = City
+    
+    func configureCellData(data: City) {
+        let placeHolderImage = UIImage(named: "loadingImage")
+        
+        cityImageView.kf.setImage(with: URL(string: data.city_image),
+                                  placeholder: placeHolderImage)
+        titleLabel.text = "\(data.city_name) | \(data.city_english_name)"
+        descriptionLabel.text = data.city_explain
     }
 }

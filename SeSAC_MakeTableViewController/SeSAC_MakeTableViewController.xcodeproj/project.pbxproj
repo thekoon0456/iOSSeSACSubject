@@ -12,6 +12,7 @@
 		7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */; };
 		7C382C6A2B4BE68900AC8236 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C382C692B4BE68900AC8236 /* Kingfisher */; };
 		7C382C6C2B4BF34500AC8236 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C6B2B4BF34500AC8236 /* UserDefault.swift */; };
+		7C7125952B4E858300227C8F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7125942B4E858300227C8F /* Protocol.swift */; };
 		7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A42B4809BA000C18C7 /* AppDelegate.swift */; };
 		7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */; };
 		7CC905AC2B4809BA000C18C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC905AA2B4809BA000C18C7 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoTableViewController.swift; sourceTree = "<group>"; };
 		7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoCell.swift; sourceTree = "<group>"; };
 		7C382C6B2B4BF34500AC8236 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		7C7125942B4E858300227C8F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		7CC905A12B4809BA000C18C7 /* SeSAC_MakeTableViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_MakeTableViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C7125932B4E857200227C8F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				7C7125942B4E858300227C8F /* Protocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		7CC905982B4809BA000C18C7 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 				7CF6CD6B2B4D3F79003EBA68 /* Shopping */,
 				7CF6CD6C2B4D3F8C003EBA68 /* Magazin */,
 				7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */,
+				7C7125932B4E857200227C8F /* Protocol */,
 				7C382C6B2B4BF34500AC8236 /* UserDefault.swift */,
 				7CC905AA2B4809BA000C18C7 /* Main.storyboard */,
 				7CC905AD2B4809BA000C18C7 /* Assets.xcassets */,
@@ -215,6 +226,7 @@
 				7CD73C532B480F1100E5F177 /* SettingTableViewController.swift in Sources */,
 				7CD73C572B48122800E5F177 /* ShoppingTableViewCell.swift in Sources */,
 				7CF6CD642B4D3235003EBA68 /* CityInfo.swift in Sources */,
+				7C7125952B4E858300227C8F /* Protocol.swift in Sources */,
 				7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */,
 				7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */,
 				7CF6CD662B4D32D9003EBA68 /* CityViewController.swift in Sources */,

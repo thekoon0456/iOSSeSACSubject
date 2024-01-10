@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Magazine {
+struct Magazine: Model {
     let title: String
     let subtitle: String
     let photo_image: String

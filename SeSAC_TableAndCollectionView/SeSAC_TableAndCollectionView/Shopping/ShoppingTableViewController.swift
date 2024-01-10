@@ -8,7 +8,7 @@
 import UIKit
 
 //UserDefaults 사용 Data 인코딩, 디코딩 위한 Codable 채택
-struct Shopping: Codable {
+struct Shopping: Codable, Model {
     static let key = "shoppingList"
     
     static let defaultList = [Shopping(isChecked: false, title: "그립톡 구매하기", isBookmarked: false),

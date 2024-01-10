@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct City {
+struct City: Model {
     static let key = "city"
     
     let city_name: String

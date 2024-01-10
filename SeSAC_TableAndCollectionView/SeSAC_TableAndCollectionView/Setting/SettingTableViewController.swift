@@ -9,7 +9,6 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
-    
     enum Section: CaseIterable {
         case all
         case personal

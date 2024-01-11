@@ -18,9 +18,10 @@ class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var starStackView: UIStackView!
     @IBOutlet var etcLabel: UILabel!
     
-    var isHeartButtonSelected = false
+    let randomCount = Int.random(in: 1...2000)
     
     static let cellID = "CityDetailTableViewCell"
+    var isHeartButtonSelected = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,53 +44,48 @@ class CityDetailTableViewCell: UITableViewCell {
     func setCellData(_ data: Travel) {
         titleLabel.text = data.title
         descriptionLabel.text = data.description
+        etcLabel.text = "(\(randomCount)) • 저장 \(String(data.save ?? 0))"
+        //하트 버튼 세팅
+        setButtonImage(isSelected: data.like ?? true)
         
+        //이미지 세팅
         let placeHolderImage = UIImage(named: "loadingImage")
         mainImage.kf.setImage(with: URL(string: data.travel_image ?? ""),
                               placeholder: placeHolderImage)
         
-        let starCount = Int(data.grade?.rounded() ?? 0)
+        //별 갯수 세팅
+        
+        let starCount = Int(trunc(data.grade ?? 0))
         setStarStackView(count: starCount)
-        
-        etcLabel.text = "(3) • 저장 \(String(data.save ?? 0))"
-        
-        setButtonImage(isSelected: data.like ?? true)
+    }
+    
+    func makeStarView(isSelected: Bool) -> UIImageView {
+        if isSelected {
+            let yellowStar = UIImage(systemName: "star.fill")?
+                .withRenderingMode(.alwaysOriginal).withTintColor(.yellow)
+            let yellowStarView = UIImageView(image: yellowStar)
+            return yellowStarView
+        } else {
+            let emptyStar = UIImage(systemName: "star.fill")?
+                .withRenderingMode(.alwaysOriginal).withTintColor(.systemGray3)
+            let emptyStarView = UIImageView(image: emptyStar)
+            return emptyStarView
+        }
     }
     
     func setStarStackView(count: Int) {
         for _ in 0..<count {
-            let yellowStar = UIImage(systemName: "star.fill")?
-                .withRenderingMode(.alwaysOriginal).withTintColor(.yellow)
-            let yellowStarView = UIImageView(image: yellowStar)
-//            yellowStarView.frame.size = .init(width: 10, height: 10)
-
-            starStackView.addArrangedSubview(yellowStarView)
+            starStackView.addArrangedSubview(makeStarView(isSelected: true))
         }
         
         for _ in 0..<(5 - count) {
-            let emptyStar = UIImage(systemName: "star.fill")?
-                .withRenderingMode(.alwaysOriginal).withTintColor(.systemGray3)
-            let emptyStarView = UIImageView(image: emptyStar)
-//            emptyStarView.frame.size = .init(width: 10, height: 10)
-            
-            starStackView.addArrangedSubview(emptyStarView)
+            starStackView.addArrangedSubview(makeStarView(isSelected: false))
         }
     }
-    
-    func setButtonImage(isSelected: Bool) {
-        if isSelected {
-            heartButton.setImage(UIImage(systemName: "heart.fill")?
-                .withRenderingMode(.alwaysOriginal)
-                .withTintColor(.yellow), for: .normal)
-        } else {
-            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
-    }
-    
-    func setButtons() {
-        heartButton.tintColor = .white
-        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-    }
+}
+
+//UI
+extension CityDetailTableViewCell {
     
     func configureUI() {
         mainImage.contentMode = .scaleAspectFill
@@ -108,5 +104,22 @@ class CityDetailTableViewCell: UITableViewCell {
         
         etcLabel.font = .systemFont(ofSize: 12)
         etcLabel.textColor = .systemGray2
+    }
+    
+    func setButtonImage(isSelected: Bool) {
+        if isSelected {
+            heartButton.setImage(UIImage(systemName: "heart.fill")?
+                .withRenderingMode(.alwaysOriginal)
+                .withTintColor(.yellow), for: .normal)
+        } else {
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+    
+    func setButtons() {
+        heartButton.tintColor = .white
+        heartButton.addTarget(self,
+                              action: #selector(heartButtonTapped),
+                              for: .touchUpInside)
     }
 }

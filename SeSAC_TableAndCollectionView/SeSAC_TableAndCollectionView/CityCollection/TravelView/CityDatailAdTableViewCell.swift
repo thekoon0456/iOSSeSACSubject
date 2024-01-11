@@ -24,7 +24,7 @@ class CityDatailAdTableViewCell: UITableViewCell {
          mentLabel.text = data.title
     }
     
-    func configureUI() {
+    func setBGColor() {
         let red = CGFloat.random(in: 0...1)
         let green = CGFloat.random(in: 0...1)
         let blue = CGFloat.random(in: 0...1)
@@ -35,6 +35,13 @@ class CityDatailAdTableViewCell: UITableViewCell {
                             alpha: 1)
         
         contentView.backgroundColor = color
+    }
+}
+
+//UI
+extension CityDatailAdTableViewCell {
+    func configureUI() {
+        setBGColor()
         
         mentLabel.font = .boldSystemFont(ofSize: 18)
         mentLabel.textAlignment = .center

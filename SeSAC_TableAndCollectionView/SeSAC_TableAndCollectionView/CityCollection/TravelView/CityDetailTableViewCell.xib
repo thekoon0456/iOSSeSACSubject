@@ -47,14 +47,14 @@
                         <buttonConfiguration key="configuration" style="plain"/>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WdE-1e-mcR">
-                        <rect key="frame" x="8" y="60.333333333333343" width="120" height="20"/>
+                        <rect key="frame" x="8" y="60.333333333333343" width="100" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="YIc-9q-uoZ"/>
-                            <constraint firstAttribute="height" constant="20" id="xOx-Ge-gdi"/>
+                            <constraint firstAttribute="width" constant="100" id="YIc-9q-uoZ"/>
+                            <constraint firstAttribute="height" constant="15" id="xOx-Ge-gdi"/>
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSY-o9-Zpa">
-                        <rect key="frame" x="132" y="60.333333333333336" width="41.333333333333343" height="20.333333333333336"/>
+                        <rect key="frame" x="111.99999999999999" y="57.666666666666664" width="41.333333333333329" height="20.333333333333336"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

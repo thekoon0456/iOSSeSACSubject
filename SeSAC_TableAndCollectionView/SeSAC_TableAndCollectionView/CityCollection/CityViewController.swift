@@ -45,7 +45,6 @@ class CityViewController: UIViewController {
     
     @objc
     func viewTapped() {
-        print(#function)
         view.endEditing(true)
     }
     
@@ -146,7 +145,16 @@ extension CityViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        guard let lowercasedText = textField.text?.lowercased() else { return true }
+        guard var lowercasedText = textField.text?.lowercased() else { return true }
+        
+        if lowercasedText.contains(" ") {
+            lowercasedText = lowercasedText.map { String($0) }
+                                           .filter { $0 != " " }
+                                           .reduce("", +)
+//            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
+            
+            textField.text = lowercasedText
+        }
         
         let result = cityList.filter {
             $0.city_name.contains(lowercasedText)

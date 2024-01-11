@@ -380,12 +380,102 @@
                     <connections>
                         <outlet property="cityCollectionView" destination="aTI-7V-iWT" id="8Jy-hH-uX1"/>
                         <outlet property="citySegment" destination="DCP-dx-6Ez" id="ZEa-f1-t0D"/>
-                        <outlet property="cityTexiField" destination="ogm-cs-E2g" id="tfA-oW-pQu"/>
+                        <outlet property="cityTextField" destination="ogm-cs-E2g" id="tfA-oW-pQu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TQ-RH-M96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2444" y="770"/>
+        </scene>
+        <!--Detail City Info View Controller-->
+        <scene sceneID="JBa-Q9-UY6">
+            <objects>
+                <viewController storyboardIdentifier="DetailCityInfoViewController" id="eKJ-5B-a9M" customClass="DetailCityInfoViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yen-72-kjf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kXT-VM-9VU">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PId-C1-UcX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kXT-VM-9VU" firstAttribute="leading" secondItem="PId-C1-UcX" secondAttribute="leading" id="0c1-MD-a4z"/>
+                            <constraint firstItem="kXT-VM-9VU" firstAttribute="bottom" secondItem="PId-C1-UcX" secondAttribute="bottom" id="6LF-jJ-oMc"/>
+                            <constraint firstItem="kXT-VM-9VU" firstAttribute="trailing" secondItem="PId-C1-UcX" secondAttribute="trailing" id="CI8-NF-wMc"/>
+                            <constraint firstItem="kXT-VM-9VU" firstAttribute="top" secondItem="PId-C1-UcX" secondAttribute="top" id="eVb-Al-B3Z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailTableView" destination="kXT-VM-9VU" id="HjZ-9M-RV4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XD2-kU-qDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3310.6870229007632" y="769.71830985915494"/>
+        </scene>
+        <!--Trevel Spot View Controller-->
+        <scene sceneID="sZ5-dd-gfO">
+            <objects>
+                <viewController storyboardIdentifier="TrevelSpotViewController" id="90G-bC-gFB" customClass="TrevelSpotViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AdL-hZ-83R">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccs-iY-Abz">
+                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="opz-0y-KFe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ccs-iY-Abz" firstAttribute="centerX" secondItem="AdL-hZ-83R" secondAttribute="centerX" id="kUj-hs-2bH"/>
+                            <constraint firstItem="ccs-iY-Abz" firstAttribute="centerY" secondItem="AdL-hZ-83R" secondAttribute="centerY" id="mpg-n8-zqS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="ccs-iY-Abz" id="HXg-1X-LGa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="40l-Lb-Tjf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4375" y="568"/>
+        </scene>
+        <!--Ad View Controller-->
+        <scene sceneID="LX0-FS-jpz">
+            <objects>
+                <viewController storyboardIdentifier="AdViewController" id="xrw-hW-974" customClass="AdViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hYu-rE-JEH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssf-p9-Osx">
+                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ASe-Zz-L5k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ssf-p9-Osx" firstAttribute="centerX" secondItem="hYu-rE-JEH" secondAttribute="centerX" id="1DQ-Vf-0px"/>
+                            <constraint firstItem="ssf-p9-Osx" firstAttribute="centerY" secondItem="hYu-rE-JEH" secondAttribute="centerY" id="sbW-3a-eSv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="ssf-p9-Osx" id="izq-us-ScM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MXm-XA-jCn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4376" y="1295"/>
         </scene>
         <!--Shopping Table View Controller-->
         <scene sceneID="Ixa-bY-ebD">

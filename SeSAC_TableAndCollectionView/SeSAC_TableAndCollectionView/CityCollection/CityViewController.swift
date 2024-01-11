@@ -26,7 +26,7 @@ class CityViewController: UIViewController {
         }
     }
     
-    @IBOutlet var cityTexiField: UITextField!
+    @IBOutlet var cityTextField: UITextField!
     @IBOutlet var citySegment: UISegmentedControl!
     @IBOutlet var cityCollectionView: UICollectionView!
     
@@ -38,7 +38,7 @@ class CityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureUI()
         setGesture()
     }
@@ -64,11 +64,37 @@ class CityViewController: UIViewController {
         default:
             return
         }
+
     }
     
     func setGesture() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-        view.addGestureRecognizer(gesture)
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+  //      view.addGestureRecognizer(gesture)
+    }
+    
+    func setSearchText(_ input: String?) {
+        guard var lowercasedText = input?.lowercased() else { return }
+        
+        if lowercasedText.contains(" ") {
+            lowercasedText = lowercasedText.map { String($0) }
+                                           .filter { $0 != " " }
+                                           .reduce("", +)
+//            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
+            
+            self.cityTextField.text = lowercasedText
+        }
+        
+        let result = cityList.filter {
+            $0.city_name.contains(lowercasedText)
+            || $0.city_english_name.lowercased().contains(lowercasedText)
+            || $0.city_explain.contains(lowercasedText)
+        }
+        
+        if result.isEmpty {
+            cityList = CityInfo().city
+        } else {
+            cityList = result
+        }
     }
 }
 
@@ -83,8 +109,8 @@ extension CityViewController: setUI {
     }
     
     func configureTextField() {
-        cityTexiField.delegate = self
-        cityTexiField.placeholder = "도시를 검색해주세요"
+        cityTextField.delegate = self
+        cityTextField.placeholder = "도시를 검색해주세요"
     }
     
     func configureSeg() {
@@ -118,8 +144,12 @@ extension CityViewController: setUI {
         layout.minimumLineSpacing = ConstFloat.spacing.value
         
         cityCollectionView.collectionViewLayout = layout
+        
+        cityCollectionView.keyboardDismissMode = .onDrag
     }
 }
+
+// MARK: - CollectionView
 
 extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -136,38 +166,35 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        let vc = storyboard?.instantiateViewController(identifier: DetailCityInfoViewController.vcID) as! DetailCityInfoViewController
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
+
+// MARK: - TextField
 
 extension CityViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.cityTexiField.text = nil
+        self.cityTextField.text = nil
         cityList = CityInfo().city
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        guard var lowercasedText = textField.text?.lowercased() else { return true }
+        guard let lowercasedText = textField.text?.lowercased() else { return true }
+        setSearchText(lowercasedText)
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if lowercasedText.contains(" ") {
-            lowercasedText = lowercasedText.map { String($0) }
-                                           .filter { $0 != " " }
-                                           .reduce("", +)
-//            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
-            
-            textField.text = lowercasedText
-        }
-        
-        let result = cityList.filter {
-            $0.city_name.contains(lowercasedText)
-            || $0.city_english_name.lowercased().contains(lowercasedText)
-            || $0.city_explain.contains(lowercasedText)
-        }
-        
-        if result.isEmpty {
-            cityTexiField.text = "도시가 없습니다. 다른 도시를 입력해주세요."
-        } else {
-            cityList = result
-        }
-        
+        guard let lowercasedText = textField.text?.lowercased() else { return true }
+        let input = (lowercasedText as NSString?)?.replacingCharacters(in: range, with: string)
+        setSearchText(input)
         return true
     }
     

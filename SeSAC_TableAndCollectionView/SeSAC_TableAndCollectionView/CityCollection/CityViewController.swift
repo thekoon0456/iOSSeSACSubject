@@ -26,6 +26,7 @@ class CityViewController: UIViewController {
         }
     }
     
+    @IBOutlet var cityTexiField: UITextField!
     @IBOutlet var citySegment: UISegmentedControl!
     @IBOutlet var cityCollectionView: UICollectionView!
     
@@ -65,8 +66,14 @@ extension CityViewController: setUI {
     func configureUI() {
         navigationItem.title = "인기 도시"
         
+        configureTextField()
         configureSeg()
         configureCollectionView()
+    }
+    
+    func configureTextField() {
+        cityTexiField.delegate = self
+        cityTexiField.placeholder = "도시를 검색해주세요"
     }
     
     func configureSeg() {
@@ -118,4 +125,33 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return cell
     }
+}
+
+extension CityViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.cityTexiField.text = nil
+        cityList = CityInfo().city
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        let result = cityList.filter { $0.city_name.contains(textField.text!)
+            || $0.city_english_name.contains(textField.text!)
+            || $0.city_explain.contains(textField.text!) }
+        
+        if result.isEmpty {
+            self.cityTexiField.text = "도시가 없습니다. 다른 도시를 입력해주세요."
+        } else {
+            cityList = result
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        
+        return true
+    }
+    
 }

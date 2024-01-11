@@ -40,6 +40,13 @@ class CityViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        setGesture()
+    }
+    
+    @objc
+    func viewTapped() {
+        print(#function)
+        view.endEditing(true)
     }
     
     @objc
@@ -58,6 +65,11 @@ class CityViewController: UIViewController {
         default:
             return
         }
+    }
+    
+    func setGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(gesture)
     }
 }
 
@@ -134,13 +146,16 @@ extension CityViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let lowercasedText = textField.text?.lowercased() else { return true }
         
-        let result = cityList.filter { $0.city_name.contains(textField.text!)
-            || $0.city_english_name.contains(textField.text!)
-            || $0.city_explain.contains(textField.text!) }
+        let result = cityList.filter {
+            $0.city_name.contains(lowercasedText)
+            || $0.city_english_name.lowercased().contains(lowercasedText)
+            || $0.city_explain.contains(lowercasedText)
+        }
         
         if result.isEmpty {
-            self.cityTexiField.text = "도시가 없습니다. 다른 도시를 입력해주세요."
+            cityTexiField.text = "도시가 없습니다. 다른 도시를 입력해주세요."
         } else {
             cityList = result
         }
@@ -150,8 +165,5 @@ extension CityViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-        
-        return true
     }
-    
 }

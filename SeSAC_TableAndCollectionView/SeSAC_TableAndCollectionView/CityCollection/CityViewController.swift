@@ -40,7 +40,6 @@ class CityViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-        setGesture()
     }
     
     @objc
@@ -67,10 +66,11 @@ class CityViewController: UIViewController {
 
     }
     
-    func setGesture() {
+    // MARK: - 설정시 컬렉션뷰 클릭 안됨.
+//    func setGesture() {
 //        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
   //      view.addGestureRecognizer(gesture)
-    }
+//    }
     
     func setSearchText(_ input: String?) {
         guard var lowercasedText = input?.lowercased() else { return }

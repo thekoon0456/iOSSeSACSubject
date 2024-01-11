@@ -17,7 +17,7 @@ class DetailCityInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         setTableView()
     }
@@ -45,13 +45,18 @@ extension DetailCityInfoViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if travelData[indexPath.row].ad ?? true {
-            let adCell = tableView.dequeueReusableCell(withIdentifier: CityDatailAdTableViewCell.cellID, for: indexPath) as! CityDatailAdTableViewCell
+            guard let adCell = tableView.dequeueReusableCell(withIdentifier: CityDatailAdTableViewCell.cellID, for: indexPath) as? CityDatailAdTableViewCell else {
+                return UITableViewCell()
+            }
+            
             adCell.setCellData(travelData[indexPath.row])
             return adCell
             
         } else {
-            let cityCell = tableView.dequeueReusableCell(withIdentifier: CityDetailTableViewCell.cellID, for: indexPath) as! CityDetailTableViewCell
-
+            guard let cityCell = tableView.dequeueReusableCell(withIdentifier: CityDetailTableViewCell.cellID, for: indexPath) as? CityDetailTableViewCell else {
+                return UITableViewCell()
+            }
+            
             cityCell.setCellData(travelData[indexPath.row])
             return cityCell
         }

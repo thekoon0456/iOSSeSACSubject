@@ -18,9 +18,10 @@ class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var starStackView: UIStackView!
     @IBOutlet var etcLabel: UILabel!
     
-    let randomCount = Int.random(in: 1...2000)
-    
     static let cellID = "CityDetailTableViewCell"
+    //추천 수 랜덤으로 보여주도록
+    let randomCount = Int.random(in: 1...2000)
+    //버튼 클릭
     var isHeartButtonSelected = false
     
     override func awakeFromNib() {
@@ -37,7 +38,6 @@ class CityDetailTableViewCell: UITableViewCell {
     
     @objc func heartButtonTapped() {
         isHeartButtonSelected.toggle()
-        
         setButtonImage(isSelected: isHeartButtonSelected)
     }
     
@@ -53,8 +53,7 @@ class CityDetailTableViewCell: UITableViewCell {
         mainImage.kf.setImage(with: URL(string: data.travel_image ?? ""),
                               placeholder: placeHolderImage)
         
-        //별 갯수 세팅
-        
+        //별 갯수 세팅(반올림)
         let starCount = Int(trunc(data.grade ?? 0))
         setStarStackView(count: starCount)
     }
@@ -73,6 +72,7 @@ class CityDetailTableViewCell: UITableViewCell {
         }
     }
     
+    //별 stackView추가
     func setStarStackView(count: Int) {
         for _ in 0..<count {
             starStackView.addArrangedSubview(makeStarView(isSelected: true))

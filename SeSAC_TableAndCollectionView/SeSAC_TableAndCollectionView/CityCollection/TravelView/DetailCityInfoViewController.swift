@@ -27,7 +27,6 @@ class DetailCityInfoViewController: UIViewController {
     }
     
     func setTableView() {
-        
         let cityXIB = UINib(nibName: CityDetailTableViewCell.cellID, bundle: nil)
         detailTableView.register(cityXIB, forCellReuseIdentifier: CityDetailTableViewCell.cellID)
         let adXIB = UINib(nibName: CityDatailAdTableViewCell.cellID, bundle: nil)

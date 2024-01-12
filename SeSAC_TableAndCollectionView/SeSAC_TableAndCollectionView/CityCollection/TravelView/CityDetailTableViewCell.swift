@@ -59,7 +59,7 @@ class CityDetailTableViewCell: UITableViewCell {
     func makeStarView(isSelected: Bool) -> UIImageView {
         if isSelected {
             let yellowStar = UIImage(systemName: "star.fill")?
-                .withRenderingMode(.alwaysOriginal).withTintColor(.yellow)
+                .withRenderingMode(.alwaysOriginal).withTintColor(.customYellow)
             let yellowStarView = UIImageView(image: yellowStar)
             return yellowStarView
         } else {
@@ -108,7 +108,7 @@ extension CityDetailTableViewCell {
         if isSelected {
             heartButton.setImage(UIImage(systemName: "heart.fill")?
                 .withRenderingMode(.alwaysOriginal)
-                .withTintColor(.yellow), for: .normal)
+                .withTintColor(.customYellow), for: .normal)
         } else {
             heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }

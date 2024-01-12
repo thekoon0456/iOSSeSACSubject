@@ -10,7 +10,6 @@ import UIKit
 class DetailChatViewController: UIViewController {
     
     @IBOutlet var detailChatTableView: UITableView!
-    
     @IBOutlet var chattingTextField: UITextField!
     
     static let vcID = "DetailChatViewController"

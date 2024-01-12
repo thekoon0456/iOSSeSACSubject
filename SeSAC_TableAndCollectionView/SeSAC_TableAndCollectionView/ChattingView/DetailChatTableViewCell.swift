@@ -9,16 +9,11 @@ import UIKit
 
 class DetailChatTableViewCell: UITableViewCell {
     
-    
     @IBOutlet var profileImage: UIImageView!
-    
     @IBOutlet var userNameLabel: UILabel!
-    
     @IBOutlet var chatBorderView: UIView!
     @IBOutlet var messageLabel: UILabel!
-    
     @IBOutlet var dateLabel: UILabel!
-    
     
     static let cellID = "DetailChatTableViewCell"
 

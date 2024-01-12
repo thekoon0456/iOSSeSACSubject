@@ -27,3 +27,7 @@ enum ConstFloat {
     }
     
 }
+
+enum ConstInt {
+    static let starCount: Int = 5
+}

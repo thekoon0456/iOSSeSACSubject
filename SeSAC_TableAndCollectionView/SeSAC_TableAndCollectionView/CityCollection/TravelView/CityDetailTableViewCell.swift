@@ -76,7 +76,7 @@ class CityDetailTableViewCell: UITableViewCell {
             starStackView.addArrangedSubview(makeStarView(isSelected: true))
         }
         
-        for _ in 0..<(5 - count) {
+        for _ in 0..<(ConstInt.starCount - count) {
             starStackView.addArrangedSubview(makeStarView(isSelected: false))
         }
     }

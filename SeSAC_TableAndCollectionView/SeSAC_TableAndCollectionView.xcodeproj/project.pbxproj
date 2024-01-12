@@ -19,6 +19,11 @@
 		7C449FE62B5125EA00D30116 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FE52B5125EA00D30116 /* ChattingViewController.swift */; };
 		7C449FE92B51272400D30116 /* ChattingRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FE72B51272400D30116 /* ChattingRoomTableViewCell.swift */; };
 		7C449FEA2B51272400D30116 /* ChattingRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C449FE82B51272400D30116 /* ChattingRoomTableViewCell.xib */; };
+		7C449FEF2B512F5E00D30116 /* DetailChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FED2B512F5E00D30116 /* DetailChatTableViewCell.swift */; };
+		7C449FF02B512F5E00D30116 /* DetailChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C449FEE2B512F5E00D30116 /* DetailChatTableViewCell.xib */; };
+		7C449FF22B512FD300D30116 /* DetailChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FF12B512FD300D30116 /* DetailChatViewController.swift */; };
+		7C449FF52B5137ED00D30116 /* DetailOwnUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FF32B5137ED00D30116 /* DetailOwnUserTableViewCell.swift */; };
+		7C449FF62B5137ED00D30116 /* DetailOwnUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C449FF42B5137ED00D30116 /* DetailOwnUserTableViewCell.xib */; };
 		7C7125952B4E858300227C8F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7125942B4E858300227C8F /* Protocol.swift */; };
 		7C9087B22B4FD83B00238F1F /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B12B4FD83B00238F1F /* TravelModel.swift */; };
 		7C9087B72B4FD8DF00238F1F /* CityDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */; };
@@ -55,6 +60,11 @@
 		7C449FE52B5125EA00D30116 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		7C449FE72B51272400D30116 /* ChattingRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRoomTableViewCell.swift; sourceTree = "<group>"; };
 		7C449FE82B51272400D30116 /* ChattingRoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattingRoomTableViewCell.xib; sourceTree = "<group>"; };
+		7C449FED2B512F5E00D30116 /* DetailChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChatTableViewCell.swift; sourceTree = "<group>"; };
+		7C449FEE2B512F5E00D30116 /* DetailChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailChatTableViewCell.xib; sourceTree = "<group>"; };
+		7C449FF12B512FD300D30116 /* DetailChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChatViewController.swift; sourceTree = "<group>"; };
+		7C449FF32B5137ED00D30116 /* DetailOwnUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOwnUserTableViewCell.swift; sourceTree = "<group>"; };
+		7C449FF42B5137ED00D30116 /* DetailOwnUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailOwnUserTableViewCell.xib; sourceTree = "<group>"; };
 		7C7125942B4E858300227C8F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		7C9087B12B4FD83B00238F1F /* TravelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
 		7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +120,11 @@
 				7C449FE52B5125EA00D30116 /* ChattingViewController.swift */,
 				7C449FE72B51272400D30116 /* ChattingRoomTableViewCell.swift */,
 				7C449FE82B51272400D30116 /* ChattingRoomTableViewCell.xib */,
+				7C449FF12B512FD300D30116 /* DetailChatViewController.swift */,
+				7C449FED2B512F5E00D30116 /* DetailChatTableViewCell.swift */,
+				7C449FEE2B512F5E00D30116 /* DetailChatTableViewCell.xib */,
+				7C449FF32B5137ED00D30116 /* DetailOwnUserTableViewCell.swift */,
+				7C449FF42B5137ED00D30116 /* DetailOwnUserTableViewCell.xib */,
 			);
 			path = ChattingView;
 			sourceTree = "<group>";
@@ -287,6 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C449FEA2B51272400D30116 /* ChattingRoomTableViewCell.xib in Resources */,
+				7C449FF02B512F5E00D30116 /* DetailChatTableViewCell.xib in Resources */,
+				7C449FF62B5137ED00D30116 /* DetailOwnUserTableViewCell.xib in Resources */,
 				7CC905B12B4809BA000C18C7 /* LaunchScreen.storyboard in Resources */,
 				7C9087B82B4FD8DF00238F1F /* CityDetailTableViewCell.xib in Resources */,
 				7CC905AE2B4809BA000C18C7 /* Assets.xcassets in Resources */,
@@ -307,6 +324,7 @@
 				7C449FE62B5125EA00D30116 /* ChattingViewController.swift in Sources */,
 				7C9087C12B4FEBAD00238F1F /* CityDatailAdTableViewCell.swift in Sources */,
 				7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */,
+				7C449FEF2B512F5E00D30116 /* DetailChatTableViewCell.swift in Sources */,
 				7CD73C532B480F1100E5F177 /* SettingTableViewController.swift in Sources */,
 				7C449FE02B5124E200D30116 /* ChattingData.swift in Sources */,
 				7CD73C572B48122800E5F177 /* ShoppingTableViewCell.swift in Sources */,
@@ -327,6 +345,8 @@
 				7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */,
 				7C449FE22B5124FE00D30116 /* ChatConst.swift in Sources */,
 				7C9087B22B4FD83B00238F1F /* TravelModel.swift in Sources */,
+				7C449FF52B5137ED00D30116 /* DetailOwnUserTableViewCell.swift in Sources */,
+				7C449FF22B512FD300D30116 /* DetailChatViewController.swift in Sources */,
 				7C382C652B4BE47500AC8236 /* MagazinInfoTableViewController.swift in Sources */,
 				7C382C632B4BE40800AC8236 /* MagazineInfo.swift in Sources */,
 			);

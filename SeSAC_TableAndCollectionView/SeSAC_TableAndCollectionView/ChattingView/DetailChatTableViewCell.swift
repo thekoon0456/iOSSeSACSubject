@@ -14,7 +14,7 @@ class DetailChatTableViewCell: UITableViewCell {
     
     @IBOutlet var userNameLabel: UILabel!
     
-    @IBOutlet var charMarginView: UIView!
+    @IBOutlet var chatBorderView: UIView!
     @IBOutlet var messageLabel: UILabel!
     
     @IBOutlet var dateLabel: UILabel!
@@ -38,16 +38,17 @@ class DetailChatTableViewCell: UITableViewCell {
         
         userNameLabel.font = .boldSystemFont(ofSize: 16)
         
-        charMarginView.layer.borderWidth = 1
-        charMarginView.layer.borderColor = UIColor.systemGray.cgColor
-        charMarginView.layer.cornerRadius = 10
-        charMarginView.clipsToBounds = true
+        chatBorderView.layer.borderWidth = 1
+        chatBorderView.layer.borderColor = UIColor.systemGray.cgColor
+        chatBorderView.layer.cornerRadius = 10
+        chatBorderView.clipsToBounds = true
         
         messageLabel.font = .systemFont(ofSize: 14)
         messageLabel.numberOfLines = 0
 
         dateLabel.font = .systemFont(ofSize: 12)
         dateLabel.textColor = .systemGray2
+        dateLabel.textAlignment = .center
     }
     
     func setCellData(_ data: Chat) {

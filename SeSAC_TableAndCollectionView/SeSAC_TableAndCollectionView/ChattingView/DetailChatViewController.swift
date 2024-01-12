@@ -36,11 +36,11 @@ class DetailChatViewController: UIViewController {
         Chat(user: .jack,
              date: "2024-01-12 20:30",
              message: "벌써 퇴근하세여?ㅎㅎㅎㅎㅎ"),
-     ]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         setTableView()
     }
@@ -57,8 +57,11 @@ class DetailChatViewController: UIViewController {
         detailChatTableView.delegate = self
         detailChatTableView.dataSource = self
         
-        let xib = UINib(nibName: DetailChatTableViewCell.cellID, bundle: nil)
-        detailChatTableView.register(xib, forCellReuseIdentifier: DetailChatTableViewCell.cellID)
+        let userXib = UINib(nibName: DetailChatTableViewCell.cellID, bundle: nil)
+        detailChatTableView.register(userXib, forCellReuseIdentifier: DetailChatTableViewCell.cellID)
+        
+        let ownXib = UINib(nibName: DetailOwnUserTableViewCell.cellID, bundle: nil)
+        detailChatTableView.register(ownXib, forCellReuseIdentifier: DetailOwnUserTableViewCell.cellID)
     }
     
 }
@@ -69,13 +72,26 @@ extension DetailChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailChatTableViewCell.cellID, for: indexPath) as? DetailChatTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailChatTableViewCell.cellID, for: indexPath) as? DetailChatTableViewCell else {
             return UITableViewCell()
         }
         
-        cell.setCellData(detailChatData[indexPath.row])
-        
-        return cell
+        if detailChatData[indexPath.row].user == .user {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailOwnUserTableViewCell.cellID, for: indexPath) as? DetailOwnUserTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.setCellData(detailChatData[indexPath.row])
+            return cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailChatTableViewCell.cellID, for: indexPath) as? DetailChatTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.setCellData(detailChatData[indexPath.row])
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

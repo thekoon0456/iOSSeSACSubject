@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="337" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh3-V6-oMr">
-                        <rect key="frame" x="225" y="66" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh3-V6-oMr">
+                        <rect key="frame" x="229.66666666666666" y="66" width="41.333333333333343" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,11 +47,16 @@
                     <constraint firstAttribute="bottom" secondItem="UTe-D8-YQV" secondAttribute="bottom" constant="4" id="ZCv-Z8-kV5"/>
                     <constraint firstAttribute="bottom" secondItem="qh3-V6-oMr" secondAttribute="bottom" constant="4" id="faw-2a-9O0"/>
                     <constraint firstItem="qh3-V6-oMr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nnh-aZ-55B"/>
-                    <constraint firstItem="UTe-D8-YQV" firstAttribute="leading" secondItem="qh3-V6-oMr" secondAttribute="trailing" constant="8" id="pVc-17-LH0"/>
+                    <constraint firstItem="UTe-D8-YQV" firstAttribute="leading" secondItem="qh3-V6-oMr" secondAttribute="trailing" constant="4" id="pVc-17-LH0"/>
                     <constraint firstItem="UTe-D8-YQV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="vcD-GU-INe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="chatBorderView" destination="UTe-D8-YQV" id="Bfe-uq-wQz"/>
+                <outlet property="dateLabel" destination="qh3-V6-oMr" id="1H7-He-eER"/>
+                <outlet property="messageLabel" destination="eNE-vs-44i" id="HGC-Bk-sPB"/>
+            </connections>
             <point key="canvasLocation" x="14.503816793893129" y="36.971830985915496"/>
         </tableViewCell>
     </objects>

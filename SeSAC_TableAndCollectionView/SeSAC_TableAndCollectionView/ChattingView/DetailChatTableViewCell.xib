@@ -51,8 +51,8 @@
                             <constraint firstAttribute="trailing" secondItem="RR7-re-uGo" secondAttribute="trailing" constant="8" id="f2n-60-qtQ"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nm-YT-ZwD">
-                        <rect key="frame" x="115.33333333333331" y="98" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nm-YT-ZwD">
+                        <rect key="frame" x="115.33333333333333" y="98" width="41.333333333333329" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="charMarginView" destination="kjJ-sk-IgM" id="VUF-ys-YUG"/>
+                <outlet property="chatBorderView" destination="kjJ-sk-IgM" id="VUF-ys-YUG"/>
                 <outlet property="dateLabel" destination="3nm-YT-ZwD" id="Kzl-Ts-tYY"/>
                 <outlet property="messageLabel" destination="RR7-re-uGo" id="C1G-al-KEQ"/>
                 <outlet property="profileImage" destination="BuY-Kj-4gO" id="Ak9-qP-u6f"/>

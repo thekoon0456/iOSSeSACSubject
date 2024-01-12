@@ -14,6 +14,13 @@ struct Travel {
     let save: Int?
     let like: Bool?
     let ad: Bool?
+    
+    //추천 수 랜덤으로 보여주도록
+    let randomCount = Int.random(in: 1...2000)
+    //cell에 표시되는 데이터
+    var cellDetailLabel: String {
+        "\(randomCount) • 저장 \(String(save ?? 0))"
+    }
 }
 
 struct TravelInfo {

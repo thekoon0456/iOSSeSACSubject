@@ -19,8 +19,6 @@ class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var etcLabel: UILabel!
     
     static let cellID = "CityDetailTableViewCell"
-    //추천 수 랜덤으로 보여주도록
-    let randomCount = Int.random(in: 1...2000)
     //버튼 클릭
     var isHeartButtonSelected = false
     
@@ -44,7 +42,7 @@ class CityDetailTableViewCell: UITableViewCell {
     func setCellData(_ data: Travel) {
         titleLabel.text = data.title
         descriptionLabel.text = data.description
-        etcLabel.text = "(\(randomCount)) • 저장 \(String(data.save ?? 0))"
+        etcLabel.text = data.cellDetailLabel
         //하트 버튼 세팅
         setButtonImage(isSelected: data.like ?? true)
         

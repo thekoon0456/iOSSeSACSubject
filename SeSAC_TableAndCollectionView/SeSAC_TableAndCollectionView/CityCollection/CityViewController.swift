@@ -40,6 +40,8 @@ class CityViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        //기존에 설정된 segment 필터링
+        changedSeg(sender: citySegment)
     }
     
     @objc
@@ -75,6 +77,7 @@ class CityViewController: UIViewController {
     func setSearchText(_ input: String?) {
         guard var lowercasedText = input?.lowercased() else { return }
         
+        //띄워쓰기 수정
         if lowercasedText.contains(" ") {
             lowercasedText = lowercasedText.map { String($0) }
                                            .filter { $0 != " " }
@@ -84,12 +87,14 @@ class CityViewController: UIViewController {
             self.cityTextField.text = lowercasedText
         }
         
+        //필터링
         let result = cityList.filter {
             $0.city_name.contains(lowercasedText)
             || $0.city_english_name.lowercased().contains(lowercasedText)
             || $0.city_explain.contains(lowercasedText)
         }
         
+        //결과 보여주기
         if result.isEmpty {
             cityList = CityInfo().city
         } else {
@@ -144,8 +149,7 @@ extension CityViewController: setUI {
         layout.minimumLineSpacing = ConstFloat.spacing.value
         
         cityCollectionView.collectionViewLayout = layout
-        
-        cityCollectionView.keyboardDismissMode = .onDrag
+        cityCollectionView.keyboardDismissMode = .onDrag //스크롤시 키보드 내림
     }
 }
 
@@ -168,7 +172,6 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         let vc = storyboard?.instantiateViewController(identifier: DetailCityInfoViewController.vcID) as! DetailCityInfoViewController
         
         navigationController?.pushViewController(vc, animated: true)

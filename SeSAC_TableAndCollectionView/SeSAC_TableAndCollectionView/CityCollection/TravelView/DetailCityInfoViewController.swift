@@ -74,5 +74,7 @@ extension DetailCityInfoViewController: UITableViewDelegate, UITableViewDataSour
             let vc = storyboard?.instantiateViewController(identifier: TrevelSpotViewController.vcID) as! TrevelSpotViewController
             navigationController?.pushViewController(vc, animated: true)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

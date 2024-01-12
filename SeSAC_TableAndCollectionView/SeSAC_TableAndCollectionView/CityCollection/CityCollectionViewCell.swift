@@ -45,11 +45,9 @@ extension CityCollectionViewCell: setCell {
     typealias T = City
     
     func configureCellData(data: City) {
-        let placeHolderImage = UIImage(named: "loadingImage")
-        
         cityImageView.kf.setImage(with: URL(string: data.city_image),
-                                  placeholder: placeHolderImage)
-        titleLabel.text = "\(data.city_name) | \(data.city_english_name)"
+                                  placeholder: UIImage(named: ConstString.loadingImage))
+        titleLabel.text = data.cellTitleLabel
         descriptionLabel.text = data.city_explain
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chatting View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ChattingViewController" id="Y6W-OH-hqX" customClass="ChattingViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-ZY-sLT">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="pxP-BR-Szu"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x6A-jy-9F5">
+                                <rect key="frame" x="0.0" y="115" width="393" height="703"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x6A-jy-9F5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="7Rx-AS-WAV"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="x6A-jy-9F5" secondAttribute="bottom" id="XfI-HD-00E"/>
+                            <constraint firstItem="ziG-ZY-sLT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZJs-LF-aVK"/>
+                            <constraint firstItem="ziG-ZY-sLT" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ce9-JG-KHw"/>
+                            <constraint firstItem="ziG-ZY-sLT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="lQ2-H9-IN9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="x6A-jy-9F5" secondAttribute="trailing" id="wuB-r3-r00"/>
+                            <constraint firstItem="x6A-jy-9F5" firstAttribute="top" secondItem="ziG-ZY-sLT" secondAttribute="bottom" id="xu7-H0-UEE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chattingTableView" destination="x6A-jy-9F5" id="jTe-9M-RAh"/>
+                        <outlet property="friendSearchBar" destination="ziG-ZY-sLT" id="eFP-gc-2Ls"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

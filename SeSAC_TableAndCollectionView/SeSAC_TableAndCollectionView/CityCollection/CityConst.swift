@@ -31,3 +31,22 @@ enum ConstFloat {
 enum ConstInt {
     static let starCount: Int = 5
 }
+
+enum ConstString {
+    static let loadingImage = "loadingImage"
+    
+    static let heartFillImage = "heart.fill"
+    static let heartImage = "heart"
+    static let starFillImage = "star.fill"
+    static let starImage = "star"
+    
+    static let searchPlaceHolder = "도시를 검색해주세요"
+    static let ad = "AD"
+}
+
+enum Title {
+    static let popularCity = "인기 도시"
+    static let cityDetailInfo = "도시 상세 정보"
+    static let trevelScene = "관광지 화면"
+    static let adScene = "광고 화면"
+}

@@ -14,6 +14,10 @@ struct City: Model {
     let city_explain: String
     let city_image: String
     let domestic_travel: Bool
+    
+    var cellTitleLabel: String {
+        return "\(city_name) | \(city_english_name)"
+    }
 }
 
 struct CityInfo {

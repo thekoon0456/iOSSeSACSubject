@@ -23,7 +23,7 @@ class DetailCityInfoViewController: UIViewController {
     }
     
     func configureUI() {
-        navigationItem.title = "도시 상세 정보"
+        navigationItem.title = Title.cityDetailInfo
     }
     
     func setTableView() {

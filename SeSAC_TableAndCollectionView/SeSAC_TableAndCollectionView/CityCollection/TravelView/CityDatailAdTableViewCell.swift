@@ -47,7 +47,7 @@ extension CityDatailAdTableViewCell {
         mentLabel.textAlignment = .center
         mentLabel.numberOfLines = 0
         
-        adLabel.text = "AD"
+        adLabel.text = ConstString.ad
         adLabel.font = .systemFont(ofSize: 14)
         adLabel.textAlignment = .center
         adLabel.backgroundColor = .white

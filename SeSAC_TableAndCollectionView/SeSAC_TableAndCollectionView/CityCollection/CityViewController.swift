@@ -65,7 +65,8 @@ class CityViewController: UIViewController {
         default:
             return
         }
-
+        
+        cityTextField.text = nil
     }
     
     // MARK: - 설정시 컬렉션뷰 클릭 안됨.
@@ -79,11 +80,7 @@ class CityViewController: UIViewController {
         
         //띄워쓰기 수정
         if lowercasedText.contains(" ") {
-            lowercasedText = lowercasedText.map { String($0) }
-                                           .filter { $0 != " " }
-                                           .reduce("", +)
-//            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
-            
+            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
             self.cityTextField.text = lowercasedText
         }
         
@@ -95,9 +92,7 @@ class CityViewController: UIViewController {
         }
         
         //결과 보여주기
-        if result.isEmpty {
-            cityList = CityInfo().city
-        } else {
+        if result.isEmpty == false {
             cityList = result
         }
     }
@@ -106,7 +101,7 @@ class CityViewController: UIViewController {
 extension CityViewController: setUI {
     
     func configureUI() {
-        navigationItem.title = "인기 도시"
+        navigationItem.title = Title.popularCity
         
         configureTextField()
         configureSeg()
@@ -115,7 +110,7 @@ extension CityViewController: setUI {
     
     func configureTextField() {
         cityTextField.delegate = self
-        cityTextField.placeholder = "도시를 검색해주세요"
+        cityTextField.placeholder = ConstString.searchPlaceHolder
     }
     
     func configureSeg() {
@@ -182,10 +177,10 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: - TextField
 
 extension CityViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.cityTextField.text = nil
-        cityList = CityInfo().city
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        self.cityTextField.text = nil
+//        cityList = CityInfo().city
+//    }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         guard let lowercasedText = textField.text?.lowercased() else { return true }
@@ -198,6 +193,11 @@ extension CityViewController: UITextFieldDelegate {
         guard let lowercasedText = textField.text?.lowercased() else { return true }
         let input = (lowercasedText as NSString?)?.replacingCharacters(in: range, with: string)
         setSearchText(input)
+        
+        //비어있으면 각 seg에 맞는 화면 나오도록
+//        if cityTextField.text?.isEmpty == true {
+//
+//        }
         return true
     }
     

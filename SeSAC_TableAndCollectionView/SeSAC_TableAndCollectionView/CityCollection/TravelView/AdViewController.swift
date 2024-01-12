@@ -20,8 +20,8 @@ class AdViewController: UIViewController {
     }
 
     func configureUI() {
-        navigationItem.title = "광고 화면"
-        titleLabel.text = "광고 화면"
+        navigationItem.title = Title.adScene
+        titleLabel.text = Title.adScene
         titleLabel.font = .boldSystemFont(ofSize: 30)
         titleLabel.textAlignment = .center
     }

@@ -21,9 +21,9 @@ class TrevelSpotViewController: UIViewController {
     }
 
     func configureUI() {
-        navigationItem.title = "관광지 화면"
+        navigationItem.title = Title.trevelScene
         
-        titleLabel.text = "관광지 화면"
+        titleLabel.text = Title.trevelScene
         titleLabel.font = .boldSystemFont(ofSize: 30)
         titleLabel.textAlignment = .center
     }

@@ -47,9 +47,8 @@ class CityDetailTableViewCell: UITableViewCell {
         setButtonImage(isSelected: data.like ?? true)
         
         //이미지 세팅
-        let placeHolderImage = UIImage(named: "loadingImage")
         mainImage.kf.setImage(with: URL(string: data.travel_image ?? ""),
-                              placeholder: placeHolderImage)
+                              placeholder: UIImage(named: ConstString.loadingImage))
         
         //별 갯수 세팅(반올림)
         let starCount = Int(trunc(data.grade ?? 0))
@@ -58,12 +57,12 @@ class CityDetailTableViewCell: UITableViewCell {
     
     func makeStarView(isSelected: Bool) -> UIImageView {
         if isSelected {
-            let yellowStar = UIImage(systemName: "star.fill")?
+            let yellowStar = UIImage(systemName: ConstString.starFillImage)?
                 .withRenderingMode(.alwaysOriginal).withTintColor(.customYellow)
             let yellowStarView = UIImageView(image: yellowStar)
             return yellowStarView
         } else {
-            let emptyStar = UIImage(systemName: "star.fill")?
+            let emptyStar = UIImage(systemName: ConstString.starFillImage)?
                 .withRenderingMode(.alwaysOriginal).withTintColor(.systemGray3)
             let emptyStarView = UIImageView(image: emptyStar)
             return emptyStarView
@@ -106,11 +105,11 @@ extension CityDetailTableViewCell {
     
     func setButtonImage(isSelected: Bool) {
         if isSelected {
-            heartButton.setImage(UIImage(systemName: "heart.fill")?
+            heartButton.setImage(UIImage(systemName: ConstString.heartFillImage)?
                 .withRenderingMode(.alwaysOriginal)
                 .withTintColor(.customYellow), for: .normal)
         } else {
-            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            heartButton.setImage(UIImage(systemName: ConstString.heartImage), for: .normal)
         }
     }
     

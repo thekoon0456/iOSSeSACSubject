@@ -10,9 +10,7 @@ import UIKit
 class DetailChatViewController: UIViewController {
      
     @IBOutlet var detailChatTableView: UITableView!
-    
     @IBOutlet var chatTextView: UITextView!
-    
     @IBOutlet var sendButton: UIButton!
     
     static var identifier: String {
@@ -34,6 +32,7 @@ class DetailChatViewController: UIViewController {
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         chatTextView.text = nil
+        chatTextView.isScrollEnabled = false
         view.endEditing(true)
     }
     
@@ -48,7 +47,8 @@ class DetailChatViewController: UIViewController {
     
     func setChatTextView() {
         chatTextView.delegate = self
-        chatTextView.font = .systemFont(ofSize: 20)
+        chatTextView.font = .systemFont(ofSize: 16)
+        chatTextView.textColor = .lightGray
         chatTextView.backgroundColor = .systemGray6
         chatTextView.returnKeyType = .send
         chatTextView.isScrollEnabled = false
@@ -89,7 +89,7 @@ extension DetailChatViewController : UITextViewDelegate {
     // 입력을 시작할때
     // (텍스트뷰는 플레이스홀더가 따로 있지 않아서, 플레이스 홀더처럼 동작하도록 직접 구현)
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == ChatConst.inputMessagePlaceHolder {
+        if textView.textColor == .lightGray {
             textView.text = nil
             textView.textColor = .black
         }
@@ -98,14 +98,14 @@ extension DetailChatViewController : UITextViewDelegate {
     // 입력이 끝났을때
     func textViewDidEndEditing(_ textView: UITextView) {
         // 비어있으면 다시 플레이스 홀더처럼 입력하기 위해서 조건 확인
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if textView.text.isEmpty {
             textView.text = ChatConst.inputMessagePlaceHolder
             textView.textColor = .lightGray
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView.text.count > 100 {
+        if textView.text.count > 50 {
             textView.isScrollEnabled = true
         } else {
             textView.isScrollEnabled = false

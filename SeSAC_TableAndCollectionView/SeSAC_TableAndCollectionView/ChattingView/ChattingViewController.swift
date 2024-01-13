@@ -8,7 +8,7 @@
 import UIKit
 
 class ChattingViewController: UIViewController {
-
+    
     @IBOutlet var friendSearchBar: UISearchBar!
     @IBOutlet var chattingTableView: UITableView!
     
@@ -22,10 +22,10 @@ class ChattingViewController: UIViewController {
             chattingTableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         setTableView()
         setSearchBar()
@@ -35,11 +35,15 @@ class ChattingViewController: UIViewController {
 // MARK: - Helper
 
 extension ChattingViewController {
-    func setSearchBar() {
-        friendSearchBar.delegate = self
-        friendSearchBar.placeholder = ChatConst.searchPlaceHolder
-        friendSearchBar.showsCancelButton = true
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
+}
+
+// MARK: -  UI
+
+extension ChattingViewController: setUI {
     
     func setTableView() {
         chattingTableView.delegate = self
@@ -53,14 +57,10 @@ extension ChattingViewController {
         chattingTableView.rowHeight = UITableView.automaticDimension
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
+    func setSearchBar() {
+        friendSearchBar.delegate = self
+        friendSearchBar.placeholder = ChatConst.searchPlaceHolder
     }
-}
-
-// MARK: -  UI
-
-extension ChattingViewController: setUI {
     
     func configureUI() {
         navigationItem.title = ChatConst.travelTalkTitle
@@ -69,17 +69,24 @@ extension ChattingViewController: setUI {
 }
 
 // MARK: - SearchBar
-extension ChattingViewController: UISearchBarDelegate {
 
+extension ChattingViewController: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let lowerCasedInputText = searchText.lowercased()
+        
         if searchText.isEmpty {
             self.chatData = mockChatList
         }
-        
+        //친구 필터
         mockChatList.forEach { chatRoom in
             let lowercasedName = chatRoom.chatroomName.lowercased()
-            if lowercasedName.contains(searchText.lowercased()) {
-                self.chatData = mockChatList.filter { $0.chatroomName.lowercased().contains(searchText) }
+            
+            if lowercasedName.contains(lowerCasedInputText) {
+                self.chatData = mockChatList.filter {
+                    let name = $0.chatroomName.lowercased()
+                    return name.contains(lowerCasedInputText)
+                }
             }
         }
     }

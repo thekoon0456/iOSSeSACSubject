@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailChatViewController: UIViewController {
-     
+    
     @IBOutlet var detailChatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
     @IBOutlet var sendButton: UIButton!
@@ -17,7 +17,7 @@ class DetailChatViewController: UIViewController {
         return String(describing: self)
     }
     
-    var detailChatData: [Chat] = []
+    lazy var detailChatData: [Chat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,22 +28,58 @@ class DetailChatViewController: UIViewController {
         setButton()
         textViewDidEndEditing(chatTextView)
     }
-    
-    
+
     @IBAction func sendButtonTapped(_ sender: UIButton) {
+        let newChat = Chat(user: .user,
+                           date: makeCurrentDateToString(),
+                           message: chatTextView.text)
+        //배열에 추가하고, reload
+        detailChatData.append(newChat)
+        detailChatTableView.reloadData()
+        
+        //textView초기화
         chatTextView.text = nil
         chatTextView.isScrollEnabled = false
-        view.endEditing(true)
+        
+        //아래로 스크롤
+        scrollToBottom(detailChatTableView)
     }
-    
+}
+
+// MARK: - Helpers
+
+extension DetailChatViewController {
+    //데이터 넣어주기
     func getChatData(_ data: [Chat]) {
         navigationItem.title = setTitle(data)
         self.detailChatData = data
     }
     
+    //네비 타이틀 이름
     func setTitle(_ input: [Chat]) -> String? {
         input.filter { $0.user != .user }.first?.user.rawValue
     }
+    
+    //유저가 입력한 채팅 시간 String 변환
+    func makeCurrentDateToString() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        return dateFormatter.string(from: Date())
+    }
+    
+    //채팅 보내면 아래로 스크롤
+    func scrollToBottom(_ tableView: UITableView) {
+        let lastIndexPath = IndexPath(row: detailChatData.count - 1,
+                                      section: 0)
+        
+        tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+    }
+}
+
+// MARK: - UI
+
+extension DetailChatViewController: setUI {
     
     func setChatTextView() {
         chatTextView.delegate = self
@@ -56,11 +92,6 @@ class DetailChatViewController: UIViewController {
         chatTextView.textContainerInset = .init(top: 15, left: 10, bottom: 15, right: 60)
         setRoundedView(chatTextView, cornerRadius: 10)
     }
-}
-
-// MARK: - UI
-
-extension DetailChatViewController: setUI {
     
     func setButton() {
         sendButton.setImage(UIImage(systemName: ChatConst.sendButton), for: .normal)
@@ -104,6 +135,7 @@ extension DetailChatViewController : UITextViewDelegate {
         }
     }
     
+    //높이 어느정도 늘어나면 스크롤로 전환
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.count > 50 {
             textView.isScrollEnabled = true

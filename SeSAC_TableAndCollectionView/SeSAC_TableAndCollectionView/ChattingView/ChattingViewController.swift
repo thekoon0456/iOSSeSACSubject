@@ -17,15 +17,44 @@ class ChattingViewController: UIViewController {
     }
     
     //채팅 데이터
-    private let chatData = mockChatList
+    private var chatData = mockChatList {
+        didSet {
+            chattingTableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
         setTableView()
-        
+        setSearchBar()
+    }
+}
 
+// MARK: - Helper
+
+extension ChattingViewController {
+    func setSearchBar() {
+        friendSearchBar.delegate = self
+        friendSearchBar.placeholder = ChatConst.searchPlaceHolder
+        friendSearchBar.showsCancelButton = true
+    }
+    
+    func setTableView() {
+        chattingTableView.delegate = self
+        chattingTableView.dataSource = self
+        
+        chattingTableView.showsVerticalScrollIndicator = false
+        chattingTableView.separatorStyle = .none
+        
+        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
+        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
+        chattingTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -36,20 +65,27 @@ extension ChattingViewController: setUI {
     func configureUI() {
         navigationItem.title = ChatConst.travelTalkTitle
         navigationItem.backButtonDisplayMode = .minimal
+    }
+}
+
+// MARK: - SearchBar
+extension ChattingViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.chatData = mockChatList
+        }
         
-        friendSearchBar.placeholder = ChatConst.searchPlaceHolder
-        
-        chattingTableView.showsVerticalScrollIndicator = false
-        chattingTableView.separatorStyle = .none
+        mockChatList.forEach { chatRoom in
+            let lowercasedName = chatRoom.chatroomName.lowercased()
+            if lowercasedName.contains(searchText.lowercased()) {
+                self.chatData = mockChatList.filter { $0.chatroomName.lowercased().contains(searchText) }
+            }
+        }
     }
     
-    func setTableView() {
-        chattingTableView.delegate = self
-        chattingTableView.dataSource = self
-        
-        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
-        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
-        chattingTableView.rowHeight = UITableView.automaticDimension
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
     }
 }
 
@@ -72,6 +108,9 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //화면 이동시 키보드 내리기
+        dismissKeyboard()
+        
         let vc = storyboard?.instantiateViewController(identifier: DetailChatViewController.identifier) as! DetailChatViewController
         
         vc.getChatData(chatData[indexPath.row].chatList)

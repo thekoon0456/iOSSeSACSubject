@@ -7,16 +7,6 @@
 
 import Foundation
 
-//enum ProfileIcon {
-//    static let bran = "Bran"
-//    static let den = "Den"
-//    static let hue = "Hue"
-//    static let jack = "Jack"
-//    
-//    static let goodDeveloper = "내옆자리의앞자리에개발잘하는친구"
-//    static let simsimE = "심심이"
-//}
-
 enum ChatConst {
     static let travelTalkTitle = "TREVEL TALK"
     

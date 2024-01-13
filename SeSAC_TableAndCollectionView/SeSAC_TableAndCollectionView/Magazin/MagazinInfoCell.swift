@@ -35,8 +35,7 @@ extension MagazinInfoCell: setUI {
     
     func configureImage() {
         cellImageView.contentMode = .scaleAspectFill
-        cellImageView.layer.cornerRadius = 20
-        cellImageView.clipsToBounds = true
+        setRoundedView(cellImageView, cornerRadius: 20)
     }
     
     func configureLabel() {

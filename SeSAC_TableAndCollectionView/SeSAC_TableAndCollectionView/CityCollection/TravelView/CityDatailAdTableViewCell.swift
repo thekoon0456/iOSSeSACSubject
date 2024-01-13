@@ -53,7 +53,6 @@ extension CityDatailAdTableViewCell {
         adLabel.font = .systemFont(ofSize: 14)
         adLabel.textAlignment = .center
         adLabel.backgroundColor = .white
-        adLabel.layer.cornerRadius = 5
-        adLabel.clipsToBounds = true
+        setRoundedView(adLabel, cornerRadius: 5)
     }
 }

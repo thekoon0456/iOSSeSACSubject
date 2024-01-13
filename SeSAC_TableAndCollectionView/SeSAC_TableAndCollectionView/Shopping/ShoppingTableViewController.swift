@@ -62,8 +62,7 @@ extension ShoppingTableViewController: setUI {
     func configureUI() {
         navigationItem.title = "쇼핑"
         
-        customHeaderView.layer.cornerRadius = 10
-        customHeaderView.clipsToBounds = true
+        setRoundedView(customHeaderView, cornerRadius: 10)
     }
 }
 

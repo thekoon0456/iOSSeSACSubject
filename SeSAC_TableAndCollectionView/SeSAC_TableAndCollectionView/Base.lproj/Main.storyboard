@@ -634,6 +634,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U4k-pk-uOX">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="compactScrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

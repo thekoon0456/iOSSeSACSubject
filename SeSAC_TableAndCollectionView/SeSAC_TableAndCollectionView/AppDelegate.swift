@@ -18,8 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         
-        //네비게이션 바 색상 설정
+        //네비게이션바 설정
+        //버튼 색상
         UINavigationBar.appearance().tintColor = .label
+        //네비바 불투명
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
+        
         return true
     }
 

@@ -56,8 +56,7 @@ extension ShoppingTableViewCell: setUI {
     
     func setInsetView() {
         insetView.backgroundColor = .systemGray6
-        insetView.layer.cornerRadius = 10
-        insetView.clipsToBounds = true
+        setRoundedView(insetView, cornerRadius: 10)
     }
     
     func setButton(_ button: UIButton) {

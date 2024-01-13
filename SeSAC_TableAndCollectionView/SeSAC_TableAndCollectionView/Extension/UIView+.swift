@@ -23,4 +23,10 @@ extension UIView {
         label.textColor = color
         label.textAlignment = alignment
     }
+    
+    func setRoundedView(_ view: UIView,
+                         cornerRadius: CGFloat) {
+        view.layer.cornerRadius = cornerRadius
+        view.clipsToBounds = true
+    }
 }

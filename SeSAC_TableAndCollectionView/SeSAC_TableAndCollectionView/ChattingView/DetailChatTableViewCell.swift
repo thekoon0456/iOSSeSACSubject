@@ -38,21 +38,22 @@ extension DetailChatTableViewCell: setCell {
     }
     
     func configureUI() {
-        self.profileImage.layer.cornerRadius = 15
-        profileImage.clipsToBounds = true
+        setRoundedView(profileImage, cornerRadius: 15)
         profileImage.contentMode = .scaleAspectFill
         userNameLabel.font = .systemFont(ofSize: 14)
         
         chatBorderView.layer.borderWidth = 1
         chatBorderView.layer.borderColor = UIColor.systemGray.cgColor
-        chatBorderView.layer.cornerRadius = 10
-        chatBorderView.clipsToBounds = true
         
-        messageLabel.font = .systemFont(ofSize: 14)
-        messageLabel.numberOfLines = 0
+        setRoundedView(chatBorderView, cornerRadius: 10)
 
-        dateLabel.font = .systemFont(ofSize: 10)
-        dateLabel.textColor = .systemGray
-        dateLabel.textAlignment = .center
+        setLabel(messageLabel,
+                 fontSize: 14,
+                 lines: 0)
+        
+        setLabel(dateLabel,
+                 fontSize: 10,
+                 color: .systemGray,
+                 alignment: .center)
     }
 }

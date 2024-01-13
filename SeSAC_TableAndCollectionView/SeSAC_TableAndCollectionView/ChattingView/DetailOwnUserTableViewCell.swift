@@ -36,9 +36,8 @@ extension DetailOwnUserTableViewCell: setCell {
     func configureUI() {
         chatBorderView.layer.borderWidth = 1
         chatBorderView.layer.borderColor = UIColor.systemGray.cgColor
-        chatBorderView.layer.cornerRadius = 10
-        chatBorderView.clipsToBounds = true
         chatBorderView.backgroundColor = .systemGray5
+        setRoundedView(chatBorderView, cornerRadius: 10)
         
         setLabel(messageLabel,
                  fontSize: 14,

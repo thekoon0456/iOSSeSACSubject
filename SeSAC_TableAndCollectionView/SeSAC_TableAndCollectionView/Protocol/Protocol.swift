@@ -13,7 +13,7 @@ import Foundation
 //Model 공통 채택
 protocol Model { }
 
-//뷰 공통 채택
+//뷰컨 공통 채택
 protocol setUI {
     func configureUI()
 }

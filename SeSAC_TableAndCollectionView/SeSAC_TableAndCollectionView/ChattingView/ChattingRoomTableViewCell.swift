@@ -38,10 +38,11 @@ extension ChattingRoomTableViewCell: setCell {
     
     func configureUI () {
         //이미지 설정
-        DispatchQueue.main.async { //너비 비율 1.5로
-            self.profileView.layer.cornerRadius = UIScreen.main.bounds.width / 6.6 / 2
+        DispatchQueue.main.async { [self] in //너비 비율 1.5로
+            setRoundedView(profileView,
+                           cornerRadius: (UIScreen.main.bounds.width / 6.6 / 2))
         }
-        profileView.clipsToBounds = true
+        
         profileView.contentMode = .scaleAspectFill
         
         //label 설정

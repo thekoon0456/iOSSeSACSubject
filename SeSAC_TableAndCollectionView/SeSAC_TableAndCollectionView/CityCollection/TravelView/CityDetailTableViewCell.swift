@@ -89,8 +89,7 @@ extension CityDetailTableViewCell {
     
     func configureUI() {
         mainImage.contentMode = .scaleAspectFill
-        mainImage.layer.cornerRadius = 10
-        mainImage.clipsToBounds = true
+        setRoundedView(mainImage, cornerRadius: 10)
         
         titleLabel.font = .boldSystemFont(ofSize: 18)
         

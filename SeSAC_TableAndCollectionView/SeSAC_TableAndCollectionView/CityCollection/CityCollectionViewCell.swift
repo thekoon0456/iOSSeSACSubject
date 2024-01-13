@@ -30,8 +30,8 @@ extension CityCollectionViewCell: setUI {
     
     func configureUI() {
         cityImageView.contentMode = .scaleAspectFill
-        cityImageView.layer.cornerRadius = ConstFloat.cellCornerRadious.value
-        cityImageView.clipsToBounds = true
+        setRoundedView(cityImageView,
+                       cornerRadius: ConstFloat.cellCornerRadious.value)
         
         titleLabel.textAlignment = .center
         titleLabel.font = .boldSystemFont(ofSize: 15)

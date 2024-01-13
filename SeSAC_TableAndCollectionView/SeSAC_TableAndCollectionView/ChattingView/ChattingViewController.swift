@@ -17,13 +17,15 @@ class ChattingViewController: UIViewController {
     }
     
     //채팅 데이터
-    let chatData = mockChatList
+    private let chatData = mockChatList
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
         setTableView()
+        
+
     }
 }
 

@@ -10,7 +10,10 @@ import UIKit
 class DetailChatViewController: UIViewController {
      
     @IBOutlet var detailChatTableView: UITableView!
-    @IBOutlet var chattingTextField: UITextField!
+    
+    @IBOutlet var chatTextView: UITextView!
+    
+    @IBOutlet var sendButton: UIButton!
     
     static var identifier: String {
         return String(describing: self)
@@ -23,6 +26,15 @@ class DetailChatViewController: UIViewController {
         
         configureUI()
         setTableView()
+        setChatTextView()
+        setButton()
+        textViewDidEndEditing(chatTextView)
+    }
+    
+    
+    @IBAction func sendButtonTapped(_ sender: UIButton) {
+        chatTextView.text = nil
+        view.endEditing(true)
     }
     
     func getChatData(_ data: [Chat]) {
@@ -33,11 +45,27 @@ class DetailChatViewController: UIViewController {
     func setTitle(_ input: [Chat]) -> String? {
         input.filter { $0.user != .user }.first?.user.rawValue
     }
+    
+    func setChatTextView() {
+        chatTextView.delegate = self
+        chatTextView.font = .systemFont(ofSize: 20)
+        chatTextView.backgroundColor = .systemGray6
+        chatTextView.returnKeyType = .send
+        chatTextView.isScrollEnabled = false
+        chatTextView.showsVerticalScrollIndicator = false
+        chatTextView.textContainerInset = .init(top: 15, left: 10, bottom: 15, right: 60)
+        setRoundedView(chatTextView, cornerRadius: 10)
+    }
 }
 
 // MARK: - UI
 
 extension DetailChatViewController: setUI {
+    
+    func setButton() {
+        sendButton.setImage(UIImage(systemName: ChatConst.sendButton), for: .normal)
+        sendButton.tintColor = .systemGray
+    }
     
     func setTableView() {
         detailChatTableView.delegate = self
@@ -54,8 +82,34 @@ extension DetailChatViewController: setUI {
         detailChatTableView.separatorStyle = .none
         detailChatTableView.showsVerticalScrollIndicator = false
         detailChatTableView.allowsSelection = false
-        
-        chattingTextField.placeholder = ChatConst.inputMessagePlaceHolder
+    }
+}
+
+extension DetailChatViewController : UITextViewDelegate {
+    // 입력을 시작할때
+    // (텍스트뷰는 플레이스홀더가 따로 있지 않아서, 플레이스 홀더처럼 동작하도록 직접 구현)
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == ChatConst.inputMessagePlaceHolder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    // 입력이 끝났을때
+    func textViewDidEndEditing(_ textView: UITextView) {
+        // 비어있으면 다시 플레이스 홀더처럼 입력하기 위해서 조건 확인
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = ChatConst.inputMessagePlaceHolder
+            textView.textColor = .lightGray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.count > 100 {
+            textView.isScrollEnabled = true
+        } else {
+            textView.isScrollEnabled = false
+        }
     }
 }
 

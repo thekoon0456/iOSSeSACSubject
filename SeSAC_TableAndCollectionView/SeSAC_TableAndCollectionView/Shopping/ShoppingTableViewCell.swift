@@ -29,7 +29,7 @@ class ShoppingTableViewCell: UITableViewCell {
         }
     }
     
-    static let cellID = "ShoppingTableViewCell"
+    static let identifier = "ShoppingTableViewCell"
     
     @IBOutlet var insetView: UIView!
     @IBOutlet var checkButton: UIButton!

@@ -12,7 +12,7 @@ class TrevelSpotViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
     
-    static let vcID = "TrevelSpotViewController"
+    static let identifier = "TrevelSpotViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()

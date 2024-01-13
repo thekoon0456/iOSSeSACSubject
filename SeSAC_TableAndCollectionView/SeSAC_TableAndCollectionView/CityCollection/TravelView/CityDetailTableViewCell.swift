@@ -18,7 +18,7 @@ class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var starStackView: UIStackView!
     @IBOutlet var etcLabel: UILabel!
     
-    static let cellID = "CityDetailTableViewCell"
+    static let identifier = "CityDetailTableViewCell"
     //버튼 클릭
     var isHeartButtonSelected = false
     

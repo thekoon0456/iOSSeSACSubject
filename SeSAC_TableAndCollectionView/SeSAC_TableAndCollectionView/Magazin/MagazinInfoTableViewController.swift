@@ -36,7 +36,7 @@ extension MagazinInfoTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MagazinInfoCell.cellID, for: indexPath) as? MagazinInfoCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MagazinInfoCell.identifier, for: indexPath) as? MagazinInfoCell else {
             return UITableViewCell()
         }
         

@@ -12,7 +12,7 @@ class ChattingViewController: UIViewController {
     @IBOutlet var friendSearchBar: UISearchBar!
     @IBOutlet var chattingTableView: UITableView!
     
-    static let vcID = "ChattingViewController"
+    static let identifier = "ChattingViewController"
     
     //채팅 데이터
     let chatData = mockChatList
@@ -28,8 +28,8 @@ class ChattingViewController: UIViewController {
         chattingTableView.delegate = self
         chattingTableView.dataSource = self
         
-        let xib = UINib(nibName: ChattingRoomTableViewCell.cellID, bundle: nil)
-        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.cellID)
+        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
+        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
         chattingTableView.rowHeight = UITableView.automaticDimension
     }
     
@@ -37,6 +37,7 @@ class ChattingViewController: UIViewController {
         navigationItem.title = ChatConst.travelTalkTitle
         friendSearchBar.placeholder = ChatConst.searchPlaceHolder
         chattingTableView.showsVerticalScrollIndicator = false
+        chattingTableView.separatorStyle = .none
     }
 }
 
@@ -47,7 +48,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingRoomTableViewCell.cellID, for: indexPath) as? ChattingRoomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingRoomTableViewCell.identifier, for: indexPath) as? ChattingRoomTableViewCell else {
             return UITableViewCell()
         }
         
@@ -57,7 +58,10 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: DetailChatViewController.vcID) as! DetailChatViewController
+        let vc = storyboard?.instantiateViewController(identifier: DetailChatViewController.identifier) as! DetailChatViewController
+        
+        vc.getChatData(chatData[indexPath.row].chatList)
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

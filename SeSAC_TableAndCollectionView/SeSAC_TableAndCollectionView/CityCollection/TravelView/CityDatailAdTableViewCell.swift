@@ -12,7 +12,7 @@ class CityDatailAdTableViewCell: UITableViewCell {
     @IBOutlet var mentLabel: UILabel!
     @IBOutlet var adLabel: UILabel!
     
-    static let cellID = "CityDatailAdTableViewCell"
+    static let identifier = "CityDatailAdTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -22,6 +22,6 @@ protocol setUI {
 protocol setCell {
     associatedtype T: Model
     
-    static var cellID: String { get }
+    static var identifier: String { get }
     func configureCellData(data: T)
 }

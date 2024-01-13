@@ -53,6 +53,17 @@ struct Chat {
     let user: User
     let date: String
     let message: String
+    
+    var getDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        let lastDateString = date
+        let lastDate = dateFormatter.date(from: lastDateString)
+        dateFormatter.dateFormat = "HH:mm a"
+        let result = dateFormatter.string(from: lastDate ?? Date())
+        
+        return result
+    }
 }
 
 

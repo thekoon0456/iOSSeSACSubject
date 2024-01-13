@@ -15,7 +15,7 @@ class DetailChatTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let cellID = "DetailChatTableViewCell"
+    static let identifier = "DetailChatTableViewCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +31,7 @@ class DetailChatTableViewCell: UITableViewCell {
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
         
-        userNameLabel.font = .boldSystemFont(ofSize: 16)
+        userNameLabel.font = .systemFont(ofSize: 16)
         
         chatBorderView.layer.borderWidth = 1
         chatBorderView.layer.borderColor = UIColor.systemGray.cgColor
@@ -41,8 +41,8 @@ class DetailChatTableViewCell: UITableViewCell {
         messageLabel.font = .systemFont(ofSize: 14)
         messageLabel.numberOfLines = 0
 
-        dateLabel.font = .systemFont(ofSize: 12)
-        dateLabel.textColor = .systemGray2
+        dateLabel.font = .systemFont(ofSize: 10)
+        dateLabel.textColor = .systemGray
         dateLabel.textAlignment = .center
     }
     

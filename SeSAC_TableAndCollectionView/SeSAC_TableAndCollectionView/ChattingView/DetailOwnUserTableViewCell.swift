@@ -13,7 +13,7 @@ class DetailOwnUserTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let cellID = "DetailOwnUserTableViewCell"
+    static let identifier = "DetailOwnUserTableViewCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,8 +36,8 @@ class DetailOwnUserTableViewCell: UITableViewCell {
         messageLabel.font = .systemFont(ofSize: 14)
         messageLabel.numberOfLines = 0
 
-        dateLabel.font = .systemFont(ofSize: 12)
-        dateLabel.textColor = .systemGray2
+        dateLabel.font = .systemFont(ofSize: 10)
+        dateLabel.textColor = .systemGray
         dateLabel.textAlignment = .center
     }
 }

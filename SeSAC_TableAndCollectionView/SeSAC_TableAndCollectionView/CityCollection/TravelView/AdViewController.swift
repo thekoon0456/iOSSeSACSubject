@@ -9,7 +9,7 @@ import UIKit
 
 class AdViewController: UIViewController {
 
-    static let vcID = "AdViewController"
+    static let identifier = "AdViewController"
     
     @IBOutlet var titleLabel: UILabel!
     

@@ -130,8 +130,8 @@ extension CityViewController: setUI {
         cityCollectionView.delegate = self
         cityCollectionView.dataSource = self
         
-        let xib = UINib(nibName: CityCollectionViewCell.cellID, bundle: nil)
-        cityCollectionView.register(xib, forCellWithReuseIdentifier: CityCollectionViewCell.cellID)
+        let xib = UINib(nibName: CityCollectionViewCell.identifier, bundle: nil)
+        cityCollectionView.register(xib, forCellWithReuseIdentifier: CityCollectionViewCell.identifier)
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = .init(width: ConstFloat.cellWidth.value,
@@ -157,7 +157,7 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.cellID, for: indexPath) as? CityCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as? CityCollectionViewCell else {
             return UICollectionViewCell()
         }
         

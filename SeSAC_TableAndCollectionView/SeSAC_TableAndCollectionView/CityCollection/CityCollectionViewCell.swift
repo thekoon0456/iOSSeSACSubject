@@ -11,7 +11,7 @@ import Kingfisher
 
 class CityCollectionViewCell: UICollectionViewCell {
     
-    static let cellID = "CityCollectionViewCell"
+    static let identifier = "CityCollectionViewCell"
     
     @IBOutlet var cityImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!

@@ -14,7 +14,7 @@ class ChattingRoomTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let cellID = "ChattingRoomTableViewCell"
+    static let identifier = "ChattingRoomTableViewCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()

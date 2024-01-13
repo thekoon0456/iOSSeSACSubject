@@ -35,7 +35,10 @@ class ChattingViewController: UIViewController {
     
     func configureUI() {
         navigationItem.title = ChatConst.travelTalkTitle
+        navigationItem.backButtonDisplayMode = .minimal
+        
         friendSearchBar.placeholder = ChatConst.searchPlaceHolder
+        
         chattingTableView.showsVerticalScrollIndicator = false
         chattingTableView.separatorStyle = .none
     }
@@ -61,7 +64,8 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(identifier: DetailChatViewController.identifier) as! DetailChatViewController
         
         vc.getChatData(chatData[indexPath.row].chatList)
-        
         navigationController?.pushViewController(vc, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

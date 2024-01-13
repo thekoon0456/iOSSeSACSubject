@@ -32,6 +32,8 @@ class DetailChatViewController: UIViewController {
         
         detailChatTableView.separatorStyle = .none
         detailChatTableView.showsVerticalScrollIndicator = false
+        detailChatTableView.allowsSelection = false
+        
         chattingTextField.placeholder = "메세지를 입력하세요"
     }
     

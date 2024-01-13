@@ -21,7 +21,7 @@ struct Shopping: Codable, Model {
     var isBookmarked: Bool
 }
 
-class ShoppingTableViewController: UITableViewController {
+final class ShoppingTableViewController: UITableViewController {
     
     @IBOutlet var customHeaderView: UIView!
     @IBOutlet var inputTextField: UITextField!
@@ -81,7 +81,7 @@ extension ShoppingTableViewController {
         }
         
         //Data전달
-        cell.configureCellData(data: UserDefaultsManager.shared.shoppingList[indexPath.row])
+        cell.configureCellData(UserDefaultsManager.shared.shoppingList[indexPath.row])
         
         //각 버튼에 tag추가
         cell.checkButton.tag = indexPath.row

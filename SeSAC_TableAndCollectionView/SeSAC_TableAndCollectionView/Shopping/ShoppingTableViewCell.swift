@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShoppingTableViewCell: UITableViewCell {
+final class ShoppingTableViewCell: UITableViewCell {
     
     enum Const {
         case checkButtonSelected
@@ -29,7 +29,9 @@ class ShoppingTableViewCell: UITableViewCell {
         }
     }
     
-    static let identifier = "ShoppingTableViewCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     @IBOutlet var insetView: UIView!
     @IBOutlet var checkButton: UIButton!
@@ -67,7 +69,7 @@ extension ShoppingTableViewCell: setCell {
     
     typealias T = Shopping
     
-    func configureCellData(data: Shopping) {
+    func configureCellData(_ data: Shopping) {
         contentLabel.text = data.title
         
         //버튼 이미지 설정

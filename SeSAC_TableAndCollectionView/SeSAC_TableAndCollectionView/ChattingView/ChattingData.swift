@@ -23,22 +23,23 @@ enum User: String {
 }
 
 //트래블톡 화면에서 사용할 데이터 구조체
-struct ChatRoom {
+struct ChatRoom: Model {
     let chatroomId: Int //채팅방 고유 ID
     let chatroomImage: [String] //채팅방 이미지
     let chatroomName: String //채팅방 이름
     var chatList: [Chat] = [] //채팅 화면에서 사용할 데이터
     
-    var getImage: String {
+    var chatImage: String {
         return chatroomImage[0]
     }
     
-    var getMessage: String? {
+    var lastMessage: String? {
         return chatList.last?.message
     }
     
-    var getDate: String {
+    var formattedDate: String {
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let lastDateString = chatList.last?.date ?? ""
         let lastDate = dateFormatter.date(from: lastDateString)
         dateFormatter.dateFormat = "yy.MM.dd"
@@ -49,23 +50,22 @@ struct ChatRoom {
 }
 
 //채팅 화면에서 사용할 데이터 구조체
-struct Chat {
+struct Chat: Model {
     let user: User
     let date: String
     let message: String
     
-    var getDate: String {
+    var formattedDate: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        let lastDateString = date
-        let lastDate = dateFormatter.date(from: lastDateString)
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let lastDate = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "HH:mm a"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
         let result = dateFormatter.string(from: lastDate ?? Date())
         
         return result
     }
 }
-
 
 let mockChatList: [ChatRoom] = [
     ChatRoom(chatroomId: 1,

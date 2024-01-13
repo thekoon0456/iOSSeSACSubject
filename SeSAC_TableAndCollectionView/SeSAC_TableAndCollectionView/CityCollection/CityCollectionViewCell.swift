@@ -9,13 +9,15 @@ import UIKit
 
 import Kingfisher
 
-class CityCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "CityCollectionViewCell"
+final class CityCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var cityImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,7 +46,7 @@ extension CityCollectionViewCell: setUI {
 extension CityCollectionViewCell: setCell {
     typealias T = City
     
-    func configureCellData(data: City) {
+    func configureCellData(_ data: City) {
         cityImageView.kf.setImage(with: URL(string: data.city_image),
                                   placeholder: UIImage(named: ConstString.loadingImage))
         titleLabel.text = data.cellTitleLabel

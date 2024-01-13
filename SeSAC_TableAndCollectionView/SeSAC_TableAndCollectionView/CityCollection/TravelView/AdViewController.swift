@@ -7,18 +7,22 @@
 
 import UIKit
 
-class AdViewController: UIViewController {
-
-    static let identifier = "AdViewController"
+final class AdViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
     }
+}
 
+extension AdViewController: setUI {
     func configureUI() {
         navigationItem.title = Title.adScene
         titleLabel.text = Title.adScene

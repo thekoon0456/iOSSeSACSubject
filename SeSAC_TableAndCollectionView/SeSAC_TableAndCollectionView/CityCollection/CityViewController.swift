@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityViewController: UIViewController {
+final class CityViewController: UIViewController {
     
     enum CityCategory: Int, CaseIterable {
         case all
@@ -161,7 +161,7 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
         
-        cell.configureCellData(data: cityList[indexPath.item])
+        cell.configureCellData(cityList[indexPath.item])
         
         return cell
     }

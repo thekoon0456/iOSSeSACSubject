@@ -9,14 +9,16 @@ import UIKit
 
 import Kingfisher
 
-class MagazinInfoCell: UITableViewCell {
-    
-    static let identifier = "MagazinInfoCell"
+final class MagazinInfoCell: UITableViewCell {
     
     @IBOutlet var cellImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,7 +55,7 @@ extension MagazinInfoCell: setCell {
     
     typealias T = Magazine
     
-    func configureCellData(data: Magazine) {
+    func configureCellData(_ data: Magazine) {
         let placeHolderImage = UIImage(named: "loadingImage")
         
         cellImageView.kf.setImage(with: URL(string: data.photo_image),

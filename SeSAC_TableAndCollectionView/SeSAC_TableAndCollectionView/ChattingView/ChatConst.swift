@@ -21,4 +21,5 @@ enum ChatConst {
     static let travelTalkTitle = "TREVEL TALK"
     
     static let searchPlaceHolder = "친구 이름을 검색해보세요"
+    static let inputMessagePlaceHolder = "메세지를 입력하세요"
 }

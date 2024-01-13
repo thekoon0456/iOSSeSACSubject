@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MagazinInfoTableViewController: UITableViewController {
+final class MagazinInfoTableViewController: UITableViewController {
     
     let magazinInfoList = MagazineInfo()
     
@@ -40,7 +40,7 @@ extension MagazinInfoTableViewController {
             return UITableViewCell()
         }
         
-        cell.configureCellData(data: magazinInfoList.magazine[indexPath.row])
+        cell.configureCellData(magazinInfoList.magazine[indexPath.row])
         return cell
     }
     

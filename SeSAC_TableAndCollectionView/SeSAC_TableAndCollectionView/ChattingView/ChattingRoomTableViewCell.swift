@@ -14,21 +14,27 @@ class ChattingRoomTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let identifier = "ChattingRoomTableViewCell"
-
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureUI()
     }
+}
+
+extension ChattingRoomTableViewCell: setCell {
     
-    func setCellData(_ data: ChatRoom) {
-        profileView.image = UIImage(named: data.getImage)
+    typealias T = ChatRoom
+    
+    func configureCellData(_ data: ChatRoom) {
+        profileView.image = UIImage(named: data.chatImage)
         userNameLabel.text = data.chatroomName
-        messageLabel.text = data.getMessage
-        dateLabel.text = data.getDate
+        messageLabel.text = data.lastMessage
+        dateLabel.text = data.formattedDate
     }
-    
     
     func configureUI () {
         //이미지 설정
@@ -39,14 +45,16 @@ class ChattingRoomTableViewCell: UITableViewCell {
         profileView.contentMode = .scaleAspectFill
         
         //label 설정
-        userNameLabel.font = .boldSystemFont(ofSize: 16)
+        setLabel(userNameLabel,
+                 font: .boldSystemFont(ofSize: 16))
         
-        messageLabel.font = .systemFont(ofSize: 14)
-        messageLabel.textColor = .darkGray
+        setLabel(messageLabel,
+                 fontSize: 14,
+                 color: .darkGray)
         
-        dateLabel.font = .systemFont(ofSize: 12)
-        dateLabel.textColor = .systemGray2
+        setLabel(dateLabel,
+                 fontSize: 14,
+                 color: .systemGray2)
     }
     
 }
-

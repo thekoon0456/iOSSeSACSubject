@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailCityInfoViewController: UIViewController {
+final class DetailCityInfoViewController: UIViewController {
     
     @IBOutlet var detailTableView: UITableView!
     

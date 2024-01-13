@@ -12,7 +12,9 @@ class DetailChatViewController: UIViewController {
     @IBOutlet var detailChatTableView: UITableView!
     @IBOutlet var chattingTextField: UITextField!
     
-    static let identifier = "DetailChatViewController"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     var detailChatData: [Chat] = []
     
@@ -24,18 +26,18 @@ class DetailChatViewController: UIViewController {
     }
     
     func getChatData(_ data: [Chat]) {
+        navigationItem.title = setTitle(data)
         self.detailChatData = data
     }
     
-    func configureUI() {
-        navigationItem.title = "Den"
-        
-        detailChatTableView.separatorStyle = .none
-        detailChatTableView.showsVerticalScrollIndicator = false
-        detailChatTableView.allowsSelection = false
-        
-        chattingTextField.placeholder = "메세지를 입력하세요"
+    func setTitle(_ input: [Chat]) -> String? {
+        input.filter { $0.user != .user }.first?.user.rawValue
     }
+}
+
+// MARK: - UI
+
+extension DetailChatViewController: setUI {
     
     func setTableView() {
         detailChatTableView.delegate = self
@@ -48,7 +50,16 @@ class DetailChatViewController: UIViewController {
         detailChatTableView.register(ownXib, forCellReuseIdentifier: DetailOwnUserTableViewCell.identifier)
     }
     
+    func configureUI() {
+        detailChatTableView.separatorStyle = .none
+        detailChatTableView.showsVerticalScrollIndicator = false
+        detailChatTableView.allowsSelection = false
+        
+        chattingTextField.placeholder = ChatConst.inputMessagePlaceHolder
+    }
 }
+
+// MARK: - TableView
 
 extension DetailChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +73,7 @@ extension DetailChatViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.setCellData(detailChatData[indexPath.row])
+            cell.configureCellData(detailChatData[indexPath.row])
             return cell
             
         } else {
@@ -70,7 +81,7 @@ extension DetailChatViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.setCellData(detailChatData[indexPath.row])
+            cell.configureCellData(detailChatData[indexPath.row])
             return cell
         }
     }

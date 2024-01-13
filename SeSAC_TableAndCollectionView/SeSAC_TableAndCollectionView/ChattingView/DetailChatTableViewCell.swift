@@ -15,23 +15,33 @@ class DetailChatTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let identifier = "DetailChatTableViewCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         configureUI()
     }
+}
+
+extension DetailChatTableViewCell: setCell {
+    
+    typealias T = Chat
+    
+    func configureCellData(_ data: Chat) {
+        profileImage.image = UIImage(named: data.user.profileImage)
+        userNameLabel.text = data.user.rawValue
+        messageLabel.text = data.message
+        dateLabel.text = data.formattedDate
+    }
     
     func configureUI() {
-        DispatchQueue.main.async { //너비 비율 1.5로
-            self.profileImage.layer.cornerRadius = UIScreen.main.bounds.width / 6.6 / 2
-        }
+        self.profileImage.layer.cornerRadius = 15
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
-        
-        userNameLabel.font = .systemFont(ofSize: 16)
+        userNameLabel.font = .systemFont(ofSize: 14)
         
         chatBorderView.layer.borderWidth = 1
         chatBorderView.layer.borderColor = UIColor.systemGray.cgColor
@@ -45,12 +55,4 @@ class DetailChatTableViewCell: UITableViewCell {
         dateLabel.textColor = .systemGray
         dateLabel.textAlignment = .center
     }
-    
-    func setCellData(_ data: Chat) {
-        profileImage.image = UIImage(named: data.user.profileImage)
-        userNameLabel.text = data.user.rawValue
-        messageLabel.text = data.message
-        dateLabel.text = "08:16 오후"
-    }
-    
 }

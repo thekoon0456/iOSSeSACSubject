@@ -9,7 +9,7 @@ import UIKit
 
 import Kingfisher
 
-class CityDetailTableViewCell: UITableViewCell {
+final class CityDetailTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
@@ -18,7 +18,10 @@ class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var starStackView: UIStackView!
     @IBOutlet var etcLabel: UILabel!
     
-    static let identifier = "CityDetailTableViewCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     //버튼 클릭
     var isHeartButtonSelected = false
     

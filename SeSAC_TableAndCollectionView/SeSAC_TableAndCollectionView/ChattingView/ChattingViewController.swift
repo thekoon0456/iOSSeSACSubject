@@ -12,7 +12,9 @@ class ChattingViewController: UIViewController {
     @IBOutlet var friendSearchBar: UISearchBar!
     @IBOutlet var chattingTableView: UITableView!
     
-    static let identifier = "ChattingViewController"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     //채팅 데이터
     let chatData = mockChatList
@@ -23,15 +25,11 @@ class ChattingViewController: UIViewController {
         configureUI()
         setTableView()
     }
-    
-    func setTableView() {
-        chattingTableView.delegate = self
-        chattingTableView.dataSource = self
-        
-        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
-        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
-        chattingTableView.rowHeight = UITableView.automaticDimension
-    }
+}
+
+// MARK: -  UI
+
+extension ChattingViewController: setUI {
     
     func configureUI() {
         navigationItem.title = ChatConst.travelTalkTitle
@@ -42,7 +40,18 @@ class ChattingViewController: UIViewController {
         chattingTableView.showsVerticalScrollIndicator = false
         chattingTableView.separatorStyle = .none
     }
+    
+    func setTableView() {
+        chattingTableView.delegate = self
+        chattingTableView.dataSource = self
+        
+        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
+        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
+        chattingTableView.rowHeight = UITableView.automaticDimension
+    }
 }
+
+// MARK: - TableView
 
 extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -55,7 +64,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.setCellData(chatData[indexPath.row])
+        cell.configureCellData(chatData[indexPath.row])
         
         return cell
     }

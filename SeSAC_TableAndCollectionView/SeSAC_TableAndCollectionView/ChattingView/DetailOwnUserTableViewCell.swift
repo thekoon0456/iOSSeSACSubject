@@ -13,17 +13,24 @@ class DetailOwnUserTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static let identifier = "DetailOwnUserTableViewCell"
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        configureUI()
+    static var identifier: String {
+        return String(describing: self)
     }
     
-    func setCellData(_ data: Chat) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureUI()
+    }
+}
+
+extension DetailOwnUserTableViewCell: setCell {
+    
+    typealias T = Chat
+    
+    func configureCellData(_ data: Chat) {
         messageLabel.text = data.message
-        dateLabel.text = "08:16 오후"
+        dateLabel.text = data.formattedDate
     }
     
     func configureUI() {
@@ -33,11 +40,13 @@ class DetailOwnUserTableViewCell: UITableViewCell {
         chatBorderView.clipsToBounds = true
         chatBorderView.backgroundColor = .systemGray5
         
-        messageLabel.font = .systemFont(ofSize: 14)
-        messageLabel.numberOfLines = 0
-
-        dateLabel.font = .systemFont(ofSize: 10)
-        dateLabel.textColor = .systemGray
-        dateLabel.textAlignment = .center
+        setLabel(messageLabel,
+                 fontSize: 14,
+                 lines: 0)
+        
+        setLabel(dateLabel,
+                 fontSize: 10,
+                 color: .systemGray,
+                 alignment: .center)
     }
 }

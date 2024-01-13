@@ -7,12 +7,14 @@
 
 import UIKit
 
-class CityDatailAdTableViewCell: UITableViewCell {
+final class CityDatailAdTableViewCell: UITableViewCell {
     
     @IBOutlet var mentLabel: UILabel!
     @IBOutlet var adLabel: UILabel!
     
-    static let identifier = "CityDatailAdTableViewCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -19,9 +19,9 @@ protocol setUI {
 }
 
 //cell 채택
-protocol setCell {
+protocol setCell: setUI {
     associatedtype T: Model
     
     static var identifier: String { get }
-    func configureCellData(data: T)
+    func configureCellData(_ data: T)
 }

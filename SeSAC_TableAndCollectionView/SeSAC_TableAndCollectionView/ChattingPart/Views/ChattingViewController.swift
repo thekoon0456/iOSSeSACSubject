@@ -52,8 +52,11 @@ extension ChattingViewController: setUI {
         chattingTableView.showsVerticalScrollIndicator = false
         chattingTableView.separatorStyle = .none
         
-        let xib = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
-        chattingTableView.register(xib, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
+        let defaultCellXIB = UINib(nibName: ChattingRoomTableViewCell.identifier, bundle: nil)
+        chattingTableView.register(defaultCellXIB, forCellReuseIdentifier: ChattingRoomTableViewCell.identifier)
+        
+        let fourCellXIB = UINib(nibName: FourChattingRoomTableViewCell.identifier, bundle: nil)
+        chattingTableView.register(fourCellXIB, forCellReuseIdentifier: FourChattingRoomTableViewCell.identifier)
         chattingTableView.rowHeight = UITableView.automaticDimension
     }
     
@@ -106,13 +109,28 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingRoomTableViewCell.identifier, for: indexPath) as? ChattingRoomTableViewCell else {
-            return UITableViewCell()
+        
+        let memberCount = chatData[indexPath.row].chatroomImage.count
+        var resultCell = UITableViewCell()
+        
+        switch memberCount {
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingRoomTableViewCell.identifier, for: indexPath) as? ChattingRoomTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.configureCellData(chatData[indexPath.row])
+            resultCell = cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FourChattingRoomTableViewCell.identifier, for: indexPath) as? FourChattingRoomTableViewCell else { 
+                return UITableViewCell()
+            }
+            
+            cell.configureCellData(chatData[indexPath.row])
+            resultCell = cell
         }
         
-        cell.configureCellData(chatData[indexPath.row])
-        
-        return cell
+        return resultCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

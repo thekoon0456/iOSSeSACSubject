@@ -50,6 +50,8 @@
 		7CF6CD692B4D32EB003EBA68 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6CD672B4D32EB003EBA68 /* CityCollectionViewCell.swift */; };
 		7CF6CD6A2B4D32EB003EBA68 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6CD682B4D32EB003EBA68 /* CityCollectionViewCell.xib */; };
 		7CF6CD702B4D3FE6003EBA68 /* CityConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */; };
+		7CF7167E2B54302500944A71 /* FourChattingRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7167C2B54302500944A71 /* FourChattingRoomTableViewCell.swift */; };
+		7CF7167F2B54302500944A71 /* FourChattingRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF7167D2B54302500944A71 /* FourChattingRoomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		7CF6CD672B4D32EB003EBA68 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		7CF6CD682B4D32EB003EBA68 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
 		7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityConst.swift; sourceTree = "<group>"; };
+		7CF7167C2B54302500944A71 /* FourChattingRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourChattingRoomTableViewCell.swift; sourceTree = "<group>"; };
+		7CF7167D2B54302500944A71 /* FourChattingRoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FourChattingRoomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,22 +126,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		7C449FDE2B5124CA00D30116 /* ChattingView */ = {
+		7C449FDE2B5124CA00D30116 /* ChattingPart */ = {
 			isa = PBXGroup;
 			children = (
-				7C449FDF2B5124E200D30116 /* ChattingData.swift */,
-				7C449FE12B5124FE00D30116 /* ChatConst.swift */,
-				7C449FE32B5125D800D30116 /* Chatting.storyboard */,
-				7C449FE52B5125EA00D30116 /* ChattingViewController.swift */,
-				7C449FE72B51272400D30116 /* ChattingRoomTableViewCell.swift */,
-				7C449FE82B51272400D30116 /* ChattingRoomTableViewCell.xib */,
-				7C449FF12B512FD300D30116 /* DetailChatViewController.swift */,
-				7C449FED2B512F5E00D30116 /* DetailChatTableViewCell.swift */,
-				7C449FEE2B512F5E00D30116 /* DetailChatTableViewCell.xib */,
-				7C449FF32B5137ED00D30116 /* DetailOwnUserTableViewCell.swift */,
-				7C449FF42B5137ED00D30116 /* DetailOwnUserTableViewCell.xib */,
+				7CF716822B5437FA00944A71 /* Model */,
+				7CF716842B54383500944A71 /* Views */,
+				7CF716802B5437A800944A71 /* ChatRoomCell */,
+				7CF716812B5437D100944A71 /* ChatDetailCell */,
+				7CF716832B54381300944A71 /* Const */,
 			);
-			path = ChattingView;
+			path = ChattingPart;
 			sourceTree = "<group>";
 		};
 		7C7125932B4E857200227C8F /* Protocol */ = {
@@ -196,7 +194,7 @@
 				7CF6CD6B2B4D3F79003EBA68 /* Shopping */,
 				7CF6CD6C2B4D3F8C003EBA68 /* Magazin */,
 				7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */,
-				7C449FDE2B5124CA00D30116 /* ChattingView */,
+				7C449FDE2B5124CA00D30116 /* ChattingPart */,
 				7C7125932B4E857200227C8F /* Protocol */,
 				7C382C6B2B4BF34500AC8236 /* UserDefault.swift */,
 				7CC905AA2B4809BA000C18C7 /* Main.storyboard */,
@@ -246,6 +244,54 @@
 				7CD73C522B480F1100E5F177 /* SettingTableViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		7CF716802B5437A800944A71 /* ChatRoomCell */ = {
+			isa = PBXGroup;
+			children = (
+				7C449FE72B51272400D30116 /* ChattingRoomTableViewCell.swift */,
+				7C449FE82B51272400D30116 /* ChattingRoomTableViewCell.xib */,
+				7CF7167C2B54302500944A71 /* FourChattingRoomTableViewCell.swift */,
+				7CF7167D2B54302500944A71 /* FourChattingRoomTableViewCell.xib */,
+			);
+			path = ChatRoomCell;
+			sourceTree = "<group>";
+		};
+		7CF716812B5437D100944A71 /* ChatDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				7C449FED2B512F5E00D30116 /* DetailChatTableViewCell.swift */,
+				7C449FEE2B512F5E00D30116 /* DetailChatTableViewCell.xib */,
+				7C449FF32B5137ED00D30116 /* DetailOwnUserTableViewCell.swift */,
+				7C449FF42B5137ED00D30116 /* DetailOwnUserTableViewCell.xib */,
+			);
+			path = ChatDetailCell;
+			sourceTree = "<group>";
+		};
+		7CF716822B5437FA00944A71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C449FDF2B5124E200D30116 /* ChattingData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CF716832B54381300944A71 /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				7C449FE12B5124FE00D30116 /* ChatConst.swift */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
+		7CF716842B54383500944A71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C449FE32B5125D800D30116 /* Chatting.storyboard */,
+				7C449FE52B5125EA00D30116 /* ChattingViewController.swift */,
+				7C449FF12B512FD300D30116 /* DetailChatViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +364,7 @@
 				7C449FF02B512F5E00D30116 /* DetailChatTableViewCell.xib in Resources */,
 				7C449FF62B5137ED00D30116 /* DetailOwnUserTableViewCell.xib in Resources */,
 				7CC905B12B4809BA000C18C7 /* LaunchScreen.storyboard in Resources */,
+				7CF7167F2B54302500944A71 /* FourChattingRoomTableViewCell.xib in Resources */,
 				7C9087B82B4FD8DF00238F1F /* CityDetailTableViewCell.xib in Resources */,
 				7CC905AE2B4809BA000C18C7 /* Assets.xcassets in Resources */,
 				7CC905AC2B4809BA000C18C7 /* Main.storyboard in Resources */,
@@ -346,6 +393,7 @@
 				7C7125952B4E858300227C8F /* Protocol.swift in Sources */,
 				7C558C0C2B5260B700D9F972 /* UIView+.swift in Sources */,
 				7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */,
+				7CF7167E2B54302500944A71 /* FourChattingRoomTableViewCell.swift in Sources */,
 				7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */,
 				7CF6CD662B4D32D9003EBA68 /* CityViewController.swift in Sources */,
 				7C9087B72B4FD8DF00238F1F /* CityDetailTableViewCell.swift in Sources */,

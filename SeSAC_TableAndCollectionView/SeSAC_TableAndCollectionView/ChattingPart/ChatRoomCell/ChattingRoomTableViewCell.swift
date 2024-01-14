@@ -57,5 +57,4 @@ extension ChattingRoomTableViewCell: setCell {
                  fontSize: 14,
                  color: .systemGray2)
     }
-    
 }

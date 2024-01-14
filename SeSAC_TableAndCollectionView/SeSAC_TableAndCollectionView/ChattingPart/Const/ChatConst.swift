@@ -5,7 +5,7 @@
 //  Created by Deokhun KIM on 1/12/24.
 //
 
-import Foundation
+import UIKit
 
 enum ChatConst {
     //title
@@ -17,4 +17,9 @@ enum ChatConst {
     
     //button
     static let sendButton = "paperplane"
+}
+
+enum ChatCornerRadius {
+    static let oneProfileImage = (UIScreen.main.bounds.width / 6.6) / 2
+    static let manyUserProfileImage = (UIScreen.main.bounds.width / 6.6) / 2 * 0.5
 }

@@ -26,7 +26,6 @@ class DetailChatViewController: UIViewController {
         setTableView()
         setChatTextView()
         setButton()
-        textViewDidEndEditing(chatTextView)
     }
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
@@ -42,7 +41,8 @@ class DetailChatViewController: UIViewController {
         chatTextView.isScrollEnabled = false
         
         //아래로 스크롤
-        scrollToBottom(detailChatTableView)
+        scrollToBottom(detailChatTableView,
+                       row: detailChatData.count - 1)
     }
 }
 
@@ -66,14 +66,6 @@ extension DetailChatViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "ko_kr")
         return dateFormatter.string(from: Date())
-    }
-    
-    //채팅 보내면 아래로 스크롤
-    func scrollToBottom(_ tableView: UITableView) {
-        let lastIndexPath = IndexPath(row: detailChatData.count - 1,
-                                      section: 0)
-        
-        tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
 }
 
@@ -110,6 +102,14 @@ extension DetailChatViewController: setUI {
     }
     
     func configureUI() {
+        //아래 스크롤
+        scrollToBottom(detailChatTableView,
+                       row: detailChatData.count - 1)
+        
+        //placeHolder세팅
+        textViewDidEndEditing(chatTextView)
+        
+        //tableView세팅
         detailChatTableView.separatorStyle = .none
         detailChatTableView.showsVerticalScrollIndicator = false
         detailChatTableView.allowsSelection = false

@@ -13,4 +13,11 @@ extension UIViewController {
         view.layer.cornerRadius = cornerRadius
         view.clipsToBounds = true
     }
+    
+    func scrollToBottom(_ tableView: UITableView, row: Int, section: Int = 0) {
+        let lastIndexPath = IndexPath(row: row,
+                                      section: section)
+        
+        tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+    }
 }

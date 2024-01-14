@@ -94,6 +94,7 @@ extension ChattingViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
     }
+    
 }
 
 // MARK: - TableView
@@ -126,3 +127,5 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+

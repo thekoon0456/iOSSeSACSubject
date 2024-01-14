@@ -8,6 +8,7 @@
 import Foundation
 
 extension Array {
+    //Index safe 검사
     subscript(safe index: Int) -> Element? {
         return indices ~= index ? self[index] : nil
     }

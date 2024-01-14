@@ -40,7 +40,7 @@ extension ChattingRoomTableViewCell: setCell {
         //이미지 설정
         DispatchQueue.main.async { [self] in //너비 비율 1.5로
             setRoundedView(profileView,
-                           cornerRadius: (UIScreen.main.bounds.width / 6.6 / 2))
+                           cornerRadius: ChatCornerRadius.oneProfileImage)
         }
         
         profileView.contentMode = .scaleAspectFill

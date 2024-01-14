@@ -31,15 +31,26 @@ class FourChattingRoomTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Logic
+
+extension FourChattingRoomTableViewCell {
+    
+    func configureProfileImages(input: ChatRoom) {
+        let profileImages: [UIImageView] = [firstProfileView, secondProfileImage, thirdProfileView, forthProfileView]
+        profileImages.enumerated().forEach { index, imageView in
+            imageView.image = UIImage(named: input.chatroomImage[safe: index] ?? input.chatImage)
+        }
+    }
+}
+
+// MARK: - UI
+
 extension FourChattingRoomTableViewCell: setCell {
     
     typealias T = ChatRoom
     
     func configureCellData(_ data: ChatRoom) {
-        firstProfileView.image = UIImage(named: data.chatroomImage[0])
-        secondProfileImage.image = UIImage(named: data.chatroomImage[1])
-        thirdProfileView.image = UIImage(named: data.chatroomImage[2])
-        forthProfileView.image = UIImage(named: data.chatroomImage[3])
+        configureProfileImages(input: data)
         userNameLabel.text = data.chatroomName
         messageLabel.text = data.lastMessage
         dateLabel.text = data.formattedDate

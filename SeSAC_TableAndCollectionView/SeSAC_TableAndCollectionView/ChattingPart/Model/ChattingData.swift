@@ -67,6 +67,17 @@ struct Chat: Model {
         
         return result
     }
+    
+    var changedDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let lastDate = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "yyyy년 M월 d일"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        let result = dateFormatter.string(from: lastDate ?? Date())
+        
+        return result
+    }
 }
 
 let mockChatList: [ChatRoom] = [

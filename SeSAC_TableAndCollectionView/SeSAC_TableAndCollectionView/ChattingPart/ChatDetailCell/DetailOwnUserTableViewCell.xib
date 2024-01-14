@@ -42,10 +42,10 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTb-l1-y1B">
-                        <rect key="frame" x="93.666666666666686" y="4" width="150" height="15"/>
+                        <rect key="frame" x="108.66666666666669" y="4" width="120" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="PrT-qL-53k"/>
-                            <constraint firstAttribute="width" constant="150" id="g8h-vH-BAx"/>
+                            <constraint firstAttribute="width" constant="120" id="g8h-vH-BAx"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>

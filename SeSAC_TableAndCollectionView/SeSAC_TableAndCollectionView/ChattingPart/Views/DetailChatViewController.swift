@@ -53,7 +53,6 @@ extension DetailChatViewController {
     //데이터 넣어주기
     func getChatData(_ data: [Chat]) {
         navigationItem.title = setTitle(data)
-//        self.detailChatData = data
         makeDateDifferenceLine(data: data)
     }
     

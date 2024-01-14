@@ -51,17 +51,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLP-Xv-M1r">
-                        <rect key="frame" x="89.666666666666686" y="4" width="150" height="15"/>
+                        <rect key="frame" x="104.66666666666669" y="4" width="120" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="UeG-dJ-78F"/>
-                            <constraint firstAttribute="width" constant="150" id="aba-Wp-i5p"/>
+                            <constraint firstAttribute="width" constant="120" id="aba-Wp-i5p"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BuY-Kj-4gO">
-                        <rect key="frame" x="12" y="21" width="30" height="30"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BuY-Kj-4gO">
+                        <rect key="frame" x="10" y="23" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="BuY-Kj-4gO" secondAttribute="height" multiplier="1:1" id="bcl-tJ-gjR"/>
                             <constraint firstAttribute="width" constant="30" id="zxr-sQ-Pmr"/>

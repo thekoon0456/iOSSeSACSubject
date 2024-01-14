@@ -34,7 +34,7 @@ extension DetailOwnUserTableViewCell: setCell {
     func configureCellData(_ data: Chat) {
         messageLabel.text = data.message
         dateLabel.text = data.formattedDate
-        dateChangeLabel.text = data.date.split(separator: " ").first?.lowercased()
+        dateChangeLabel.text = data.changedDate
         setDateChangeLabel(changed: data.isChangedDate)
     }
     
@@ -58,7 +58,7 @@ extension DetailOwnUserTableViewCell: setCell {
                  color: .darkGray,
                  alignment: .center)
         setRoundedView(dateChangeLabel, cornerRadius: 5)
-        dateChangeLabel.backgroundColor = .systemGray3
+        dateChangeLabel.backgroundColor = .systemGray5
     }
     
     func setDateChangeLabel(changed: Bool) {

@@ -113,6 +113,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
         let memberCount = chatData[indexPath.row].chatroomImage.count
         var resultCell = UITableViewCell()
         
+        //채팅방 멤버 수에 따라 cell 이미지 구성 (현재 1, 4만 있음)
         switch memberCount {
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingRoomTableViewCell.identifier, for: indexPath) as? ChattingRoomTableViewCell else {
@@ -134,7 +135,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //화면 이동시 키보드 내리기
+        //cell로 화면 이동시 키보드 내리기
         dismissKeyboard()
         
         let vc = storyboard?.instantiateViewController(identifier: DetailChatViewController.identifier) as! DetailChatViewController

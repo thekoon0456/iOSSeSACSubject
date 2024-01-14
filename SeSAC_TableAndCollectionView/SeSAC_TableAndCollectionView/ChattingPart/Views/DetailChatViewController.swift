@@ -38,21 +38,23 @@ class DetailChatViewController: UIViewController {
         
         //textView초기화
         chatTextView.text = nil
-        chatTextView.isScrollEnabled = false
+        textViewDidChange(chatTextView)
         
         //아래로 스크롤
         scrollToBottom(detailChatTableView,
                        row: detailChatData.count - 1)
+        
     }
 }
 
-// MARK: - Helpers
+// MARK: - Logic
 
 extension DetailChatViewController {
     //데이터 넣어주기
     func getChatData(_ data: [Chat]) {
         navigationItem.title = setTitle(data)
-        self.detailChatData = data
+//        self.detailChatData = data
+        makeDateDifferenceLine(data: data)
     }
     
     //네비 타이틀 이름
@@ -66,6 +68,30 @@ extension DetailChatViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "ko_kr")
         return dateFormatter.string(from: Date())
+    }
+    
+    func makeDateDifferenceLine(data: [Chat]) {
+        var data = data
+        
+        //기존 날짜 데이터에서 날짜만 떼서 비교
+        var firstDates = data.map { chat in
+            chat.date.split(separator: " ").first
+        }
+
+        //인접한 인덱스끼리 날짜 비교
+        (1..<firstDates.count).forEach { index in
+            if firstDates[index - 1] != firstDates[index] {
+                //test
+                print("\(firstDates[index - 1])에서 \(firstDates[index])로 넘어갈때 날짜 변경됨")
+                print(firstDates[index - 1])
+                print(firstDates[index]) //이 인덱스랑 같은 애 cell의 위에 날짜표시
+                
+                //날짜 바뀌는 cell true로 값 변경
+                data[index-1].isChangedDate = true
+            }
+        }
+        
+        detailChatData = data
     }
 }
 
@@ -117,6 +143,8 @@ extension DetailChatViewController: setUI {
     }
 }
 
+// MARK: - TextView
+
 extension DetailChatViewController : UITextViewDelegate {
     // 입력을 시작할때
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -165,6 +193,7 @@ extension DetailChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //유저인지, 상대방인지에 따라 cell 구성
         if detailChatData[indexPath.row].user == .user {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailOwnUserTableViewCell.identifier, for: indexPath) as? DetailOwnUserTableViewCell else {
                 return UITableViewCell()

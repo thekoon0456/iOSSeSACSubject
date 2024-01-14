@@ -26,6 +26,8 @@ class DetailChatTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UI
+
 extension DetailChatTableViewCell: setCell {
     
     typealias T = Chat

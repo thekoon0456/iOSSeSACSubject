@@ -30,7 +30,7 @@ struct ChatRoom: Model {
     var chatList: [Chat] = [] //채팅 화면에서 사용할 데이터
     
     var chatImage: String {
-        return chatroomImage[0]
+        return chatroomImage[safe: 0] ?? User.den.profileImage
     }
     
     var lastMessage: String? {
@@ -54,6 +54,8 @@ struct Chat: Model {
     let user: User
     let date: String
     let message: String
+    //날짜변경선 위해 추가
+    var isChangedDate: Bool = false
     
     var formattedDate: String {
         let dateFormatter = DateFormatter()

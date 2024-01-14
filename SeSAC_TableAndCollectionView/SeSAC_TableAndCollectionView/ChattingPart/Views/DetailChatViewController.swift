@@ -74,20 +74,15 @@ extension DetailChatViewController {
         var data = data
         
         //기존 날짜 데이터에서 날짜만 떼서 비교
-        var firstDates = data.map { chat in
+        let firstDates = data.map { chat in
             chat.date.split(separator: " ").first
         }
 
         //인접한 인덱스끼리 날짜 비교
         (1..<firstDates.count).forEach { index in
             if firstDates[index - 1] != firstDates[index] {
-                //test
-                print("\(firstDates[index - 1])에서 \(firstDates[index])로 넘어갈때 날짜 변경됨")
-                print(firstDates[index - 1])
-                print(firstDates[index]) //이 인덱스랑 같은 애 cell의 위에 날짜표시
-                
-                //날짜 바뀌는 cell true로 값 변경
-                data[index-1].isChangedDate = true
+                //날짜 바뀌는 cell을 true로 값 변경
+                data[index].isChangedDate = true
             }
         }
         

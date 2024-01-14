@@ -14,6 +14,7 @@ class DetailChatTableViewCell: UITableViewCell {
     @IBOutlet var chatBorderView: UIView!
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var dateChangeLabel: UILabel!
     
     static var identifier: String {
         return String(describing: self)
@@ -37,6 +38,8 @@ extension DetailChatTableViewCell: setCell {
         userNameLabel.text = data.user.rawValue
         messageLabel.text = data.message
         dateLabel.text = data.formattedDate
+        dateChangeLabel.text = data.date.split(separator: " ").first?.lowercased()
+        setDateChangeLabel(changed: data.isChangedDate)
     }
     
     func configureUI() {
@@ -57,5 +60,20 @@ extension DetailChatTableViewCell: setCell {
                  fontSize: 10,
                  color: .systemGray,
                  alignment: .center)
+        
+        setLabel(dateChangeLabel,
+                 fontSize: 10,
+                 color: .darkGray,
+                 alignment: .center)
+        setRoundedView(dateChangeLabel, cornerRadius: 5)
+        dateChangeLabel.backgroundColor = .systemGray3
+    }
+    
+    func setDateChangeLabel(changed: Bool) {
+        if changed {
+            dateChangeLabel.isHidden = false
+        } else {
+            dateChangeLabel.isHidden = true
+        }
     }
 }

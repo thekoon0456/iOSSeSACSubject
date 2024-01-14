@@ -24,10 +24,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTe-D8-YQV">
-                        <rect key="frame" x="275" y="4" width="58" height="83"/>
+                        <rect key="frame" x="275" y="27" width="58" height="60"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNE-vs-44i">
-                                <rect key="frame" x="8" y="8" width="42" height="67"/>
+                                <rect key="frame" x="8" y="8" width="42" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,19 +41,32 @@
                             <constraint firstItem="eNE-vs-44i" firstAttribute="top" secondItem="UTe-D8-YQV" secondAttribute="top" constant="8" id="sEe-4A-Uzl"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTb-l1-y1B">
+                        <rect key="frame" x="93.666666666666686" y="4" width="150" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="PrT-qL-53k"/>
+                            <constraint firstAttribute="width" constant="150" id="g8h-vH-BAx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="UTe-D8-YQV" secondAttribute="trailing" constant="4" id="08y-Lz-caQ"/>
+                    <constraint firstItem="UTe-D8-YQV" firstAttribute="top" secondItem="nTb-l1-y1B" secondAttribute="bottom" constant="8" id="FaL-Ep-scQ"/>
+                    <constraint firstItem="nTb-l1-y1B" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="IN0-We-cWc"/>
                     <constraint firstAttribute="bottom" secondItem="UTe-D8-YQV" secondAttribute="bottom" constant="4" id="ZCv-Z8-kV5"/>
+                    <constraint firstItem="nTb-l1-y1B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="cCD-kA-cuI"/>
                     <constraint firstAttribute="bottom" secondItem="qh3-V6-oMr" secondAttribute="bottom" constant="4" id="faw-2a-9O0"/>
                     <constraint firstItem="qh3-V6-oMr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nnh-aZ-55B"/>
                     <constraint firstItem="UTe-D8-YQV" firstAttribute="leading" secondItem="qh3-V6-oMr" secondAttribute="trailing" constant="4" id="pVc-17-LH0"/>
-                    <constraint firstItem="UTe-D8-YQV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="vcD-GU-INe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="chatBorderView" destination="UTe-D8-YQV" id="Bfe-uq-wQz"/>
+                <outlet property="dateChangeLabel" destination="nTb-l1-y1B" id="5xB-z9-oiJ"/>
                 <outlet property="dateLabel" destination="qh3-V6-oMr" id="1H7-He-eER"/>
                 <outlet property="messageLabel" destination="eNE-vs-44i" id="HGC-Bk-sPB"/>
             </connections>

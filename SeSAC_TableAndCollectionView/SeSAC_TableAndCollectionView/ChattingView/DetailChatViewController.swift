@@ -99,13 +99,14 @@ extension DetailChatViewController: setUI {
         
         let ownXib = UINib(nibName: DetailOwnUserTableViewCell.identifier, bundle: nil)
         detailChatTableView.register(ownXib, forCellReuseIdentifier: DetailOwnUserTableViewCell.identifier)
-    }
-    
-    func configureUI() {
+        
+        
         //아래 스크롤
         scrollToBottom(detailChatTableView,
                        row: detailChatData.count - 1)
-        
+    }
+    
+    func configureUI() {
         //placeHolder세팅
         textViewDidEndEditing(chatTextView)
         
@@ -118,7 +119,6 @@ extension DetailChatViewController: setUI {
 
 extension DetailChatViewController : UITextViewDelegate {
     // 입력을 시작할때
-    // (텍스트뷰는 플레이스홀더가 따로 있지 않아서, 플레이스 홀더처럼 동작하도록 직접 구현)
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
             textView.text = nil
@@ -132,11 +132,22 @@ extension DetailChatViewController : UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = ChatConst.inputMessagePlaceHolder
             textView.textColor = .lightGray
+            
+            //Text가 비어있을때는 버튼 못 누르도록
+            sendButton.isEnabled = false
         }
     }
     
     //높이 어느정도 늘어나면 스크롤로 전환
     func textViewDidChange(_ textView: UITextView) {
+        //Text가 띄워쓰기만 있을때는 버튼 못 누르도록
+        if textView.text.filter({ $0 == " " }).count == textView.text.count {
+            sendButton.isEnabled = false
+        } else {
+            sendButton.isEnabled = true
+        }
+        
+        //Text가 길어지면 스크롤로 방식 전환
         if textView.text.count > 50 {
             textView.isScrollEnabled = true
         } else {

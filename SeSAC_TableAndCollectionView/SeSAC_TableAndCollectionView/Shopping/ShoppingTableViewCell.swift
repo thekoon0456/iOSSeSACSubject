@@ -29,10 +29,6 @@ final class ShoppingTableViewCell: UITableViewCell {
         }
     }
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     @IBOutlet var insetView: UIView!
     @IBOutlet var checkButton: UIButton!
     @IBOutlet var starButton: UIButton!

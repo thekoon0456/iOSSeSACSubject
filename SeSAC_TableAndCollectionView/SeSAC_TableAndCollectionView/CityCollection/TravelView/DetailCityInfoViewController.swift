@@ -49,7 +49,7 @@ extension DetailCityInfoViewController: UITableViewDelegate, UITableViewDataSour
                 return UITableViewCell()
             }
             
-            adCell.setCellData(travelData[indexPath.row])
+            adCell.configureCellData(travelData[indexPath.row])
             return adCell
             
         } else {
@@ -57,7 +57,7 @@ extension DetailCityInfoViewController: UITableViewDelegate, UITableViewDataSour
                 return UITableViewCell()
             }
             
-            cityCell.setCellData(travelData[indexPath.row])
+            cityCell.configureCellData(travelData[indexPath.row])
             return cityCell
         }
     }

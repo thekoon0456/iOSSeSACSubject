@@ -8,20 +8,17 @@
 import UIKit
 
 final class TrevelSpotViewController: UIViewController {
-
-    
+ 
     @IBOutlet var titleLabel: UILabel!
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
     }
+}
 
+extension TrevelSpotViewController: setUI {
     func configureUI() {
         navigationItem.title = Title.trevelScene
         

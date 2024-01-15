@@ -15,10 +15,6 @@ final class CityCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

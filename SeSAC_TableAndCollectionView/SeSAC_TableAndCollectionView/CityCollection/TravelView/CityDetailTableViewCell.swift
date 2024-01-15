@@ -18,10 +18,6 @@ final class CityDetailTableViewCell: UITableViewCell {
     @IBOutlet var starStackView: UIStackView!
     @IBOutlet var etcLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     //버튼 클릭
     var isHeartButtonSelected = false
     
@@ -40,22 +36,6 @@ final class CityDetailTableViewCell: UITableViewCell {
     @objc func heartButtonTapped() {
         isHeartButtonSelected.toggle()
         setButtonImage(isSelected: isHeartButtonSelected)
-    }
-    
-    func setCellData(_ data: Travel) {
-        titleLabel.text = data.title
-        descriptionLabel.text = data.description
-        etcLabel.text = data.cellDetailLabel
-        //하트 버튼 세팅
-        setButtonImage(isSelected: data.like ?? true)
-        
-        //이미지 세팅
-        mainImage.kf.setImage(with: URL(string: data.travel_image ?? ""),
-                              placeholder: UIImage(named: ConstString.loadingImage))
-        
-        //별 갯수 세팅(반올림)
-        let starCount = Int(trunc(data.grade ?? 0))
-        setStarStackView(count: starCount)
     }
     
     func makeStarView(isSelected: Bool) -> UIImageView {
@@ -85,7 +65,24 @@ final class CityDetailTableViewCell: UITableViewCell {
 }
 
 //UI
-extension CityDetailTableViewCell {
+extension CityDetailTableViewCell: setCell {
+    typealias T = Travel
+    
+    func configureCellData(_ data: Travel) {
+        titleLabel.text = data.title
+        descriptionLabel.text = data.description
+        etcLabel.text = data.cellDetailLabel
+        //하트 버튼 세팅
+        setButtonImage(isSelected: data.like ?? true)
+        
+        //이미지 세팅
+        mainImage.kf.setImage(with: URL(string: data.travel_image ?? ""),
+                              placeholder: UIImage(named: ConstString.loadingImage))
+        
+        //별 갯수 세팅(반올림)
+        let starCount = Int(trunc(data.grade ?? 0))
+        setStarStackView(count: starCount)
+    }
     
     func configureUI() {
         mainImage.contentMode = .scaleAspectFill

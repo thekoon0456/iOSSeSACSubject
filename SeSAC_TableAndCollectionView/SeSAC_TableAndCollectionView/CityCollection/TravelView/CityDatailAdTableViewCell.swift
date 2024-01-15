@@ -12,19 +12,13 @@ final class CityDatailAdTableViewCell: UITableViewCell {
     @IBOutlet var mentLabel: UILabel!
     @IBOutlet var adLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureUI()
     }
     
-    func setCellData(_ data: Travel) {
-         mentLabel.text = data.title
-    }
+
     
     func setBGColor() {
         let red = CGFloat.random(in: 0...1)
@@ -41,7 +35,13 @@ final class CityDatailAdTableViewCell: UITableViewCell {
 }
 
 //UI
-extension CityDatailAdTableViewCell {
+extension CityDatailAdTableViewCell: setCell {
+    typealias T = Travel
+    
+    func configureCellData(_ data: Travel) {
+         mentLabel.text = data.title
+    }
+    
     func configureUI() {
         setBGColor()
         

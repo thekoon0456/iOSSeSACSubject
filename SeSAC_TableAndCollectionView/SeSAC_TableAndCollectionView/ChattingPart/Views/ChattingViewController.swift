@@ -12,9 +12,8 @@ class ChattingViewController: UIViewController {
     @IBOutlet var friendSearchBar: UISearchBar!
     @IBOutlet var chattingTableView: UITableView!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
+    //불변 채팅 데이터
+    let defaultData = mockChatList
     
     //채팅 데이터
     private var chatData = mockChatList {
@@ -78,19 +77,20 @@ extension ChattingViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let lowerCasedInputText = searchText.lowercased()
         
-        if searchText.isEmpty {
-            self.chatData = mockChatList
-        }
+        var filteringData: [ChatRoom] = []
+        
         //친구 필터
-        mockChatList.forEach { chatRoom in
-            let lowercasedName = chatRoom.chatroomName.lowercased()
-            
-            if lowercasedName.contains(lowerCasedInputText) {
-                self.chatData = mockChatList.filter {
-                    let name = $0.chatroomName.lowercased()
-                    return name.contains(lowerCasedInputText)
+        if searchText.isEmpty == true {
+            self.chatData = defaultData
+        } else {
+            for chat in defaultData {
+                var chatName = chat.chatroomName.lowercased()
+                if chatName.contains(lowerCasedInputText) {
+                    filteringData.append(chat)
                 }
             }
+            
+            chatData = filteringData
         }
     }
     

@@ -23,5 +23,12 @@ protocol setCell: setUI {
     associatedtype T: Model
     
     static var identifier: String { get }
+    
     func configureCellData(_ data: T)
+}
+
+extension setUI {
+    static var identifier: String {
+        return String(describing: self)
+    }
 }

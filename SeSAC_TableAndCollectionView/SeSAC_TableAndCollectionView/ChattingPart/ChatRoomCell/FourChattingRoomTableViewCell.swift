@@ -10,19 +10,13 @@ import UIKit
 class FourChattingRoomTableViewCell: UITableViewCell {
     
     @IBOutlet var firstProfileView: UIImageView!
-    
-    
-    
+    @IBOutlet var secondProfileImage: UIImageView!
     @IBOutlet var thirdProfileView: UIImageView!
     @IBOutlet var forthProfileView: UIImageView!
-    @IBOutlet var secondProfileImage: UIImageView!
+
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

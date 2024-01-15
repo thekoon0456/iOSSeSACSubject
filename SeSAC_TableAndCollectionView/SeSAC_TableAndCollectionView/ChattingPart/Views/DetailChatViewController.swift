@@ -14,10 +14,6 @@ class DetailChatViewController: UIViewController {
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var chatTextViewHeight: NSLayoutConstraint!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     lazy var detailChatData: [Chat] = []
     
     override func viewDidLoad() {

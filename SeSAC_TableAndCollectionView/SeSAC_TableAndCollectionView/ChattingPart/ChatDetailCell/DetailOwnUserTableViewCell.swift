@@ -14,10 +14,6 @@ class DetailOwnUserTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var dateChangeLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

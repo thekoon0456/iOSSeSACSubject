@@ -16,10 +16,6 @@ final class MagazinInfoCell: UITableViewCell {
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

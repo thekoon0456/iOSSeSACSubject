@@ -12,6 +12,7 @@ class DetailChatViewController: UIViewController {
     @IBOutlet var detailChatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
     @IBOutlet var sendButton: UIButton!
+    @IBOutlet var chatTextViewHeight: NSLayoutConstraint!
     
     static var identifier: String {
         return String(describing: self)
@@ -30,7 +31,8 @@ class DetailChatViewController: UIViewController {
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         let newChat = Chat(user: .user,
-                           date: makeCurrentDateToString(),
+                           date: DateService.shared.dateToString(Date(),
+                                                                 format: DateStyle.chatRoomStyle.rawValue),
                            message: chatTextView.text)
         //배열에 추가하고, reload
         detailChatData.append(newChat)
@@ -59,14 +61,6 @@ extension DetailChatViewController {
     //네비 타이틀 이름
     func setTitle(_ input: [Chat]) -> String? {
         input.filter { $0.user != .user }.first?.user.rawValue
-    }
-    
-    //유저가 입력한 채팅 시간 String 변환
-    func makeCurrentDateToString() -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        return dateFormatter.string(from: Date())
     }
     
     func makeDateDifferenceLine(data: [Chat]) {
@@ -99,7 +93,7 @@ extension DetailChatViewController: setUI {
         chatTextView.textColor = .lightGray
         chatTextView.backgroundColor = .systemGray6
         chatTextView.returnKeyType = .send
-        chatTextView.isScrollEnabled = false
+//        chatTextView.isScrollEnabled = false
         chatTextView.showsVerticalScrollIndicator = false
         chatTextView.textContainerInset = .init(top: 15, left: 10, bottom: 15, right: 60)
         setRoundedView(chatTextView, cornerRadius: 10)
@@ -169,12 +163,16 @@ extension DetailChatViewController : UITextViewDelegate {
             sendButton.isEnabled = true
         }
         
-        //Text가 길어지면 스크롤로 방식 전환
-        if textView.text.count > 50 {
-            textView.isScrollEnabled = true
-        } else {
-            textView.isScrollEnabled = false
+        //textView 높이 유동적 설정
+        let maxHeight: Double = 120
+        let chatViewSize = CGSize(width: view.frame.width - 32, height: .infinity)
+        let estimagedSize = chatTextView.sizeThatFits(chatViewSize)
+        
+        if estimagedSize.height >= maxHeight {
+//            textView.isScrollEnabled = true
         }
+        
+        chatTextViewHeight.constant = estimagedSize.height
     }
 }
 

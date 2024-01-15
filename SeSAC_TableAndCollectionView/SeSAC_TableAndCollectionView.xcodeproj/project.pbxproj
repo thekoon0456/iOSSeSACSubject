@@ -30,6 +30,7 @@
 		7C558C112B52C3AE00D9F972 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C558C102B52C3AE00D9F972 /* IQKeyboardManagerSwift */; };
 		7C6FBE8E2B5530C30001C24C /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */; };
 		7C6FBE912B5532050001C24C /* TheaterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBE902B5532050001C24C /* TheaterData.swift */; };
+		7C6FBE952B55583D0001C24C /* TheaterConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBE942B55583D0001C24C /* TheaterConst.swift */; };
 		7C7125952B4E858300227C8F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7125942B4E858300227C8F /* Protocol.swift */; };
 		7C9087B22B4FD83B00238F1F /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B12B4FD83B00238F1F /* TravelModel.swift */; };
 		7C9087B72B4FD8DF00238F1F /* CityDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		7C558C0D2B52BD3F00D9F972 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
 		7C6FBE902B5532050001C24C /* TheaterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterData.swift; sourceTree = "<group>"; };
+		7C6FBE942B55583D0001C24C /* TheaterConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterConst.swift; sourceTree = "<group>"; };
 		7C7125942B4E858300227C8F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		7C9087B12B4FD83B00238F1F /* TravelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
 		7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		7C6FBE8C2B5530A50001C24C /* Theater */ = {
 			isa = PBXGroup;
 			children = (
+				7C6FBE942B55583D0001C24C /* TheaterConst.swift */,
 				7C6FBE8F2B5531FE0001C24C /* Model */,
 				7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */,
 			);
@@ -441,6 +444,7 @@
 				7CD73C532B480F1100E5F177 /* SettingTableViewController.swift in Sources */,
 				7C449FE02B5124E200D30116 /* ChattingData.swift in Sources */,
 				7CD73C572B48122800E5F177 /* ShoppingTableViewCell.swift in Sources */,
+				7C6FBE952B55583D0001C24C /* TheaterConst.swift in Sources */,
 				7C9087BE2B4FDA6C00238F1F /* DetailCityInfoViewController.swift in Sources */,
 				7CF6CD642B4D3235003EBA68 /* CityInfo.swift in Sources */,
 				7C7125952B4E858300227C8F /* Protocol.swift in Sources */,

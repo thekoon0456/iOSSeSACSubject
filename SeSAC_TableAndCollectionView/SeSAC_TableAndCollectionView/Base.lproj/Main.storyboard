@@ -206,6 +206,7 @@
                                             <constraints>
                                                 <constraint firstItem="11R-IK-zhO" firstAttribute="centerY" secondItem="6p5-9I-oxC" secondAttribute="centerY" id="5an-Z2-qhM"/>
                                                 <constraint firstItem="11R-IK-zhO" firstAttribute="leading" secondItem="6p5-9I-oxC" secondAttribute="leading" constant="20" id="F4j-ZN-4eg"/>
+                                                <constraint firstItem="PqE-5v-YrX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="11R-IK-zhO" secondAttribute="trailing" constant="8" symbolic="YES" id="FRi-Pf-hc1"/>
                                                 <constraint firstAttribute="trailing" secondItem="PqE-5v-YrX" secondAttribute="trailing" constant="5" id="WWI-tY-ayO"/>
                                                 <constraint firstItem="PqE-5v-YrX" firstAttribute="centerY" secondItem="6p5-9I-oxC" secondAttribute="centerY" id="yF5-fH-Aba"/>
                                             </constraints>
@@ -216,7 +217,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="영화관 모드 진입" id="fZt-9h-R7R">
+                            <tableViewSection id="fZt-9h-R7R">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Chn-7s-3Fm">
                                         <rect key="frame" x="20" y="387.33333587646484" width="353" height="44.666667938232422"/>
@@ -225,8 +226,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주변 영화관 탐색하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
-                                                    <rect key="frame" x="20" y="15" width="101" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주변 영화관 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
+                                                    <rect key="frame" x="20" y="15" width="80" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -234,6 +235,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="G7L-8E-WPx" firstAttribute="centerY" secondItem="WFH-vz-fcJ" secondAttribute="centerY" id="AcA-Bd-Yzg"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G7L-8E-WPx" secondAttribute="trailing" constant="20" symbolic="YES" id="YdA-ko-cUd"/>
                                                 <constraint firstItem="G7L-8E-WPx" firstAttribute="leading" secondItem="WFH-vz-fcJ" secondAttribute="leading" constant="20" id="aEN-i0-DGt"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -44,23 +44,17 @@ final class CityViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             UserDefaultService.shared.citySegIndex = 0
-            self.cityList = segData
+            cityList = segData
         case 1:
             UserDefaultService.shared.citySegIndex = 1
-            self.cityList = segData.filter { $0.domestic_travel == true }
+            cityList = segData.filter { $0.domestic_travel == true }
         case 2:
             UserDefaultService.shared.citySegIndex = 2
-            self.cityList = segData.filter { $0.domestic_travel == false }
+            cityList = segData.filter { $0.domestic_travel == false }
         default:
             return
         }
     }
-    
-    // MARK: - 설정시 컬렉션뷰 클릭 안됨.
-    //    func setGesture() {
-    //        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-    //      view.addGestureRecognizer(gesture)
-    //    }
 }
 
 // MARK: - Type
@@ -151,16 +145,17 @@ extension CityViewController: UISearchBarDelegate {
             searchBar.text = lowercasedText
         }
         
-        if searchBar.text?.isEmpty == true {
+        guard searchBar.text?.isEmpty == false else {
             cityList = defaultData
             segData = defaultData
-        } else {
-            for item in defaultData {
-                if item.city_name.contains(lowercasedText)
-                    || item.city_english_name.lowercased().contains(lowercasedText)
-                    || item.city_explain.contains(lowercasedText) {
-                    filteringData.append(item)
-                }
+            return
+        }
+        
+        for item in defaultData {
+            if item.city_name.contains(lowercasedText)
+                || item.city_english_name.lowercased().contains(lowercasedText)
+                || item.city_explain.contains(lowercasedText) {
+                filteringData.append(item)
             }
             
             //결과 넣어주기
@@ -193,5 +188,4 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

@@ -1,10 +1,11 @@
 
 import Foundation
 
-enum TheaterName: String {
+enum TheaterName: String, CaseIterable {
     case lotte = "롯데시네마"
     case mega = "메가박스"
-    case cgv
+    case cgv = "CGV"
+    case all = "전체보기"
     
     enum location: String {
         case lotteSNU = "롯데시네마 서울대입구"

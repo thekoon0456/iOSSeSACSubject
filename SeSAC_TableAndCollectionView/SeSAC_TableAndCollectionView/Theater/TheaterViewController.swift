@@ -15,26 +15,55 @@ class TheaterViewController: UIViewController {
     
     let defaultData = TheaterList().mapAnnotations
     
+    var theaterData = TheaterList().mapAnnotations {
+        didSet {
+            print(theaterData)
+            resetMapAnnotation()
+            configureMap()
+        }
+    }
+      
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         configureMap()
     }
+    
+    @objc func filterButtonTapped(sender: UIBarButtonItem) {
+        setMovieAlert()
+    }
 }
 
-
-extension TheaterViewController: setUI {
+extension TheaterViewController {
     
-    func configureUI() {
-        navigationItem.title = "주변 영화관 탐색하기"
+    func setMovieAlert() {
+        let alert = UIAlertController(title: TheaterString.alertTitle.rawValue,
+                                      message: TheaterString.alertSubTitle.rawValue,
+                                      preferredStyle: .actionSheet)
+        
+        TheaterName.allCases.forEach { name in
+            let button = UIAlertAction(title: name.rawValue,
+                                       style: .default) { [self] _ in
+                if name == .all {
+                    theaterData = defaultData
+                } else {
+                    theaterData = defaultData.filter { $0.type == name.rawValue }
+                }
+            }
+            
+            alert.addAction(button)
+        }
+        
+        present(alert, animated: true)
     }
     
+    //맵 구성
     func configureMap() {
         mapView.delegate = self
         
-        let coordinate2 = CLLocationCoordinate2D(latitude: defaultData[0].latitude,
-                                                 longitude: defaultData[0].longitude)
+        let coordinate2 = CLLocationCoordinate2D(latitude: theaterData[0].latitude,
+                                                 longitude: theaterData[0].longitude)
         
         //meters: 중심지로부터 거리
         let region = MKCoordinateRegion(center: coordinate2,
@@ -43,7 +72,7 @@ extension TheaterViewController: setUI {
         
         mapView.setRegion(region, animated: true)
         
-        defaultData.forEach { theater in
+        theaterData.forEach { theater in
             let coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
@@ -52,8 +81,37 @@ extension TheaterViewController: setUI {
             mapView.addAnnotation(annotation)
         }
     }
+    
+    //맵 annotaion 리셋
+    func resetMapAnnotation() {
+        mapView.removeAnnotations(mapView.annotations)
+    }
 }
 
-extension TheaterViewController: MKMapViewDelegate {
+
+extension TheaterViewController: setUI {
     
+    func configureUI() {
+        navigationItem.title = TheaterString.naviTitle.rawValue
+        
+        let item = UIBarButtonItem(image: TheaterImageStyle.mapFilterImage,
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(filterButtonTapped))
+        navigationItem.rightBarButtonItem = item
+    }
+}
+
+// MARK: - MapView
+
+extension TheaterViewController: MKMapViewDelegate { 
+    //시점 이동
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? MKPointAnnotation else { return }
+        
+        let region = MKCoordinateRegion(center: annotation.coordinate,
+                                        latitudinalMeters: 5000,
+                                        longitudinalMeters: 5000)
+        mapView.setRegion(region, animated: true)
+    }
 }

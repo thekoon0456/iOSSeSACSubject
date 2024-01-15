@@ -24,21 +24,21 @@ class DateService {
     
     // MARK: - 최종적인 format결과
     
-    func formattedDate(input: String, format: DateStyle.RawValue) -> String {
+    func formattedDate(input: String, format: DateStyle) -> String {
         let date = stringToDate(input)
         return dateToString(date, format: format)
     }
     
-    func dateToString(_ date: Date?, format: DateStyle.RawValue) -> String {
+    func dateToString(_ date: Date?, format: DateStyle) -> String {
         formatter.locale = krLocale
-        formatter.dateFormat = format
+        formatter.dateFormat = format.rawValue
         let result = formatter.string(from: date ?? Date())
         return result
     }
     
-    private func stringToDate(_ stringDate: String, format: DateStyle.RawValue = DateStyle.defaultStyle.rawValue) -> Date? {
+    private func stringToDate(_ stringDate: String, format: DateStyle = DateStyle.defaultStyle) -> Date? {
         formatter.locale = krLocale
-        formatter.dateFormat = format
+        formatter.dateFormat = format.rawValue
         let result = formatter.date(from: stringDate)
         return result
     }

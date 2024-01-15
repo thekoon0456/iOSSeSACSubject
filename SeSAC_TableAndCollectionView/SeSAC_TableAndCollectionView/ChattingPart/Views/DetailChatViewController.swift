@@ -32,7 +32,7 @@ class DetailChatViewController: UIViewController {
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         let newChat = Chat(user: .user,
                            date: DateService.shared.dateToString(Date(),
-                                                                 format: DateStyle.chatRoomStyle.rawValue),
+                                                                 format: DateStyle.chatRoomStyle),
                            message: chatTextView.text)
         //배열에 추가하고, reload
         detailChatData.append(newChat)

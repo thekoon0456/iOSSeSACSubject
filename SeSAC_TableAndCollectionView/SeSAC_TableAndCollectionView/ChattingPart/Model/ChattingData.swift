@@ -39,7 +39,7 @@ struct ChatRoom: Model {
     
     var formattedDate: String {
         DateService.shared.formattedDate(input: chatList.last?.date ?? "",
-                                         format: DateStyle.chatStyle.rawValue)
+                                         format: .chatStyle)
     }
 }
 
@@ -53,12 +53,12 @@ struct Chat: Model {
     
     var formattedDate: String {
         DateService.shared.formattedDate(input: date,
-                                         format: DateStyle.chatRoomStyle.rawValue)
+                                         format: .chatRoomStyle)
     }
     
     var changedDate: String {
         DateService.shared.formattedDate(input: date,
-                                         format: DateStyle.dateChangeStyle.rawValue)
+                                         format: .dateChangeStyle)
     }
 }
 

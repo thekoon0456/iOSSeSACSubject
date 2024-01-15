@@ -9,27 +9,17 @@ import UIKit
 
 final class CityViewController: UIViewController {
     
-    enum CityCategory: Int, CaseIterable {
-        case all
-        case inside
-        case outside
-        
-        var value: String {
-            switch self {
-            case .all:
-                return "모두"
-            case .inside:
-                return "국내"
-            case .outside:
-                return "해외"
-            }
-        }
-    }
-    
-    @IBOutlet var cityTextField: UITextField!
+    @IBOutlet var citySearchBar: UISearchBar!
     @IBOutlet var citySegment: UISegmentedControl!
     @IBOutlet var cityCollectionView: UICollectionView!
     
+    //불변 배열
+    let defaultData = CityInfo().city
+    
+    //세그먼트 이동시 사용하는 데이터
+    var segData = CityInfo().city
+    
+    //화면에 보여지는 배열
     var cityList = CityInfo().city {
         didSet {
             cityCollectionView.reloadData()
@@ -51,22 +41,19 @@ final class CityViewController: UIViewController {
     
     @objc
     func changedSeg(sender: UISegmentedControl) {
-        let list = CityInfo().city
         switch sender.selectedSegmentIndex {
         case 0:
             UserDefaultsManager.shared.citySegIndex = 0
-            self.cityList = list
+            self.cityList = segData
         case 1:
             UserDefaultsManager.shared.citySegIndex = 1
-            self.cityList = list.filter { $0.domestic_travel == true }
+            self.cityList = segData.filter { $0.domestic_travel == true }
         case 2:
             UserDefaultsManager.shared.citySegIndex = 2
-            self.cityList = list.filter { $0.domestic_travel == false }
+            self.cityList = segData.filter { $0.domestic_travel == false }
         default:
             return
         }
-        
-        cityTextField.text = nil
     }
     
     // MARK: - 설정시 컬렉션뷰 클릭 안됨.
@@ -74,43 +61,44 @@ final class CityViewController: UIViewController {
 //        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
   //      view.addGestureRecognizer(gesture)
 //    }
-    
-    func setSearchText(_ input: String?) {
-        guard var lowercasedText = input?.lowercased() else { return }
+}
+
+// MARK: - Type
+
+extension CityViewController {
+    enum CityCategory: Int, CaseIterable {
+        case all
+        case inside
+        case outside
         
-        //띄워쓰기 수정
-        if lowercasedText.contains(" ") {
-            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
-            self.cityTextField.text = lowercasedText
-        }
-        
-        //필터링
-        let result = cityList.filter {
-            $0.city_name.contains(lowercasedText)
-            || $0.city_english_name.lowercased().contains(lowercasedText)
-            || $0.city_explain.contains(lowercasedText)
-        }
-        
-        //결과 보여주기
-        if result.isEmpty == false {
-            cityList = result
+        var value: String {
+            switch self {
+            case .all:
+                return "모두"
+            case .inside:
+                return "국내"
+            case .outside:
+                return "해외"
+            }
         }
     }
 }
+
+// MARK: - UI
 
 extension CityViewController: setUI {
     
     func configureUI() {
         navigationItem.title = Title.popularCity
         
-        configureTextField()
+        configureSearcuBar()
         configureSeg()
         configureCollectionView()
     }
     
-    func configureTextField() {
-        cityTextField.delegate = self
-        cityTextField.placeholder = ConstString.searchPlaceHolder
+    func configureSearcuBar() {
+        citySearchBar.delegate = self
+        citySearchBar.placeholder = ConstString.searchPlaceHolder
     }
     
     func configureSeg() {
@@ -148,6 +136,41 @@ extension CityViewController: setUI {
     }
 }
 
+// MARK: - SearchBar
+
+extension CityViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var lowercasedText = searchText.lowercased()
+        
+        if lowercasedText.contains(" ") {
+            lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
+            searchBar.text = lowercasedText
+        }
+        
+        //필터링
+        var filteringData: [City] = []
+        
+        for item in defaultData {
+            if item.city_name.contains(lowercasedText)
+                || item.city_english_name.lowercased().contains(lowercasedText)
+                || item.city_explain.contains(lowercasedText) {
+                filteringData.append(item)
+            }
+        }
+        
+        if filteringData.count != 0 {
+            cityList = filteringData
+            segData = filteringData
+        }
+        
+        //비어있으면 모두
+        if searchBar.text?.isEmpty == true {
+            cityList = defaultData
+            segData = defaultData
+        }
+    }
+}
+
 // MARK: - CollectionView
 
 extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -172,36 +195,4 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
         navigationController?.pushViewController(vc, animated: true)
     }
 
-}
-
-// MARK: - TextField
-
-extension CityViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        self.cityTextField.text = nil
-//        cityList = CityInfo().city
-//    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        guard let lowercasedText = textField.text?.lowercased() else { return true }
-        setSearchText(lowercasedText)
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let lowercasedText = textField.text?.lowercased() else { return true }
-        let input = (lowercasedText as NSString?)?.replacingCharacters(in: range, with: string)
-        setSearchText(input)
-        
-        //비어있으면 각 seg에 맞는 화면 나오도록
-//        if cityTextField.text?.isEmpty == true {
-//
-//        }
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-    }
 }

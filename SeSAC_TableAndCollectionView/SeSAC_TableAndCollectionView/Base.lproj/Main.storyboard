@@ -340,7 +340,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DCP-dx-6Ez">
-                                <rect key="frame" x="20" y="147" width="353" height="31"/>
+                                <rect key="frame" x="20" y="179" width="353" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="sVh-SS-EM0"/>
                                 </constraints>
@@ -351,7 +351,7 @@
                                 </segments>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aTI-7V-iWT">
-                                <rect key="frame" x="0.0" y="197" width="393" height="621"/>
+                                <rect key="frame" x="0.0" y="229" width="393" height="589"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DKa-2U-9y7">
                                     <size key="itemSize" width="128" height="128"/>
@@ -370,32 +370,34 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ogm-cs-E2g">
-                                <rect key="frame" x="20" y="103" width="353" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-ah-2T6">
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <connections>
+                                    <outlet property="delegate" destination="zqM-1Y-kXQ" id="OI8-WZ-SUc"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zyj-ol-w5o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="DCP-dx-6Ez" firstAttribute="top" secondItem="YSe-ah-2T6" secondAttribute="bottom" constant="20" id="6zh-uv-VBJ"/>
+                            <constraint firstItem="YSe-ah-2T6" firstAttribute="trailing" secondItem="Zyj-ol-w5o" secondAttribute="trailing" id="CLT-Es-ZBQ"/>
+                            <constraint firstItem="YSe-ah-2T6" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" id="NtB-o5-tUu"/>
                             <constraint firstItem="Zyj-ol-w5o" firstAttribute="bottom" secondItem="aTI-7V-iWT" secondAttribute="bottom" id="avW-Rq-muF"/>
                             <constraint firstItem="Zyj-ol-w5o" firstAttribute="trailing" secondItem="DCP-dx-6Ez" secondAttribute="trailing" constant="20" id="duD-1a-YAW"/>
+                            <constraint firstItem="YSe-ah-2T6" firstAttribute="top" secondItem="Zyj-ol-w5o" secondAttribute="top" id="fPl-GB-sNd"/>
                             <constraint firstItem="DCP-dx-6Ez" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" constant="20" id="iOq-DY-3RT"/>
-                            <constraint firstItem="ogm-cs-E2g" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" constant="20" id="jLJ-ue-bQL"/>
                             <constraint firstItem="Zyj-ol-w5o" firstAttribute="trailing" secondItem="aTI-7V-iWT" secondAttribute="trailing" id="lTK-4S-AP7"/>
-                            <constraint firstItem="ogm-cs-E2g" firstAttribute="top" secondItem="Zyj-ol-w5o" secondAttribute="top" id="rCq-su-7hG"/>
                             <constraint firstItem="aTI-7V-iWT" firstAttribute="leading" secondItem="Zyj-ol-w5o" secondAttribute="leading" id="tQp-PV-23N"/>
-                            <constraint firstItem="DCP-dx-6Ez" firstAttribute="top" secondItem="ogm-cs-E2g" secondAttribute="bottom" constant="10" id="vf6-YQ-P5f"/>
-                            <constraint firstItem="Zyj-ol-w5o" firstAttribute="trailing" secondItem="ogm-cs-E2g" secondAttribute="trailing" constant="20" id="yHi-KF-fZb"/>
                             <constraint firstItem="aTI-7V-iWT" firstAttribute="top" secondItem="DCP-dx-6Ez" secondAttribute="bottom" constant="20" id="zVr-oM-YoB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xMf-xn-TzS"/>
                     <connections>
                         <outlet property="cityCollectionView" destination="aTI-7V-iWT" id="8Jy-hH-uX1"/>
+                        <outlet property="citySearchBar" destination="YSe-ah-2T6" id="K70-nz-cae"/>
                         <outlet property="citySegment" destination="DCP-dx-6Ez" id="ZEa-f1-t0D"/>
-                        <outlet property="cityTextField" destination="ogm-cs-E2g" id="tfA-oW-pQu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TQ-RH-M96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

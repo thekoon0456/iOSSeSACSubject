@@ -89,7 +89,6 @@ extension DetailChatViewController: setUI {
         chatTextView.textColor = .lightGray
         chatTextView.backgroundColor = .systemGray6
         chatTextView.returnKeyType = .send
-//        chatTextView.isScrollEnabled = false
         chatTextView.showsVerticalScrollIndicator = false
         chatTextView.textContainerInset = .init(top: 15, left: 10, bottom: 15, right: 60)
         setRoundedView(chatTextView, cornerRadius: 10)
@@ -160,14 +159,11 @@ extension DetailChatViewController : UITextViewDelegate {
         }
         
         //textView 높이 유동적 설정
-        let maxHeight: Double = 120
+        let maxHeight: CGFloat = 120
         let chatViewSize = CGSize(width: view.frame.width - 32, height: .infinity)
         let estimagedSize = chatTextView.sizeThatFits(chatViewSize)
         
-        if estimagedSize.height >= maxHeight {
-//            textView.isScrollEnabled = true
-        }
-        
+        guard estimagedSize.height < maxHeight else { return }
         chatTextViewHeight.constant = estimagedSize.height
     }
 }

@@ -7,14 +7,15 @@
 
 import Foundation
 
-enum DateStyle: String {
-    case defaultStyle = "yyyy-MM-dd HH:mm"
-    case dateChangeStyle = "yyyy년 M월 d일"
-    case chatStyle = "yy.MM.dd"
-    case chatRoomStyle = "HH:mm a"
-}
-
 class DateService {
+    
+    enum DateStyle: String {
+        case defaultStyle = "yyyy-MM-dd HH:mm"
+        case dateChangeStyle = "yyyy년 M월 d일"
+        case chatStyle = "yy.MM.dd"
+        case chatRoomStyle = "HH:mm a"
+    }
+    
     static let shared = DateService()
     
     private init() { }

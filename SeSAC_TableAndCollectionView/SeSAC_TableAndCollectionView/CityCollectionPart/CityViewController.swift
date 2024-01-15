@@ -13,7 +13,7 @@ final class CityViewController: UIViewController {
     @IBOutlet var citySegment: UISegmentedControl!
     @IBOutlet var cityCollectionView: UICollectionView!
     
-    //불변 배열
+    //초기 배열
     let defaultData = CityInfo().city
     
     //세그먼트 이동시 사용하는 데이터
@@ -28,7 +28,7 @@ final class CityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         //기존에 설정된 segment 필터링
         changedSeg(sender: citySegment)
@@ -43,13 +43,13 @@ final class CityViewController: UIViewController {
     func changedSeg(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            UserDefaultsManager.shared.citySegIndex = 0
+            UserDefaultService.shared.citySegIndex = 0
             self.cityList = segData
         case 1:
-            UserDefaultsManager.shared.citySegIndex = 1
+            UserDefaultService.shared.citySegIndex = 1
             self.cityList = segData.filter { $0.domestic_travel == true }
         case 2:
-            UserDefaultsManager.shared.citySegIndex = 2
+            UserDefaultService.shared.citySegIndex = 2
             self.cityList = segData.filter { $0.domestic_travel == false }
         default:
             return
@@ -57,10 +57,10 @@ final class CityViewController: UIViewController {
     }
     
     // MARK: - 설정시 컬렉션뷰 클릭 안됨.
-//    func setGesture() {
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-  //      view.addGestureRecognizer(gesture)
-//    }
+    //    func setGesture() {
+    //        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+    //      view.addGestureRecognizer(gesture)
+    //    }
 }
 
 // MARK: - Type
@@ -102,7 +102,7 @@ extension CityViewController: setUI {
     }
     
     func configureSeg() {
-        citySegment.selectedSegmentIndex = UserDefaultsManager.shared.citySegIndex
+        citySegment.selectedSegmentIndex = UserDefaultService.shared.citySegIndex
         citySegment.setTitle(CityCategory.all.value,
                              forSegmentAt: CityCategory.all.rawValue)
         citySegment.setTitle(CityCategory.inside.value,
@@ -140,33 +140,32 @@ extension CityViewController: setUI {
 
 extension CityViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //모두 lowercased로 비교
         var lowercasedText = searchText.lowercased()
+        //필터링 배열
+        var filteringData: [City] = []
         
+        //띄워쓰기 수정
         if lowercasedText.contains(" ") {
             lowercasedText = lowercasedText.replacingOccurrences(of: " ", with: "")
             searchBar.text = lowercasedText
         }
         
-        //필터링
-        var filteringData: [City] = []
-        
-        for item in defaultData {
-            if item.city_name.contains(lowercasedText)
-                || item.city_english_name.lowercased().contains(lowercasedText)
-                || item.city_explain.contains(lowercasedText) {
-                filteringData.append(item)
-            }
-        }
-        
-        if filteringData.count != 0 {
-            cityList = filteringData
-            segData = filteringData
-        }
-        
-        //비어있으면 모두
         if searchBar.text?.isEmpty == true {
             cityList = defaultData
             segData = defaultData
+        } else {
+            for item in defaultData {
+                if item.city_name.contains(lowercasedText)
+                    || item.city_english_name.lowercased().contains(lowercasedText)
+                    || item.city_explain.contains(lowercasedText) {
+                    filteringData.append(item)
+                }
+            }
+            
+            //결과 넣어주기
+            cityList = filteringData
+            segData = filteringData
         }
     }
 }
@@ -194,5 +193,5 @@ extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
 }

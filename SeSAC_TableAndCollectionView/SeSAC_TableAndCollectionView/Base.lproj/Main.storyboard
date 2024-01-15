@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -17,7 +18,38 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8K-3u-wIh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="484"/>
+            <point key="canvasLocation" x="3337" y="454"/>
+        </scene>
+        <!--TheaterViewController-->
+        <scene sceneID="9tu-Um-Sjo">
+            <objects>
+                <viewController storyboardIdentifier="TheaterViewController" title="TheaterViewController" id="pd4-1c-mSh" customClass="TheaterViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mI8-JL-sni">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqb-Jj-WbK">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jUs-bx-JcA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fqb-Jj-WbK" secondAttribute="bottom" id="Afx-id-GXn"/>
+                            <constraint firstItem="fqb-Jj-WbK" firstAttribute="top" secondItem="mI8-JL-sni" secondAttribute="top" id="GmH-4M-Fpj"/>
+                            <constraint firstItem="jUs-bx-JcA" firstAttribute="trailing" secondItem="fqb-Jj-WbK" secondAttribute="trailing" id="N1o-JW-6er"/>
+                            <constraint firstItem="fqb-Jj-WbK" firstAttribute="leading" secondItem="jUs-bx-JcA" secondAttribute="leading" id="YfP-sU-3Ez"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xbg-Ng-n75"/>
+                    <connections>
+                        <outlet property="mapView" destination="fqb-Jj-WbK" id="ktT-hs-pmF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOm-V9-md8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816" y="358"/>
         </scene>
         <!--집중 모드-->
         <scene sceneID="hqp-ql-Lnw">
@@ -152,34 +184,61 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="이 기기에서 집중 모드를 켜면 사용자의 다른 기기에서도 집중모드가 켜집니다." id="fZt-9h-R7R">
+                            <tableViewSection footerTitle="이 기기에서 집중 모드를 켜면 사용자의 다른 기기에서도 집중모드가 켜집니다." id="9Oe-oV-aOH">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Chn-7s-3Fm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HBM-HT-es6">
                                         <rect key="frame" x="20" y="278.33333587646484" width="353" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Chn-7s-3Fm" id="WFH-vz-fcJ">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HBM-HT-es6" id="6p5-9I-oxC">
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 기기에서 공유 -&gt; TREVEL TALK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 기기에서 공유 -&gt; TREVEL TALK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11R-IK-zhO">
                                                     <rect key="frame" x="20" y="15" width="188" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpx-Ng-tvU">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqE-5v-YrX">
                                                     <rect key="frame" x="268.66666666666669" y="7" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="G7L-8E-WPx" firstAttribute="centerY" secondItem="WFH-vz-fcJ" secondAttribute="centerY" id="AcA-Bd-Yzg"/>
-                                                <constraint firstAttribute="trailing" secondItem="tpx-Ng-tvU" secondAttribute="trailing" constant="5" id="S7q-tG-2Ic"/>
-                                                <constraint firstItem="G7L-8E-WPx" firstAttribute="leading" secondItem="WFH-vz-fcJ" secondAttribute="leading" constant="20" id="aEN-i0-DGt"/>
-                                                <constraint firstItem="tpx-Ng-tvU" firstAttribute="centerY" secondItem="WFH-vz-fcJ" secondAttribute="centerY" id="fC1-a9-Npd"/>
+                                                <constraint firstItem="11R-IK-zhO" firstAttribute="centerY" secondItem="6p5-9I-oxC" secondAttribute="centerY" id="5an-Z2-qhM"/>
+                                                <constraint firstItem="11R-IK-zhO" firstAttribute="leading" secondItem="6p5-9I-oxC" secondAttribute="leading" constant="20" id="F4j-ZN-4eg"/>
+                                                <constraint firstAttribute="trailing" secondItem="PqE-5v-YrX" secondAttribute="trailing" constant="5" id="WWI-tY-ayO"/>
+                                                <constraint firstItem="PqE-5v-YrX" firstAttribute="centerY" secondItem="6p5-9I-oxC" secondAttribute="centerY" id="yF5-fH-Aba"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="fAh-AW-Gq4" kind="show" id="4R6-5H-NLg"/>
+                                            <segue destination="fAh-AW-Gq4" kind="show" id="l4M-yF-2Lr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection footerTitle="영화관 모드 진입" id="fZt-9h-R7R">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Chn-7s-3Fm">
+                                        <rect key="frame" x="20" y="387.33333587646484" width="353" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Chn-7s-3Fm" id="WFH-vz-fcJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주변 영화관 탐색하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
+                                                    <rect key="frame" x="20" y="15" width="101" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G7L-8E-WPx" firstAttribute="centerY" secondItem="WFH-vz-fcJ" secondAttribute="centerY" id="AcA-Bd-Yzg"/>
+                                                <constraint firstItem="G7L-8E-WPx" firstAttribute="leading" secondItem="WFH-vz-fcJ" secondAttribute="leading" constant="20" id="aEN-i0-DGt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pd4-1c-mSh" kind="show" id="eQP-kL-I99"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -438,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TQ-RH-M96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2444" y="873"/>
+            <point key="canvasLocation" x="2465" y="939"/>
         </scene>
         <!--Detail City Info View Controller-->
         <scene sceneID="JBa-Q9-UY6">
@@ -468,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XD2-kU-qDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3310.6870229007632" y="769.71830985915494"/>
+            <point key="canvasLocation" x="3337" y="939"/>
         </scene>
         <!--Trevel Spot View Controller-->
         <scene sceneID="sZ5-dd-gfO">
@@ -696,19 +755,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

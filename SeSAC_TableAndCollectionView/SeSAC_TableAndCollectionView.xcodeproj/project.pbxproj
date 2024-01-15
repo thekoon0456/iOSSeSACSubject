@@ -11,7 +11,7 @@
 		7C382C652B4BE47500AC8236 /* MagazinInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */; };
 		7C382C672B4BE49300AC8236 /* MagazinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */; };
 		7C382C6A2B4BE68900AC8236 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C382C692B4BE68900AC8236 /* Kingfisher */; };
-		7C382C6C2B4BF34500AC8236 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C6B2B4BF34500AC8236 /* UserDefault.swift */; };
+		7C382C6C2B4BF34500AC8236 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C382C6B2B4BF34500AC8236 /* UserDefaultService.swift */; };
 		7C4201C02B50D5EE00FE2C1D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4201BF2B50D5EE00FE2C1D /* UIColor+.swift */; };
 		7C449FE02B5124E200D30116 /* ChattingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FDF2B5124E200D30116 /* ChattingData.swift */; };
 		7C449FE22B5124FE00D30116 /* ChatConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C449FE12B5124FE00D30116 /* ChatConst.swift */; };
@@ -28,6 +28,8 @@
 		7C558C0C2B5260B700D9F972 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C558C0B2B5260B700D9F972 /* UIView+.swift */; };
 		7C558C0E2B52BD3F00D9F972 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C558C0D2B52BD3F00D9F972 /* UIViewController+.swift */; };
 		7C558C112B52C3AE00D9F972 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C558C102B52C3AE00D9F972 /* IQKeyboardManagerSwift */; };
+		7C6FBE8E2B5530C30001C24C /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */; };
+		7C6FBE912B5532050001C24C /* TheaterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBE902B5532050001C24C /* TheaterData.swift */; };
 		7C7125952B4E858300227C8F /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7125942B4E858300227C8F /* Protocol.swift */; };
 		7C9087B22B4FD83B00238F1F /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B12B4FD83B00238F1F /* TravelModel.swift */; };
 		7C9087B72B4FD8DF00238F1F /* CityDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */; };
@@ -37,7 +39,7 @@
 		7C9087C22B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */; };
 		7C9087C42B4FF17C00238F1F /* TrevelSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */; };
 		7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C52B4FF18400238F1F /* AdViewController.swift */; };
-		7C959A602B5506DD00F423A4 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */; };
+		7C959A602B5506DD00F423A4 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A5F2B5506DD00F423A4 /* DateService.swift */; };
 		7C959A642B55271100F423A4 /* MagazineWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A632B55271100F423A4 /* MagazineWebViewController.swift */; };
 		7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A42B4809BA000C18C7 /* AppDelegate.swift */; };
 		7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */; };
@@ -60,7 +62,7 @@
 		7C382C622B4BE40800AC8236 /* MagazineInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagazineInfo.swift; sourceTree = "<group>"; };
 		7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoTableViewController.swift; sourceTree = "<group>"; };
 		7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazinInfoCell.swift; sourceTree = "<group>"; };
-		7C382C6B2B4BF34500AC8236 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		7C382C6B2B4BF34500AC8236 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		7C4201BF2B50D5EE00FE2C1D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		7C449FDF2B5124E200D30116 /* ChattingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingData.swift; sourceTree = "<group>"; };
 		7C449FE12B5124FE00D30116 /* ChatConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConst.swift; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 		7C558C092B5187D100D9F972 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		7C558C0B2B5260B700D9F972 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		7C558C0D2B52BD3F00D9F972 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
+		7C6FBE902B5532050001C24C /* TheaterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterData.swift; sourceTree = "<group>"; };
 		7C7125942B4E858300227C8F /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		7C9087B12B4FD83B00238F1F /* TravelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
 		7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,7 +89,7 @@
 		7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityDatailAdTableViewCell.xib; sourceTree = "<group>"; };
 		7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrevelSpotViewController.swift; sourceTree = "<group>"; };
 		7C9087C52B4FF18400238F1F /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
-		7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		7C959A5F2B5506DD00F423A4 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		7C959A632B55271100F423A4 /* MagazineWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazineWebViewController.swift; sourceTree = "<group>"; };
 		7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_TableAndCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +130,6 @@
 				7C558C092B5187D100D9F972 /* Array+.swift */,
 				7C558C0B2B5260B700D9F972 /* UIView+.swift */,
 				7C558C0D2B52BD3F00D9F972 /* UIViewController+.swift */,
-				7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -141,6 +144,32 @@
 				7CF716832B54381300944A71 /* Const */,
 			);
 			path = ChattingPart;
+			sourceTree = "<group>";
+		};
+		7C6FBE8B2B5530660001C24C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7C382C6B2B4BF34500AC8236 /* UserDefaultService.swift */,
+				7C959A5F2B5506DD00F423A4 /* DateService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7C6FBE8C2B5530A50001C24C /* Theater */ = {
+			isa = PBXGroup;
+			children = (
+				7C6FBE8F2B5531FE0001C24C /* Model */,
+				7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */,
+			);
+			path = Theater;
+			sourceTree = "<group>";
+		};
+		7C6FBE8F2B5531FE0001C24C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C6FBE902B5532050001C24C /* TheaterData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7C7125932B4E857200227C8F /* Protocol */ = {
@@ -168,6 +197,7 @@
 		7C9087B42B4FD8B700238F1F /* CityModel */ = {
 			isa = PBXGroup;
 			children = (
+				7CF6CD632B4D3235003EBA68 /* CityInfo.swift */,
 				7C9087B12B4FD83B00238F1F /* TravelModel.swift */,
 			);
 			path = CityModel;
@@ -210,14 +240,15 @@
 			children = (
 				7CC905A42B4809BA000C18C7 /* AppDelegate.swift */,
 				7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */,
-				7C4201BE2B50D5E400FE2C1D /* Extension */,
-				7CF6CD6E2B4D3FAF003EBA68 /* Setting */,
-				7CF6CD6B2B4D3F79003EBA68 /* Shopping */,
-				7CF6CD6C2B4D3F8C003EBA68 /* MagazinPart */,
-				7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */,
-				7C449FDE2B5124CA00D30116 /* ChattingPart */,
 				7C7125932B4E857200227C8F /* Protocol */,
-				7C382C6B2B4BF34500AC8236 /* UserDefault.swift */,
+				7C4201BE2B50D5E400FE2C1D /* Extension */,
+				7C6FBE8B2B5530660001C24C /* Service */,
+				7CF6CD6E2B4D3FAF003EBA68 /* SettingPart */,
+				7CF6CD6B2B4D3F79003EBA68 /* ShoppingPart */,
+				7CF6CD6C2B4D3F8C003EBA68 /* MagazinePart */,
+				7CF6CD6D2B4D3F9C003EBA68 /* CityCollectionPart */,
+				7C449FDE2B5124CA00D30116 /* ChattingPart */,
+				7C6FBE8C2B5530A50001C24C /* Theater */,
 				7CC905AA2B4809BA000C18C7 /* Main.storyboard */,
 				7CC905AD2B4809BA000C18C7 /* Assets.xcassets */,
 				7CC905AF2B4809BA000C18C7 /* LaunchScreen.storyboard */,
@@ -226,16 +257,16 @@
 			path = SeSAC_TableAndCollectionView;
 			sourceTree = "<group>";
 		};
-		7CF6CD6B2B4D3F79003EBA68 /* Shopping */ = {
+		7CF6CD6B2B4D3F79003EBA68 /* ShoppingPart */ = {
 			isa = PBXGroup;
 			children = (
 				7CD73C542B48120600E5F177 /* ShoppingTableViewController.swift */,
 				7CD73C562B48122800E5F177 /* ShoppingTableViewCell.swift */,
 			);
-			path = Shopping;
+			path = ShoppingPart;
 			sourceTree = "<group>";
 		};
-		7CF6CD6C2B4D3F8C003EBA68 /* MagazinPart */ = {
+		7CF6CD6C2B4D3F8C003EBA68 /* MagazinePart */ = {
 			isa = PBXGroup;
 			children = (
 				7C959A612B55236200F423A4 /* Model */,
@@ -243,29 +274,28 @@
 				7C959A632B55271100F423A4 /* MagazineWebViewController.swift */,
 				7C959A622B55236E00F423A4 /* Cell */,
 			);
-			path = MagazinPart;
+			path = MagazinePart;
 			sourceTree = "<group>";
 		};
-		7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */ = {
+		7CF6CD6D2B4D3F9C003EBA68 /* CityCollectionPart */ = {
 			isa = PBXGroup;
 			children = (
+				7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */,
 				7C9087B42B4FD8B700238F1F /* CityModel */,
 				7CF6CD652B4D32D9003EBA68 /* CityViewController.swift */,
 				7CF6CD672B4D32EB003EBA68 /* CityCollectionViewCell.swift */,
 				7CF6CD682B4D32EB003EBA68 /* CityCollectionViewCell.xib */,
-				7CF6CD632B4D3235003EBA68 /* CityInfo.swift */,
-				7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */,
 				7C9087B32B4FD8A900238F1F /* TravelView */,
 			);
-			path = CityCollection;
+			path = CityCollectionPart;
 			sourceTree = "<group>";
 		};
-		7CF6CD6E2B4D3FAF003EBA68 /* Setting */ = {
+		7CF6CD6E2B4D3FAF003EBA68 /* SettingPart */ = {
 			isa = PBXGroup;
 			children = (
 				7CD73C522B480F1100E5F177 /* SettingTableViewController.swift */,
 			);
-			path = Setting;
+			path = SettingPart;
 			sourceTree = "<group>";
 		};
 		7CF716802B5437A800944A71 /* ChatRoomCell */ = {
@@ -403,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C959A602B5506DD00F423A4 /* DateFormatter+.swift in Sources */,
+				7C959A602B5506DD00F423A4 /* DateService.swift in Sources */,
 				7C449FE62B5125EA00D30116 /* ChattingViewController.swift in Sources */,
 				7C9087C12B4FEBAD00238F1F /* CityDatailAdTableViewCell.swift in Sources */,
 				7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */,
@@ -421,14 +451,16 @@
 				7CF6CD662B4D32D9003EBA68 /* CityViewController.swift in Sources */,
 				7C9087B72B4FD8DF00238F1F /* CityDetailTableViewCell.swift in Sources */,
 				7CF6CD702B4D3FE6003EBA68 /* CityConst.swift in Sources */,
+				7C6FBE8E2B5530C30001C24C /* TheaterViewController.swift in Sources */,
 				7CD73C552B48120600E5F177 /* ShoppingTableViewController.swift in Sources */,
 				7C9087C42B4FF17C00238F1F /* TrevelSpotViewController.swift in Sources */,
 				7CF6CD692B4D32EB003EBA68 /* CityCollectionViewCell.swift in Sources */,
 				7C449FE92B51272400D30116 /* ChattingRoomTableViewCell.swift in Sources */,
-				7C382C6C2B4BF34500AC8236 /* UserDefault.swift in Sources */,
+				7C382C6C2B4BF34500AC8236 /* UserDefaultService.swift in Sources */,
 				7C4201C02B50D5EE00FE2C1D /* UIColor+.swift in Sources */,
 				7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */,
 				7C449FE22B5124FE00D30116 /* ChatConst.swift in Sources */,
+				7C6FBE912B5532050001C24C /* TheaterData.swift in Sources */,
 				7C9087B22B4FD83B00238F1F /* TravelModel.swift in Sources */,
 				7C449FF52B5137ED00D30116 /* DetailOwnUserTableViewCell.swift in Sources */,
 				7C449FF22B512FD300D30116 /* DetailChatViewController.swift in Sources */,

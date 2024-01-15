@@ -43,17 +43,17 @@ final class ShoppingTableViewController: UITableViewController {
         
         let inputShopping = Shopping(isChecked: false, title: input, isBookmarked: false)
         
-        UserDefaultsManager.shared.shoppingList.append(inputShopping)
+        UserDefaultService.shared.shoppingList.append(inputShopping)
         tableView.reloadData()
     }
     
     @objc func checkButtonTapped(sender: UIButton) {
-        UserDefaultsManager.shared.shoppingList[sender.tag].isChecked.toggle()
+        UserDefaultService.shared.shoppingList[sender.tag].isChecked.toggle()
         tableView.reloadData()
     }
     
     @objc func starButtonTapped(sender: UIButton) {
-        UserDefaultsManager.shared.shoppingList[sender.tag].isBookmarked.toggle()
+        UserDefaultService.shared.shoppingList[sender.tag].isBookmarked.toggle()
         tableView.reloadData()
     }
 }
@@ -71,7 +71,7 @@ extension ShoppingTableViewController {
     // MARK: - TableView 구성
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserDefaultsManager.shared.shoppingList.count
+        return UserDefaultService.shared.shoppingList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,7 +80,7 @@ extension ShoppingTableViewController {
         }
         
         //Data전달
-        cell.configureCellData(UserDefaultsManager.shared.shoppingList[indexPath.row])
+        cell.configureCellData(UserDefaultService.shared.shoppingList[indexPath.row])
         
         //각 버튼에 tag추가
         cell.checkButton.tag = indexPath.row
@@ -109,7 +109,7 @@ extension ShoppingTableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            UserDefaultsManager.shared.shoppingList.remove(at: indexPath.row)
+            UserDefaultService.shared.shoppingList.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }

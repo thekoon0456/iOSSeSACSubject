@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class UserDefaultsManager {
-    static let shared = UserDefaultsManager()
+final class UserDefaultService {
+    static let shared = UserDefaultService()
     
     //ShoppingList 저장
     @UserDefault(key: Shopping.key, defaultValue: Shopping.defaultList)

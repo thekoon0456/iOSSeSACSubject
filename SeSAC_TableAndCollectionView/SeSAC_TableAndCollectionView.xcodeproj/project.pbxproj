@@ -37,6 +37,7 @@
 		7C9087C22B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */; };
 		7C9087C42B4FF17C00238F1F /* TrevelSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */; };
 		7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C52B4FF18400238F1F /* AdViewController.swift */; };
+		7C959A602B5506DD00F423A4 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */; };
 		7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A42B4809BA000C18C7 /* AppDelegate.swift */; };
 		7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */; };
 		7CC905AC2B4809BA000C18C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC905AA2B4809BA000C18C7 /* Main.storyboard */; };
@@ -83,6 +84,7 @@
 		7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityDatailAdTableViewCell.xib; sourceTree = "<group>"; };
 		7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrevelSpotViewController.swift; sourceTree = "<group>"; };
 		7C9087C52B4FF18400238F1F /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
+		7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_TableAndCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				7C558C092B5187D100D9F972 /* Array+.swift */,
 				7C558C0B2B5260B700D9F972 /* UIView+.swift */,
 				7C558C0D2B52BD3F00D9F972 /* UIViewController+.swift */,
+				7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C959A602B5506DD00F423A4 /* DateFormatter+.swift in Sources */,
 				7C449FE62B5125EA00D30116 /* ChattingViewController.swift in Sources */,
 				7C9087C12B4FEBAD00238F1F /* CityDatailAdTableViewCell.swift in Sources */,
 				7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */,

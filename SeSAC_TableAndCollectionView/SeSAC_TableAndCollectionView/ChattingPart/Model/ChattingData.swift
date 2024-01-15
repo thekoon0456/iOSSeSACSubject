@@ -38,14 +38,8 @@ struct ChatRoom: Model {
     }
     
     var formattedDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let lastDateString = chatList.last?.date ?? ""
-        let lastDate = dateFormatter.date(from: lastDateString)
-        dateFormatter.dateFormat = "yy.MM.dd"
-        let result = dateFormatter.string(from: lastDate ?? Date())
-        
-        return result
+        DateService.shared.formattedDate(input: chatList.last?.date ?? "",
+                                         format: DateStyle.chatStyle.rawValue)
     }
 }
 
@@ -58,25 +52,13 @@ struct Chat: Model {
     var isChangedDate: Bool = false
     
     var formattedDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let lastDate = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "HH:mm a"
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        let result = dateFormatter.string(from: lastDate ?? Date())
-        
-        return result
+        DateService.shared.formattedDate(input: date,
+                                         format: DateStyle.chatRoomStyle.rawValue)
     }
     
     var changedDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let lastDate = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "yyyy년 M월 d일"
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        let result = dateFormatter.string(from: lastDate ?? Date())
-        
-        return result
+        DateService.shared.formattedDate(input: date,
+                                         format: DateStyle.dateChangeStyle.rawValue)
     }
 }
 

@@ -9,29 +9,30 @@ import UIKit
 
 final class MagazinInfoTableViewController: UITableViewController {
     
-    let magazinInfoList = MagazineInfo()
+    let magazinInfoList = MagazineInfo().magazine
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "SeSAC TRAVEL"
         configureUI()
     }
 }
 
 extension MagazinInfoTableViewController: setUI {
+    
     func configureUI() {
         //모든 cell의 기본 높이 자동 설정
+        navigationItem.title = "SeSAC TRAVEL"
         tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
+// MARK: - TableView
+
 extension MagazinInfoTableViewController {
 
-    // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return magazinInfoList.magazine.count
+        return magazinInfoList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,13 +41,20 @@ extension MagazinInfoTableViewController {
             return UITableViewCell()
         }
         
-        cell.configureCellData(magazinInfoList.magazine[indexPath.row])
+        cell.configureCellData(magazinInfoList[indexPath.row])
         return cell
     }
     
-    //각 cell마다 높이 가변 설정
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        //특정 index마다 가변 설정 가능
-//        UITableView.automaticDimension
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: MagazineWebViewController.identifier) as! MagazineWebViewController
+        
+        vc.setData(magazinInfoList[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
+        
+        tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 }

@@ -37,8 +37,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="방해 금지 모드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zpl-5j-9HI">
-                                                    <rect key="frame" x="59.000000000000007" y="15" width="69.333333333333329" height="14.333333333333334"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="방해 금지 모드 -&gt; 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zpl-5j-9HI">
+                                                    <rect key="frame" x="59" y="15" width="110" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -69,7 +69,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="수면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dJO-Ju-V0d">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="수면 -&gt; 쇼핑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dJO-Ju-V0d">
                                                     <rect key="frame" x="59.666666666666686" y="0.0" width="255" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
@@ -94,8 +94,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="업무" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O7e-T2-OVl">
-                                                    <rect key="frame" x="59" y="6.0000000000000009" width="21" height="14.333333333333334"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="업무 -&gt; SeSAC TRAVEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O7e-T2-OVl">
+                                                    <rect key="frame" x="59.000000000000007" y="6.0000000000000009" width="127.66666666666667" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -126,8 +126,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="개인 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nCH-NC-IP7">
-                                                    <rect key="frame" x="59" y="15" width="45" height="14.333333333333334"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="개인 시간 -&gt; 인기 도시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nCH-NC-IP7">
+                                                    <rect key="frame" x="59" y="15" width="110" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -161,8 +161,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 기기에서 공유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
-                                                    <rect key="frame" x="20" y="15.333333333333332" width="90" height="14.333333333333332"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 기기에서 공유 -&gt; TREVEL TALK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-8E-WPx">
+                                                    <rect key="frame" x="20" y="15" width="188" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -234,7 +234,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ig4-hz-mRQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2481.679389312977" y="-33.098591549295776"/>
+            <point key="canvasLocation" x="2466" y="-751"/>
         </scene>
         <!--Magazin Info Table View Controller-->
         <scene sceneID="w0x-qr-r0R">
@@ -256,9 +256,9 @@
                                             <rect key="frame" x="20" y="20" width="353" height="500"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-lN-GWR">
-                                                    <rect key="frame" x="10" y="353" width="247" height="87"/>
+                                                    <rect key="frame" x="10" y="353" width="247" height="98"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="wam-R7-4go"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="wam-R7-4go"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -274,9 +274,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-Jl-hL0">
-                                                    <rect key="frame" x="10" y="430" width="42" height="40"/>
+                                                    <rect key="frame" x="10" y="455" width="41.333333333333336" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="WZn-l5-UAh"/>
+                                                        <constraint firstAttribute="height" constant="15" id="WZn-l5-UAh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -292,14 +292,15 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="Av9-lN-GWR" firstAttribute="leading" secondItem="VQO-cR-c49" secondAttribute="leading" constant="10" id="Dd9-fR-fzj"/>
+                                                <constraint firstItem="x3h-Jl-hL0" firstAttribute="top" secondItem="Av9-lN-GWR" secondAttribute="bottom" constant="4" id="KbZ-q8-gFd"/>
                                                 <constraint firstItem="Av9-lN-GWR" firstAttribute="width" secondItem="VQO-cR-c49" secondAttribute="width" multiplier="0.7" id="KoZ-L5-yvA"/>
                                                 <constraint firstItem="x3h-Jl-hL0" firstAttribute="bottom" secondItem="KjL-0p-OdV" secondAttribute="top" id="LHT-VP-AE3"/>
                                                 <constraint firstAttribute="trailing" secondItem="KjL-0p-OdV" secondAttribute="trailing" constant="10" id="Lxq-e3-J2W"/>
                                                 <constraint firstItem="ZUf-OY-3BO" firstAttribute="top" secondItem="VQO-cR-c49" secondAttribute="top" constant="10" id="WVW-SE-etb"/>
                                                 <constraint firstItem="ZUf-OY-3BO" firstAttribute="leading" secondItem="VQO-cR-c49" secondAttribute="leading" constant="10" id="bgP-YE-yGy"/>
                                                 <constraint firstItem="Av9-lN-GWR" firstAttribute="top" secondItem="ZUf-OY-3BO" secondAttribute="bottom" constant="10" id="bqw-nA-3lt"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x3h-Jl-hL0" secondAttribute="trailing" constant="10" id="gnt-Ep-8fd"/>
                                                 <constraint firstItem="x3h-Jl-hL0" firstAttribute="leading" secondItem="VQO-cR-c49" secondAttribute="leading" constant="10" id="gqV-3V-Uxa"/>
-                                                <constraint firstItem="Av9-lN-GWR" firstAttribute="bottom" secondItem="x3h-Jl-hL0" secondAttribute="top" constant="10" id="koQ-yn-Dla"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZUf-OY-3BO" secondAttribute="trailing" constant="10" id="pbN-LN-XNR"/>
                                                 <constraint firstAttribute="bottom" secondItem="KjL-0p-OdV" secondAttribute="bottom" id="vVF-4Y-u9m"/>
                                             </constraints>
@@ -329,7 +330,42 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xU2-3k-rVw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595" y="939"/>
+            <point key="canvasLocation" x="1594.6564885496182" y="938.73239436619724"/>
+        </scene>
+        <!--MagazineWebViewController-->
+        <scene sceneID="ziy-AS-CaB">
+            <objects>
+                <viewController storyboardIdentifier="MagazineWebViewController" title="MagazineWebViewController" id="vkp-gz-7to" customClass="MagazineWebViewController" customModule="SeSAC_TableAndCollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PCJ-5Y-Sdd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAM-jE-wOI">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="S5G-h1-ARd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S5G-h1-ARd" firstAttribute="trailing" secondItem="GAM-jE-wOI" secondAttribute="trailing" id="2xI-b7-YgJ"/>
+                            <constraint firstItem="GAM-jE-wOI" firstAttribute="top" secondItem="S5G-h1-ARd" secondAttribute="top" id="5kA-na-XR2"/>
+                            <constraint firstAttribute="bottom" secondItem="GAM-jE-wOI" secondAttribute="bottom" id="FfL-Xk-Q5r"/>
+                            <constraint firstItem="GAM-jE-wOI" firstAttribute="leading" secondItem="S5G-h1-ARd" secondAttribute="leading" id="XML-Lj-Zlh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WwH-cs-0Zn"/>
+                    <connections>
+                        <outlet property="webView" destination="GAM-jE-wOI" id="R6e-Dm-8bC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71p-DM-Z6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1595" y="1615"/>
         </scene>
         <!--City View Controller-->
         <scene sceneID="eZy-OQ-1ID">
@@ -626,7 +662,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWJ-xb-meU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3312.2137404580153" y="-33.098591549295776"/>
+            <point key="canvasLocation" x="2506" y="-78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JBC-H0-zMx">

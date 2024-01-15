@@ -38,6 +38,7 @@
 		7C9087C42B4FF17C00238F1F /* TrevelSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */; };
 		7C9087C62B4FF18400238F1F /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9087C52B4FF18400238F1F /* AdViewController.swift */; };
 		7C959A602B5506DD00F423A4 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */; };
+		7C959A642B55271100F423A4 /* MagazineWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C959A632B55271100F423A4 /* MagazineWebViewController.swift */; };
 		7CC905A52B4809BA000C18C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A42B4809BA000C18C7 /* AppDelegate.swift */; };
 		7CC905A72B4809BA000C18C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */; };
 		7CC905AC2B4809BA000C18C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC905AA2B4809BA000C18C7 /* Main.storyboard */; };
@@ -85,6 +86,7 @@
 		7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrevelSpotViewController.swift; sourceTree = "<group>"; };
 		7C9087C52B4FF18400238F1F /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		7C959A5F2B5506DD00F423A4 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		7C959A632B55271100F423A4 /* MagazineWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazineWebViewController.swift; sourceTree = "<group>"; };
 		7CC905A12B4809BA000C18C7 /* SeSAC_TableAndCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_TableAndCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC905A42B4809BA000C18C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CC905A62B4809BA000C18C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,22 @@
 			path = CityModel;
 			sourceTree = "<group>";
 		};
+		7C959A612B55236200F423A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C382C622B4BE40800AC8236 /* MagazineInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7C959A622B55236E00F423A4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7CC905982B4809BA000C18C7 = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +213,7 @@
 				7C4201BE2B50D5E400FE2C1D /* Extension */,
 				7CF6CD6E2B4D3FAF003EBA68 /* Setting */,
 				7CF6CD6B2B4D3F79003EBA68 /* Shopping */,
-				7CF6CD6C2B4D3F8C003EBA68 /* Magazin */,
+				7CF6CD6C2B4D3F8C003EBA68 /* MagazinPart */,
 				7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */,
 				7C449FDE2B5124CA00D30116 /* ChattingPart */,
 				7C7125932B4E857200227C8F /* Protocol */,
@@ -217,14 +235,15 @@
 			path = Shopping;
 			sourceTree = "<group>";
 		};
-		7CF6CD6C2B4D3F8C003EBA68 /* Magazin */ = {
+		7CF6CD6C2B4D3F8C003EBA68 /* MagazinPart */ = {
 			isa = PBXGroup;
 			children = (
+				7C959A612B55236200F423A4 /* Model */,
 				7C382C642B4BE47500AC8236 /* MagazinInfoTableViewController.swift */,
-				7C382C662B4BE49300AC8236 /* MagazinInfoCell.swift */,
-				7C382C622B4BE40800AC8236 /* MagazineInfo.swift */,
+				7C959A632B55271100F423A4 /* MagazineWebViewController.swift */,
+				7C959A622B55236E00F423A4 /* Cell */,
 			);
-			path = Magazin;
+			path = MagazinPart;
 			sourceTree = "<group>";
 		};
 		7CF6CD6D2B4D3F9C003EBA68 /* CityCollection */ = {
@@ -415,6 +434,7 @@
 				7C449FF22B512FD300D30116 /* DetailChatViewController.swift in Sources */,
 				7C382C652B4BE47500AC8236 /* MagazinInfoTableViewController.swift in Sources */,
 				7C558C0E2B52BD3F00D9F972 /* UIViewController+.swift in Sources */,
+				7C959A642B55271100F423A4 /* MagazineWebViewController.swift in Sources */,
 				7C558C0A2B5187D100D9F972 /* Array+.swift in Sources */,
 				7C382C632B4BE40800AC8236 /* MagazineInfo.swift in Sources */,
 			);

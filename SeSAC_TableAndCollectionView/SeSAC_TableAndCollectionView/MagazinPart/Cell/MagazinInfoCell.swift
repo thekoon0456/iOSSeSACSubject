@@ -57,14 +57,8 @@ extension MagazinInfoCell: setCell {
                                   placeholder: placeHolderImage)
         titleLabel.text = data.title
         subTitleLabel.text = data.subtitle
-        setDate(data.date)
-    }
-    
-    func setDate(_ input: String){
-        let formatter = DateFormatter()
-        let inputStringDate = formatter.date(from: input)
-        formatter.dateFormat = "yy년 M월 d일"
-        let result = formatter.string(from: inputStringDate ?? Date())
-        dateLabel.text = result
+        dateLabel.text = DateService.shared.formattedDate(input: data.date,
+                                                          inputFormat: .magazinDefaultStyle,
+                                                          outputFormat: .magazinStyle)
     }
 }

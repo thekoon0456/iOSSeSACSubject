@@ -14,6 +14,9 @@ class DateService {
         case dateChangeStyle = "yyyy년 M월 d일"
         case chatStyle = "yy.MM.dd"
         case chatRoomStyle = "HH:mm a"
+        
+        case magazinDefaultStyle = "yyMMdd"
+        case magazinStyle = "yy년 M월 d일"
     }
     
     static let shared = DateService()
@@ -25,9 +28,9 @@ class DateService {
     
     // MARK: - 최종적인 format결과
     
-    func formattedDate(input: String, format: DateStyle) -> String {
-        let date = stringToDate(input)
-        return dateToString(date, format: format)
+    func formattedDate(input: String, inputFormat: DateStyle = .defaultStyle, outputFormat: DateStyle) -> String {
+        let date = stringToDate(input, format: inputFormat)
+        return dateToString(date, format: outputFormat)
     }
     
     func dateToString(_ date: Date?, format: DateStyle) -> String {
@@ -37,7 +40,7 @@ class DateService {
         return result
     }
     
-    private func stringToDate(_ stringDate: String, format: DateStyle = DateStyle.defaultStyle) -> Date? {
+    private func stringToDate(_ stringDate: String, format: DateStyle = .defaultStyle) -> Date? {
         formatter.locale = krLocale
         formatter.dateFormat = format.rawValue
         let result = formatter.date(from: stringDate)

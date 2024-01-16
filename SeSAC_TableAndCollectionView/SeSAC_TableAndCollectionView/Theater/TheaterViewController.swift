@@ -8,7 +8,6 @@
 import MapKit
 import UIKit
 
-
 class TheaterViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!

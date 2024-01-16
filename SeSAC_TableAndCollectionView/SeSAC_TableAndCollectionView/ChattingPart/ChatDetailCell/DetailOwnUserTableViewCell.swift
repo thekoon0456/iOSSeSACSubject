@@ -29,8 +29,8 @@ extension DetailOwnUserTableViewCell: setCell {
     
     func configureCellData(_ data: Chat) {
         messageLabel.text = data.message
-        dateLabel.text = data.formattedDate
-        dateChangeLabel.text = data.changedDate
+        dateLabel.text = DateService.shared.formattedDate(input: data.date, outputFormat: .chatRoomStyle)
+        dateChangeLabel.text = DateService.shared.formattedDate(input: data.date, outputFormat: .dateChangeStyle)
         setDateChangeLabel(changed: data.isChangedDate)
     }
     

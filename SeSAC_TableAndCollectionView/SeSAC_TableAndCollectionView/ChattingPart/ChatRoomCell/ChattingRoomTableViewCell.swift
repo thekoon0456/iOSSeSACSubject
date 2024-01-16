@@ -31,7 +31,8 @@ extension ChattingRoomTableViewCell: setCell {
         profileView.image = UIImage(named: data.chatImage)
         userNameLabel.text = data.chatroomName
         messageLabel.text = data.lastMessage
-        dateLabel.text = data.formattedDate
+        dateLabel.text = DateService.shared.formattedDate(input: data.chatList.last?.date ?? "", outputFormat: .chatStyle)
+//        data.formattedDate
     }
     
     func configureUI () {

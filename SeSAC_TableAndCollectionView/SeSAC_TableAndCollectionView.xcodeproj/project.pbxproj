@@ -148,6 +148,26 @@
 			path = ChattingPart;
 			sourceTree = "<group>";
 		};
+		7C4EDA0E2B56342E0048BE35 /* TrevelCell */ = {
+			isa = PBXGroup;
+			children = (
+				7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */,
+				7C9087B62B4FD8DF00238F1F /* CityDetailTableViewCell.xib */,
+				7C9087BF2B4FEBAD00238F1F /* CityDatailAdTableViewCell.swift */,
+				7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */,
+			);
+			path = TrevelCell;
+			sourceTree = "<group>";
+		};
+		7C4EDA0F2B5634440048BE35 /* CityCell */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6CD672B4D32EB003EBA68 /* CityCollectionViewCell.swift */,
+				7CF6CD682B4D32EB003EBA68 /* CityCollectionViewCell.xib */,
+			);
+			path = CityCell;
+			sourceTree = "<group>";
+		};
 		7C6FBE8B2B5530660001C24C /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,9 +180,9 @@
 		7C6FBE8C2B5530A50001C24C /* Theater */ = {
 			isa = PBXGroup;
 			children = (
-				7C6FBE942B55583D0001C24C /* TheaterConst.swift */,
 				7C6FBE8F2B5531FE0001C24C /* Model */,
 				7C6FBE8D2B5530C30001C24C /* TheaterViewController.swift */,
+				7C6FBE942B55583D0001C24C /* TheaterConst.swift */,
 			);
 			path = Theater;
 			sourceTree = "<group>";
@@ -187,12 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				7C9087BD2B4FDA6C00238F1F /* DetailCityInfoViewController.swift */,
-				7C9087B52B4FD8DF00238F1F /* CityDetailTableViewCell.swift */,
-				7C9087B62B4FD8DF00238F1F /* CityDetailTableViewCell.xib */,
-				7C9087BF2B4FEBAD00238F1F /* CityDatailAdTableViewCell.swift */,
-				7C9087C02B4FEBAD00238F1F /* CityDatailAdTableViewCell.xib */,
 				7C9087C32B4FF17C00238F1F /* TrevelSpotViewController.swift */,
 				7C9087C52B4FF18400238F1F /* AdViewController.swift */,
+				7C4EDA0E2B56342E0048BE35 /* TrevelCell */,
 			);
 			path = TravelView;
 			sourceTree = "<group>";
@@ -250,6 +267,7 @@
 				7CF6CD6B2B4D3F79003EBA68 /* ShoppingPart */,
 				7CF6CD6C2B4D3F8C003EBA68 /* MagazinePart */,
 				7CF6CD6D2B4D3F9C003EBA68 /* CityCollectionPart */,
+				7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */,
 				7C449FDE2B5124CA00D30116 /* ChattingPart */,
 				7C6FBE8C2B5530A50001C24C /* Theater */,
 				7CC905AA2B4809BA000C18C7 /* Main.storyboard */,
@@ -283,11 +301,9 @@
 		7CF6CD6D2B4D3F9C003EBA68 /* CityCollectionPart */ = {
 			isa = PBXGroup;
 			children = (
-				7CF6CD6F2B4D3FE6003EBA68 /* CityConst.swift */,
 				7C9087B42B4FD8B700238F1F /* CityModel */,
 				7CF6CD652B4D32D9003EBA68 /* CityViewController.swift */,
-				7CF6CD672B4D32EB003EBA68 /* CityCollectionViewCell.swift */,
-				7CF6CD682B4D32EB003EBA68 /* CityCollectionViewCell.xib */,
+				7C4EDA0F2B5634440048BE35 /* CityCell */,
 				7C9087B32B4FD8A900238F1F /* TravelView */,
 			);
 			path = CityCollectionPart;

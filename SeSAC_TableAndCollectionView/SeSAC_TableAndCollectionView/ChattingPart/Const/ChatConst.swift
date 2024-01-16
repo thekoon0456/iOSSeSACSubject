@@ -7,16 +7,16 @@
 
 import UIKit
 
-enum ChatConst {
+enum ChatConst: String {
     //title
-    static let travelTalkTitle = "TREVEL TALK"
+    case travelTalkTitle = "TREVEL TALK"
 
     //ment
-    static let searchPlaceHolder = "친구 이름을 검색해보세요"
-    static let inputMessagePlaceHolder = "메세지를 입력하세요"
+    case searchPlaceHolder = "친구 이름을 검색해보세요"
+    case inputMessagePlaceHolder = "메세지를 입력하세요"
     
     //button
-    static let sendButton = "paperplane"
+    case sendButton = "paperplane"
 }
 
 enum ChatCornerRadius {

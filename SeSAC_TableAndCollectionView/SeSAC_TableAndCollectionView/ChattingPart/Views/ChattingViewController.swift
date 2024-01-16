@@ -61,11 +61,11 @@ extension ChattingViewController: setUI {
     
     func setSearchBar() {
         friendSearchBar.delegate = self
-        friendSearchBar.placeholder = ChatConst.searchPlaceHolder
+        friendSearchBar.placeholder = ChatConst.searchPlaceHolder.rawValue
     }
     
     func configureUI() {
-        navigationItem.title = ChatConst.travelTalkTitle
+        navigationItem.title = ChatConst.travelTalkTitle.rawValue
         navigationItem.backButtonDisplayMode = .minimal
     }
 }

@@ -33,8 +33,8 @@ extension DetailChatTableViewCell: setCell {
         profileImage.image = UIImage(named: data.user.profileImage)
         userNameLabel.text = data.user.rawValue
         messageLabel.text = data.message
-        dateLabel.text = data.formattedDate
-        dateChangeLabel.text = data.changedDate
+        dateLabel.text = DateService.shared.formattedDate(input: data.date, outputFormat: .chatRoomStyle)
+        dateChangeLabel.text = DateService.shared.formattedDate(input: data.date, outputFormat: .dateChangeStyle)
         setDateChangeLabel(changed: data.isChangedDate)
     }
     

@@ -36,11 +36,6 @@ struct ChatRoom: Model {
     var lastMessage: String? {
         return chatList.last?.message
     }
-    
-    var formattedDate: String {
-        DateService.shared.formattedDate(input: chatList.last?.date ?? "",
-                                         outputFormat: .chatStyle)
-    }
 }
 
 //채팅 화면에서 사용할 데이터 구조체
@@ -51,15 +46,16 @@ struct Chat: Model {
     //날짜변경선 위해 추가
     var isChangedDate: Bool = false
     
-    var formattedDate: String {
-        DateService.shared.formattedDate(input: date,
-                                         outputFormat: .chatRoomStyle)
-    }
-    
-    var changedDate: String {
-        DateService.shared.formattedDate(input: date,
-                                         outputFormat: .dateChangeStyle)
-    }
+    //DateService객체를 분리했으니, 모델에서도 역할 분리.
+//    var formattedDate: String {
+//        DateService.shared.formattedDate(input: date,
+//                                         outputFormat: .chatRoomStyle)
+//    }
+//    
+//    var changedDate: String {
+//        DateService.shared.formattedDate(input: date,
+//                                         outputFormat: .dateChangeStyle)
+//    }
 }
 
 let mockChatList: [ChatRoom] = [

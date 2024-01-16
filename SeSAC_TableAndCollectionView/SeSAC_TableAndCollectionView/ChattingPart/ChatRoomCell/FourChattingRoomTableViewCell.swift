@@ -47,7 +47,7 @@ extension FourChattingRoomTableViewCell: setCell {
         configureProfileImages(input: data)
         userNameLabel.text = data.chatroomName
         messageLabel.text = data.lastMessage
-        dateLabel.text = data.formattedDate
+        dateLabel.text = DateService.shared.formattedDate(input: data.chatList.last?.date ?? "", outputFormat: .chatStyle)
     }
     
     func configureUI () {

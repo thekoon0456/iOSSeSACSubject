@@ -95,7 +95,7 @@ extension DetailChatViewController: setUI {
     }
     
     func setButton() {
-        sendButton.setImage(UIImage(systemName: ChatConst.sendButton), for: .normal)
+        sendButton.setImage(UIImage(systemName: ChatConst.sendButton.rawValue), for: .normal)
         sendButton.tintColor = .systemGray
     }
     
@@ -141,7 +141,7 @@ extension DetailChatViewController : UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         // 비어있으면 다시 플레이스 홀더처럼 입력하기 위해서 조건 확인
         if textView.text.isEmpty {
-            textView.text = ChatConst.inputMessagePlaceHolder
+            textView.text = ChatConst.inputMessagePlaceHolder.rawValue
             textView.textColor = .lightGray
             
             //Text가 비어있을때는 버튼 못 누르도록

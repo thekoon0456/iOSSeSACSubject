@@ -58,7 +58,7 @@ final class ShoppingTableViewController: UITableViewController {
     }
 }
 
-extension ShoppingTableViewController: setUI {
+extension ShoppingTableViewController: SetUI {
     func configureUI() {
         navigationItem.title = "쇼핑"
         

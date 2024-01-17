@@ -14,12 +14,12 @@ import Foundation
 protocol Model { }
 
 //뷰컨 공통 채택
-protocol setUI {
+protocol SetUI {
     func configureUI()
 }
 
 //cell 채택
-protocol setCell: setUI {
+protocol SetCell: SetUI {
     associatedtype T: Model
     
     static var identifier: String { get }
@@ -27,7 +27,7 @@ protocol setCell: setUI {
     func configureCellData(_ data: T)
 }
 
-extension setUI {
+extension SetUI {
     static var identifier: String {
         return String(describing: self)
     }

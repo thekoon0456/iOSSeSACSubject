@@ -18,7 +18,7 @@ final class TrevelSpotViewController: UIViewController {
     }
 }
 
-extension TrevelSpotViewController: setUI {
+extension TrevelSpotViewController: SetUI {
     func configureUI() {
         navigationItem.title = Title.trevelScene
         

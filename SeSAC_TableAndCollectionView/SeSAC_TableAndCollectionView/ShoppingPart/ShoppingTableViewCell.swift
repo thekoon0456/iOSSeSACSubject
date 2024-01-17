@@ -41,7 +41,7 @@ final class ShoppingTableViewCell: UITableViewCell {
     }
 }
 
-extension ShoppingTableViewCell: setUI {
+extension ShoppingTableViewCell: SetUI {
     
     func configureUI() {
         setInsetView()
@@ -60,7 +60,7 @@ extension ShoppingTableViewCell: setUI {
     }
 }
 
-extension ShoppingTableViewCell: setCell {
+extension ShoppingTableViewCell: SetCell {
     
     typealias T = Shopping
     

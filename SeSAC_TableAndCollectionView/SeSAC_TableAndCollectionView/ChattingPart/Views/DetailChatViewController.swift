@@ -81,7 +81,7 @@ extension DetailChatViewController {
 
 // MARK: - UI
 
-extension DetailChatViewController: setUI {
+extension DetailChatViewController: SetUI {
     
     func setChatTextView() {
         chatTextView.delegate = self

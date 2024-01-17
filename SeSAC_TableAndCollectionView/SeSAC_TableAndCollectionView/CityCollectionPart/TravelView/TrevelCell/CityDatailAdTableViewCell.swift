@@ -35,7 +35,7 @@ final class CityDatailAdTableViewCell: UITableViewCell {
 }
 
 //UI
-extension CityDatailAdTableViewCell: setCell {
+extension CityDatailAdTableViewCell: SetCell {
     typealias T = Travel
     
     func configureCellData(_ data: Travel) {

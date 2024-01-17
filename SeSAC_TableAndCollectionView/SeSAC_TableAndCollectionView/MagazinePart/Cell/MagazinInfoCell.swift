@@ -23,7 +23,7 @@ final class MagazinInfoCell: UITableViewCell {
     }
 }
 
-extension MagazinInfoCell: setUI {
+extension MagazinInfoCell: SetUI {
     func configureUI() {
         configureImage()
         configureLabel()
@@ -46,7 +46,7 @@ extension MagazinInfoCell: setUI {
     }
 }
 
-extension MagazinInfoCell: setCell {
+extension MagazinInfoCell: SetCell {
     
     typealias T = Magazine
     

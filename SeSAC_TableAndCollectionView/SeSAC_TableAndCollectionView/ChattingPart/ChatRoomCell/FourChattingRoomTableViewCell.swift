@@ -39,7 +39,7 @@ extension FourChattingRoomTableViewCell {
 
 // MARK: - UI
 
-extension FourChattingRoomTableViewCell: setCell {
+extension FourChattingRoomTableViewCell: SetCell {
     
     typealias T = ChatRoom
     

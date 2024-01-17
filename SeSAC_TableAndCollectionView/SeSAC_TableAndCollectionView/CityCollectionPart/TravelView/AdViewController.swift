@@ -18,7 +18,7 @@ final class AdViewController: UIViewController {
     }
 }
 
-extension AdViewController: setUI {
+extension AdViewController: SetUI {
     func configureUI() {
         navigationItem.title = Title.adScene
         titleLabel.text = Title.adScene

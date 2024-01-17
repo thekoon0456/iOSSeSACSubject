@@ -42,7 +42,7 @@ extension ChattingViewController {
 
 // MARK: -  UI
 
-extension ChattingViewController: setUI {
+extension ChattingViewController: SetUI {
     
     func setTableView() {
         chattingTableView.delegate = self

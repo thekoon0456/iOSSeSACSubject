@@ -23,7 +23,7 @@ class ChattingRoomTableViewCell: UITableViewCell {
 
 // MARK: - UI
 
-extension ChattingRoomTableViewCell: setCell {
+extension ChattingRoomTableViewCell: SetCell {
     
     typealias T = ChatRoom
     

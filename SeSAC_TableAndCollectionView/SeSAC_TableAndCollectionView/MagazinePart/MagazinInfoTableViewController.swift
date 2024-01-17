@@ -18,7 +18,7 @@ final class MagazinInfoTableViewController: UITableViewController {
     }
 }
 
-extension MagazinInfoTableViewController: setUI {
+extension MagazinInfoTableViewController: SetUI {
     
     func configureUI() {
         //모든 cell의 기본 높이 자동 설정

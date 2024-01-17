@@ -20,7 +20,7 @@ class MagazineWebViewController: UIViewController {
 
 // MARK: - UI
 
-extension MagazineWebViewController: setUI {
+extension MagazineWebViewController: SetUI {
     func setData(_ data: Magazine) {
         navigationItem.title = data.title
         setWebView(urlString: data.link)

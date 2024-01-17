@@ -22,7 +22,7 @@ final class CityCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension CityCollectionViewCell: setUI {
+extension CityCollectionViewCell: SetUI {
     
     func configureUI() {
         cityImageView.contentMode = .scaleAspectFill
@@ -39,7 +39,7 @@ extension CityCollectionViewCell: setUI {
     }
 }
     
-extension CityCollectionViewCell: setCell {
+extension CityCollectionViewCell: SetCell {
     typealias T = City
     
     func configureCellData(_ data: City) {

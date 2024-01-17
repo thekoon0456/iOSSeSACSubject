@@ -23,7 +23,7 @@ class DetailOwnUserTableViewCell: UITableViewCell {
 
 // MARK: - UI
 
-extension DetailOwnUserTableViewCell: setCell {
+extension DetailOwnUserTableViewCell: SetCell {
     
     typealias T = Chat
     

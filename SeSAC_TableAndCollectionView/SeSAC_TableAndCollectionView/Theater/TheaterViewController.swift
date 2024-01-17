@@ -88,7 +88,7 @@ extension TheaterViewController {
 }
 
 
-extension TheaterViewController: setUI {
+extension TheaterViewController: SetUI {
     
     func configureUI() {
         navigationItem.title = TheaterString.naviTitle.rawValue

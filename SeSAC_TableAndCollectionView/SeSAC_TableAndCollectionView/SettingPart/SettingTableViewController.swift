@@ -44,7 +44,7 @@ final class SettingTableViewController: UITableViewController {
     }
 }
 
-extension SettingTableViewController: setUI {
+extension SettingTableViewController: SetUI {
     func configureUI() {
         navigationItem.title = "설정"
     }

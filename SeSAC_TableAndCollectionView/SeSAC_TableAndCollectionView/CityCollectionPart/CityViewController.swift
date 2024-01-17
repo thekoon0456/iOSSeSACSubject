@@ -80,7 +80,7 @@ extension CityViewController {
 
 // MARK: - UI
 
-extension CityViewController: setUI {
+extension CityViewController: SetUI {
     
     func configureUI() {
         navigationItem.title = Title.popularCity

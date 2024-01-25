@@ -9,14 +9,26 @@ import UIKit
 
 class TrendViewController: UIViewController {
     
+    let apiManager = APIManager.shared
+    
     private let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
+        requestURL()
     }
 
+}
+
+extension TrendViewController {
+    
+    func requestURL() {
+        apiManager.callRequest(url: apiManager.url) { trend in
+            print(trend)
+        }
+    }
 }
 
 extension TrendViewController: SetUI {
@@ -27,10 +39,10 @@ extension TrendViewController: SetUI {
     }
     
     func configureNav() {
-        view.backgroundColor = .red
+        navigationItem.title = "Trend"
     }
     
     func configureView() {
-        
+        view.backgroundColor = .red
     }
 }

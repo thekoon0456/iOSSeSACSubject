@@ -16,7 +16,7 @@
 		7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */; };
 		7CD4B42C2B6275E300CB3405 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42B2B6275E300CB3405 /* Protocol.swift */; };
 		7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42D2B62763900CB3405 /* TrendCell.swift */; };
-		7CD4B4312B62768600CB3405 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* Model.swift */; };
+		7CD4B4312B62768600CB3405 /* Trend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* Trend.swift */; };
 		7CD4B4332B6278AE00CB3405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4322B6278AE00CB3405 /* .gitignore */; };
 		7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4342B6278C000CB3405 /* APIKEY.swift */; };
 		7CD4B4372B6278E800CB3405 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4362B6278E800CB3405 /* APIManager.swift */; };
@@ -34,7 +34,7 @@
 		7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		7CD4B42B2B6275E300CB3405 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		7CD4B42D2B62763900CB3405 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
-		7CD4B4302B62768600CB3405 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7CD4B4302B62768600CB3405 /* Trend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trend.swift; sourceTree = "<group>"; };
 		7CD4B4322B6278AE00CB3405 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7CD4B4342B6278C000CB3405 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
 		7CD4B4362B6278E800CB3405 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		7CD4B42F2B62765C00CB3405 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7CD4B4302B62768600CB3405 /* Model.swift */,
+				7CD4B4302B62768600CB3405 /* Trend.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CD4B4312B62768600CB3405 /* Model.swift in Sources */,
+				7CD4B4312B62768600CB3405 /* Trend.swift in Sources */,
 				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
 				7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */,
 				7CD4B4372B6278E800CB3405 /* APIManager.swift in Sources */,
@@ -350,8 +350,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,9 +359,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-MediaProject";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -378,8 +382,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,9 +391,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thekoon.SeSAC-MediaProject";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

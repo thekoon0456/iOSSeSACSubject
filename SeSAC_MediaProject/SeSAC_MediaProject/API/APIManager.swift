@@ -18,7 +18,6 @@ class APIManager {
         
         guard let url = URL(string: url) else { return }
         
-
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error {
                 print("\(error)")
@@ -39,6 +38,7 @@ class APIManager {
                 return
             }
             print(item)
+            
             completion(item)
         }.resume()
     }

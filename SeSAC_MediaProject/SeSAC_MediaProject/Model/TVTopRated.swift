@@ -20,7 +20,7 @@ struct TVTopRatedModel: Decodable {
 }
 
 // MARK: - Result
-struct TVTopRated: Decodable {
+struct TVTopRated: Decodable, Model {
     let adult: Bool
     let backdropPath: String
     let genreIDS: [Int]
@@ -29,7 +29,8 @@ struct TVTopRated: Decodable {
     let originalLanguage: OriginalLanguage
     let originalName, overview: String
     let popularity: Double
-    let posterPath, firstAirDate, name: String
+    let posterPath, firstAirDate: String?
+    let name: String
     let voteAverage: Double
     let voteCount: Int
 

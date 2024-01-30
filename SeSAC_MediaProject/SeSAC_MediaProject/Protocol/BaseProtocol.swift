@@ -8,10 +8,7 @@
 import Foundation
 
 //Model 공통 채택
-protocol Model {
-    var posterPath: String? { get }
-    var name: String { get }
-}
+protocol Model { }
 
 //뷰컨 공통 채택
 protocol SetUI {
@@ -20,9 +17,11 @@ protocol SetUI {
 
 //cell 채택
 protocol SetCell: SetUI {
+    associatedtype T = Model
+    
     static var identifier: String { get }
     
-    func configureCellData(_ data: Model)
+    func configureCellData(_ data: T)
 }
 
 extension SetUI {

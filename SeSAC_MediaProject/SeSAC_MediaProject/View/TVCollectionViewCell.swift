@@ -33,7 +33,7 @@ final class TVCollectionViewCell: UICollectionViewCell {
 
 extension TVCollectionViewCell: SetCell {
     
-    func configureCellData(_ data: Model) {
+    func configureCellData(_ data: TVModel) {
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
         posterImageView.kf.setImage(with: url)
         titleLabel.text = data.name

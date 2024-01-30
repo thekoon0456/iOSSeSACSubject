@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct TVTrendModel: Decodable {
+struct TV: Decodable {
     let page: Int
-    let results: [TVTrend]
+    let results: [TVModel]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
@@ -20,7 +20,7 @@ struct TVTrendModel: Decodable {
 }
 
 // MARK: - Result
-struct TVTrend: Decodable, Model {
+struct TVModel: Decodable, Model {
     let adult: Bool
     let backdropPath: String?
     let genreIDS: [Int]

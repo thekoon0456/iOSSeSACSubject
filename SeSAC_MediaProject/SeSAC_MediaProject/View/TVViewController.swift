@@ -7,10 +7,10 @@
 
 import UIKit
 
-enum Sections: Int, CaseIterable {
-    case tvTrend
-    case tvTopRated
-    case tvPopular
+enum Sections: String, CaseIterable {
+    case tvTrend = "TVTrend"
+    case tvTopRated = "TVTopRated"
+    case tvPopular = "TVPopular"
 }
 
 final class TVViewController: UIViewController {
@@ -22,12 +22,12 @@ final class TVViewController: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 200
+        tv.rowHeight = 220
         tv.separatorStyle = .none
         return tv
     }()
     
-    private var list: [[Model]] = [ [], [], [] ] {
+    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count) {
         didSet {
             tvTableView.reloadData()
         }
@@ -50,17 +50,17 @@ extension TVViewController {
     private func requsetTvData() {
         let apiManager = TMDBAPIManager.shared
         
-        apiManager.fetchTVTrend { trend in
+        apiManager.fetchTVData(endPoint: Endpoint.trend.rawValue) { trend in
             print(trend.count)
             self.list.insert(trend, at: 0)
         }
         
-        apiManager.fetchTVTopRated { topRated in
+        apiManager.fetchTVData(endPoint: Endpoint.toprated.rawValue) { topRated in
             print(topRated.count)
             self.list.insert(topRated, at: 1)
         }
         
-        apiManager.fetchTVPopular { popular in
+        apiManager.fetchTVData(endPoint: Endpoint.popular.rawValue) { popular in
             print(popular.count)
             self.list.insert(popular, at: 2)
         }
@@ -79,12 +79,9 @@ extension TVViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TVTableViewCell.identifier, for: indexPath) as? TVTableViewCell
         else { return UITableViewCell() }
         
-        cell.collectionView.delegate = self
-        cell.collectionView.dataSource = self
-        cell.collectionView.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
-        cell.collectionView.tag = indexPath.row
-        cell.collectionView.reloadData()
-        
+        cell.configureCellData(Sections.allCases[indexPath.row].rawValue)
+        cell.congifureCollectionView(vc: self, tag: indexPath.row)
+        cell.reloadCollectionView()
         return cell
     }
 }
@@ -103,7 +100,6 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
         
         let model = list[collectionView.tag][indexPath.item]
         cell.configureCellData(model)
-        
         return cell
     }
 }
@@ -114,11 +110,16 @@ extension TVViewController: SetUI {
     
     func configureUI() {
         configureAttributes()
+        configureNav()
         configureView()
     }
     
     private func configureAttributes() {
-        
+        view.backgroundColor = .white
+    }
+    
+    private func configureNav() {
+        navigationItem.title = "Tv"
     }
     
     private func configureView() {

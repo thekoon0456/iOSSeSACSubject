@@ -27,42 +27,12 @@ final class TMDBAPIManager {
     
     private init() { }
     
-    func fetchTVTrend(completion: @escaping (([TVTrend]) -> Void)) {
-        let url = baseURL + Endpoint.trend.rawValue
+    func fetchTVData(endPoint: Endpoint.RawValue, completion: @escaping (([TVModel]) -> Void)) {
+        let url = baseURL + endPoint
         
         AF.request(url, headers: headers)
             .validate(statusCode: 200...299)
-            .responseDecodable(of: TVTrendModel.self) { response in
-                switch response.result {
-                case .success(let success):
-                    completion(success.results)
-                case .failure(let failure):
-                    print(failure.localizedDescription)
-                }
-        }
-    }
-    
-    func fetchTVTopRated(completion: @escaping (([TVTopRated]) -> Void)) {
-        let url = baseURL + Endpoint.toprated.rawValue
-        
-        AF.request(url, headers: headers)
-            .validate(statusCode: 200...299)
-            .responseDecodable(of: TVTopRatedModel.self) { response in
-                switch response.result {
-                case .success(let success):
-                    completion(success.results)
-                case .failure(let failure):
-                    print(failure.localizedDescription)
-                }
-        }
-    }
-    
-    func fetchTVPopular(completion: @escaping (([TVPopular]) -> Void)) {
-        let url = baseURL + Endpoint.popular.rawValue
-        
-        AF.request(url, headers: headers)
-            .validate(statusCode: 200...299)
-            .responseDecodable(of: TVPopularModel.self) { response in
+            .responseDecodable(of: TV.self) { response in
                 switch response.result {
                 case .success(let success):
                     completion(success.results)

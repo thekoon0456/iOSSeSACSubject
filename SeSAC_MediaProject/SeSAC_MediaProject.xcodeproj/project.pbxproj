@@ -12,8 +12,6 @@
 		7C43BC962B68DF1500AF2470 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC952B68DF1500AF2470 /* Kingfisher */; };
 		7C43BC992B68DF2000AF2470 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC982B68DF2000AF2470 /* SnapKit */; };
 		7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */; };
-		7C43BC9D2B68DF7900AF2470 /* TVTopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */; };
-		7C43BC9F2B68DF8C00AF2470 /* TVPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */; };
 		7C43BCA22B68E3D800AF2470 /* TVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA12B68E3D800AF2470 /* TVViewController.swift */; };
 		7C43BCA42B68E60100AF2470 /* TVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */; };
 		7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */; };
@@ -35,8 +33,6 @@
 /* Begin PBXFileReference section */
 		7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTrend.swift; sourceTree = "<group>"; };
-		7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTopRated.swift; sourceTree = "<group>"; };
-		7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPopular.swift; sourceTree = "<group>"; };
 		7C43BCA12B68E3D800AF2470 /* TVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
 		7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTableViewCell.swift; sourceTree = "<group>"; };
 		7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -149,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */,
-				7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */,
-				7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,9 +244,7 @@
 				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
 				7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */,
 				7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */,
-				7C43BC9F2B68DF8C00AF2470 /* TVPopular.swift in Sources */,
 				7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */,
-				7C43BC9D2B68DF7900AF2470 /* TVTopRated.swift in Sources */,
 				7C43BCA42B68E60100AF2470 /* TVTableViewCell.swift in Sources */,
 				7C43BC902B68DEE300AF2470 /* TMDBAPIManager.swift in Sources */,
 				7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */,

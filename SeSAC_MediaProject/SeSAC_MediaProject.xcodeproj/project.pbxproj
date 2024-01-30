@@ -7,38 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C43BC902B68DEE300AF2470 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */; };
+		7C43BC932B68DF0D00AF2470 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC922B68DF0D00AF2470 /* Alamofire */; };
+		7C43BC962B68DF1500AF2470 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC952B68DF1500AF2470 /* Kingfisher */; };
+		7C43BC992B68DF2000AF2470 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC982B68DF2000AF2470 /* SnapKit */; };
+		7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */; };
+		7C43BC9D2B68DF7900AF2470 /* TVTopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */; };
+		7C43BC9F2B68DF8C00AF2470 /* TVPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */; };
 		7CD4B4142B62751400CB3405 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4132B62751400CB3405 /* AppDelegate.swift */; };
 		7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4152B62751400CB3405 /* SceneDelegate.swift */; };
-		7CD4B4182B62751400CB3405 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4172B62751400CB3405 /* ViewController.swift */; };
 		7CD4B41B2B62751400CB3405 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4192B62751400CB3405 /* Main.storyboard */; };
 		7CD4B41D2B62751500CB3405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41C2B62751500CB3405 /* Assets.xcassets */; };
 		7CD4B4202B62751500CB3405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */; };
 		7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */; };
-		7CD4B42C2B6275E300CB3405 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42B2B6275E300CB3405 /* Protocol.swift */; };
+		7CD4B42C2B6275E300CB3405 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */; };
 		7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42D2B62763900CB3405 /* TrendCell.swift */; };
-		7CD4B4312B62768600CB3405 /* Trend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* Trend.swift */; };
+		7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* MovieTrend.swift */; };
 		7CD4B4332B6278AE00CB3405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4322B6278AE00CB3405 /* .gitignore */; };
 		7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4342B6278C000CB3405 /* APIKEY.swift */; };
-		7CD4B4372B6278E800CB3405 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4362B6278E800CB3405 /* APIManager.swift */; };
+		7CD4B4372B6278E800CB3405 /* APIManagerURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */; };
 		7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4392B628B8A00CB3405 /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
+		7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTrend.swift; sourceTree = "<group>"; };
+		7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTopRated.swift; sourceTree = "<group>"; };
+		7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPopular.swift; sourceTree = "<group>"; };
 		7CD4B4102B62751400CB3405 /* SeSAC_MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD4B4132B62751400CB3405 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD4B4152B62751400CB3405 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7CD4B4172B62751400CB3405 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7CD4B41A2B62751400CB3405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CD4B41C2B62751500CB3405 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CD4B41F2B62751500CB3405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CD4B4212B62751500CB3405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
-		7CD4B42B2B6275E300CB3405 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		7CD4B42D2B62763900CB3405 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
-		7CD4B4302B62768600CB3405 /* Trend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trend.swift; sourceTree = "<group>"; };
+		7CD4B4302B62768600CB3405 /* MovieTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrend.swift; sourceTree = "<group>"; };
 		7CD4B4322B6278AE00CB3405 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7CD4B4342B6278C000CB3405 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
-		7CD4B4362B6278E800CB3405 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerURLSession.swift; sourceTree = "<group>"; };
 		7CD4B4392B628B8A00CB3405 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,12 +56,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C43BC992B68DF2000AF2470 /* SnapKit in Frameworks */,
+				7C43BC962B68DF1500AF2470 /* Kingfisher in Frameworks */,
+				7C43BC932B68DF0D00AF2470 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C43BC8E2B68DCB200AF2470 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		7C43BCA02B68E37400AF2470 /* ETC */ = {
+			isa = PBXGroup;
+			children = (
+				7CD4B4302B62768600CB3405 /* MovieTrend.swift */,
+				7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */,
+				7CD4B42D2B62763900CB3405 /* TrendCell.swift */,
+			);
+			path = ETC;
+			sourceTree = "<group>";
+		};
 		7CD4B4072B62751400CB3405 = {
 			isa = PBXGroup;
 			children = (
@@ -73,19 +103,19 @@
 		7CD4B4122B62751400CB3405 /* SeSAC_MediaProject */ = {
 			isa = PBXGroup;
 			children = (
-				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7CD4B4132B62751400CB3405 /* AppDelegate.swift */,
 				7CD4B4152B62751400CB3405 /* SceneDelegate.swift */,
-				7CD4B4282B62759300CB3405 /* API */,
 				7CD4B42F2B62765C00CB3405 /* Model */,
+				7CD4B4282B62759300CB3405 /* Network */,
 				7CD4B4272B62758700CB3405 /* View */,
-				7CD4B4172B62751400CB3405 /* ViewController.swift */,
+				7CD4B4382B628B7A00CB3405 /* Extension */,
+				7C43BC8E2B68DCB200AF2470 /* Protocol */,
 				7CD4B4192B62751400CB3405 /* Main.storyboard */,
-				7CD4B42B2B6275E300CB3405 /* Protocol.swift */,
 				7CD4B41C2B62751500CB3405 /* Assets.xcassets */,
 				7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */,
 				7CD4B4212B62751500CB3405 /* Info.plist */,
 				7CD4B4342B6278C000CB3405 /* APIKEY.swift */,
+				7C43BCA02B68E37400AF2470 /* ETC */,
 			);
 			path = SeSAC_MediaProject;
 			sourceTree = "<group>";
@@ -93,24 +123,25 @@
 		7CD4B4272B62758700CB3405 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */,
-				7CD4B42D2B62763900CB3405 /* TrendCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		7CD4B4282B62759300CB3405 /* API */ = {
+		7CD4B4282B62759300CB3405 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7CD4B4362B6278E800CB3405 /* APIManager.swift */,
+				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
+				7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */,
 			);
-			path = API;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		7CD4B42F2B62765C00CB3405 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7CD4B4302B62768600CB3405 /* Trend.swift */,
+				7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */,
+				7C43BC9C2B68DF7900AF2470 /* TVTopRated.swift */,
+				7C43BC9E2B68DF8C00AF2470 /* TVPopular.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +170,11 @@
 			dependencies = (
 			);
 			name = SeSAC_MediaProject;
+			packageProductDependencies = (
+				7C43BC922B68DF0D00AF2470 /* Alamofire */,
+				7C43BC952B68DF1500AF2470 /* Kingfisher */,
+				7C43BC982B68DF2000AF2470 /* SnapKit */,
+			);
 			productName = SeSAC_MediaProject;
 			productReference = 7CD4B4102B62751400CB3405 /* SeSAC_MediaProject.app */;
 			productType = "com.apple.product-type.application";
@@ -167,6 +203,11 @@
 				Base,
 			);
 			mainGroup = 7CD4B4072B62751400CB3405;
+			packageReferences = (
+				7C43BC912B68DF0D00AF2470 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7C43BC942B68DF1500AF2470 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7C43BC972B68DF2000AF2470 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 7CD4B4112B62751400CB3405 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -195,15 +236,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CD4B4312B62768600CB3405 /* Trend.swift in Sources */,
+				7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */,
 				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
+				7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */,
 				7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */,
+				7C43BC9F2B68DF8C00AF2470 /* TVPopular.swift in Sources */,
+				7C43BC9D2B68DF7900AF2470 /* TVTopRated.swift in Sources */,
+				7C43BC902B68DEE300AF2470 /* TMDBAPIManager.swift in Sources */,
 				7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */,
-				7CD4B4372B6278E800CB3405 /* APIManager.swift in Sources */,
-				7CD4B4182B62751400CB3405 /* ViewController.swift in Sources */,
+				7CD4B4372B6278E800CB3405 /* APIManagerURLSession.swift in Sources */,
 				7CD4B4142B62751400CB3405 /* AppDelegate.swift in Sources */,
 				7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */,
-				7CD4B42C2B6275E300CB3405 /* Protocol.swift in Sources */,
+				7CD4B42C2B6275E300CB3405 /* BaseProtocol.swift in Sources */,
 				7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +479,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7C43BC912B68DF0D00AF2470 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		7C43BC942B68DF1500AF2470 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
+		7C43BC972B68DF2000AF2470 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7C43BC922B68DF0D00AF2470 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C43BC912B68DF0D00AF2470 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		7C43BC952B68DF1500AF2470 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C43BC942B68DF1500AF2470 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		7C43BC982B68DF2000AF2470 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C43BC972B68DF2000AF2470 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7CD4B4082B62751400CB3405 /* Project object */;
 }

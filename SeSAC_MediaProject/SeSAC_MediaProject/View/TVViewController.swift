@@ -27,11 +27,7 @@ final class TVViewController: UIViewController {
         return tv
     }()
     
-    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count) {
-        didSet {
-            tvTableView.reloadData()
-        }
-    }
+    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
     
     // MARK: - LifeCycle
 
@@ -39,7 +35,7 @@ final class TVViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-        requsetTvData()
+        requestTvData()
     }
 }
 
@@ -47,23 +43,38 @@ final class TVViewController: UIViewController {
 
 extension TVViewController {
     
-    private func requsetTvData() {
+    private func requestTvData() {
         let apiManager = TMDBAPIManager.shared
         
-        apiManager.fetchTVData(endPoint: Endpoint.trend.rawValue) { trend in
-            print(trend.count)
-            self.list.insert(trend, at: 0)
+        let group = DispatchGroup()
+        
+        Endpoint.allCases.enumerated().forEach { index, endPoint in
+            
+            group.enter()
+            apiManager.fetchTVData(endPoint: endPoint.rawValue) { result in
+                print("\(index)")
+                print(result.count, "\(endPoint)")
+                self.list.insert(result, at: index)
+                group.leave()
+            }
         }
         
-        apiManager.fetchTVData(endPoint: Endpoint.toprated.rawValue) { topRated in
-            print(topRated.count)
-            self.list.insert(topRated, at: 1)
+        group.notify(queue: .main) {
+            print("\(3)")
+            self.tvTableView.reloadData()
         }
         
-        apiManager.fetchTVData(endPoint: Endpoint.popular.rawValue) { popular in
-            print(popular.count)
-            self.list.insert(popular, at: 2)
-        }
+//        apiManager.fetchTVData(endPoint: Endpoint.trend.rawValue) { trend in
+//            self.list.insert(trend, at: 0)
+//        }
+//        
+//        apiManager.fetchTVData(endPoint: Endpoint.toprated.rawValue) { topRated in
+//            self.list.insert(topRated, at: 1)
+//        }
+//        
+//        apiManager.fetchTVData(endPoint: Endpoint.popular.rawValue) { popular in
+//            self.list.insert(popular, at: 2)
+//        }
     }
 }
 

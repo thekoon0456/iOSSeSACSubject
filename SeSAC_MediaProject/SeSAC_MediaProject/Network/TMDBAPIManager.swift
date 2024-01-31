@@ -9,10 +9,10 @@ import Foundation
 
 import Alamofire
 
-enum Endpoint: String {
+enum Endpoint: String, CaseIterable {
     case trend = "trending/tv/day?language=ko-KR"
-    case toprated = "tv/top_rated?language=ko-KR&page=1"
-    case popular = "tv/popular?language=ko-KR&page=1"
+    case toprated = "tv/top_rated?language=ko-KR&page=12"
+    case popular = "tv/popular?language=ko-KR&page=12"
 }
 
 final class TMDBAPIManager {

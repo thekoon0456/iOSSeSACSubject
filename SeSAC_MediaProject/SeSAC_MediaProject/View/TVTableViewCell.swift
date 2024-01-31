@@ -39,15 +39,16 @@ final class TVTableViewCell: UITableViewCell {
 // MARK: - CollectionView
 
 extension TVTableViewCell {
-    func congifureCollectionView(vc: UIViewController, tag: Int) {
-        collectionView.delegate = vc as? TVViewController
-        collectionView.dataSource = vc as? TVViewController
+    func congifureCollectionView(vc: TVViewController, tag: Int) {
+        collectionView.delegate = vc
+        collectionView.dataSource = vc 
         collectionView.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
         collectionView.tag = tag
     }
     
     func reloadCollectionView() {
         collectionView.reloadData()
+        print(#function)
     }
 }
 

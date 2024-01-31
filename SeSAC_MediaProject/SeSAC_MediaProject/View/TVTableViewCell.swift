@@ -14,10 +14,10 @@ final class TVTableViewCell: UITableViewCell {
     private let sectionTitle = UILabel()
     private lazy var collectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: 90, height: 180)
-        layout.minimumLineSpacing = 40
+        layout.itemSize = .init(width: 120, height: 180)
+        layout.minimumLineSpacing = 12
         layout.minimumInteritemSpacing = 0
-        //        layout.sectionInset = .init(top: 0, left: 10, bottom: 0, right: 0)
+        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 12)
         layout.scrollDirection = .horizontal
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -39,9 +39,9 @@ final class TVTableViewCell: UITableViewCell {
 // MARK: - CollectionView
 
 extension TVTableViewCell {
-    func congifureCollectionView(vc: TVViewController, tag: Int) {
-        collectionView.delegate = vc
-        collectionView.dataSource = vc 
+    func congifureCollectionView(vc: UIViewController, tag: Int) {
+        collectionView.delegate = vc as? any UICollectionViewDelegate
+        collectionView.dataSource = vc as? any UICollectionViewDataSource
         collectionView.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
         collectionView.tag = tag
     }
@@ -58,7 +58,7 @@ extension TVTableViewCell: SetCell {
     func configureCellData(_ data: String) {
         sectionTitle.text = data
     }
-
+    
     func configureUI() {
         configureView()
     }

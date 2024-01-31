@@ -7,13 +7,15 @@
 
 import UIKit
 
-enum Sections: String, CaseIterable {
-    case tvTrend = "TVTrend"
-    case tvTopRated = "TVTopRated"
-    case tvPopular = "TVPopular"
-}
 
-final class TVViewController: UIViewController {
+
+final class TVViewController: BaseViewController {
+    
+    enum Sections: String, CaseIterable {
+        case tvTrend = "TVTrend"
+        case tvTopRated = "TVTopRated"
+        case tvPopular = "TVPopular"
+    }
     
     // MARK: - Properties
     
@@ -37,6 +39,14 @@ final class TVViewController: UIViewController {
         configureUI()
         requestTvData()
     }
+    
+    override func configureView() {
+        view.addSubview(tvTableView)
+        
+        tvTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
 }
 
 // MARK: - Network
@@ -48,8 +58,9 @@ extension TVViewController {
         
         let group = DispatchGroup()
         
+        // FIXME: - 가끔씩 collectionView 보이지 않는 현상 발생
+        
         Endpoint.allCases.enumerated().forEach { index, endPoint in
-            
             group.enter()
             apiManager.fetchTVData(endPoint: endPoint.rawValue) { result in
                 print("\(index)")
@@ -63,18 +74,6 @@ extension TVViewController {
             print("\(3)")
             self.tvTableView.reloadData()
         }
-        
-//        apiManager.fetchTVData(endPoint: Endpoint.trend.rawValue) { trend in
-//            self.list.insert(trend, at: 0)
-//        }
-//        
-//        apiManager.fetchTVData(endPoint: Endpoint.toprated.rawValue) { topRated in
-//            self.list.insert(topRated, at: 1)
-//        }
-//        
-//        apiManager.fetchTVData(endPoint: Endpoint.popular.rawValue) { popular in
-//            self.list.insert(popular, at: 2)
-//        }
     }
 }
 
@@ -133,12 +132,6 @@ extension TVViewController: SetUI {
         navigationItem.title = "Tv"
     }
     
-    private func configureView() {
-        view.addSubview(tvTableView)
-        
-        tvTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
+
 }
 

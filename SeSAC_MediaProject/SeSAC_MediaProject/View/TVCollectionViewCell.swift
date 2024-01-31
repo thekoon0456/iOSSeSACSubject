@@ -17,6 +17,7 @@ final class TVCollectionViewCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         return iv
     }()
+    
     private let titleLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -33,7 +34,7 @@ final class TVCollectionViewCell: UICollectionViewCell {
 
 extension TVCollectionViewCell: SetCell {
     
-    func configureCellData(_ data: TVModel) {
+    func configureCellData(_ data: Model) {
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
         posterImageView.kf.setImage(with: url)
         titleLabel.text = data.name
@@ -41,6 +42,8 @@ extension TVCollectionViewCell: SetCell {
     
     func configureUI() {
         configureView()
+        posterImageView.contentMode = .scaleAspectFill
+        posterImageView.clipsToBounds = true
         titleLabel.font = .boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
     }

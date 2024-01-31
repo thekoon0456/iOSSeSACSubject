@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DramaDetailView: UIView {
+class DramaDetailView: BaseUIView {
     
     let posterImageView = UIImageView()
     let name = UILabel()
@@ -15,23 +15,11 @@ class DramaDetailView: UIView {
     let lastAirDate = UILabel()
     let numberOfEpisodes = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configureHierarchy()
-        configureLayout()
-        configureView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configureHierarchy() {
+    override func configureHierarchy() {
         addSubviews(posterImageView, name, overView, lastAirDate, numberOfEpisodes)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.leading.equalToSuperview().offset(8)
@@ -66,7 +54,7 @@ class DramaDetailView: UIView {
         }
     }
     
-    private func configureView() {
+    override func configureView() {
         backgroundColor = .white
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true

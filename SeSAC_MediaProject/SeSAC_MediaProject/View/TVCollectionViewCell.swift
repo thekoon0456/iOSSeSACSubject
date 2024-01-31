@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-final class TVCollectionViewCell: UICollectionViewCell {
+final class TVCollectionViewCell: BaseCollectionViewCell {
     
     private let posterImageView = {
         let iv = UIImageView()
@@ -20,16 +20,19 @@ final class TVCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func configureView() {
+        contentView.addSubviews(posterImageView, titleLabel)
         
-        configureUI()
+        posterImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.width.equalToSuperview().offset(-10)
+        }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
 
 extension TVCollectionViewCell: SetCell {
@@ -47,18 +50,5 @@ extension TVCollectionViewCell: SetCell {
         titleLabel.font = .boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
     }
-    
-    private func configureView() {
-        contentView.addSubviews(posterImageView, titleLabel)
-        
-        posterImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(5)
-            make.bottom.equalToSuperview().offset(-5)
-            make.width.equalToSuperview().offset(-10)
-        }
-    }
+
 }

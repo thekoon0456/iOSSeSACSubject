@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class TVTableViewCell: UITableViewCell {
+final class TVTableViewCell: BaseTableViewCell {
     
     private let sectionTitle = UILabel()
     private lazy var collectionView = {
@@ -24,46 +24,7 @@ final class TVTableViewCell: UITableViewCell {
         return cv
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        configureUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-// MARK: - CollectionView
-
-extension TVTableViewCell {
-    func congifureCollectionView(vc: UIViewController, tag: Int) {
-        collectionView.delegate = vc as? any UICollectionViewDelegate
-        collectionView.dataSource = vc as? any UICollectionViewDataSource
-        collectionView.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
-        collectionView.tag = tag
-    }
-    
-    func reloadCollectionView() {
-        collectionView.reloadData()
-        print(#function)
-    }
-}
-
-
-extension TVTableViewCell: SetCell {
-    
-    func configureCellData(_ data: String) {
-        sectionTitle.text = data
-    }
-    
-    func configureUI() {
-        configureView()
-    }
-    
-    private func configureView() {
+    override func configureView() {
         contentView.addSubviews(sectionTitle, collectionView)
         
         sectionTitle.snp.makeConstraints { make in
@@ -76,5 +37,27 @@ extension TVTableViewCell: SetCell {
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
+    }
+}
+
+// MARK: - CollectionView
+
+extension TVTableViewCell: SetCell {
+    
+    func configureCellData(_ data: String) {
+        sectionTitle.text = data
+    }
+    
+    func congifureCollectionView(vc: UIViewController, tag: Int) {
+        collectionView.delegate = vc as? any UICollectionViewDelegate
+        collectionView.dataSource = vc as? any UICollectionViewDataSource
+        collectionView.register(TVCollectionViewCell.self, forCellWithReuseIdentifier: TVCollectionViewCell.identifier)
+        collectionView.tag = tag
+        reloadCollectionView()
+    }
+    
+    func reloadCollectionView() {
+        collectionView.reloadData()
+        print(#function)
     }
 }

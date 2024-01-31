@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+import SnapKit
 
 final class TVViewController: BaseViewController {
     
@@ -91,7 +91,6 @@ extension TVViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.configureCellData(Sections.allCases[indexPath.row].rawValue)
         cell.congifureCollectionView(vc: self, tag: indexPath.row)
-        cell.reloadCollectionView()
         return cell
     }
 }
@@ -116,7 +115,7 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
 
 // MARK: - Configure
 
-extension TVViewController: SetUI {
+extension TVViewController {
     
     func configureUI() {
         configureAttributes()
@@ -131,7 +130,5 @@ extension TVViewController: SetUI {
     private func configureNav() {
         navigationItem.title = "Tv"
     }
-    
-
 }
 

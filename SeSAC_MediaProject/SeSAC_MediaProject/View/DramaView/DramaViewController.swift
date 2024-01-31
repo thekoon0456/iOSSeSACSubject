@@ -45,13 +45,7 @@ final class DramaViewController: BaseViewController {
         group.enter()
         apiManager.fetchDetailData(endPoint: DramaEndpoint.tvSeriesDetails.rawValue) { detail in
             print(detail)
-            let url = URL(string: "https://image.tmdb.org/t/p/w500/\(detail.posterPath ?? "")")
-            self.dramaDetailView.posterImageView.kf.setImage(with: url)
-            self.dramaDetailView.name.text = detail.name
-            self.dramaDetailView.overView.text = detail.overview
-
-            self.dramaDetailView.lastAirDate.text = "최근 방영일: " + detail.lastAirDate
-            self.dramaDetailView.numberOfEpisodes.text = "총 에피소드 : \(detail.numberOfEpisodes)개"
+            self.setDramaDetailView(data: detail)
             group.leave()
         }
         
@@ -95,6 +89,16 @@ final class DramaViewController: BaseViewController {
     
     override func configureView() {
         view.backgroundColor = .white
+    }
+    
+    
+    func setDramaDetailView(data: DramaDetail) {
+        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+        dramaDetailView.posterImageView.kf.setImage(with: url)
+        dramaDetailView.name.text = data.name
+        dramaDetailView.overView.text = data.overview
+        dramaDetailView.lastAirDate.text = "최근 방영일: " + data.lastAirDate
+        dramaDetailView.numberOfEpisodes.text = "총 에피소드 : \(data.numberOfEpisodes)개"
     }
 }
 

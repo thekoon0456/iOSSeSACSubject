@@ -13,22 +13,20 @@ protocol Model {
     var name: String { get }
 }
 
-//뷰컨 공통 채택
-protocol SetUI {
-    func configureUI()
-}
+////뷰컨 공통 채택
+//protocol SetUI {
+//    func configureUI()
+//}
 
 //cell 채택
-protocol SetCell: SetUI {
+protocol SetCell {
     associatedtype T = Model
-    
-    static var identifier: String { get }
     
     func configureCellData(_ data: T)
 }
-
-extension SetUI {
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
+//
+//extension SetUI {
+//    static var identifier: String {
+//        return String(describing: self)
+//    }
+//}

@@ -12,6 +12,9 @@
 		7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */; };
 		7C2E0B972B6A3DD9001612E4 /* DramaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B962B6A3DD9001612E4 /* DramaDetail.swift */; };
 		7C2E0B992B6A60FE001612E4 /* DramaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B982B6A60FE001612E4 /* DramaDetailView.swift */; };
+		7C2E0B9B2B6A7091001612E4 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B9A2B6A7091001612E4 /* BaseCollectionViewCell.swift */; };
+		7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B9C2B6A70A1001612E4 /* BaseTableViewCell.swift */; };
+		7C2E0B9F2B6A7426001612E4 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B9E2B6A7426001612E4 /* BaseUIView.swift */; };
 		7C43BC902B68DEE300AF2470 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */; };
 		7C43BC932B68DF0D00AF2470 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC922B68DF0D00AF2470 /* Alamofire */; };
 		7C43BC962B68DF1500AF2470 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC952B68DF1500AF2470 /* Kingfisher */; };
@@ -41,6 +44,9 @@
 		7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCast.swift; sourceTree = "<group>"; };
 		7C2E0B962B6A3DD9001612E4 /* DramaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaDetail.swift; sourceTree = "<group>"; };
 		7C2E0B982B6A60FE001612E4 /* DramaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaDetailView.swift; sourceTree = "<group>"; };
+		7C2E0B9A2B6A7091001612E4 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C2E0B9C2B6A70A1001612E4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		7C2E0B9E2B6A7426001612E4 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTrend.swift; sourceTree = "<group>"; };
 		7C43BCA12B68E3D800AF2470 /* TVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				7C2E0B922B6A33DE001612E4 /* BaseViewController.swift */,
+				7C2E0B9C2B6A70A1001612E4 /* BaseTableViewCell.swift */,
+				7C2E0B9A2B6A7091001612E4 /* BaseCollectionViewCell.swift */,
+				7C2E0B9E2B6A7426001612E4 /* BaseUIView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -274,7 +283,9 @@
 				7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */,
 				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
 				7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */,
+				7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */,
 				7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */,
+				7C2E0B9B2B6A7091001612E4 /* BaseCollectionViewCell.swift in Sources */,
 				7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */,
 				7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */,
 				7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */,
@@ -287,6 +298,7 @@
 				7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */,
 				7C2E0B992B6A60FE001612E4 /* DramaDetailView.swift in Sources */,
 				7C2E0B932B6A33DE001612E4 /* BaseViewController.swift in Sources */,
+				7C2E0B9F2B6A7426001612E4 /* BaseUIView.swift in Sources */,
 				7CD4B42C2B6275E300CB3405 /* BaseProtocol.swift in Sources */,
 				7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */,
 			);

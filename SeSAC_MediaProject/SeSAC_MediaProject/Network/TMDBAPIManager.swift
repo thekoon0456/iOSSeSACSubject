@@ -15,7 +15,7 @@ enum Endpoint: String, CaseIterable {
     case popular = "tv/popular?language=ko-KR&page=12"
 }
 
-enum DramaEndpoint: String, CaseIterable {
+enum DramaEndpoint: String, CaseIterable { //만달로리안
     case tvSeriesDetails = "tv/82856?language=ko-KR"
     case aggregateCredits = "tv/82856/aggregate_credits?language=ko-KR&page=1"
     case recommendations = "tv/82856/recommendations?language=ko-KR&page=1"
@@ -34,7 +34,6 @@ final class TMDBAPIManager {
     private init() { }
     
     func fetchTVData(endPoint: Endpoint.RawValue, completion: @escaping (([TVModel]) -> Void)) {
-        
         let url = baseURL + endPoint
         
         AF.request(url, headers: headers)
@@ -50,7 +49,6 @@ final class TMDBAPIManager {
     }
     
     func fetchDetailData(endPoint: Endpoint.RawValue, completion: @escaping ((DramaDetail) -> Void)) {
-        
         let url = baseURL + endPoint
         
         AF.request(url, headers: headers)
@@ -66,7 +64,6 @@ final class TMDBAPIManager {
     }
     
     func fetchCastData(endPoint: Endpoint.RawValue, completion: @escaping (([CastModel]) -> Void)) {
-        
         let url = baseURL + endPoint
         
         AF.request(url, headers: headers)

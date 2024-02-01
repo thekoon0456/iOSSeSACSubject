@@ -20,9 +20,11 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
     
     private let titleLabel = UILabel()
     
-    override func configureView() {
+    override func configureHierarchy() {
         contentView.addSubviews(posterImageView, titleLabel)
-        
+    }
+    
+    override func configureLayout() {
         posterImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -32,6 +34,10 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
             make.bottom.equalToSuperview().offset(-5)
             make.width.equalToSuperview().offset(-10)
         }
+    }
+    
+    override func configureView() {
+        titleLabel.textColor = .white
     }
 }
 
@@ -50,5 +56,4 @@ extension TVCollectionViewCell: SetCell {
         titleLabel.font = .boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
     }
-
 }

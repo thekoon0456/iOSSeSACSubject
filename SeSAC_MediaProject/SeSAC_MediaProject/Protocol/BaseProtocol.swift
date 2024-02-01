@@ -24,9 +24,3 @@ protocol SetCell {
     
     func configureCellData(_ data: T)
 }
-//
-//extension SetUI {
-//    static var identifier: String {
-//        return String(describing: self)
-//    }
-//}

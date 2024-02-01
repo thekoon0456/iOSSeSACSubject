@@ -28,7 +28,7 @@ class DramaDetailView: BaseUIView {
         }
         
         name.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(12)
+            make.top.equalTo(safeAreaLayoutGuide).offset(8)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.height.equalTo(20)
@@ -47,7 +47,7 @@ class DramaDetailView: BaseUIView {
         }
         
         numberOfEpisodes.snp.makeConstraints { make in
-            make.top.equalTo(lastAirDate.snp.bottom).offset(8)
+            make.top.equalTo(lastAirDate.snp.bottom).offset(4)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalToSuperview().offset(-8)

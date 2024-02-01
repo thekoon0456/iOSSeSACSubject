@@ -149,13 +149,13 @@
 				7CD4B4272B62758700CB3405 /* View */,
 				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7C43BC8E2B68DCB200AF2470 /* Protocol */,
+				7C2E0B912B6A33D0001612E4 /* Base */,
+				7C43BCA02B68E37400AF2470 /* ETC */,
 				7CD4B4192B62751400CB3405 /* Main.storyboard */,
 				7CD4B41C2B62751500CB3405 /* Assets.xcassets */,
 				7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */,
 				7CD4B4212B62751500CB3405 /* Info.plist */,
 				7CD4B4342B6278C000CB3405 /* APIKEY.swift */,
-				7C2E0B912B6A33D0001612E4 /* Base */,
-				7C43BCA02B68E37400AF2470 /* ETC */,
 			);
 			path = SeSAC_MediaProject;
 			sourceTree = "<group>";

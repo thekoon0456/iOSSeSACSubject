@@ -32,10 +32,10 @@ final class TVViewController: BaseViewController {
     private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
     
     // MARK: - LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
         requestTvData()
     }
@@ -60,8 +60,8 @@ extension TVViewController {
         
         // FIXME: - 가끔씩 collectionView 보이지 않는 현상 발생
         let tv = [TMDBAPI.trend(sort: TMDBAPI.TrendSort.day.rawValue),
-        TMDBAPI.toprated(page: 1),
-        TMDBAPI.popular(page: 1)]
+                  TMDBAPI.toprated(page: 1),
+                  TMDBAPI.popular(page: 1)]
         
         tv.enumerated().forEach { index, tmdbAPI in
             group.enter()

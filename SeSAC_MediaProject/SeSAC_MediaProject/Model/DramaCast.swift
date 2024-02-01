@@ -11,7 +11,6 @@ struct DramaCast: Decodable {
     let cast: [CastModel]
 }
 
-// MARK: - Cast
 struct CastModel: Decodable {
     let id: Int
     let name: String
@@ -30,7 +29,6 @@ struct CastModel: Decodable {
     }
 }
 
-// MARK: - Role
 struct Role: Decodable {
     let creditID: String
     let character: String

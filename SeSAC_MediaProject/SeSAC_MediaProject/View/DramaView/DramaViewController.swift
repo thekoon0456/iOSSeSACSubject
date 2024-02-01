@@ -109,7 +109,6 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.configureCellData(Sections.allCases[indexPath.row].rawValue)
         cell.congifureCollectionView(vc: self, tag: indexPath.row)
-        cell.reloadCollectionView()
         return cell
     }
 }

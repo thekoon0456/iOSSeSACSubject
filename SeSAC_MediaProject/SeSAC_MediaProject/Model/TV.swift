@@ -19,7 +19,6 @@ struct TV: Decodable {
     }
 }
 
-// MARK: - Result
 struct TVModel: Decodable {
     let backdropPath: String?
     let genreIDS: [Int]

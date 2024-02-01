@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C1949952B6B7D6200D85DE8 /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */; };
 		7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B8F2B6A33C5001612E4 /* DramaViewController.swift */; };
 		7C2E0B932B6A33DE001612E4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B922B6A33DE001612E4 /* BaseViewController.swift */; };
 		7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		7C2E0B8F2B6A33C5001612E4 /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		7C2E0B922B6A33DE001612E4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCast.swift; sourceTree = "<group>"; };
@@ -147,8 +149,8 @@
 				7CD4B42F2B62765C00CB3405 /* Model */,
 				7CD4B4282B62759300CB3405 /* Network */,
 				7CD4B4272B62758700CB3405 /* View */,
-				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7C43BC8E2B68DCB200AF2470 /* Protocol */,
+				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7C2E0B912B6A33D0001612E4 /* Base */,
 				7C43BCA02B68E37400AF2470 /* ETC */,
 				7CD4B4192B62751400CB3405 /* Main.storyboard */,
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
+				7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */,
 				7C43BCA42B68E60100AF2470 /* TVTableViewCell.swift in Sources */,
 				7C43BC902B68DEE300AF2470 /* TMDBAPIManager.swift in Sources */,
+				7C1949952B6B7D6200D85DE8 /* TMDBAPI.swift in Sources */,
 				7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */,
 				7CD4B4372B6278E800CB3405 /* APIManagerURLSession.swift in Sources */,
 				7CD4B4142B62751400CB3405 /* AppDelegate.swift in Sources */,

@@ -8,19 +8,19 @@
 import Foundation
 
 //Model 공통 채택
-protocol Model { 
-    var posterPath: String? { get }
-    var name: String { get }
-}
+//protocol Model { 
+//    var posterPath: String? { get }
+//    var name: String { get }
+//}
 
 ////뷰컨 공통 채택
 //protocol SetUI {
 //    func configureUI()
 //}
 
-//cell 채택
-protocol SetCell {
-    associatedtype T = Model
-    
-    func configureCellData(_ data: T)
-}
+////cell 채택
+//protocol SetCell {
+//    associatedtype T = Model
+//    
+//    func configureCellData(_ data: T)
+//}

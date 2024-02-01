@@ -19,7 +19,6 @@ final class DramaViewController: BaseViewController {
     
     private let apiManager = TMDBAPIManager.shared
     private let dramaDetailView = DramaDetailView()
-    
     private lazy var dramaTableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -39,40 +38,34 @@ final class DramaViewController: BaseViewController {
         getDramaData()
     }
     
-    private func getDramaData() {
+    func getDramaData() {
         let group = DispatchGroup()
         
         group.enter()
-        apiManager.fetchDetailData(endPoint: DramaEndpoint.tvSeriesDetails.rawValue) { detail in
-            print(detail)
-            self.setDramaDetailView(data: detail)
+        apiManager.fetchData(api: .tvSeriesDetails(id: 82856)) { data in
+            self.setDramaDetailView(data: data)
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchCastData(endPoint: DramaEndpoint.aggregateCredits.rawValue) { cast in
-            self.castList = cast
-            print(self.castList.count)
+        apiManager.fetchData(api: .aggregateCredits(id: 82856, page: 1)) { (data: DramaCast) in
+            self.castList = data.cast
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchTVData(endPoint: DramaEndpoint.recommendations.rawValue) { tv in
-            self.recommendationList = tv
-            print(self.recommendationList.count)
+        apiManager.fetchData(api: .recommendations(id: 82856, page: 1)) { (data: TV) in
+            self.recommendationList = data.results
             group.leave()
         }
         
         group.notify(queue: .main) {
             self.dramaTableView.reloadData()
-            print("완료")
         }
-        
     }
     
     override func configureHierarchy() {
-        view.addSubview(dramaDetailView)
-        view.addSubview(dramaTableView)
+        view.addSubviews(dramaDetailView, dramaTableView)
     }
     
     override func configureLayout() {

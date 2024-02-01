@@ -12,7 +12,7 @@ import SnapKit
 final class TVTableViewCell: BaseTableViewCell {
     
     private let sectionTitle = UILabel()
-    private lazy var collectionView = {
+    private let collectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = .init(width: 120, height: 180)
         layout.minimumLineSpacing = 12
@@ -24,9 +24,11 @@ final class TVTableViewCell: BaseTableViewCell {
         return cv
     }()
     
-    override func configureView() {
+    override func configureHierarchy() {
         contentView.addSubviews(sectionTitle, collectionView)
-        
+    }
+    
+    override func configureLayout() {
         sectionTitle.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(4)
             make.height.equalTo(20)
@@ -42,7 +44,7 @@ final class TVTableViewCell: BaseTableViewCell {
 
 // MARK: - CollectionView
 
-extension TVTableViewCell: SetCell {
+extension TVTableViewCell {
     
     func configureCellData(_ data: String) {
         sectionTitle.text = data

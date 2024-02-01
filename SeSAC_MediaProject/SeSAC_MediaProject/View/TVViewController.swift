@@ -59,13 +59,15 @@ extension TVViewController {
         let group = DispatchGroup()
         
         // FIXME: - 가끔씩 collectionView 보이지 않는 현상 발생
+        let tv = [TMDBAPI.trend(sort: TMDBAPI.TrendSort.day.rawValue),
+        TMDBAPI.toprated(page: 1),
+        TMDBAPI.popular(page: 1)]
         
-        Endpoint.allCases.enumerated().forEach { index, endPoint in
+        tv.enumerated().forEach { index, tmdbAPI in
             group.enter()
-            apiManager.fetchTVData(endPoint: endPoint.rawValue) { result in
+            apiManager.fetchData(api: tmdbAPI) { (result: TV) in
                 print("\(index)")
-                print(result.count, "\(endPoint)")
-                self.list.insert(result, at: index)
+                self.list.insert(result.results, at: index)
                 group.leave()
             }
         }

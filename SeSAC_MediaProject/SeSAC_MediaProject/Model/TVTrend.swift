@@ -20,7 +20,7 @@ struct TV: Decodable {
 }
 
 // MARK: - Result
-struct TVModel: Decodable, Model {
+struct TVModel: Decodable {
     let backdropPath: String?
     let genreIDS: [Int]
     let id: Int

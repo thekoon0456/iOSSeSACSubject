@@ -7,8 +7,7 @@
 
 import Foundation
 
-//// MARK: - DramaEpisode
-struct DramaDetail: Decodable, Model {
+struct DramaDetail: Decodable {
     let id: Int
     let name: String
     let overview: String

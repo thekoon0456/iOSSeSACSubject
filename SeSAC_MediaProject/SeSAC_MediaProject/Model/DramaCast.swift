@@ -12,7 +12,7 @@ struct DramaCast: Decodable {
 }
 
 // MARK: - Cast
-struct CastModel: Decodable, Model {
+struct CastModel: Decodable {
     let id: Int
     let name: String
     let knownForDepartment: String

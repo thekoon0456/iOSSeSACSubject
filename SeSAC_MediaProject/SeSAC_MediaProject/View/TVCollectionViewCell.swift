@@ -17,7 +17,6 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
         iv.contentMode = .scaleAspectFill
         return iv
     }()
-    
     private let titleLabel = UILabel()
     
     override func configureHierarchy() {
@@ -38,22 +37,30 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
     
     override func configureView() {
         titleLabel.textColor = .white
-    }
-}
-
-extension TVCollectionViewCell: SetCell {
-    
-    func configureCellData(_ data: Model) {
-        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        posterImageView.kf.setImage(with: url)
-        titleLabel.text = data.name
-    }
-    
-    func configureUI() {
-        configureView()
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true
         titleLabel.font = .boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
+    }
+}
+
+extension TVCollectionViewCell {
+    
+    func configureCellData<T: Decodable>(_ data: T) {
+        if let data = data as? TVModel {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+            posterImageView.kf.setImage(with: url)
+            titleLabel.text = data.name
+        }
+        if let data = data as? CastModel {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+            posterImageView.kf.setImage(with: url)
+            titleLabel.text = data.name
+        }
+        if let data = data as? TVModel {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+            posterImageView.kf.setImage(with: url)
+            titleLabel.text = data.name
+        }
     }
 }

@@ -20,6 +20,7 @@ import Alamofire
 //}
 
 enum TMDBAPI {
+    
     enum TrendSort: String {
         case day
         case week

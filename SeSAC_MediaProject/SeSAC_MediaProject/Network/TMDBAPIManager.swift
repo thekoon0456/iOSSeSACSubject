@@ -15,8 +15,7 @@ final class TMDBAPIManager {
     
     private init() { }
     
-    func fetchData<T: Decodable>(api: TMDBAPI, completion: @escaping ((T) -> Void)) {
-        
+    func fetchData<T: Decodable>(api: TMDBAPI, type: T.Type = T.self, completion: @escaping ((T) -> Void)) {
         AF.request(api.endPoint,
                    method: api.method,
                    parameters: api.parameters,

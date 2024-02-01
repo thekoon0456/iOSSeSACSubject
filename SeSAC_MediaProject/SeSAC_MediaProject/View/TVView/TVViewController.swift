@@ -65,7 +65,7 @@ extension TVViewController {
         
         tv.enumerated().forEach { index, tmdbAPI in
             group.enter()
-            apiManager.fetchData(api: tmdbAPI) { (result: TV) in
+            apiManager.fetchData(api: tmdbAPI, type: TV.self) { result in
                 print("\(index)")
                 self.list.insert(result.results, at: index)
                 group.leave()

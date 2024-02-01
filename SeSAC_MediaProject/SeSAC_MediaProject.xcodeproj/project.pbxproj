@@ -20,7 +20,7 @@
 		7C43BC932B68DF0D00AF2470 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC922B68DF0D00AF2470 /* Alamofire */; };
 		7C43BC962B68DF1500AF2470 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC952B68DF1500AF2470 /* Kingfisher */; };
 		7C43BC992B68DF2000AF2470 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C43BC982B68DF2000AF2470 /* SnapKit */; };
-		7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */; };
+		7C43BC9B2B68DF5900AF2470 /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BC9A2B68DF5900AF2470 /* TV.swift */; };
 		7C43BCA22B68E3D800AF2470 /* TVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA12B68E3D800AF2470 /* TVViewController.swift */; };
 		7C43BCA42B68E60100AF2470 /* TVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */; };
 		7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */; };
@@ -30,7 +30,6 @@
 		7CD4B41D2B62751500CB3405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41C2B62751500CB3405 /* Assets.xcassets */; };
 		7CD4B4202B62751500CB3405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */; };
 		7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */; };
-		7CD4B42C2B6275E300CB3405 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */; };
 		7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42D2B62763900CB3405 /* TrendCell.swift */; };
 		7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* MovieTrend.swift */; };
 		7CD4B4332B6278AE00CB3405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4322B6278AE00CB3405 /* .gitignore */; };
@@ -50,7 +49,7 @@
 		7C2E0B9C2B6A70A1001612E4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		7C2E0B9E2B6A7426001612E4 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
-		7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTrend.swift; sourceTree = "<group>"; };
+		7C43BC9A2B68DF5900AF2470 /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		7C43BCA12B68E3D800AF2470 /* TVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
 		7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTableViewCell.swift; sourceTree = "<group>"; };
 		7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		7CD4B41F2B62751500CB3405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CD4B4212B62751500CB3405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
-		7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		7CD4B42D2B62763900CB3405 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		7CD4B4302B62768600CB3405 /* MovieTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrend.swift; sourceTree = "<group>"; };
 		7CD4B4322B6278AE00CB3405 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -85,6 +83,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C1949962B6B8F4700D85DE8 /* TVView */ = {
+			isa = PBXGroup;
+			children = (
+				7C43BCA12B68E3D800AF2470 /* TVViewController.swift */,
+				7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */,
+				7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */,
+			);
+			path = TVView;
+			sourceTree = "<group>";
+		};
 		7C2E0B8E2B6A33AA001612E4 /* DramaView */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,14 +111,6 @@
 				7C2E0B9E2B6A7426001612E4 /* BaseUIView.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		7C43BC8E2B68DCB200AF2470 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				7CD4B42B2B6275E300CB3405 /* BaseProtocol.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		7C43BCA02B68E37400AF2470 /* ETC */ = {
@@ -149,9 +149,8 @@
 				7CD4B42F2B62765C00CB3405 /* Model */,
 				7CD4B4282B62759300CB3405 /* Network */,
 				7CD4B4272B62758700CB3405 /* View */,
-				7C43BC8E2B68DCB200AF2470 /* Protocol */,
-				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7C2E0B912B6A33D0001612E4 /* Base */,
+				7CD4B4382B628B7A00CB3405 /* Extension */,
 				7C43BCA02B68E37400AF2470 /* ETC */,
 				7CD4B4192B62751400CB3405 /* Main.storyboard */,
 				7CD4B41C2B62751500CB3405 /* Assets.xcassets */,
@@ -165,9 +164,7 @@
 		7CD4B4272B62758700CB3405 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C43BCA12B68E3D800AF2470 /* TVViewController.swift */,
-				7C43BCA52B68E87500AF2470 /* TVCollectionViewCell.swift */,
-				7C43BCA32B68E60100AF2470 /* TVTableViewCell.swift */,
+				7C1949962B6B8F4700D85DE8 /* TVView */,
 				7C2E0B8E2B6A33AA001612E4 /* DramaView */,
 			);
 			path = View;
@@ -176,8 +173,8 @@
 		7CD4B4282B62759300CB3405 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
 				7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */,
+				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -185,7 +182,7 @@
 		7CD4B42F2B62765C00CB3405 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7C43BC9A2B68DF5900AF2470 /* TVTrend.swift */,
+				7C43BC9A2B68DF5900AF2470 /* TV.swift */,
 				7C2E0B962B6A3DD9001612E4 /* DramaDetail.swift */,
 				7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */,
 			);
@@ -289,7 +286,7 @@
 				7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */,
 				7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */,
 				7C2E0B9B2B6A7091001612E4 /* BaseCollectionViewCell.swift in Sources */,
-				7C43BC9B2B68DF5900AF2470 /* TVTrend.swift in Sources */,
+				7C43BC9B2B68DF5900AF2470 /* TV.swift in Sources */,
 				7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */,
 				7C43BCA62B68E87500AF2470 /* TVCollectionViewCell.swift in Sources */,
 				7C43BCA42B68E60100AF2470 /* TVTableViewCell.swift in Sources */,
@@ -303,7 +300,6 @@
 				7C2E0B992B6A60FE001612E4 /* DramaDetailView.swift in Sources */,
 				7C2E0B932B6A33DE001612E4 /* BaseViewController.swift in Sources */,
 				7C2E0B9F2B6A7426001612E4 /* BaseUIView.swift in Sources */,
-				7CD4B42C2B6275E300CB3405 /* BaseProtocol.swift in Sources */,
 				7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

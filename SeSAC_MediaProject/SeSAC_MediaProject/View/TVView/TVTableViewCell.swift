@@ -60,6 +60,5 @@ extension TVTableViewCell {
     
     func reloadCollectionView() {
         collectionView.reloadData()
-        print(#function)
     }
 }

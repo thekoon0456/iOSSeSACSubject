@@ -19,6 +19,7 @@ final class DramaViewController: BaseViewController {
     
     private let apiManager = TMDBAPIManager.shared
     private let dramaDetailView = DramaDetailView()
+
     private lazy var dramaTableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -42,19 +43,19 @@ final class DramaViewController: BaseViewController {
         let group = DispatchGroup()
         
         group.enter()
-        apiManager.fetchData(api: .tvSeriesDetails(id: 82856)) { data in
+        apiManager.fetchData(api: .tvSeriesDetails(id: 82856), type: DramaDetail.self) { data in
             self.setDramaDetailView(data: data)
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .aggregateCredits(id: 82856, page: 1)) { (data: DramaCast) in
+        apiManager.fetchData(api: .aggregateCredits(id: 82856, page: 1), type: DramaCast.self) { data in
             self.castList = data.cast
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .recommendations(id: 82856, page: 1)) { (data: TV) in
+        apiManager.fetchData(api: .recommendations(id: 82856, page: 1), type: TV.self) { data in
             self.recommendationList = data.results
             group.leave()
         }
@@ -86,6 +87,7 @@ final class DramaViewController: BaseViewController {
     
     
     func setDramaDetailView(data: DramaDetail) {
+        navigationItem.title = data.name
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
         dramaDetailView.posterImageView.kf.setImage(with: url)
         dramaDetailView.name.text = data.name

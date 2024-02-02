@@ -19,33 +19,28 @@ final class TVViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private lazy var tvTableView = {
-        let tv = UITableView()
-        tv.delegate = self
-        tv.dataSource = self
-        tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 220
-        tv.separatorStyle = .none
-        return tv
-    }()
-    
     private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
+    private let tvView = TVView()
     
     // MARK: - LifeCycle
+    
+    override func loadView() {
+        view = tvView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
         requestTvData()
     }
     
     override func configureView() {
-        view.addSubview(tvTableView)
-        
-        tvTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
-        }
+        navigationItem.title = "Tv"
+    }
+    
+    private func configureTableView() {
+        tvView.tableView.delegate = self
+        tvView.tableView.dataSource = self
     }
 }
 
@@ -74,7 +69,7 @@ extension TVViewController {
         
         group.notify(queue: .main) {
             print("\(3)")
-            self.tvTableView.reloadData()
+            self.tvView.tableView.reloadData()
         }
     }
 }
@@ -114,23 +109,3 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
         return cell
     }
 }
-
-// MARK: - Configure
-
-extension TVViewController {
-    
-    func configureUI() {
-        configureAttributes()
-        configureNav()
-        configureView()
-    }
-    
-    private func configureAttributes() {
-        view.backgroundColor = .white
-    }
-    
-    private func configureNav() {
-        navigationItem.title = "Tv"
-    }
-}
-

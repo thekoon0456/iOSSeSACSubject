@@ -5,19 +5,9 @@
 //  Created by Deokhun KIM on 2/1/24.
 //
 
-import Alamofire
+import Foundation
 
-//enum Endpoint: String, CaseIterable {
-//    case trend = "trending/tv/day?language=ko-KR"
-//    case toprated = "tv/top_rated?language=ko-KR&page=12"
-//    case popular = "tv/popular?language=ko-KR&page=12"
-//}
-//
-//enum DramaEndpoint: String, CaseIterable { //만달로리안
-//    case tvSeriesDetails = "tv/82856?language=ko-KR"
-//    case aggregateCredits = "tv/82856/aggregate_credits?language=ko-KR&page=1"
-//    case recommendations = "tv/82856/recommendations?language=ko-KR&page=1"
-//}
+import Alamofire
 
 enum TMDBAPI {
     

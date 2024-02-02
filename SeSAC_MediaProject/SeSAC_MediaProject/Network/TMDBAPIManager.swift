@@ -21,7 +21,7 @@ final class TMDBAPIManager {
                    parameters: api.parameters,
                    headers: api.headers)
             .validate(statusCode: 200...299)
-            .responseDecodable(of: T.self) { response in
+            .responseDecodable(of: type) { response in
                 switch response.result {
                 case .success(let success):
                     completion(success)

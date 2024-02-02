@@ -31,7 +31,6 @@ final class DramaViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestDramaData()
         configureTableView()
     }
     
@@ -40,23 +39,25 @@ final class DramaViewController: BaseViewController {
         dramaView.tableView.dataSource = self
     }
     
-    func requestDramaData() {
+    func requestDramaData(id: Int?) {
+        guard let id else { return }
+        
         let group = DispatchGroup()
         
         group.enter()
-        apiManager.fetchData(api: .tvSeriesDetails(id: 82856), type: DramaDetail.self) { data in
+        apiManager.fetchData(api: .tvSeriesDetails(id: id), type: DramaDetail.self) { data in
             self.setDramaDetailView(data: data)
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .aggregateCredits(id: 82856, page: 1), type: DramaCast.self) { data in
+        apiManager.fetchData(api: .aggregateCredits(id: id, page: 1), type: DramaCast.self) { data in
             self.castList = data.cast
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .recommendations(id: 82856, page: 1), type: TV.self) { data in
+        apiManager.fetchData(api: .recommendations(id: id, page: 1), type: TV.self) { data in
             self.recommendationList = data.results
             group.leave()
         }
@@ -66,14 +67,18 @@ final class DramaViewController: BaseViewController {
         }
     }
     
+    //TODO: - 프로토콜로 넘기기
+    
     func setDramaDetailView(data: DramaDetail) {
         navigationItem.title = data.name
-        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        dramaView.detailView.posterImageView.kf.setImage(with: url)
-        dramaView.detailView.name.text = data.name
-        dramaView.detailView.overView.text = data.overview
-        dramaView.detailView.lastAirDate.text = "최근 방영일: " + data.lastAirDate
-        dramaView.detailView.numberOfEpisodes.text = "총 에피소드 : \(data.numberOfEpisodes)개"
+        let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
+        let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+        dramaView.detailView.backdropImageView.kf.setImage(with: backdropUrl)
+        dramaView.detailView.posterImageView.kf.setImage(with: posterUrl)
+        dramaView.detailView.nameLabel.text = data.name
+        dramaView.detailView.overViewLabel.text = data.overview
+        dramaView.detailView.lastAirDateLabel.text = "최근 방영일: " + data.lastAirDate
+        dramaView.detailView.numberOfEpisodesLabel.text = "총 에피소드 : \(data.numberOfEpisodes)개"
     }
 }
 

@@ -19,9 +19,9 @@ final class TVViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
     private let tvView = TVView()
-    
+    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
+
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -32,10 +32,21 @@ final class TVViewController: BaseViewController {
         super.viewDidLoad()
         
         requestTvData()
+        configureTableView()
     }
     
     override func configureView() {
         navigationItem.title = "Tv"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(searchButtonTapped))
+    }
+    
+    @objc func searchButtonTapped() {
+        let vc = SearchViewController()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func configureTableView() {

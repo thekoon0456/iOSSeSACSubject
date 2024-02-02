@@ -9,45 +9,50 @@ import UIKit
 
 class DramaDetailView: BaseUIView {
     
+    let backdropImageView = UIImageView()
     let posterImageView = UIImageView()
-    let name = UILabel()
-    let overView = UILabel()
-    let lastAirDate = UILabel()
-    let numberOfEpisodes = UILabel()
+    let nameLabel = UILabel()
+    let overViewLabel = UILabel()
+    let lastAirDateLabel = UILabel()
+    let numberOfEpisodesLabel = UILabel()
     
     override func configureHierarchy() {
-        addSubviews(posterImageView, name, overView, lastAirDate, numberOfEpisodes)
+        addSubviews(backdropImageView, posterImageView, nameLabel, overViewLabel, lastAirDateLabel, numberOfEpisodesLabel)
     }
     
     override func configureLayout() {
+        backdropImageView.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
+        }
+        
         posterImageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(safeAreaLayoutGuide).offset(8)
             make.leading.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
             make.width.equalTo(posterImageView.snp.height).multipliedBy(0.7)
         }
         
-        name.snp.makeConstraints { make in
+        nameLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(8)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.height.equalTo(20)
         }
         
-        overView.snp.makeConstraints { make in
-            make.top.equalTo(name.snp.bottom).offset(8)
+        overViewLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
         }
         
-        lastAirDate.snp.makeConstraints { make in
-            make.top.equalTo(overView.snp.bottom).offset(8)
+        lastAirDateLabel.snp.makeConstraints { make in
+            make.top.equalTo(overViewLabel.snp.bottom).offset(8)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
         }
         
-        numberOfEpisodes.snp.makeConstraints { make in
-            make.top.equalTo(lastAirDate.snp.bottom).offset(4)
+        numberOfEpisodesLabel.snp.makeConstraints { make in
+            make.top.equalTo(lastAirDateLabel.snp.bottom).offset(4)
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalToSuperview().offset(-8)
@@ -55,9 +60,16 @@ class DramaDetailView: BaseUIView {
     }
     
     override func configureView() {
-        backgroundColor = .white
+        backgroundColor = .black
+        backdropImageView.alpha = 0.5
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true
-        overView.numberOfLines = 0
+        overViewLabel.numberOfLines = 0
+        nameLabel.font = .systemFont(ofSize: 16)
+        
+        [nameLabel, overViewLabel, lastAirDateLabel, numberOfEpisodesLabel].forEach { label in
+            label.textColor = .white
+            label.font = .systemFont(ofSize: 14)
+        }
     }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 import Alamofire
 
+// MARK: - urlcomponents: https://developer.apple.com/documentation/foundation/urlcomponents
+
 enum TMDBAPI {
     
     enum TrendSort: String {
@@ -22,6 +24,7 @@ enum TMDBAPI {
     case tvSeriesDetails(id: Int)
     case aggregateCredits(id: Int, page: Int)
     case recommendations(id: Int, page: Int)
+    case search(text: String, page: Int)
     
     var endPoint: String {
         switch self {
@@ -37,10 +40,12 @@ enum TMDBAPI {
             baseURL + "tv/\(id)/aggregate_credits"
         case .recommendations(let id, _):
             baseURL + "tv/\(id)/recommendations"
+        case .search(text: let text):
+            baseURL + "search/tv"
         }
     }
     
-    var baseURL: String {
+    private var baseURL: String {
         "https://api.themoviedb.org/3/"
     }
     
@@ -50,28 +55,24 @@ enum TMDBAPI {
     
     var method: HTTPMethod {
         switch self {
-        case .trend, .toprated, .popular, .tvSeriesDetails, .aggregateCredits, .recommendations:
+        case .trend, .toprated, .popular, .tvSeriesDetails, .aggregateCredits, .recommendations, .search:
             return .get
         }
     }
     
     var parameters: Parameters {
         switch self {
-        case .trend:
+        case .trend, .tvSeriesDetails:
             ["language": "ko-KR"]
-        case .toprated(let page):
+        case .toprated(let page), .popular(let page):
             ["language": "ko-KR",
              "page": "\(page)"]
-        case .popular(let page):
+        case .aggregateCredits(_, let page), .recommendations(_, let page):
             ["language": "ko-KR",
              "page": "\(page)"]
-        case .tvSeriesDetails:
-            ["language": "ko-KR"]
-        case .aggregateCredits(_, let page):
-            ["language": "ko-KR",
-             "page": "\(page)"]
-        case .recommendations(_, let page):
-            ["language": "ko-KR",
+        case .search(text: let text, let page):
+            ["query": text,
+             "language": "ko-KR",
              "page": "\(page)"]
         }
     }

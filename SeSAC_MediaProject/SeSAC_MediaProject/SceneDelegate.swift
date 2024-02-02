@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
         
-//        let vc = TVViewController()
-        let vc = DramaViewController()
+        let vc = TVViewController()
+//        let vc = DramaViewController()
         let nav = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = nav

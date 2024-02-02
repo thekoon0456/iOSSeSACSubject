@@ -18,28 +18,29 @@ final class DramaViewController: BaseViewController {
     }
     
     private let apiManager = TMDBAPIManager.shared
-    private let dramaDetailView = DramaDetailView()
-
-    private lazy var dramaTableView = {
-        let tv = UITableView()
-        tv.delegate = self
-        tv.dataSource = self
-        tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 220
-        tv.separatorStyle = .none
-        return tv
-    }()
+    private let dramaView = DramaView()
+    private var castList = [CastModel]()
+    private var recommendationList = [TVModel]()
     
-    var castList = [CastModel]()
-    var recommendationList = [TVModel]()
+    // MARK: - Lifecycles
+    
+    override func loadView() {
+        view = dramaView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDramaData()
+        requestDramaData()
+        configureTableView()
     }
     
-    func getDramaData() {
+    func configureTableView() {
+        dramaView.tableView.delegate = self
+        dramaView.tableView.dataSource = self
+    }
+    
+    func requestDramaData() {
         let group = DispatchGroup()
         
         group.enter()
@@ -61,39 +62,18 @@ final class DramaViewController: BaseViewController {
         }
         
         group.notify(queue: .main) {
-            self.dramaTableView.reloadData()
+            self.dramaView.tableView.reloadData()
         }
     }
-    
-    override func configureHierarchy() {
-        view.addSubviews(dramaDetailView, dramaTableView)
-    }
-    
-    override func configureLayout() {
-        dramaDetailView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
-            make.height.equalTo(300)
-        }
-        
-        dramaTableView.snp.makeConstraints { make in
-            make.top.equalTo(dramaDetailView.snp.bottom).offset(8)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
-    
-    override func configureView() {
-        view.backgroundColor = .white
-    }
-    
     
     func setDramaDetailView(data: DramaDetail) {
         navigationItem.title = data.name
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        dramaDetailView.posterImageView.kf.setImage(with: url)
-        dramaDetailView.name.text = data.name
-        dramaDetailView.overView.text = data.overview
-        dramaDetailView.lastAirDate.text = "최근 방영일: " + data.lastAirDate
-        dramaDetailView.numberOfEpisodes.text = "총 에피소드 : \(data.numberOfEpisodes)개"
+        dramaView.detailView.posterImageView.kf.setImage(with: url)
+        dramaView.detailView.name.text = data.name
+        dramaView.detailView.overView.text = data.overview
+        dramaView.detailView.lastAirDate.text = "최근 방영일: " + data.lastAirDate
+        dramaView.detailView.numberOfEpisodes.text = "총 에피소드 : \(data.numberOfEpisodes)개"
     }
 }
 

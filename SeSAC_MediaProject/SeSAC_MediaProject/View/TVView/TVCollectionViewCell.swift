@@ -12,11 +12,7 @@ import SnapKit
 
 final class TVCollectionViewCell: BaseCollectionViewCell {
     
-    private let posterImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        return iv
-    }()
+    private let posterImageView = UIImageView()
     private let titleLabel = UILabel()
     
     override func configureHierarchy() {

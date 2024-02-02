@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C1949952B6B7D6200D85DE8 /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */; };
 		7C2B174B2B6CC41E006622D5 /* TVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B174A2B6CC41E006622D5 /* TVView.swift */; };
+		7C2B174D2B6CC60E006622D5 /* DramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B174C2B6CC60E006622D5 /* DramaView.swift */; };
 		7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B8F2B6A33C5001612E4 /* DramaViewController.swift */; };
 		7C2E0B932B6A33DE001612E4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B922B6A33DE001612E4 /* BaseViewController.swift */; };
 		7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		7C2B174A2B6CC41E006622D5 /* TVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVView.swift; sourceTree = "<group>"; };
+		7C2B174C2B6CC60E006622D5 /* DramaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaView.swift; sourceTree = "<group>"; };
 		7C2E0B8F2B6A33C5001612E4 /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		7C2E0B922B6A33DE001612E4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7C2E0B942B6A3D4A001612E4 /* DramaCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCast.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2E0B8F2B6A33C5001612E4 /* DramaViewController.swift */,
+				7C2B174C2B6CC60E006622D5 /* DramaView.swift */,
 				7C2E0B982B6A60FE001612E4 /* DramaDetailView.swift */,
 			);
 			path = DramaView;
@@ -284,6 +287,7 @@
 			files = (
 				7C43BCA22B68E3D800AF2470 /* TVViewController.swift in Sources */,
 				7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */,
+				7C2B174D2B6CC60E006622D5 /* DramaView.swift in Sources */,
 				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
 				7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */,
 				7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */,

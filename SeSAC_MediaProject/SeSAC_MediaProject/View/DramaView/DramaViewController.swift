@@ -17,7 +17,7 @@ final class DramaViewController: BaseViewController {
         case DramaRecommends
     }
     
-    private let apiManager = TMDBAPIManager.shared
+    private var apiManager = TMDBAPIManager.shared
     private let dramaView = DramaView()
     private var castList = [CastModel]()
     private var recommendationList = [TVModel]()
@@ -66,11 +66,10 @@ final class DramaViewController: BaseViewController {
             self.dramaView.tableView.reloadData()
         }
     }
-    
-    //TODO: - 프로토콜로 넘기기
-    
+}
+
+extension DramaViewController {
     func setDramaDetailView(data: DramaDetail) {
-        navigationItem.title = data.name
         let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
         let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
         dramaView.detailView.backdropImageView.kf.setImage(with: backdropUrl)

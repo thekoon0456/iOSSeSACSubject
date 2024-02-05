@@ -26,22 +26,22 @@ enum TMDBAPI {
     case recommendations(id: Int, page: Int)
     case search(text: String, page: Int)
     
-    var endPoint: String {
+    var endPoint: URL {
         switch self {
         case .trend(let sort):
-            baseURL + "trending/tv/\(sort)"
+            URL(string: baseURL + "trending/tv/\(sort)") ?? URL(string: baseURL)!
         case .toprated:
-            baseURL + "tv/top_rated?language=ko-KR&page=1"
+            URL(string: baseURL + "tv/top_rated?language=ko-KR&page=1") ?? URL(string: baseURL)!
         case .popular:
-            baseURL + "tv/popular?language=ko-KR&page=1"
+            URL(string: baseURL + "tv/popular?language=ko-KR&page=1") ?? URL(string: baseURL)!
         case .tvSeriesDetails(let id):
-            baseURL + "tv/\(id)"
+            URL(string: baseURL + "tv/\(id)") ?? URL(string: baseURL)!
         case .aggregateCredits(let id, _):
-            baseURL + "tv/\(id)/aggregate_credits"
+            URL(string: baseURL + "tv/\(id)/aggregate_credits") ?? URL(string: baseURL)!
         case .recommendations(let id, _):
-            baseURL + "tv/\(id)/recommendations"
+            URL(string: baseURL + "tv/\(id)/recommendations") ?? URL(string: baseURL)!
         case .search:
-            baseURL + "search/tv"
+            URL(string: baseURL + "search/tv") ?? URL(string: baseURL)!
         }
     }
     

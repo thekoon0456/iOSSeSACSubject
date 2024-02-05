@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
+        window?.overrideUserInterfaceStyle = .dark //다크모드 고정
         
         let vc = TVViewController()
 //        let vc = DramaViewController()
@@ -24,6 +25,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = nav
     }
-
 }
 

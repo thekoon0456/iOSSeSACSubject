@@ -17,7 +17,6 @@ final class DramaViewController: BaseViewController {
         case DramaRecommends = "추천 드라마"
     }
     
-    private var apiManager = TMDBAPIManager.shared
     private let dramaView = DramaView()
     private var castList = [CastModel]()
     private var recommendationList = [TVModel]()
@@ -38,30 +37,63 @@ final class DramaViewController: BaseViewController {
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }
-
+    
     func requestDramaData(id: Int?) {
         guard let id else { return }
         
         let group = DispatchGroup()
         
         group.enter()
-        apiManager.fetchData(api: .tvSeriesDetails(id: id), type: DramaDetail.self) { data in
-            self.setDramaDetailView(data: data)
-            DispatchQueue.main.async {
-                self.navigationItem.title = data.name
+        TMDBURLSessionManager.shared.fetchURLSessionData(api: .tvSeriesDetails(id: id), type: DramaDetail.self) { result in
+            switch result {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    self.setDramaDetailView(data: success)
+                    self.navigationItem.title = success.name
+                }
+            case .failure(let failure):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    errorAlert(title: failure.title, message: failure.description) { [weak self] in
+                        guard let self else { return }
+                        requestDramaData(id: id)
+                    }
+                }
             }
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .aggregateCredits(id: id, page: 1), type: DramaCast.self) { data in
-            self.castList = data.cast
+        TMDBURLSessionManager.shared.fetchURLSessionData(api: .aggregateCredits(id: id, page: 1), type: DramaCast.self) { result in
+            switch result {
+            case .success(let success):
+                self.castList = success.cast
+            case .failure(let failure):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    errorAlert(title: failure.title, message: failure.description) { [weak self] in
+                        guard let self else { return }
+                        requestDramaData(id: id)
+                    }
+                }
+            }
             group.leave()
         }
         
         group.enter()
-        apiManager.fetchData(api: .recommendations(id: id, page: 1), type: TV.self) { data in
-            self.recommendationList = data.results
+        TMDBURLSessionManager.shared.fetchURLSessionData(api: .recommendations(id: id, page: 1), type: TV.self) { result in
+            switch result {
+            case .success(let success):
+                self.recommendationList = success.results
+            case .failure(let failure):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    errorAlert(title: failure.title, message: failure.description) { [weak self] in
+                        guard let self else { return }
+                        requestDramaData(id: id)
+                    }
+                }
+            }
             group.leave()
         }
         

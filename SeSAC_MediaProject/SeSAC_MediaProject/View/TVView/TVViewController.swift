@@ -54,6 +54,7 @@ final class TVViewController: BaseViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(searchButtonTapped))
+        navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = .black
     }
     
     @objc func searchButtonTapped() {

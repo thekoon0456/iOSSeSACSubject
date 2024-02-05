@@ -10,17 +10,15 @@ import UIKit
 final class SearchViewController: BaseViewController {
     
     private let searchBar = UISearchBar()
-    private let emptyView = UIView()
-    private let emptyImageView = UIImageView()
-    private let emptyLabel = UILabel()
+    private let tableView = UITableView()
+    
     private lazy var tabGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(dismissKeyboard))
     
     private lazy var recentSearchTableView = {
         let tv = UITableView(frame: .zero, style: .plain)
-        tv.register(RecentSearchCell.self,
-                           forCellReuseIdentifier: RecentSearchCell.identifier)
-        tv.tableHeaderView = recentSearchHeaderView
+        tv.register(SearchResultCell.self,
+                           forCellReuseIdentifier: SearchResultCell.identifier)
         tv.sectionHeaderHeight = 40
         tv.rowHeight = 50
         tv.separatorStyle = .none
@@ -28,52 +26,10 @@ final class SearchViewController: BaseViewController {
         return tv
     }()
     
-    //헤더뷰
-    private lazy var recentSearchHeaderView = {
-        let frame = CGRect(x: 0,
-                           y: 0,
-                           width: UIScreen.main.bounds.width,
-                           height: 40)
-        let headerView = UIView(frame: frame)
-        headerView.backgroundColor = .black
-        headerView.addSubview(headerTitle)
-        headerView.addSubview(deleteAllButton)
-        
-        return headerView
-    }()
-    
-    //최근 검색
-    private lazy var headerTitle = {
-        let frame = CGRect(x: 10,
-                           y: 5,
-                           width: UIScreen.main.bounds.width,
-                           height: 30)
-        let label = UILabel(frame: frame)
-        setLabel(label,
-                 text: "검색하기",
-                 fontSize: 15,
-                 color: .white)
-        return label
-    }()
-    
-    //모두 지우기 버튼
-    private let deleteAllButton = {
-        let frame = CGRect(x: UIScreen.main.bounds.width - 100,
-                           y: 5,
-                           width: 100,
-                           height: 30)
-        let button = UIButton(frame: frame)
-        button.setTitle("모두 지우기",
-                        for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 13)
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
+    var list: [TVModel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
     // MARK: - Selectors
@@ -86,8 +42,7 @@ final class SearchViewController: BaseViewController {
     // MARK: - Helpers
     
     override func configureHierarchy() {
-        view.addSubviews(searchBar, recentSearchTableView, emptyView)
-        emptyView.addSubviews(emptyImageView, emptyLabel)
+        view.addSubviews(searchBar, tableView)
     }
     
     override func configureLayout() {
@@ -98,54 +53,44 @@ final class SearchViewController: BaseViewController {
         view.backgroundColor = .black
         configureNav()
         configureSearchBar()
-        configureEmptyView()
+        tableView.backgroundColor = .clear
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.identifier)
     }
 }
 
 // MARK: - SearchBar
 
 extension SearchViewController: UISearchBarDelegate {
-    //
-    //    //textField 입력 시작할때 dismiss제스처 달기
-    //    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    //        view.addGestureRecognizer(tabGesture)
-    //    }
-    //
+       
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        //소문자로 바꾸고, whitespace 다듬기
+        let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
         
-        TMDBAPIManager.shared.fetchData(api: .search(text: searchBar.text!, page: 1), type: TV.self) { tv in
+        //엔터치면 첫번째 게시물 보여줌
+        TMDBAPIManager.shared.fetchData(api: .search(text: inputText, page: 1), type: TV.self) { tv in
             let vc = DramaViewController()
+            vc.navigationItem.title = searchBar.text!
             vc.requestDramaData(id: tv.results.first?.id)
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
+        dismissKeyboard()
+        searchBar.text = nil
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchText = searchBar.text else { return }
+        //소문자로 바꾸고, whitespace 다듬기
+        let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
+        
+        TMDBAPIManager.shared.fetchData(api: .search(text: inputText, page: 1), type: TV.self) { tv in
+            self.list = tv.results
+        }
     }
 }
-
-////        guard var list = viewModel.currentUserValue?.searchResults,
-//        guard let searchText = searchBar.text
-//        else { return }
-//        
-//        //소문자로 바꿔 저장, whitespace 다듬기
-//        let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
-//        
-//        //list에 기존 검색어를 가지고 있으면 list의 가장 위로 올려줌
-//        if list.contains(where: { $0 == inputText }) {
-//            guard let index = list.firstIndex(of: inputText) else { return }
-//            list.remove(at: index)
-//        }
-//        
-//        //최근 검색 list에 추가
-//        list.insert(inputText, at: 0)
-//        viewModel.updateUserSearchResults(input: list)
-//        
-//        //화면이동
-//        viewModel.pushSearchResult(data: inputText)
-//        
-//        //textField 초기화
-//        dismissKeyboard()
-//        searchBar.text = nil
-//    }
-//}
 
 // MARK: - Configure
 
@@ -159,22 +104,11 @@ extension SearchViewController {
     private func configureSearchBar() {
         searchBar.delegate = self
         searchBar.barStyle = .black
-        searchBar.barTintColor = .darkGray
+        searchBar.barTintColor = .black
         searchBar.tintColor = .white
+        searchBar.searchTextField.backgroundColor = .secondarySystemBackground
+        searchBar.searchTextField.textColor = .white
         searchBar.placeholder = "검색해주세요"
-    }
-    
-    private func configureEmptyView() {
-        emptyView.isHidden = true
-        emptyView.backgroundColor = .clear
-        emptyImageView.image = UIImage(systemName: "xmark")
-        emptyImageView.contentMode = .scaleAspectFill
-        setLabel(emptyLabel,
-                 text: "TV프로그램을 입력해주세요.",
-                 fontSize: 16,
-                 isBold: true,
-                 color: .label,
-                 alignment: .center)
     }
     
     private func setLayout() {
@@ -182,26 +116,36 @@ extension SearchViewController {
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
-        recentSearchTableView.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+}
+
+// MARK: - TableView
+
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.identifier, for: indexPath) as? SearchResultCell
+        else { return UITableViewCell() }
         
-        emptyView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        emptyImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(emptyView.snp.width).multipliedBy(0.5)
-        }
-        
-        emptyLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyImageView.snp.bottom).offset(32)
-            make.centerX.equalToSuperview()
-        }
+        cell.configureCellData(list[indexPath.item])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DramaViewController()
+        vc.requestDramaData(id: list[indexPath.item].id)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
     }
 }

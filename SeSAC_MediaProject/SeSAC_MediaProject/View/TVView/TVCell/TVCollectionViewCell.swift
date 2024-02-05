@@ -54,8 +54,8 @@ extension TVCollectionViewCell {
         titleLabel.text = data.name
     }
     
-    // MARK: - cell에서 구현할때는 제네릭보다는 차라리 모델마다 개별적인 함수를 만들어서 관리하기
-    //타입캐스팅도 리소스가 들고, 나중에 관리가 힘들어짐
+// MARK: - cell에서 구현할때는 제네릭보다는 차라리 모델마다 개별적인 함수를 만들어서 관리하기
+//타입캐스팅도 리소스가 들고, 나중에 관리가 힘들어짐
 //    func configureCellData<T: Decodable>(_ data: T) {
 //        if let data = data as? TVModel  {
 //            let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")

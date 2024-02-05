@@ -13,6 +13,7 @@ struct DramaDetail: Decodable {
     let overview: String
     let backdropPath: String
     let genres: [Genre]
+    let homepage: String
     let lastAirDate: String
     let numberOfEpisodes: Int
     let numberOfSeasons: Int
@@ -27,6 +28,7 @@ struct DramaDetail: Decodable {
         case overview
         case backdropPath = "backdrop_path"
         case genres
+        case homepage
         case lastAirDate = "last_air_date"
         case numberOfEpisodes = "number_of_episodes"
         case numberOfSeasons = "number_of_seasons"

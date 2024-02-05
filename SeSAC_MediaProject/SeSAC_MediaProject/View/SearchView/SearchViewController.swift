@@ -24,6 +24,7 @@ final class SearchViewController: BaseViewController {
         tv.sectionHeaderHeight = 40
         tv.rowHeight = 50
         tv.separatorStyle = .none
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -34,7 +35,7 @@ final class SearchViewController: BaseViewController {
                            width: UIScreen.main.bounds.width,
                            height: 40)
         let headerView = UIView(frame: frame)
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = .black
         headerView.addSubview(headerTitle)
         headerView.addSubview(deleteAllButton)
         
@@ -51,7 +52,7 @@ final class SearchViewController: BaseViewController {
         setLabel(label,
                  text: "검색하기",
                  fontSize: 15,
-                 color: UIColor.label)
+                 color: .white)
         return label
     }()
     
@@ -65,7 +66,7 @@ final class SearchViewController: BaseViewController {
         button.setTitle("모두 지우기",
                         for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
-        button.setTitleColor(.label, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     
@@ -94,7 +95,7 @@ final class SearchViewController: BaseViewController {
     }
     
     override func configureView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         configureNav()
         configureSearchBar()
         configureEmptyView()
@@ -157,8 +158,8 @@ extension SearchViewController {
     
     private func configureSearchBar() {
         searchBar.delegate = self
-        searchBar.searchTextField.backgroundColor = .white
-        searchBar.barTintColor = .white
+        searchBar.barStyle = .black
+        searchBar.barTintColor = .darkGray
         searchBar.tintColor = .white
         searchBar.placeholder = "검색해주세요"
     }

@@ -60,7 +60,7 @@ class DramaDetailView: BaseUIView {
     }
     
     override func configureView() {
-        backgroundColor = .white
+        backgroundColor = .black
         backdropImageView.alpha = 0.5
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true

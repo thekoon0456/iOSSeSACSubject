@@ -13,8 +13,9 @@ final class DramaView: BaseUIView {
     let tableView: UITableView = {
         let tv = UITableView()
         tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 220
+        tv.rowHeight = 240
         tv.separatorStyle = .none
+        tv.backgroundColor = .clear
         return tv
     }()
 

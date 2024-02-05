@@ -15,6 +15,17 @@ final class TVViewController: BaseViewController {
         case tvTrend = "TVTrend"
         case tvTopRated = "TVTopRated"
         case tvPopular = "TVPopular"
+        
+        var title: String {
+            switch self {
+            case .tvTrend:
+                "트렌드 TV"
+            case .tvTopRated:
+                "이번주 Top Rated"
+            case .tvPopular:
+                "인기 TV 프로그램"
+            }
+        }
     }
     
     // MARK: - Properties
@@ -36,7 +47,9 @@ final class TVViewController: BaseViewController {
     }
     
     override func configureView() {
-        navigationItem.title = "Tv"
+        navigationItem.title = "TV"
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white ]
+        navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
                                                             style: .plain,
                                                             target: self,
@@ -79,8 +92,6 @@ extension TVViewController {
                 switch result {
                 case .success(let success):
                     list.append((index, success.results))
-//                    self.list.insert(success.results, at: index)
-                    group.leave()
                 case .failure(let failure):
                     print(failure)
                     DispatchQueue.main.async { [weak self] in
@@ -89,10 +100,10 @@ extension TVViewController {
                                         message: failure.description) { [weak self] in
                             guard let self else { return }
                             requestTvData()
-                            group.leave()
                         }
                     }
                 }
+                group.leave()
             }
         }
         
@@ -115,7 +126,7 @@ extension TVViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TVTableViewCell.identifier, for: indexPath) as? TVTableViewCell
         else { return UITableViewCell() }
         
-        cell.configureCellData(Sections.allCases[indexPath.row].rawValue)
+        cell.configureCellData(Sections.allCases[indexPath.row].title)
         cell.congifureCollectionView(vc: self, tag: indexPath.row)
         return cell
     }
@@ -126,7 +137,7 @@ extension TVViewController: UITableViewDelegate, UITableViewDataSource {
 extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let list = list[safe: collectionView.tag] else { return 0}
+        guard let list = list[safe: collectionView.tag] else { return 0 }
         return list.count
     }
     
@@ -143,11 +154,5 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
         let vc = DramaViewController()
         vc.requestDramaData(id: list[collectionView.tag][indexPath.item].id)
         navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension Array {
-    subscript(safe index: Int) -> Element? {
-        return indices ~= index ? self[index] : nil
     }
 }

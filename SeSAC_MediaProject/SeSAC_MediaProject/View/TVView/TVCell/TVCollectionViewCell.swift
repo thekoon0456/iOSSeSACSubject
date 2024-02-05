@@ -36,7 +36,7 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true
         titleLabel.font = .boldSystemFont(ofSize: 14)
-        titleLabel.textColor = .white
+        contentView.backgroundColor = .black
     }
 }
 

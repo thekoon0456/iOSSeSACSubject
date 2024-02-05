@@ -13,8 +13,8 @@ import SnapKit
 final class DramaViewController: BaseViewController {
     
     enum Sections: String, CaseIterable {
-        case DramaCasting
-        case DramaRecommends
+        case DramaCasting = "캐스팅"
+        case DramaRecommends = "추천 드라마"
     }
     
     private var apiManager = TMDBAPIManager.shared
@@ -38,7 +38,7 @@ final class DramaViewController: BaseViewController {
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }
-    
+
     func requestDramaData(id: Int?) {
         guard let id else { return }
         
@@ -47,6 +47,9 @@ final class DramaViewController: BaseViewController {
         group.enter()
         apiManager.fetchData(api: .tvSeriesDetails(id: id), type: DramaDetail.self) { data in
             self.setDramaDetailView(data: data)
+            DispatchQueue.main.async {
+                self.navigationItem.title = data.name
+            }
             group.leave()
         }
         
@@ -70,7 +73,7 @@ final class DramaViewController: BaseViewController {
 
 extension DramaViewController {
     func setDramaDetailView(data: DramaDetail) {
-         dramaView.detailView.setDramaDetailView(data: data)
+        dramaView.detailView.setDramaDetailView(data: data)
     }
 }
 

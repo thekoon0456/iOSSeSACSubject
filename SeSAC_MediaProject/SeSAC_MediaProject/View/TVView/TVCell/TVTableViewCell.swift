@@ -21,6 +21,7 @@ final class TVTableViewCell: BaseTableViewCell {
         layout.scrollDirection = .horizontal
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -30,7 +31,7 @@ final class TVTableViewCell: BaseTableViewCell {
     
     override func configureLayout() {
         sectionTitle.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(4)
+            make.top.leading.equalToSuperview().offset(12)
             make.height.equalTo(20)
         }
         
@@ -39,6 +40,11 @@ final class TVTableViewCell: BaseTableViewCell {
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
         }
+    }
+    
+    override func configureView() {
+        contentView.backgroundColor = .black
+        sectionTitle.textColor = .white
     }
 }
 

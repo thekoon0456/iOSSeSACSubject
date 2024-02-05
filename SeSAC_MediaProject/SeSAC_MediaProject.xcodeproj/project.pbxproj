@@ -31,17 +31,14 @@
 		7C5EA5D22B70A7740020DD90 /* TMDBURLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EA5D12B70A7740020DD90 /* TMDBURLSessionManager.swift */; };
 		7C5EA5D42B70AD3B0020DD90 /* TMDBAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EA5D32B70AD3B0020DD90 /* TMDBAPIRouter.swift */; };
 		7C5EA5D62B70BB0B0020DD90 /* UIVIewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EA5D52B70BB0B0020DD90 /* UIVIewController+.swift */; };
+		7C5EA5DA2B70C8E60020DD90 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EA5D92B70C8E60020DD90 /* Array+.swift */; };
 		7CD4B4142B62751400CB3405 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4132B62751400CB3405 /* AppDelegate.swift */; };
 		7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4152B62751400CB3405 /* SceneDelegate.swift */; };
 		7CD4B41B2B62751400CB3405 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4192B62751400CB3405 /* Main.storyboard */; };
 		7CD4B41D2B62751500CB3405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41C2B62751500CB3405 /* Assets.xcassets */; };
 		7CD4B4202B62751500CB3405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */; };
-		7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */; };
-		7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B42D2B62763900CB3405 /* TrendCell.swift */; };
-		7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4302B62768600CB3405 /* MovieTrend.swift */; };
 		7CD4B4332B6278AE00CB3405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4322B6278AE00CB3405 /* .gitignore */; };
 		7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4342B6278C000CB3405 /* APIKEY.swift */; };
-		7CD4B4372B6278E800CB3405 /* APIManagerURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */; };
 		7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4392B628B8A00CB3405 /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +64,7 @@
 		7C5EA5D12B70A7740020DD90 /* TMDBURLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBURLSessionManager.swift; sourceTree = "<group>"; };
 		7C5EA5D32B70AD3B0020DD90 /* TMDBAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIRouter.swift; sourceTree = "<group>"; };
 		7C5EA5D52B70BB0B0020DD90 /* UIVIewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+.swift"; sourceTree = "<group>"; };
+		7C5EA5D92B70C8E60020DD90 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		7CD4B4102B62751400CB3405 /* SeSAC_MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD4B4132B62751400CB3405 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD4B4152B62751400CB3405 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,12 +72,8 @@
 		7CD4B41C2B62751500CB3405 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CD4B41F2B62751500CB3405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CD4B4212B62751500CB3405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
-		7CD4B42D2B62763900CB3405 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
-		7CD4B4302B62768600CB3405 /* MovieTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrend.swift; sourceTree = "<group>"; };
 		7CD4B4322B6278AE00CB3405 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7CD4B4342B6278C000CB3405 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
-		7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerURLSession.swift; sourceTree = "<group>"; };
 		7CD4B4392B628B8A00CB3405 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,17 +140,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		7C43BCA02B68E37400AF2470 /* ETC */ = {
-			isa = PBXGroup;
-			children = (
-				7CD4B4362B6278E800CB3405 /* APIManagerURLSession.swift */,
-				7CD4B4302B62768600CB3405 /* MovieTrend.swift */,
-				7CD4B4292B6275AA00CB3405 /* TrendViewController.swift */,
-				7CD4B42D2B62763900CB3405 /* TrendCell.swift */,
-			);
-			path = ETC;
-			sourceTree = "<group>";
-		};
 		7C5EA5D72B70C1270020DD90 /* AF */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +185,6 @@
 				7CD4B4272B62758700CB3405 /* View */,
 				7C2E0B912B6A33D0001612E4 /* Base */,
 				7CD4B4382B628B7A00CB3405 /* Extension */,
-				7C43BCA02B68E37400AF2470 /* ETC */,
 				7CD4B4192B62751400CB3405 /* Main.storyboard */,
 				7CD4B41C2B62751500CB3405 /* Assets.xcassets */,
 				7CD4B41E2B62751500CB3405 /* LaunchScreen.storyboard */,
@@ -246,6 +228,7 @@
 			children = (
 				7CD4B4392B628B8A00CB3405 /* UIView+.swift */,
 				7C5EA5D52B70BB0B0020DD90 /* UIVIewController+.swift */,
+				7C5EA5D92B70C8E60020DD90 /* Array+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,10 +317,8 @@
 			files = (
 				7C5EA5D62B70BB0B0020DD90 /* UIVIewController+.swift in Sources */,
 				7C43BCA22B68E3D800AF2470 /* TVViewController.swift in Sources */,
-				7CD4B4312B62768600CB3405 /* MovieTrend.swift in Sources */,
 				7C2B17532B6CD316006622D5 /* RecentSearchCell.swift in Sources */,
 				7C2B174D2B6CC60E006622D5 /* DramaView.swift in Sources */,
-				7CD4B42A2B6275AA00CB3405 /* TrendViewController.swift in Sources */,
 				7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */,
 				7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */,
 				7C2E0B952B6A3D4A001612E4 /* DramaCast.swift in Sources */,
@@ -351,7 +332,7 @@
 				7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */,
 				7C2B17512B6CD279006622D5 /* SearchViewController.swift in Sources */,
 				7C2B174B2B6CC41E006622D5 /* TVView.swift in Sources */,
-				7CD4B4372B6278E800CB3405 /* APIManagerURLSession.swift in Sources */,
+				7C5EA5DA2B70C8E60020DD90 /* Array+.swift in Sources */,
 				7CD4B4142B62751400CB3405 /* AppDelegate.swift in Sources */,
 				7C2E0B972B6A3DD9001612E4 /* DramaDetail.swift in Sources */,
 				7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */,
@@ -360,7 +341,6 @@
 				7C5EA5D42B70AD3B0020DD90 /* TMDBAPIRouter.swift in Sources */,
 				7C2E0B9F2B6A7426001612E4 /* BaseUIView.swift in Sources */,
 				7C5EA5D22B70A7740020DD90 /* TMDBURLSessionManager.swift in Sources */,
-				7CD4B42E2B62763900CB3405 /* TrendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

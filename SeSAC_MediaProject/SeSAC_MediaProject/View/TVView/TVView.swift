@@ -12,8 +12,9 @@ final class TVView: BaseUIView {
     let tableView = {
         let tv = UITableView() 
         tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 220
+        tv.rowHeight = 240
         tv.separatorStyle = .none
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -28,6 +29,6 @@ final class TVView: BaseUIView {
     }
     
     override func configureView() {
-        backgroundColor = .white
+        backgroundColor = .black
     }
 }

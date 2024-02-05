@@ -40,7 +40,7 @@ enum TMDBAPI {
             baseURL + "tv/\(id)/aggregate_credits"
         case .recommendations(let id, _):
             baseURL + "tv/\(id)/recommendations"
-        case .search(text: let text):
+        case .search:
             baseURL + "search/tv"
         }
     }

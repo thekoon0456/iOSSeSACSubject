@@ -71,20 +71,28 @@ extension TVViewController {
         
         tv.enumerated().forEach { index, tmdbAPI in
             group.enter()
-            TMDBURLSessionManager.shared.fetchURLSessionData(api: tmdbAPI, type: TV.self) { result in
+            TMDBURLSessionManager.shared.fetchURLSessionData(api: tmdbAPI, type: TV.self) { [weak self] result in
+                guard let self else { return }
                 switch result {
                 case .success(let success):
                     self.list.insert(success.results, at: index)
                     group.leave()
                 case .failure(let failure):
                     print(failure)
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        errorAlert(title: failure.title,
+                                        message: failure.description) { [weak self] in
+                            guard let self else { return }
+                            requestTvData()
+                        }
+                    }
                     group.leave()
                 }
             }
         }
         
         group.notify(queue: .main) {
-            print("\(3)")
             self.tvView.tableView.reloadData()
         }
     }

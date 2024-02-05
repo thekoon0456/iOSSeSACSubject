@@ -11,7 +11,7 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var timer: Timer?
+    private let throttle = ThrottleManager()
     
     private lazy var searchBar = UISearchBar().then {
         $0.delegate = self
@@ -36,21 +36,6 @@ final class SearchViewController: BaseViewController {
     var list: [TVModel] = [] {
         didSet {
             tableView.reloadData()
-        }
-    }
-    
-    deinit {
-        timer?.invalidate()
-    }
-    
-    // MARK: - Selectors
-    @objc private func throttle(_ sender: UISearchBar) {
-        guard let searchText = searchBar.text else { return }
-        let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
-        
-        TMDBAPIManager.shared.fetchData(api: .search(text: inputText, page: 1), type: TV.self) { tv in
-            print("요청: \(inputText)")
-            self.list = tv.results
         }
     }
     
@@ -79,7 +64,7 @@ final class SearchViewController: BaseViewController {
 // MARK: - SearchBar
 
 extension SearchViewController: UISearchBarDelegate {
-       
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         //소문자로 바꾸고, whitespace 다듬기
@@ -98,12 +83,15 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.5,
-                                     target: self,
-                                     selector: #selector(throttle(_ :)),
-                                     userInfo: nil,
-                                     repeats: false)
+        throttle.execute(timeInterval: 1.0) {
+            guard let searchText = searchBar.text else { return }
+            let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
+            
+            TMDBAPIManager.shared.fetchData(api: .search(text: inputText, page: 1), type: TV.self) { tv in
+                print("요청: \(inputText)")
+                self.list = tv.results
+            }
+        }
     }
 }
 

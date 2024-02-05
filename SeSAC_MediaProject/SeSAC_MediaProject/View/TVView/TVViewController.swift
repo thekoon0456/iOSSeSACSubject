@@ -20,7 +20,7 @@ final class TVViewController: BaseViewController {
     // MARK: - Properties
     
     private let tvView = TVView()
-    private var list: [[TVModel]] = Array(repeating: [], count: Sections.allCases.count)
+    private var list: [[TVModel]] = []
 
     // MARK: - LifeCycle
     
@@ -69,6 +69,8 @@ extension TVViewController {
                   TMDBAPIRouter.toprated(page: 1),
                   TMDBAPIRouter.popular(page: 1)]
         
+        var list: [(Int, [TVModel])] = []
+        
         tv.enumerated().forEach { index, tmdbAPI in
             
             group.enter()
@@ -76,7 +78,8 @@ extension TVViewController {
                 guard let self else { return }
                 switch result {
                 case .success(let success):
-                    self.list.insert(success.results, at: index)
+                    list.append((index, success.results))
+//                    self.list.insert(success.results, at: index)
                     group.leave()
                 case .failure(let failure):
                     print(failure)
@@ -94,6 +97,7 @@ extension TVViewController {
         }
         
         group.notify(queue: .main) {
+            self.list = list.sorted(by: { $0.0 < $1.0 } ).map { $0.1 }
             self.tvView.tableView.reloadData()
         }
     }
@@ -122,7 +126,8 @@ extension TVViewController: UITableViewDelegate, UITableViewDataSource {
 extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        list[collectionView.tag].count
+        guard let list = list[safe: collectionView.tag] else { return 0}
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,5 +143,11 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
         let vc = DramaViewController()
         vc.requestDramaData(id: list[collectionView.tag][indexPath.item].id)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        return indices ~= index ? self[index] : nil
     }
 }

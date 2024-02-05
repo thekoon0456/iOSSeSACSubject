@@ -60,21 +60,26 @@ final class TVViewController: BaseViewController {
 extension TVViewController {
     
     private func requestTvData() {
-        let apiManager = TMDBAPIManager.shared
-        
+
         let group = DispatchGroup()
         
-        // FIXME: - 가끔씩 collectionView 보이지 않는 현상 발생
-        let tv = [TMDBAPI.trend(sort: TMDBAPI.TrendSort.day.rawValue),
-                  TMDBAPI.toprated(page: 1),
-                  TMDBAPI.popular(page: 1)]
+        // MARK: - Alamofire -> URLSession으로 리팩토링
+
+        let tv = [TMDBAPIRouter.trend(sort: TMDBAPI.TrendSort.day.rawValue),
+                  TMDBAPIRouter.toprated(page: 1),
+                  TMDBAPIRouter.popular(page: 1)]
         
         tv.enumerated().forEach { index, tmdbAPI in
             group.enter()
-            apiManager.fetchData(api: tmdbAPI, type: TV.self) { result in
-                print("\(index)")
-                self.list.insert(result.results, at: index)
-                group.leave()
+            TMDBURLSessionManager.shared.fetchURLSessionData(api: tmdbAPI, type: TV.self) { result in
+                switch result {
+                case .success(let success):
+                    self.list.insert(success.results, at: index)
+                    group.leave()
+                case .failure(let failure):
+                    print(failure)
+                    group.leave()
+                }
             }
         }
         

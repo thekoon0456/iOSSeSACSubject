@@ -157,6 +157,24 @@
 			path = ETC;
 			sourceTree = "<group>";
 		};
+		7C5EA5D72B70C1270020DD90 /* AF */ = {
+			isa = PBXGroup;
+			children = (
+				7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */,
+				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
+			);
+			path = AF;
+			sourceTree = "<group>";
+		};
+		7C5EA5D82B70C1340020DD90 /* URLSession */ = {
+			isa = PBXGroup;
+			children = (
+				7C5EA5D32B70AD3B0020DD90 /* TMDBAPIRouter.swift */,
+				7C5EA5D12B70A7740020DD90 /* TMDBURLSessionManager.swift */,
+			);
+			path = URLSession;
+			sourceTree = "<group>";
+		};
 		7CD4B4072B62751400CB3405 = {
 			isa = PBXGroup;
 			children = (
@@ -207,10 +225,8 @@
 		7CD4B4282B62759300CB3405 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7C1949942B6B7D6200D85DE8 /* TMDBAPI.swift */,
-				7C43BC8F2B68DEE300AF2470 /* TMDBAPIManager.swift */,
-				7C5EA5D12B70A7740020DD90 /* TMDBURLSessionManager.swift */,
-				7C5EA5D32B70AD3B0020DD90 /* TMDBAPIRouter.swift */,
+				7C5EA5D72B70C1270020DD90 /* AF */,
+				7C5EA5D82B70C1340020DD90 /* URLSession */,
 			);
 			path = Network;
 			sourceTree = "<group>";

@@ -70,6 +70,7 @@ extension TVViewController {
                   TMDBAPIRouter.popular(page: 1)]
         
         tv.enumerated().forEach { index, tmdbAPI in
+            
             group.enter()
             TMDBURLSessionManager.shared.fetchURLSessionData(api: tmdbAPI, type: TV.self) { [weak self] result in
                 guard let self else { return }
@@ -85,9 +86,9 @@ extension TVViewController {
                                         message: failure.description) { [weak self] in
                             guard let self else { return }
                             requestTvData()
+                            group.leave()
                         }
                     }
-                    group.leave()
                 }
             }
         }
@@ -131,5 +132,11 @@ extension TVViewController: UICollectionViewDelegate, UICollectionViewDataSource
         let model = list[collectionView.tag][indexPath.item]
         cell.configureCellData(model)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DramaViewController()
+        vc.requestDramaData(id: list[collectionView.tag][indexPath.item].id)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

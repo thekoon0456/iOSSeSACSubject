@@ -83,5 +83,4 @@ class DramaDetailView: BaseUIView {
         lastAirDateLabel.text = "최근 방영일: " + data.lastAirDate
         numberOfEpisodesLabel.text = "총 에피소드 : \(data.numberOfEpisodes)개"
     }
-    
 }

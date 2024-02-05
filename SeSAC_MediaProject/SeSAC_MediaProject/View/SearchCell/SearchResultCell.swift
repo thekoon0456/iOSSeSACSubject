@@ -12,9 +12,26 @@ import SnapKit
 
 final class SearchResultCell: BaseTableViewCell {
     
-    private let posterImageView = UIImageView()
-    private let titleLabel = UILabel()
-    private let overViewLabel = UILabel()
+    // MARK: - Properties
+    
+    private let posterImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+    }
+    
+    private let titleLabel = UILabel().then {
+        $0.font = .boldSystemFont(ofSize: 14)
+        $0.textColor = .white
+    }
+    
+    private let overViewLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13)
+        $0.textColor = .white
+        $0.numberOfLines = 0
+    }
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         contentView.addSubviews(posterImageView, titleLabel, overViewLabel)
@@ -44,14 +61,6 @@ final class SearchResultCell: BaseTableViewCell {
     
     override func configureView() {
         contentView.backgroundColor = .black
-        posterImageView.contentMode = .scaleAspectFill
-        posterImageView.layer.cornerRadius = 8
-        posterImageView.clipsToBounds = true
-        titleLabel.font = .boldSystemFont(ofSize: 14)
-        titleLabel.textColor = .white
-        overViewLabel.font = .systemFont(ofSize: 13)
-        overViewLabel.textColor = .white
-        overViewLabel.numberOfLines = 0
     }
 }
 

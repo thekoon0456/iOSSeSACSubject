@@ -12,8 +12,16 @@ import SnapKit
 
 final class TVCollectionViewCell: BaseCollectionViewCell {
     
-    private let posterImageView = UIImageView()
-    private let titleLabel = UILabel()
+    private let posterImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
+    private let titleLabel = UILabel().then {
+        $0.textColor = .white
+        $0.font = .boldSystemFont(ofSize: 14)
+    }
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         contentView.addSubviews(posterImageView, titleLabel)
@@ -32,13 +40,11 @@ final class TVCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureView() {
-        titleLabel.textColor = .white
-        posterImageView.contentMode = .scaleAspectFill
-        posterImageView.clipsToBounds = true
-        titleLabel.font = .boldSystemFont(ofSize: 14)
         contentView.backgroundColor = .black
     }
 }
+
+// MARK: - Data
 
 extension TVCollectionViewCell {
     

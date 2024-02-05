@@ -37,6 +37,11 @@ final class DramaViewController: BaseViewController {
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }
+}
+
+// MARK: - fetchData
+
+extension DramaViewController {
     
     func requestDramaData(id: Int?) {
         guard let id else { return }
@@ -103,11 +108,15 @@ final class DramaViewController: BaseViewController {
     }
 }
 
+// MARK: - ConfigureDetailView
+
 extension DramaViewController {
     func setDramaDetailView(data: DramaDetail) {
         dramaView.detailView.setDramaDetailView(data: data)
     }
 }
+
+// MARK: - TableView
 
 extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
     

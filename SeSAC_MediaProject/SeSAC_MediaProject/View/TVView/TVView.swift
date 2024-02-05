@@ -9,14 +9,16 @@ import UIKit
 
 final class TVView: BaseUIView {
     
-    let tableView = {
-        let tv = UITableView() 
-        tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 240
-        tv.separatorStyle = .none
-        tv.backgroundColor = .clear
-        return tv
-    }()
+    // MARK: - Properties
+    
+    let tableView = UITableView().then {
+        $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
+        $0.rowHeight = 240
+        $0.separatorStyle = .none
+        $0.backgroundColor = .clear
+    }
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         addSubview(tableView)

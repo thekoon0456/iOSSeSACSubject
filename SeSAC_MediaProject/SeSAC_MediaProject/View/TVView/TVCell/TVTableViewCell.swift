@@ -11,7 +11,12 @@ import SnapKit
 
 final class TVTableViewCell: BaseTableViewCell {
     
-    private let sectionTitle = UILabel()
+    // MARK: - Properties
+    
+    private let sectionTitle = UILabel().then {
+        $0.textColor = .white
+    }
+    
     private let collectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = .init(width: 120, height: 180)
@@ -24,6 +29,8 @@ final class TVTableViewCell: BaseTableViewCell {
         cv.backgroundColor = .clear
         return cv
     }()
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         contentView.addSubviews(sectionTitle, collectionView)
@@ -44,7 +51,6 @@ final class TVTableViewCell: BaseTableViewCell {
     
     override func configureView() {
         contentView.backgroundColor = .black
-        sectionTitle.textColor = .white
     }
 }
 

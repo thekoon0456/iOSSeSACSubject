@@ -10,14 +10,12 @@ import UIKit
 final class DramaView: BaseUIView {
     
     let detailView = DramaDetailView()
-    let tableView: UITableView = {
-        let tv = UITableView()
-        tv.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
-        tv.rowHeight = 240
-        tv.separatorStyle = .none
-        tv.backgroundColor = .clear
-        return tv
-    }()
+    lazy var tableView = UITableView().then {
+        $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
+        $0.rowHeight = 240
+        $0.separatorStyle = .none
+        $0.backgroundColor = .clear
+    }
 
     override func configureHierarchy() {
         addSubviews(detailView, tableView)

@@ -32,7 +32,7 @@ final class TVViewController: BaseViewController {
     
     private let tvView = TVView()
     private var list: [[TVModel]] = []
-
+    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -74,36 +74,38 @@ final class TVViewController: BaseViewController {
 extension TVViewController {
     
     private func requestTvData() {
-
+        
         let group = DispatchGroup()
         
         // MARK: - Alamofire -> URLSession으로 리팩토링
-
+        
         let tv = [TMDBAPIRouter.trend(sort: TMDBAPI.TrendSort.day.rawValue),
                   TMDBAPIRouter.toprated(page: 1),
                   TMDBAPIRouter.popular(page: 1)]
         
+        //index와 함께 담아서 순서 정렬
         var list: [(Int, [TVModel])] = []
         
         tv.enumerated().forEach { index, tmdbAPI in
-            
             group.enter()
             TMDBURLSessionManager.shared.fetchURLSessionData(api: tmdbAPI, type: TV.self) { [weak self] result in
                 guard let self else { return }
                 switch result {
                 case .success(let success):
                     list.append((index, success.results))
+                    
                 case .failure(let failure):
                     print(failure)
                     DispatchQueue.main.async { [weak self] in
                         guard let self else { return }
                         errorAlert(title: failure.title,
-                                        message: failure.description) { [weak self] in
+                                   message: failure.description) { [weak self] in
                             guard let self else { return }
                             requestTvData()
                         }
                     }
                 }
+                
                 group.leave()
             }
         }

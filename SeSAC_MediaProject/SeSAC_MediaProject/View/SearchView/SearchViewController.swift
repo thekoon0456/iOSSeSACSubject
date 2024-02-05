@@ -9,22 +9,27 @@ import UIKit
 
 final class SearchViewController: BaseViewController {
     
-    private let searchBar = UISearchBar()
-    private let tableView = UITableView()
+    // MARK: - Properties
+    
+    private lazy var searchBar = UISearchBar().then {
+        $0.delegate = self
+        $0.barStyle = .black
+        $0.barTintColor = .black
+        $0.tintColor = .white
+        $0.searchTextField.backgroundColor = .secondarySystemBackground
+        $0.searchTextField.textColor = .white
+        $0.placeholder = "검색해주세요"
+    }
+    
+    private lazy var tableView = UITableView().then {
+        $0.backgroundColor = .clear
+        $0.delegate = self
+        $0.dataSource = self
+        $0.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.identifier)
+    }
     
     private lazy var tabGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(dismissKeyboard))
-    
-    private lazy var recentSearchTableView = {
-        let tv = UITableView(frame: .zero, style: .plain)
-        tv.register(SearchResultCell.self,
-                           forCellReuseIdentifier: SearchResultCell.identifier)
-        tv.sectionHeaderHeight = 40
-        tv.rowHeight = 50
-        tv.separatorStyle = .none
-        tv.backgroundColor = .clear
-        return tv
-    }()
     
     var list: [TVModel] = [] {
         didSet {
@@ -51,12 +56,8 @@ final class SearchViewController: BaseViewController {
     
     override func configureView() {
         view.backgroundColor = .black
-        configureNav()
-        configureSearchBar()
-        tableView.backgroundColor = .clear
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.identifier)
+        navigationItem.title = ("검색하기")
+        navigationItem.backButtonDisplayMode = .minimal
     }
 }
 
@@ -95,21 +96,6 @@ extension SearchViewController: UISearchBarDelegate {
 // MARK: - Configure
 
 extension SearchViewController {
-    
-    private func configureNav() {
-        navigationItem.title = ("검색하기")
-        navigationItem.backButtonDisplayMode = .minimal
-    }
-    
-    private func configureSearchBar() {
-        searchBar.delegate = self
-        searchBar.barStyle = .black
-        searchBar.barTintColor = .black
-        searchBar.tintColor = .white
-        searchBar.searchTextField.backgroundColor = .secondarySystemBackground
-        searchBar.searchTextField.textColor = .white
-        searchBar.placeholder = "검색해주세요"
-    }
     
     private func setLayout() {
         searchBar.snp.makeConstraints { make in

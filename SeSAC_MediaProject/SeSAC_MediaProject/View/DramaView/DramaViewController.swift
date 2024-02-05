@@ -70,14 +70,7 @@ final class DramaViewController: BaseViewController {
 
 extension DramaViewController {
     func setDramaDetailView(data: DramaDetail) {
-        let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
-        let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        dramaView.detailView.backdropImageView.kf.setImage(with: backdropUrl)
-        dramaView.detailView.posterImageView.kf.setImage(with: posterUrl)
-        dramaView.detailView.nameLabel.text = data.name
-        dramaView.detailView.overViewLabel.text = data.overview
-        dramaView.detailView.lastAirDateLabel.text = "최근 방영일: " + data.lastAirDate
-        dramaView.detailView.numberOfEpisodesLabel.text = "총 에피소드 : \(data.numberOfEpisodes)개"
+         dramaView.detailView.setDramaDetailView(data: data)
     }
 }
 

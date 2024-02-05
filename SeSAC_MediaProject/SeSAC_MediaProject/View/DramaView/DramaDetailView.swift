@@ -15,7 +15,7 @@ class DramaDetailView: BaseUIView {
     let overViewLabel = UILabel()
     let lastAirDateLabel = UILabel()
     let numberOfEpisodesLabel = UILabel()
-    
+
     override func configureHierarchy() {
         addSubviews(backdropImageView, posterImageView, nameLabel, overViewLabel, lastAirDateLabel, numberOfEpisodesLabel)
     }
@@ -72,4 +72,16 @@ class DramaDetailView: BaseUIView {
             label.font = .systemFont(ofSize: 14)
         }
     }
+    
+    func setDramaDetailView(data: DramaDetail) {
+        let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
+        let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
+        backdropImageView.kf.setImage(with: backdropUrl)
+        posterImageView.kf.setImage(with: posterUrl)
+        nameLabel.text = data.name
+        overViewLabel.text = data.overview
+        lastAirDateLabel.text = "최근 방영일: " + data.lastAirDate
+        numberOfEpisodesLabel.text = "총 에피소드 : \(data.numberOfEpisodes)개"
+    }
+    
 }

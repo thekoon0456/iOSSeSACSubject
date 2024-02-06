@@ -34,7 +34,7 @@ final class DramaView: BaseUIView {
     }
     
     override func configureView() {
-        backgroundColor = .white
+        backgroundColor = .black
     }
     
 }

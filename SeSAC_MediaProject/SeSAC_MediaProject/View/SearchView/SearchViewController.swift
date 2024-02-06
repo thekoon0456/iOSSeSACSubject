@@ -11,7 +11,7 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let throttle = ThrottleManager()
+    private let throttle = Throttler()
     
     private lazy var searchBar = UISearchBar().then {
         $0.delegate = self

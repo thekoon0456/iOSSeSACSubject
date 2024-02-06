@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DramaDetailView: BaseUIView {
+final class DramaDetailView: BaseUIView {
     
     let backdropImageView = UIImageView()
     let posterImageView = UIImageView()
@@ -15,9 +15,16 @@ class DramaDetailView: BaseUIView {
     let overViewLabel = UILabel()
     let lastAirDateLabel = UILabel()
     let numberOfEpisodesLabel = UILabel()
+    
+    var id: Int = 0
 
     override func configureHierarchy() {
-        addSubviews(backdropImageView, posterImageView, nameLabel, overViewLabel, lastAirDateLabel, numberOfEpisodesLabel)
+        addSubviews(backdropImageView,
+                    posterImageView
+                    , nameLabel,
+                    overViewLabel,
+                    lastAirDateLabel,
+                    numberOfEpisodesLabel)
     }
     
     override func configureLayout() {
@@ -74,6 +81,7 @@ class DramaDetailView: BaseUIView {
     }
     
     func setDramaDetailView(data: DramaDetail) {
+        self.id = data.id
         let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
         let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
         backdropImageView.kf.setImage(with: backdropUrl)

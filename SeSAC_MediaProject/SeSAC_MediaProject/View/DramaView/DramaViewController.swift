@@ -33,10 +33,27 @@ final class DramaViewController: BaseViewController {
         configureTableView()
     }
     
+    // MARK: - Selectors
+    
+    @objc func detailViewTapped() {
+        let vc = ProviderViewController(id: dramaView.detailView.id)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: - Helpers
+    
     func configureTableView() {
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }
+    
+    override func configureView() {
+        let gesture = UITapGestureRecognizer()
+        dramaView.detailView.addGestureRecognizer(gesture)
+        dramaView.detailView.isUserInteractionEnabled = true
+        gesture.addTarget(self, action: #selector(detailViewTapped))
+    }
+
 }
 
 // MARK: - fetchData

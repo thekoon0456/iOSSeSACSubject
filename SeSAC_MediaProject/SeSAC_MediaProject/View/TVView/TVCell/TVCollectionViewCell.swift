@@ -12,6 +12,8 @@ import SnapKit
 
 final class TVCollectionViewCell: BaseCollectionViewCell {
     
+    // MARK: - Properties
+    
     private let posterImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true

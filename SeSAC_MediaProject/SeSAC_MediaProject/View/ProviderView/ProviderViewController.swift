@@ -12,10 +12,8 @@ final class ProviderViewController: BaseViewController {
     
     // MARK: - Properties
     
-    let id: Int
-    
-    let isDetailView: Bool
-    
+    private let id: Int
+    private let isDetailView: Bool
     private let webView = WKWebView()
     
     private let indicator = {
@@ -24,13 +22,13 @@ final class ProviderViewController: BaseViewController {
         return indicator
     }()
     
+    // MARK: - Lifecycles
+    
     init(id: Int, isDetailView: Bool) {
         self.id = id
         self.isDetailView = isDetailView
         super.init(nibName: nil, bundle: nil)
     }
-    
-    // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +42,47 @@ final class ProviderViewController: BaseViewController {
         }
     }
     
+    // MARK: - Helpers
+    
+    private func loadWebView(url: String?) {
+        guard let url = URL(string: url ?? "") else { return }
+        let request = URLRequest(url: url)
+        
+        webView.load(request)
+    }
+    
+    override func configureHierarchy() {
+        view.addSubviews(webView, indicator)
+    }
+    
+    override func configureLayout() {
+        setLayout()
+    }
+    
+    override func configureView() {
+        configureWebView()
+        view.backgroundColor = .black
+    }
+}
+
+// MARK: - Request
+
+extension ProviderViewController {
+    
+    //트레일러 보기
     func requestYoutubeLinks() {
         TMDBURLSessionManager.shared.fetchURLSessionData(api: .youtubeLink(id: id, season: 1),
                                                          type: YoutubeLink.self) { result in
             switch result {
             case .success(let success):
-                print(success)
-                guard success.results.isEmpty == false,
-                      let key = success.results.last?.key else {
+                guard let key = success.results.last?.key,
+                      success.results.isEmpty == false
+                else {
                     DispatchQueue.main.async { [weak self] in
                         guard let self else { return }
-                        self.errorAlert(title: "영상이 없습니다.",
-                                        message: "뒤로 돌아가주세요",
-                                        actionTitle: "뒤로 돌아가기") { [weak self] in
+                        errorAlert(title: "영상이 없습니다.",
+                                   message: "뒤로 돌아가주세요",
+                                   actionTitle: "뒤로 돌아가기") { [weak self] in
                             guard let self else { return }
                             navigationController?.popViewController(animated: true)
                         }
@@ -83,13 +109,13 @@ final class ProviderViewController: BaseViewController {
         }
     }
     
+    //더 보기
     func requestProviderLinks() {
         TMDBURLSessionManager.shared.fetchURLSessionData(api: .provider(id: id),
                                                          type: TVProvider.self) { result in
             switch result {
             case .success(let success):
                 let result = success.results
-                print(result)
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
                     if let krLink = result?.kr?.link {
@@ -112,6 +138,7 @@ final class ProviderViewController: BaseViewController {
                         }
                     }
                 }
+                
             case .failure(let failure):
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
@@ -121,32 +148,8 @@ final class ProviderViewController: BaseViewController {
                         requestProviderLinks()
                     }
                 }
-                print(failure.description)
             }
         }
-    }
-    
-    // MARK: - Helpers
-    
-    private func loadWebView(url: String?) {
-        guard let url = URL(string: url ?? "") else { return }
-        let request = URLRequest(url: url)
-        
-        webView.load(request)
-    }
-    
-    
-    override func configureHierarchy() {
-        view.addSubviews(webView, indicator)
-    }
-    
-    override func configureLayout() {
-        setLayout()
-    }
-    
-    override func configureView() {
-        configureWebView()
-        view.backgroundColor = .black
     }
 }
 

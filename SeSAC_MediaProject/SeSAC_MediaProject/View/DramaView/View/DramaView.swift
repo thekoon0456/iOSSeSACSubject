@@ -9,6 +9,8 @@ import UIKit
 
 final class DramaView: BaseUIView {
     
+    // MARK: - Properties
+    
     let detailView = DramaDetailView()
     lazy var tableView = UITableView().then {
         $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
@@ -35,6 +37,8 @@ final class DramaView: BaseUIView {
         $0.imageEdgeInsets = .init(top: 0, left: -24, bottom: 0, right: 0)
     }
 
+    // MARK: - Helpers
+    
     override func configureHierarchy() {
         addSubviews(detailView, tableView, detailButton, youtubeButton)
     }

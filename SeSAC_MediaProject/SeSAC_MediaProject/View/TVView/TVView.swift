@@ -12,7 +12,8 @@ final class TVView: BaseUIView {
     // MARK: - Properties
     
     let tableView = UITableView().then {
-        $0.register(TVTableViewCell.self, forCellReuseIdentifier: TVTableViewCell.identifier)
+        $0.register(TVTableViewCell.self,
+                    forCellReuseIdentifier: TVTableViewCell.identifier)
         $0.rowHeight = 240
         $0.separatorStyle = .none
         $0.backgroundColor = .clear

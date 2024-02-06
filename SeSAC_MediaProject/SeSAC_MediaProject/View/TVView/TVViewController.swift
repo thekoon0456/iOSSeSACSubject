@@ -10,24 +10,7 @@ import UIKit
 import SnapKit
 
 final class TVViewController: BaseViewController {
-    
-    enum Sections: String, CaseIterable {
-        case tvTrend = "TVTrend"
-        case tvTopRated = "TVTopRated"
-        case tvPopular = "TVPopular"
-        
-        var title: String {
-            switch self {
-            case .tvTrend:
-                "트렌드 TV"
-            case .tvTopRated:
-                "이번주 Top Rated"
-            case .tvPopular:
-                "인기 TV 프로그램"
-            }
-        }
-    }
-    
+
     // MARK: - Properties
     
     private let tvView = TVView()
@@ -59,13 +42,34 @@ final class TVViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         let vc = SearchViewController()
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func configureTableView() {
         tvView.tableView.delegate = self
         tvView.tableView.dataSource = self
+    }
+}
+
+// MARK: - Sections
+
+extension TVViewController {
+    
+    enum Sections: String, CaseIterable {
+        case tvTrend = "TVTrend"
+        case tvTopRated = "TVTopRated"
+        case tvPopular = "TVPopular"
+        
+        var title: String {
+            switch self {
+            case .tvTrend:
+                "트렌드 TV"
+            case .tvTopRated:
+                "이번주 Top Rated"
+            case .tvPopular:
+                "인기 TV 프로그램"
+            }
+        }
     }
 }
 

@@ -9,13 +9,14 @@ import UIKit
 
 final class DramaDetailView: BaseUIView {
     
+    // MARK: - Properties
+    
     let backdropImageView = UIImageView()
     let posterImageView = UIImageView()
     let nameLabel = UILabel()
     let overViewLabel = UILabel()
     let lastAirDateLabel = UILabel()
     let numberOfEpisodesLabel = UILabel()
-    
     var id: Int = 0
 
     override func configureHierarchy() {

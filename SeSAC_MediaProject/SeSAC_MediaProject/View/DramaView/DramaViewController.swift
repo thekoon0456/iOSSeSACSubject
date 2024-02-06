@@ -12,10 +12,7 @@ import SnapKit
 
 final class DramaViewController: BaseViewController {
     
-    enum Sections: String, CaseIterable {
-        case DramaCasting = "캐스팅"
-        case DramaRecommends = "추천 드라마"
-    }
+    // MARK: - Properties
     
     private let dramaView = DramaView()
     private var castList = [CastModel]()
@@ -29,22 +26,17 @@ final class DramaViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureButton()
     }
     
     // MARK: - Selectors
     
-    func configureButton() {
-        dramaView.detailButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchDown)
-        dramaView.youtubeButton.addTarget(self, action: #selector(youtubeButtonTapped), for: .touchUpInside)
-    }
-    
     @objc func detailButtonTapped() {
         let vc = ProviderViewController(id: dramaView.detailView.id, isDetailView: true)
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
     @objc func youtubeButtonTapped() {
         let vc = ProviderViewController(id: dramaView.detailView.id, isDetailView: false)
         navigationController?.pushViewController(vc, animated: true)
@@ -56,6 +48,21 @@ final class DramaViewController: BaseViewController {
         navigationItem.backButtonDisplayMode = .minimal
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
+    }
+    
+    func configureButton() {
+        dramaView.detailButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchDown)
+        dramaView.youtubeButton.addTarget(self, action: #selector(youtubeButtonTapped), for: .touchUpInside)
+    }
+}
+
+// MARK: - Sections
+
+extension DramaViewController {
+    
+    enum Sections: String, CaseIterable {
+        case DramaCasting = "캐스팅"
+        case DramaRecommends = "추천 드라마"
     }
 }
 

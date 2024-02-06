@@ -146,6 +146,7 @@ final class ProviderViewController: BaseViewController {
     
     override func configureView() {
         configureWebView()
+        view.backgroundColor = .black
     }
 }
 

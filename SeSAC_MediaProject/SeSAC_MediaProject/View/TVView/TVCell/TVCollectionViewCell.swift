@@ -50,13 +50,15 @@ extension TVCollectionViewCell {
     
     func configureCellData(_ data: TVModel) {
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        posterImageView.kf.setImage(with: url)
+        let placeHolder = UIImage(systemName: "movieclapper")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        posterImageView.kf.setImage(with: url, placeholder: placeHolder)
         titleLabel.text = data.name
     }
     
     func configureCellData(_ data: CastModel) {
         let url = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        posterImageView.kf.setImage(with: url)
+        let placeHolder = UIImage(systemName: "movieclapper")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        posterImageView.kf.setImage(with: url, placeholder: placeHolder)
         titleLabel.text = data.name
     }
     

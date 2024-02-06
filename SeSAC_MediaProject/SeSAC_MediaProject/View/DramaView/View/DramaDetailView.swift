@@ -84,8 +84,9 @@ final class DramaDetailView: BaseUIView {
         self.id = data.id
         let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.backdropPath)")
         let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500/\(data.posterPath ?? "")")
-        backdropImageView.kf.setImage(with: backdropUrl)
-        posterImageView.kf.setImage(with: posterUrl)
+        let placeHolder = UIImage(systemName: "movieclapper")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        backdropImageView.kf.setImage(with: backdropUrl, placeholder: placeHolder)
+        posterImageView.kf.setImage(with: posterUrl, placeholder: placeHolder)
         nameLabel.text = data.name
         overViewLabel.text = data.overview
         lastAirDateLabel.text = "최근 방영일: " + data.lastAirDate

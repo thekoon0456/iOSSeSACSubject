@@ -29,8 +29,7 @@ final class DramaViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureTableView()
+
         configureButton()
     }
     
@@ -53,7 +52,8 @@ final class DramaViewController: BaseViewController {
     
     // MARK: - Helpers
     
-    func configureTableView() {
+    override func configureView() {
+        navigationItem.backButtonDisplayMode = .minimal
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }

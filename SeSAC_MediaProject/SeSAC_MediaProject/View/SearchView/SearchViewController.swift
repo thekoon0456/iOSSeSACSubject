@@ -83,7 +83,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        throttle.execute(timeInterval: 1.0) {
+        throttle.execute(timeInterval: 0.5) {
             guard let searchText = searchBar.text else { return }
             let inputText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
             

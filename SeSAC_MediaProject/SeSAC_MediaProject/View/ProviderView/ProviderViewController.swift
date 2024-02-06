@@ -31,11 +31,41 @@ final class ProviderViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        request()
+
+        requestProviderLinks()
     }
     
-    func request() {
+    func requestYoutubeLinks() {
+        TMDBURLSessionManager.shared.fetchURLSessionData(api: .youtubeLink(id: id, season: 1),
+                                                         type: YoutubeLink.self) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+                guard let key = success.results.last?.key else {
+                    print(success.results.first?.key)
+                    return
+                }
+                print(key)
+                let url = "https://www.youtube.com/watch?v=\(key)"
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    loadWebView(url: url)
+                }
+
+            case .failure(let failure):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    errorAlert(title: failure.title,
+                               message: failure.description) { [weak self] in
+                        guard let self else { return }
+                        requestYoutubeLinks()
+                    }
+                }
+            }
+        }
+    }
+    
+    func requestProviderLinks() {
         TMDBURLSessionManager.shared.fetchURLSessionData(api: .provider(id: id),
                                                          type: TVProvider.self) { result in
             switch result {
@@ -59,12 +89,16 @@ final class ProviderViewController: BaseViewController {
                     errorAlert(title: failure.title,
                                message: failure.description) { [weak self] in
                         guard let self else { return }
-                        request()
+                        requestProviderLinks()
                     }
                 }
                 print(failure.description)
             }
         }
+    }
+    
+    @objc func rightBarButtonTapped() {
+        requestYoutubeLinks()
     }
     
     // MARK: - Helpers
@@ -97,6 +131,10 @@ extension ProviderViewController {
     
     private func configureNav() {
         navigationItem.title = "자세히 보기"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "예고편 보기",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(rightBarButtonTapped))
     }
     
     private func configureWebView() {

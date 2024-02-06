@@ -22,6 +22,7 @@ enum TMDBAPIRouter {
     case recommendations(id: Int, page: Int)
     case search(text: String, page: Int)
     case provider(id: Int)
+    case youtubeLink(id: Int, season: Int = 1)
     
     var endPoint: String {
         switch self {
@@ -41,6 +42,8 @@ enum TMDBAPIRouter {
             baseURL + "search/tv"
         case .provider(let id):
             baseURL + "tv/\(id)/watch/providers"
+        case .youtubeLink(let id, let season):
+            baseURL + "tv/\(id)/season/\(season)/videos"
         }
     }
     
@@ -54,7 +57,7 @@ enum TMDBAPIRouter {
     
     var method: String {
         switch self {
-        case .trend, .toprated, .popular, .tvSeriesDetails, .aggregateCredits, .recommendations, .search, .provider:
+        case .trend, .toprated, .popular, .tvSeriesDetails, .aggregateCredits, .recommendations, .search, .provider, .youtubeLink:
             "GET"
         }
     }
@@ -73,7 +76,7 @@ enum TMDBAPIRouter {
             ["query": text,
              "language": "ko-KR",
              "page": "\(page)"]
-        case .provider:
+        case .provider, .youtubeLink:
             [:]
         }
     }

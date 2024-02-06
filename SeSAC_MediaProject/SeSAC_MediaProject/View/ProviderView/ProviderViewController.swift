@@ -14,6 +14,8 @@ final class ProviderViewController: BaseViewController {
     
     let id: Int
     
+    let isDetailView: Bool
+    
     private let webView = WKWebView()
     
     private let indicator = {
@@ -21,9 +23,10 @@ final class ProviderViewController: BaseViewController {
         indicator.color = .systemGray
         return indicator
     }()
-
-    init(id: Int) {
+    
+    init(id: Int, isDetailView: Bool) {
         self.id = id
+        self.isDetailView = isDetailView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,8 +34,14 @@ final class ProviderViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        requestProviderLinks()
+        
+        if isDetailView {
+            requestProviderLinks()
+            configureNav(title: "더 보기")
+        } else {
+            requestYoutubeLinks()
+            configureNav(title: "트레일러 보기")
+        }
     }
     
     func requestYoutubeLinks() {
@@ -41,17 +50,26 @@ final class ProviderViewController: BaseViewController {
             switch result {
             case .success(let success):
                 print(success)
-                guard let key = success.results.last?.key else {
-                    print(success.results.first?.key)
+                guard success.results.isEmpty == false,
+                      let key = success.results.last?.key else {
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.errorAlert(title: "영상이 없습니다.",
+                                        message: "뒤로 돌아가주세요",
+                                        actionTitle: "뒤로 돌아가기") { [weak self] in
+                            guard let self else { return }
+                            navigationController?.popViewController(animated: true)
+                        }
+                    }
                     return
                 }
-                print(key)
+                
                 let url = "https://www.youtube.com/watch?v=\(key)"
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
                     loadWebView(url: url)
                 }
-
+                
             case .failure(let failure):
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
@@ -71,6 +89,7 @@ final class ProviderViewController: BaseViewController {
             switch result {
             case .success(let success):
                 let result = success.results
+                print(result)
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
                     if let krLink = result?.kr?.link {
@@ -81,6 +100,16 @@ final class ProviderViewController: BaseViewController {
                     if let usLink = result?.us?.link {
                         loadWebView(url: usLink)
                         return
+                    }
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.errorAlert(title: "더보기 정보가 없습니다.",
+                                        message: "뒤로 돌아가주세요",
+                                        actionTitle: "뒤로 돌아가기") { [weak self] in
+                            guard let self else { return }
+                            navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             case .failure(let failure):
@@ -97,12 +126,8 @@ final class ProviderViewController: BaseViewController {
         }
     }
     
-    @objc func rightBarButtonTapped() {
-        requestYoutubeLinks()
-    }
-    
     // MARK: - Helpers
-
+    
     private func loadWebView(url: String?) {
         guard let url = URL(string: url ?? "") else { return }
         let request = URLRequest(url: url)
@@ -120,7 +145,6 @@ final class ProviderViewController: BaseViewController {
     }
     
     override func configureView() {
-        configureNav()
         configureWebView()
     }
 }
@@ -129,12 +153,8 @@ final class ProviderViewController: BaseViewController {
 
 extension ProviderViewController {
     
-    private func configureNav() {
-        navigationItem.title = "자세히 보기"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "예고편 보기",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(rightBarButtonTapped))
+    private func configureNav(title: String) {
+        navigationItem.title = title
     }
     
     private func configureWebView() {

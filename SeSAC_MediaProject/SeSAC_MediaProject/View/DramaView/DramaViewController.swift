@@ -31,12 +31,23 @@ final class DramaViewController: BaseViewController {
         super.viewDidLoad()
         
         configureTableView()
+        configureButton()
     }
     
     // MARK: - Selectors
     
-    @objc func detailViewTapped() {
-        let vc = ProviderViewController(id: dramaView.detailView.id)
+    func configureButton() {
+        dramaView.detailButton.addTarget(self, action: #selector(detailButtonTapped), for: .touchDown)
+        dramaView.youtubeButton.addTarget(self, action: #selector(youtubeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func detailButtonTapped() {
+        let vc = ProviderViewController(id: dramaView.detailView.id, isDetailView: true)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc func youtubeButtonTapped() {
+        let vc = ProviderViewController(id: dramaView.detailView.id, isDetailView: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -46,14 +57,6 @@ final class DramaViewController: BaseViewController {
         dramaView.tableView.delegate = self
         dramaView.tableView.dataSource = self
     }
-    
-    override func configureView() {
-        let gesture = UITapGestureRecognizer()
-        dramaView.detailView.addGestureRecognizer(gesture)
-        dramaView.detailView.isUserInteractionEnabled = true
-        gesture.addTarget(self, action: #selector(detailViewTapped))
-    }
-
 }
 
 // MARK: - fetchData

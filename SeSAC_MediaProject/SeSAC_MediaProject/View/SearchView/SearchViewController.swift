@@ -28,6 +28,27 @@ final class SearchViewController: BaseViewController {
         $0.delegate = self
         $0.dataSource = self
         $0.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.identifier)
+        $0.backgroundView = backgroundView
+    }
+    
+    private let backgroundView = UIView().then {
+        let iconImage = UIImage(systemName: "movieclapper")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        let imageView = UIImageView(image: iconImage)
+        imageView.contentMode = .scaleAspectFill
+        let label = UILabel()
+        label.text = "드라마를 검색해주세요"
+        $0.addSubviews(imageView, label)
+        
+        imageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().inset(120)
+            make.height.equalTo(imageView.snp.width)
+        }
+        
+        label.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(imageView.snp.bottom).offset(16)
+        }
     }
     
     private lazy var tabGesture = UITapGestureRecognizer(target: self,

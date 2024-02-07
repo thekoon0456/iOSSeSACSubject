@@ -45,6 +45,9 @@
 		7CD4B4332B6278AE00CB3405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CD4B4322B6278AE00CB3405 /* .gitignore */; };
 		7CD4B4352B6278C000CB3405 /* APIKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4342B6278C000CB3405 /* APIKEY.swift */; };
 		7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD4B4392B628B8A00CB3405 /* UIView+.swift */; };
+		7CD67BC72B7379C500E1A718 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD67BC62B7379C500E1A718 /* ProfileViewController.swift */; };
+		7CD67BCA2B737ADD00E1A718 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD67BC92B737ADD00E1A718 /* ProfileTableViewCell.swift */; };
+		7CD67BCC2B73810800E1A718 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD67BCB2B73810800E1A718 /* ProfileEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +88,9 @@
 		7CD4B4322B6278AE00CB3405 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7CD4B4342B6278C000CB3405 /* APIKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKEY.swift; sourceTree = "<group>"; };
 		7CD4B4392B628B8A00CB3405 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		7CD67BC62B7379C500E1A718 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7CD67BC92B737ADD00E1A718 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		7CD67BCB2B73810800E1A718 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2B17502B6CD279006622D5 /* SearchViewController.swift */,
+				7C5EA5DF2B70E0230020DD90 /* SearchCell */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -239,8 +246,8 @@
 		7CD4B4272B62758700CB3405 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7CD67BC52B7379AE00E1A718 /* PersonView */,
 				7C2B174F2B6CD268006622D5 /* SearchView */,
-				7C5EA5DF2B70E0230020DD90 /* SearchCell */,
 				7C1949962B6B8F4700D85DE8 /* TVView */,
 				7C2E0B8E2B6A33AA001612E4 /* DramaView */,
 				7C4153A22B72142400E35BBD /* ProviderView */,
@@ -278,6 +285,24 @@
 				7C5EA5E02B70E70F0020DD90 /* Then+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7CD67BC52B7379AE00E1A718 /* PersonView */ = {
+			isa = PBXGroup;
+			children = (
+				7CD67BC62B7379C500E1A718 /* ProfileViewController.swift */,
+				7CD67BCB2B73810800E1A718 /* ProfileEditViewController.swift */,
+				7CD67BC82B737AC700E1A718 /* ProfileCell */,
+			);
+			path = PersonView;
+			sourceTree = "<group>";
+		};
+		7CD67BC82B737AC700E1A718 /* ProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				7CD67BC92B737ADD00E1A718 /* ProfileTableViewCell.swift */,
+			);
+			path = ProfileCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +390,7 @@
 				7C5EA5D62B70BB0B0020DD90 /* UIVIewController+.swift in Sources */,
 				7C43BCA22B68E3D800AF2470 /* TVViewController.swift in Sources */,
 				7C4153A42B72144D00E35BBD /* ProviderViewController.swift in Sources */,
+				7CD67BCA2B737ADD00E1A718 /* ProfileTableViewCell.swift in Sources */,
 				7C2B174D2B6CC60E006622D5 /* DramaView.swift in Sources */,
 				7C2E0B902B6A33C5001612E4 /* DramaViewController.swift in Sources */,
 				7C2E0B9D2B6A70A1001612E4 /* BaseTableViewCell.swift in Sources */,
@@ -373,6 +399,7 @@
 				7C2E0B9B2B6A7091001612E4 /* BaseCollectionViewCell.swift in Sources */,
 				7C4153A62B72223700E35BBD /* YoutubeLink.swift in Sources */,
 				7C43BC9B2B68DF5900AF2470 /* TV.swift in Sources */,
+				7CD67BC72B7379C500E1A718 /* ProfileViewController.swift in Sources */,
 				7C5EA5E52B7110080020DD90 /* Throttler.swift in Sources */,
 				7CD4B43A2B628B8A00CB3405 /* UIView+.swift in Sources */,
 				7C4153A12B7212A200E35BBD /* TVProvider.swift in Sources */,
@@ -388,6 +415,7 @@
 				7C2E0B972B6A3DD9001612E4 /* DramaDetail.swift in Sources */,
 				7CD4B4162B62751400CB3405 /* SceneDelegate.swift in Sources */,
 				7C2E0B992B6A60FE001612E4 /* DramaDetailView.swift in Sources */,
+				7CD67BCC2B73810800E1A718 /* ProfileEditViewController.swift in Sources */,
 				7C2E0B932B6A33DE001612E4 /* BaseViewController.swift in Sources */,
 				7C5EA5D42B70AD3B0020DD90 /* TMDBAPIRouter.swift in Sources */,
 				7C2E0B9F2B6A7426001612E4 /* BaseUIView.swift in Sources */,

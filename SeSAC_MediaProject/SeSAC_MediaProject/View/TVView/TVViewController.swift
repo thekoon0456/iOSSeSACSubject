@@ -33,15 +33,24 @@ final class TVViewController: BaseViewController {
         navigationItem.title = "TV"
         navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white ]
         navigationController?.navigationBar.tintColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(searchButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(personButtonTapped))
         navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = .black
     }
     
     @objc func searchButtonTapped() {
         let vc = SearchViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func personButtonTapped() {
+        let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

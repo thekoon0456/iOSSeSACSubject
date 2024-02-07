@@ -28,6 +28,15 @@ final class ProfileViewController: BaseViewController {
         $0.dataSource = self
     }
     
+    private var inputText: String?
+    private var index: Int? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Helpers
+    
     override func configureHierarchy() {
         view.addSubviews(profileImageView, tableView)
     }
@@ -66,8 +75,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
             return UITableViewCell()
         }
-        
+        if indexPath.row == self.index {
+            cell.setTextFieldText(input: inputText)
+        }
         cell.configureCellData(input: profileSettingList[indexPath.row])
+        
         return cell
     }
     
@@ -78,6 +90,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ProfileEditViewController()
         vc.configureLabel(input: profileSettingList[indexPath.row])
+        vc.getInputData = { [weak self] input in
+            guard let self else { return }
+            inputText = input
+            index = indexPath.row
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
         
         tableView.reloadRows(at: [indexPath], with: .fade)

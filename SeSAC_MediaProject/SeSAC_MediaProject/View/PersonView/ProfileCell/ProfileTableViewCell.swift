@@ -69,4 +69,8 @@ final class ProfileTableViewCell: BaseTableViewCell {
         textfield.placeholder = input
         setButton(isLink: input)
     }
+    
+    func setTextFieldText(input: String?) {
+        textfield.text = input
+    }
 }

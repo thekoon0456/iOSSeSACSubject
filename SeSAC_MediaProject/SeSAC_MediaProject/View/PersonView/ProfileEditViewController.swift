@@ -18,13 +18,17 @@ final class ProfileEditViewController: BaseViewController {
         $0.textColor = .systemGray
     }
     
-    private let textField = UITextField().then {
+    lazy var textField = UITextField().then {
         $0.borderStyle = .none
+        $0.delegate = self
     }
     
-    let lineView = UIView().then {
+    private let lineView = UIView().then {
         $0.backgroundColor = .darkGray
     }
+    
+    //값 전달
+    var getInputData: ((String?) -> Void)?
     
     // MARK: - Helpers
     
@@ -48,10 +52,25 @@ final class ProfileEditViewController: BaseViewController {
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(40)
         }
+        
         lineView.snp.makeConstraints { make in
             make.top.equalTo(textField.snp.bottom)
             make.width.equalTo(textField.snp.width)
             make.height.equalTo(1)
         }
+    }
+}
+
+// MARK: - TextField
+
+extension ProfileEditViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        getInputData?(textField.text)
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        true
     }
 }

@@ -20,6 +20,8 @@ final class ProfileEditViewController: BaseViewController {
     
     lazy var textField = UITextField().then {
         $0.borderStyle = .none
+        $0.clearButtonMode = .always
+        $0.tintColor = .white
         $0.delegate = self
     }
     
@@ -65,12 +67,7 @@ final class ProfileEditViewController: BaseViewController {
 
 extension ProfileEditViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         getInputData?(textField.text)
-        return true
-    }
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        true
     }
 }

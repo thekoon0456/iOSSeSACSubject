@@ -28,8 +28,7 @@ final class ProfileViewController: BaseViewController {
         $0.dataSource = self
     }
     
-    private var inputText: String?
-    private var index: Int? {
+    private var inputData: (index: Int, text: String?)? {
         didSet {
             tableView.reloadData()
         }
@@ -75,9 +74,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
             return UITableViewCell()
         }
-        if indexPath.row == self.index {
-            cell.setTextFieldText(input: inputText)
+        
+        //input데이터 있으면 textField에
+        if inputData?.index ==  indexPath.row{
+            cell.setTextFieldText(input: inputData?.text)
+            inputData = nil
         }
+        
         cell.configureCellData(input: profileSettingList[indexPath.row])
         
         return cell
@@ -92,12 +95,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         vc.configureLabel(input: profileSettingList[indexPath.row])
         vc.getInputData = { [weak self] input in
             guard let self else { return }
-            inputText = input
-            index = indexPath.row
+            inputData = (index: indexPath.row, text: input)
         }
         
         navigationController?.pushViewController(vc, animated: true)
-        
         tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }

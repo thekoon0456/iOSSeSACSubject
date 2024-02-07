@@ -56,6 +56,7 @@ final class SearchViewController: BaseViewController {
     
     var list: [TVModel] = [] {
         didSet {
+            tableView.backgroundView = list.isEmpty ? backgroundView : UIView()
             tableView.reloadData()
         }
     }

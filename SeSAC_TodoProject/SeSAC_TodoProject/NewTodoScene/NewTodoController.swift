@@ -8,7 +8,7 @@
 import UIKit
 
 enum Section: CaseIterable {
-    case main
+    case input
     case endDate
     case tag
     case primary
@@ -16,7 +16,7 @@ enum Section: CaseIterable {
     
     var value: String {
         switch self {
-        case .main:
+        case .input:
             ""
         case .endDate:
             "마감일"
@@ -49,9 +49,8 @@ final class NewTodoController: BaseViewController {
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.dataSource = self
         $0.delegate = self
-        $0.rowHeight = UITableView.automaticDimension
-        $0.separatorInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "id")
+        $0.register(InputHeaderView.self, forCellReuseIdentifier: InputHeaderView.identifier)
     }
     
     // MARK: - Selectors
@@ -104,14 +103,37 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource {
         1
     }
     
-    
+    //tableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "id") else {
-            return UITableViewCell()
-        }
         
-        cell.textLabel?.text = Section.allCases[indexPath.section].value
-        cell.accessoryType = .disclosureIndicator
-        return cell
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderView.identifier, for: indexPath) as? InputHeaderView else {
+                return UITableViewCell()
+            }
+            
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id") else {
+                return UITableViewCell()
+            }
+            
+            cell.textLabel?.text = Section.allCases[indexPath.section].value
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 150
+        default:
+            return 50
+        }
     }
 }

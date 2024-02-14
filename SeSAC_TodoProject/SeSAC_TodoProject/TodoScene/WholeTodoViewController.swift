@@ -57,7 +57,6 @@ final class WholeTodoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
     // MARK: - Selectors

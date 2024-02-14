@@ -21,6 +21,7 @@
 		7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644772B7C988E00FAAD8D /* UIView+.swift */; };
 		7C66447B2B7C98C900FAAD8D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C66447A2B7C98C900FAAD8D /* SnapKit */; };
 		7C66447F2B7CAC1200FAAD8D /* InputHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66447E2B7CAC1200FAAD8D /* InputHeaderView.swift */; };
+		7C6644812B7CC70200FAAD8D /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644802B7CC70200FAAD8D /* UITextField+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		7C6644752B7C964700FAAD8D /* Then+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Then+.swift"; sourceTree = "<group>"; };
 		7C6644772B7C988E00FAAD8D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		7C66447E2B7CAC1200FAAD8D /* InputHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHeaderView.swift; sourceTree = "<group>"; };
+		7C6644802B7CC70200FAAD8D /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				7C6644752B7C964700FAAD8D /* Then+.swift */,
 				7C6644772B7C988E00FAAD8D /* UIView+.swift */,
+				7C6644802B7CC70200FAAD8D /* UITextField+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				7C66446C2B7C94A200FAAD8D /* BaseView.swift in Sources */,
 				7C6644542B7C939600FAAD8D /* SceneDelegate.swift in Sources */,
 				7C66447F2B7CAC1200FAAD8D /* InputHeaderView.swift in Sources */,
+				7C6644812B7CC70200FAAD8D /* UITextField+.swift in Sources */,
 				7C6644732B7C954600FAAD8D /* NewTodoController.swift in Sources */,
 				7C6644682B7C940900FAAD8D /* BaseViewController.swift in Sources */,
 				7C6644762B7C964700FAAD8D /* Then+.swift in Sources */,

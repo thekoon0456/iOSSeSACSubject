@@ -13,10 +13,14 @@ final class InputHeaderView: BaseTableViewCell {
     
     private let titleTextField = UITextField().then {
         $0.placeholder = "제목"
+        $0.tintColor = .white
+        $0.leftPadding(10)
     }
     
     private let memoTextField = UITextField().then {
         $0.placeholder = "메모"
+        $0.tintColor = .white
+        $0.leftPadding(10)
     }
     
     private let lineView = UIView().then {

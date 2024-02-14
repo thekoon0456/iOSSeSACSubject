@@ -49,8 +49,8 @@ final class NewTodoController: BaseViewController {
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.dataSource = self
         $0.delegate = self
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "id")
-        $0.register(InputHeaderView.self, forCellReuseIdentifier: InputHeaderView.identifier)
+        $0.register(textCell.self, forCellReuseIdentifier: textCell.identifier)
+        $0.register(InputHeaderCell.self, forCellReuseIdentifier: InputHeaderCell.identifier)
     }
     
     // MARK: - Selectors
@@ -76,6 +76,7 @@ final class NewTodoController: BaseViewController {
     }
     
     override func configureView() {
+        super.configureView()
         navigationItem.title = "새로운 할 일"
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = addButton
@@ -108,24 +109,43 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderView.identifier, for: indexPath) as? InputHeaderView else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
                 return UITableViewCell()
             }
             
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id") else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: textCell.identifier) as? textCell else {
                 return UITableViewCell()
             }
             
-            cell.textLabel?.text = Section.allCases[indexPath.section].value
-            cell.accessoryType = .disclosureIndicator
+            cell.configureCell(title: Section.allCases[indexPath.section].value, value: "aa")
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        switch indexPath.section {
+        case 0:
+            break
+        case 1:
+            let vc = EndDateViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = TagViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = PrimaryViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            let vc = AddImageViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            return
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

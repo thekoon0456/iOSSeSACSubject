@@ -23,7 +23,11 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     func configureHierarchy() { }
     func configureLayout() { }
-    func configureView() { }
+    func configureView() { 
+        contentView.backgroundColor = .secondarySystemGroupedBackground
+        contentView.layer.cornerRadius = 10
+        contentView.clipsToBounds = true
+    }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {

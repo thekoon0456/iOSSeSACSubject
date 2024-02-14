@@ -20,8 +20,14 @@
 		7C6644762B7C964700FAAD8D /* Then+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644752B7C964700FAAD8D /* Then+.swift */; };
 		7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644772B7C988E00FAAD8D /* UIView+.swift */; };
 		7C66447B2B7C98C900FAAD8D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C66447A2B7C98C900FAAD8D /* SnapKit */; };
-		7C66447F2B7CAC1200FAAD8D /* InputHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66447E2B7CAC1200FAAD8D /* InputHeaderView.swift */; };
+		7C66447F2B7CAC1200FAAD8D /* InputHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66447E2B7CAC1200FAAD8D /* InputHeaderCell.swift */; };
 		7C6644812B7CC70200FAAD8D /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644802B7CC70200FAAD8D /* UITextField+.swift */; };
+		7C6644842B7CC88B00FAAD8D /* textCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644832B7CC88B00FAAD8D /* textCell.swift */; };
+		7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */; };
+		7C6644892B7CCC0F00FAAD8D /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */; };
+		7C66448B2B7CCC1D00FAAD8D /* PrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448A2B7CCC1D00FAAD8D /* PrimaryViewController.swift */; };
+		7C66448D2B7CCC2800FAAD8D /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */; };
+		7C6644902B7CCF2900FAAD8D /* WholeTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +45,14 @@
 		7C6644722B7C954600FAAD8D /* NewTodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoController.swift; sourceTree = "<group>"; };
 		7C6644752B7C964700FAAD8D /* Then+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Then+.swift"; sourceTree = "<group>"; };
 		7C6644772B7C988E00FAAD8D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		7C66447E2B7CAC1200FAAD8D /* InputHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHeaderView.swift; sourceTree = "<group>"; };
+		7C66447E2B7CAC1200FAAD8D /* InputHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHeaderCell.swift; sourceTree = "<group>"; };
 		7C6644802B7CC70200FAAD8D /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		7C6644832B7CC88B00FAAD8D /* textCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textCell.swift; sourceTree = "<group>"; };
+		7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateViewController.swift; sourceTree = "<group>"; };
+		7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		7C66448A2B7CCC1D00FAAD8D /* PrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryViewController.swift; sourceTree = "<group>"; };
+		7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
+		7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeTodoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				7C6644692B7C945000FAAD8D /* WholeTodoViewController.swift */,
+				7C66448E2B7CCF1900FAAD8D /* Cell */,
 			);
 			path = TodoScene;
 			sourceTree = "<group>";
@@ -110,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				7C6644722B7C954600FAAD8D /* NewTodoController.swift */,
-				7C66447E2B7CAC1200FAAD8D /* InputHeaderView.swift */,
+				7C6644852B7CCBF300FAAD8D /* DetailViewController */,
+				7C6644822B7CC87D00FAAD8D /* Cell */,
 			);
 			path = NewTodoScene;
 			sourceTree = "<group>";
@@ -123,6 +137,34 @@
 				7C6644802B7CC70200FAAD8D /* UITextField+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7C6644822B7CC87D00FAAD8D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C66447E2B7CAC1200FAAD8D /* InputHeaderCell.swift */,
+				7C6644832B7CC88B00FAAD8D /* textCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7C6644852B7CCBF300FAAD8D /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */,
+				7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */,
+				7C66448A2B7CCC1D00FAAD8D /* PrimaryViewController.swift */,
+				7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		7C66448E2B7CCF1900FAAD8D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,15 +244,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C66446E2B7C94BA00FAAD8D /* BaseTableViewCell.swift in Sources */,
+				7C66448D2B7CCC2800FAAD8D /* AddImageViewController.swift in Sources */,
 				7C6644702B7C94D600FAAD8D /* BaseCollectionViewCell.swift in Sources */,
 				7C66446A2B7C945000FAAD8D /* WholeTodoViewController.swift in Sources */,
 				7C6644522B7C939600FAAD8D /* AppDelegate.swift in Sources */,
 				7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */,
 				7C66446C2B7C94A200FAAD8D /* BaseView.swift in Sources */,
+				7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */,
 				7C6644542B7C939600FAAD8D /* SceneDelegate.swift in Sources */,
-				7C66447F2B7CAC1200FAAD8D /* InputHeaderView.swift in Sources */,
+				7C6644902B7CCF2900FAAD8D /* WholeTodoCell.swift in Sources */,
+				7C66447F2B7CAC1200FAAD8D /* InputHeaderCell.swift in Sources */,
+				7C66448B2B7CCC1D00FAAD8D /* PrimaryViewController.swift in Sources */,
+				7C6644842B7CC88B00FAAD8D /* textCell.swift in Sources */,
 				7C6644812B7CC70200FAAD8D /* UITextField+.swift in Sources */,
 				7C6644732B7C954600FAAD8D /* NewTodoController.swift in Sources */,
+				7C6644892B7CCC0F00FAAD8D /* TagViewController.swift in Sources */,
 				7C6644682B7C940900FAAD8D /* BaseViewController.swift in Sources */,
 				7C6644762B7C964700FAAD8D /* Then+.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InputHeaderView: BaseTableViewCell {
+final class InputHeaderCell: BaseTableViewCell {
     
     // MARK: - Properties
     
@@ -33,19 +33,19 @@ final class InputHeaderView: BaseTableViewCell {
     
     override func configureLayout() {
         titleTextField.snp.makeConstraints { make in
-            make.top.width.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(50)
         }
         
         lineView.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom)
-            make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
         
         memoTextField.snp.makeConstraints { make in
             make.top.equalTo(lineView.snp.bottom)
-            make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(100)
         }
     }

@@ -11,7 +11,7 @@ enum InputSection: Int, CaseIterable {
     case input
     case endDate
     case tag
-    case primary
+    case priority
     case addImage
     
     static var valueList: [String?] = Array(repeating: "", count: InputSection.allCases.count)
@@ -24,7 +24,7 @@ enum InputSection: Int, CaseIterable {
             "마감일"
         case .tag:
             "태그"
-        case .primary:
+        case .priority:
             "우선 순위"
         case .addImage:
             "이미지 추가"
@@ -39,7 +39,7 @@ enum InputSection: Int, CaseIterable {
             return InputSection.valueList[1]
         case .tag:
             return InputSection.valueList[2]
-        case .primary:
+        case .priority:
             return InputSection.valueList[3]
         case .addImage:
             return InputSection.valueList[4]

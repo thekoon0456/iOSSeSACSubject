@@ -45,7 +45,5 @@ final class EndDateViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
-        
     }
-    
 }

@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class PrimaryViewController: BaseViewController {
+final class PriorityViewController: BaseViewController {
     
     // MARK: - Properties
-    private let items =  ["낮음", "중간", "높음"]
+    let items = Priority.allCases.map { $0.title }
     private lazy var primarySeg = UISegmentedControl(items: items).then {
-        $0.selectedSegmentIndex = 0
+        $0.selectedSegmentIndex = 1
     }
     
     // MARK: - Lifecycles
@@ -20,7 +20,8 @@ final class PrimaryViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        postNotification(name: "우선순위", userInfo: ["우선순위": items[primarySeg.selectedSegmentIndex]])
+        postNotification(name: "우선순위",
+                         userInfo: ["우선순위": Priority.allCases[primarySeg.selectedSegmentIndex].rawValue])
     }
     
     // MARK: - Helpers

@@ -17,10 +17,9 @@ final class InputHeaderCell: BaseTableViewCell {
         $0.leftPadding(10)
     }
     
-    lazy var memoTextView = UITextView().then {
+    let memoTextView = UITextView().then {
         $0.backgroundColor = .clear
         $0.tintColor = .white
-        $0.delegate = self
         $0.text = "텍스트를 여기에 입력하세요."
         $0.textColor = .systemGray
         $0.font = .systemFont(ofSize: 14)
@@ -53,28 +52,6 @@ final class InputHeaderCell: BaseTableViewCell {
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(100)
-        }
-    }
-}
-
-// MARK: - TextView
-
-extension InputHeaderCell: UITextViewDelegate {
-    // 입력을 시작할때
-    // (텍스트뷰는 플레이스홀더가 따로 있지 않아서, 플레이스 홀더처럼 동작하도록 직접 구현)
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "텍스트를 여기에 입력하세요." {
-            textView.text = nil
-            textView.textColor = .white
-        }
-    }
-    
-    // 입력이 끝났을때
-    func textViewDidEndEditing(_ textView: UITextView) {
-        // 비어있으면 다시 플레이스 홀더처럼 입력하기 위해서 조건 확인
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = "텍스트를 여기에 입력하세요."
-            textView.textColor = .systemGray
         }
     }
 }

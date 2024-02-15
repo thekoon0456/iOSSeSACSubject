@@ -9,13 +9,30 @@ import Foundation
 
 import RealmSwift
 
+enum Priority: Int, CaseIterable {
+    case low
+    case medium
+    case high
+    
+    var title: String {
+        switch self {
+        case .low:
+            "낮음"
+        case .medium:
+            "보통"
+        case .high:
+            "높음"
+        }
+    }
+}
+
 class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var memo: String?
     @Persisted var endDate: Date?
     @Persisted var tag: String?
-    @Persisted var priority: String?
+    @Persisted var priority: Int? //0 낮음, 1 보통, 2 높음
     @Persisted var image: Data?
     @Persisted var isFlag: Bool
     
@@ -24,7 +41,7 @@ class Todo: Object {
         memo: String?,
         endDate: Date?,
         tag: String?,
-        priority: String? = "보통", //0 낮음, 1 보통, 2 높음
+        priority: Int? = 1,
         image: Data?,
         isFlag: Bool = false
     ) {

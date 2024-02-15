@@ -46,7 +46,7 @@ final class DetailCell: BaseTableViewCell {
         titleLabel.text = data.title
         memoLabel.text = data.memo
         tagLabel.text = data.tag
-        priorityLabel.text = data.priority
+        priorityLabel.text = Priority.allCases[data.priority ?? 1].title
         dateLabel.text = dateManager.dateToString(data.endDate, format: .dateAndHour)
     }
     

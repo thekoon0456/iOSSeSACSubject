@@ -35,7 +35,7 @@ final class DetailViewController: BaseViewController {
         
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
         let list = try! Realm().objects(Todo.self)
-        $0.menu = UIMenu(children: (0..<menus.count).map { idx in
+        $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
             UIAction(title: menus[idx]) { _ in
                 switch menus[idx] {
                 case menus[0]:
@@ -43,7 +43,7 @@ final class DetailViewController: BaseViewController {
                 case menus[1]:
                     self.todoList = list.sorted(byKeyPath: "title", ascending: true)
                 case menus[2]:
-                    self.todoList = list.where { $0.priority == "낮음" }
+                    self.todoList = list.where { $0.priority == 0 }
                 default:
                     break
                 }

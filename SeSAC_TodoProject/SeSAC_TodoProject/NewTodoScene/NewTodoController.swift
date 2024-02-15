@@ -44,7 +44,6 @@ final class NewTodoController: BaseViewController {
         super.viewWillDisappear(animated)
         
         postNotification(name: "추가", userInfo: nil)
-
     }
     
     deinit {
@@ -63,9 +62,10 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func receivedNotification(notification: NSNotification) {
-        guard let data = notification.userInfo?["우선순위"] as? String else { return }
-        InputSection.valueList[3] = data
-        todo.priority = data
+        if let data = notification.userInfo?["우선순위"] as? Int {
+            InputSection.valueList[3] = Priority.allCases[data].title
+            todo.priority = data
+        }
         tableView.reloadData()
     }
     
@@ -117,7 +117,7 @@ final class NewTodoController: BaseViewController {
 extension NewTodoController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let input = textField.text else { return true }
+        guard let input = textField.text else { return false }
         
         let text = (input as NSString).replacingCharacters(in: range, with: string)
         
@@ -127,9 +127,32 @@ extension NewTodoController: UITextFieldDelegate {
             addButton.isEnabled = true
         }
         
+        self.todo.title = text
         return true
     }
 }
+
+// MARK: - TextView
+
+extension NewTodoController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "텍스트를 여기에 입력하세요." {
+            textView.text = nil
+            textView.textColor = .white
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = "텍스트를 여기에 입력하세요."
+            textView.textColor = .lightText
+        }
+        
+        self.todo.memo = textView.text! == "텍스트를 여기에 입력하세요." ? "" : textView.text!
+    }
+}
+
 
 // MARK: - TableView
 
@@ -170,8 +193,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             }
             
             cell.titleTextField.delegate = self
-            todo.title = cell.titleTextField.text!
-            todo.memo = cell.memoTextView.text
+            cell.memoTextView.delegate = self
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
@@ -186,7 +208,6 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        indexPath.section
         switch InputSection.allCases[indexPath.section] {
         case .input:
             break
@@ -204,9 +225,9 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
                 self.tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)
-        case .primary:
+        case .priority:
             //notificationCenter
-            let vc = PrimaryViewController()
+            let vc = PriorityViewController()
             navigationController?.pushViewController(vc, animated: true)
         case .addImage:
             let vc = AddImageViewController()

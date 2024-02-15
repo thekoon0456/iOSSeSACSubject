@@ -13,7 +13,7 @@ final class TagViewController: BaseViewController {
     
     private let tagTextField = UITextField().then {
         $0.placeholder = "태그를 입력해주세요"
-        $0.leftPadding(10)
+        $0.leftPadding(8)
         $0.tintColor = .white
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.white.cgColor

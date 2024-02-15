@@ -193,16 +193,16 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.section {
-        case 0:
+//        indexPath.section
+        switch InputSection.allCases[indexPath.section] {
+        case .input:
             break
-        case 1:
+        case .endDate:
             //delegate
             let vc = EndDateViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
-        case 2:
+        case .tag:
             //closure
             let vc = TagViewController()
             vc.getTag = { tag in
@@ -211,15 +211,13 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
                 self.tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)
-        case 3:
+        case .primary:
             //notificationCenter
             let vc = PrimaryViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 4:
+        case .addImage:
             let vc = AddImageViewController()
             navigationController?.pushViewController(vc, animated: true)
-        default:
-            return
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

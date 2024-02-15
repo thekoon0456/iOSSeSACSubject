@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum TodoSection: CaseIterable {
+enum TodoSection: Int, CaseIterable {
     case today
     case plan
     case whole

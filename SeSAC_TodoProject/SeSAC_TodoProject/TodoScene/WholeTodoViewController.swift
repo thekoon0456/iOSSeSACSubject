@@ -115,6 +115,23 @@ final class WholeTodoViewController: BaseViewController {
                                                             action: #selector(ellipsisButtonTapped))
         toolbarItems = [newTodoButton, newListButton]
     }
+    
+    private func getCount(idx: Int) -> Int? {
+        let count: Int?
+        switch TodoSection.allCases[idx] {
+        case .today:
+            count = todoList.where { $0.endDate == Date() }.count
+        case .plan:
+            count = todoList.filter { $0.endDate ?? Date() > Date() }.count
+        case .whole:
+            count = todoList.count
+        case .flag:
+            count = todoList.filter { $0.isFlag == true }.count
+        case .complete:
+            count = nil
+        }
+        return count
+    }
 }
 
 // MARK: - CollectionView
@@ -130,21 +147,8 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        let count: Int?
-        switch indexPath.item {
-        case 0:
-            count = todoList.where { $0.endDate == Date() }.count
-        case 1:
-            count = todoList.filter { $0.endDate ?? Date() > Date() }.count
-        case 2:
-            count = todoList.count
-        case 3:
-            count = todoList.filter { $0.isFlag == true }.count
-        default:
-            count = nil
-        }
-
-        cell.configureCell(data: TodoSection.allCases[indexPath.item], count: count)
+        cell.configureCell(data: TodoSection.allCases[indexPath.item],
+                           count: getCount(idx: indexPath.item))
         return cell
     }
 }

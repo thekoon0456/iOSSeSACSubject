@@ -23,7 +23,7 @@ final class textCell: BaseTableViewCell {
     
     // MARK: - Helpers
     
-    func configureCell(title: String, value: String) {
+    func configureCell(title: String, value: String?) {
         self.titleLabel.text = title
         self.valueLabel.text = value
     }

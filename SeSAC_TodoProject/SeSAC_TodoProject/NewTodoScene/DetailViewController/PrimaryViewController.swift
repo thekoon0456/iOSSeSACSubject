@@ -20,15 +20,19 @@ final class PrimaryViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        postNoti()
+        postNotification(name: "우선순위", userInfo: ["우선순위": items[primarySeg.selectedSegmentIndex]])
     }
     
     // MARK: - Helpers
     
-    func postNoti() {
-        NotificationCenter.default.post(name: NSNotification.Name("우선순위"),
+    func postNotification(name: String, userInfo: [String: Any]?) {
+        NotificationCenter.default.post(name: NSNotification.Name(name),
                                         object: nil,
-                                        userInfo: ["우선순위": items[primarySeg.selectedSegmentIndex]])
+                                        userInfo: userInfo)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func configureHierarchy() {

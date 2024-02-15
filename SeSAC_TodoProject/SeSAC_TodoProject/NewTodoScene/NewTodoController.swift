@@ -7,12 +7,14 @@
 
 import UIKit
 
-enum Section: CaseIterable {
+enum Section: Int, CaseIterable {
     case input
     case endDate
     case tag
     case primary
     case addImage
+    
+    static var valueList: [String?] = Array(repeating: "", count: Section.allCases.count)
     
     var title: String {
         switch self {
@@ -28,28 +30,26 @@ enum Section: CaseIterable {
             "이미지 추가"
         }
     }
-}
-
-struct Todo {
-    let title: String
-    var value: String
+    
+    var value: String? {
+        switch self {
+        case .input:
+            return Section.valueList[0]
+        case .endDate:
+            return Section.valueList[1]
+        case .tag:
+            return Section.valueList[2]
+        case .primary:
+            return Section.valueList[3]
+        case .addImage:
+            return Section.valueList[4]
+        }
+    }
 }
 
 final class NewTodoController: BaseViewController {
     
     // MARK: - Properties
-    
-    private var list = [
-        Todo(title: "", value: ""),
-        Todo(title: "마감일", value: ""),
-        Todo(title: "태그", value: ""),
-        Todo(title: "우선 순위", value: ""),
-        Todo(title: "이미지 추가", value: "")
-    ] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
@@ -73,7 +73,7 @@ final class NewTodoController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNotificationCenter()
+        notiAddObserver(name: "우선순위")
     }
     
     // MARK: - Selectors
@@ -83,20 +83,23 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
+        
+        // MARK: - 추가하기
         print(#function)
     }
     
-    @objc func receivedData(notification: NSNotification) {
+    @objc func receivedNotification(notification: NSNotification) {
         guard let data = notification.userInfo?["우선순위"] as? String else { return }
-        list[3] = Todo(title: "우선 순위", value: data)
+        Section.valueList[3] = data
+        tableView.reloadData()
     }
     
     // MARK: - Helpers
     
-    func setNotificationCenter() {
+    func notiAddObserver(name: String) {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(receivedData(notification:)),
-                                               name: NSNotification.Name("우선순위"),
+                                               selector: #selector(receivedNotification(notification:)),
+                                               name: NSNotification.Name(name),
                                                object: nil)
     }
     
@@ -122,7 +125,8 @@ final class NewTodoController: BaseViewController {
 extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
     func setDate(date: String) {
-        list[1] = Todo(title: "마감일", value: date)
+        Section.valueList[1] = date
+        tableView.reloadData()
     }
     
     //section간 간격 조절
@@ -158,8 +162,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
                 return UITableViewCell()
             }
             
-            cell.configureCell(title: list[indexPath.section].title,
-                               value: list[indexPath.section].value)
+            cell.configureCell(title: Section.allCases[indexPath.section].title,
+                               value: Section.allCases[indexPath.section].value)
             
             return cell
         }
@@ -179,7 +183,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             //closure
             let vc = TagViewController()
             vc.getTag = { tag in
-                self.list[2] = Todo(title: "태그", value: tag ?? "")
+                Section.valueList[2] = tag ?? ""
+                self.tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)
         case 3:

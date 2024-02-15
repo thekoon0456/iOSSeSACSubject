@@ -119,8 +119,30 @@ final class NewTodoController: BaseViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = addButton
         view.backgroundColor = .secondarySystemBackground
+        addButton.isEnabled = false
     }
 }
+
+// MARK: - TextField
+
+extension NewTodoController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let input = textField.text else { return true }
+        
+        let text = (input as NSString).replacingCharacters(in: range, with: string)
+        
+        if text.isEmpty {
+            addButton.isEnabled = false
+        } else {
+            addButton.isEnabled = true
+        }
+        
+        return true
+    }
+}
+
+// MARK: - TableView
 
 extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
@@ -155,7 +177,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
                 return UITableViewCell()
             }
-            
+            cell.titleTextField.delegate = self
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: textCell.identifier) as? textCell else {

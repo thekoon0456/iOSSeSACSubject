@@ -17,8 +17,9 @@ final class textCell: BaseTableViewCell {
         $0.font = .systemFont(ofSize: 16)
     }
     private let valueLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 12)
+        $0.font = .systemFont(ofSize: 14)
         $0.textColor = .systemGray
+        $0.textAlignment = .right
     }
     
     // MARK: - Helpers
@@ -34,13 +35,14 @@ final class textCell: BaseTableViewCell {
     
     override func configureLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(12)
             make.centerY.equalToSuperview()
+            make.width.equalTo(80)
         }
         
         valueLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.trailing).offset(10)
-            make.trailing.equalToSuperview().offset(-20).priority(.low)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(12)
+            make.trailing.equalToSuperview().offset(-12)
             make.centerY.equalToSuperview()
         }
     }

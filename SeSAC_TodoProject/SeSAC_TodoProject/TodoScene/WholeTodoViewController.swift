@@ -52,7 +52,7 @@ final class WholeTodoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todoList = setRealm(type: Todo.self)
+        todoList = readRealm(type: Todo.self)
         notiAddObserver(name: "추가")
     }
     
@@ -87,7 +87,7 @@ final class WholeTodoViewController: BaseViewController {
     
     // MARK: - Helpers
     
-    func setRealm<T: Object>(type: T.Type) -> Results<T> {
+    func readRealm<T: Object>(type: T.Type) -> Results<T> {
         let realm = try! Realm()
         return realm.objects(type.self)
     }
@@ -150,5 +150,12 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.configureCell(data: TodoSection.allCases[indexPath.item],
                            count: getCount(idx: indexPath.item))
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.todoList = todoList
+        vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

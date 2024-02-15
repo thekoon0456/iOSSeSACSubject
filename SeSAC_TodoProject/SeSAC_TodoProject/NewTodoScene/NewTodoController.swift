@@ -28,7 +28,7 @@ final class NewTodoController: BaseViewController {
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.dataSource = self
         $0.delegate = self
-        $0.register(textCell.self, forCellReuseIdentifier: textCell.identifier)
+        $0.register(TextCell.self, forCellReuseIdentifier: TextCell.identifier)
         $0.register(InputHeaderCell.self, forCellReuseIdentifier: InputHeaderCell.identifier)
     }
     
@@ -181,7 +181,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: textCell.identifier) as? textCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
                 return UITableViewCell()
             }
             

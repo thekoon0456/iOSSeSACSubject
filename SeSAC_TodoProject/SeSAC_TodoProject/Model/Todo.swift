@@ -17,13 +17,17 @@ class Todo: Object {
     @Persisted var tag: String?
     @Persisted var priority: String?
     @Persisted var image: Data?
+    @Persisted var isFlag: Bool
     
-    convenience init(title: String,
-                     memo: String?,
-                     endDate: Date?,
-                     tag: String?,
-                     priority: String? = "보통", //0 낮음, 1 보통, 2 높음
-                     image: Data?) {
+    convenience init(
+        title: String,
+        memo: String?,
+        endDate: Date?,
+        tag: String?,
+        priority: String? = "보통", //0 낮음, 1 보통, 2 높음
+        image: Data?,
+        isFlag: Bool = false
+    ) {
         self.init()
         self.title = title
         self.memo = memo
@@ -31,5 +35,6 @@ class Todo: Object {
         self.tag = tag
         self.priority = priority
         self.image = image
+        self.isFlag = isFlag
     }
 }

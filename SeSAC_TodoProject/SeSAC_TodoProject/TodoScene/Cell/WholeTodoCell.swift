@@ -44,14 +44,14 @@ final class WholeTodoCell: BaseCollectionViewCell {
     
     // MARK: - Helpers
     
-    func configureCell(data: TodoSection) {
+    func configureCell(data: TodoSection, count: Int?) {
         circleBGView.backgroundColor = data.bgColor
         setImageView(systemName: data.imageName)
         titleLabel.text = data.title
         
         //TODO: -count 연동
-//        guard let count = data.count else { return }
-//        countLabel.text = String(count)
+        guard let count else { return }
+        countLabel.text = String(count)
     }
     
     private func setImageView(systemName: String) {

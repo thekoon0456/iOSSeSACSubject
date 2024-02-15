@@ -5,7 +5,7 @@
 //  Created by Deokhun KIM on 2/15/24.
 //
 
-import Foundation
+import UIKit
 
 enum TodoSection: CaseIterable {
     case today

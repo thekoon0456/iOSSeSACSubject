@@ -7,49 +7,13 @@
 
 import UIKit
 
-enum Section: Int, CaseIterable {
-    case input
-    case endDate
-    case tag
-    case primary
-    case addImage
-    
-    static var valueList: [String?] = Array(repeating: "", count: Section.allCases.count)
-    
-    var title: String {
-        switch self {
-        case .input:
-            ""
-        case .endDate:
-            "마감일"
-        case .tag:
-            "태그"
-        case .primary:
-            "우선 순위"
-        case .addImage:
-            "이미지 추가"
-        }
-    }
-    
-    var value: String? {
-        switch self {
-        case .input:
-            return Section.valueList[0]
-        case .endDate:
-            return Section.valueList[1]
-        case .tag:
-            return Section.valueList[2]
-        case .primary:
-            return Section.valueList[3]
-        case .addImage:
-            return Section.valueList[4]
-        }
-    }
-}
+import RealmSwift
 
 final class NewTodoController: BaseViewController {
     
     // MARK: - Properties
+    
+    private var todo = Todo()
     
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
@@ -83,24 +47,40 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
-        
-        // MARK: - 추가하기
-        print(#function)
+        addRealm(data: todo)
+        dismiss(animated: true)
     }
     
     @objc func receivedNotification(notification: NSNotification) {
         guard let data = notification.userInfo?["우선순위"] as? String else { return }
-        Section.valueList[3] = data
+        InputSection.valueList[3] = data
+        todo.priority = data
         tableView.reloadData()
     }
     
     // MARK: - Helpers
+    
+    func addRealm<T: Object>(data: T) {
+        let realm = try! Realm()
+
+        try! realm.write {
+            realm.add(data)
+        }
+    }
     
     func notiAddObserver(name: String) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(receivedNotification(notification:)),
                                                name: NSNotification.Name(name),
                                                object: nil)
+    }
+    
+    private func getDateString(_ date: Date?) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "yyyy년 M월 d일 a hh:mm"
+        return formatter.string(from: date ?? Date())
     }
     
     override func configureHierarchy() {
@@ -146,8 +126,9 @@ extension NewTodoController: UITextFieldDelegate {
 
 extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
-    func setDate(date: String) {
-        Section.valueList[1] = date
+    func setDate(date: Date?) {
+        InputSection.valueList[1] = getDateString(date)
+        todo.endDate = date
         tableView.reloadData()
     }
     
@@ -162,7 +143,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
     
     //section 설정
     func numberOfSections(in tableView: UITableView) -> Int {
-        Section.allCases.count
+        InputSection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -178,14 +159,17 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
                 return UITableViewCell()
             }
             cell.titleTextField.delegate = self
+            todo.title = cell.titleTextField.text!
+            todo.memo = cell.memoTextField.text
+            
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: textCell.identifier) as? textCell else {
                 return UITableViewCell()
             }
             
-            cell.configureCell(title: Section.allCases[indexPath.section].title,
-                               value: Section.allCases[indexPath.section].value)
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               value: InputSection.allCases[indexPath.section].value)
             
             return cell
         }
@@ -205,7 +189,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             //closure
             let vc = TagViewController()
             vc.getTag = { tag in
-                Section.valueList[2] = tag ?? ""
+                InputSection.valueList[2] = tag ?? ""
+                self.todo.tag = tag
                 self.tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)

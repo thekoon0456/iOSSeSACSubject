@@ -7,19 +7,14 @@
 
 import UIKit
 
+import RealmSwift
 import SnapKit
 
 final class WholeTodoViewController: BaseViewController {
     
-    let cellData = [
-        WholeTodo(color: .systemBlue, imageName: "calendar", title: "오늘", count: 0),
-        WholeTodo(color: .systemRed, imageName: "calendar", title: "예정", count: 0),
-        WholeTodo(color: .systemGray, imageName: "tray", title: "전체", count: 1),
-        WholeTodo(color: .systemYellow, imageName: "flag.fill", title: "깃발 표시", count: 0),
-        WholeTodo(color: .systemGray, imageName: "checkmark", title: "완료됨", count: nil),
-    ]
-    
     // MARK: - Properties
+    
+    private var todoList: Results<Todo>!
     
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
@@ -57,6 +52,12 @@ final class WholeTodoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        todoList = setRealm(type: Todo.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(todoList)
     }
     
     // MARK: - Selectors
@@ -78,6 +79,11 @@ final class WholeTodoViewController: BaseViewController {
     }
     
     // MARK: - Helpers
+    
+    func setRealm<T: Object>(type: T.Type) -> Results<T> {
+        let realm = try! Realm()
+        return realm.objects(type.self)
+    }
     
     override func configureHierarchy() {
         view.addSubview(todoCollectionView)
@@ -109,7 +115,7 @@ final class WholeTodoViewController: BaseViewController {
 extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cellData.count
+        TodoSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,7 +123,7 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        cell.configureCell(data: cellData[indexPath.item])
+        cell.configureCell(data: TodoSection.allCases[indexPath.item])
         return cell
     }
 }

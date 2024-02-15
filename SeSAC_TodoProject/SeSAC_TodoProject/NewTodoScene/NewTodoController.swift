@@ -168,10 +168,10 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
                 return UITableViewCell()
             }
+            
             cell.titleTextField.delegate = self
             todo.title = cell.titleTextField.text!
-            todo.memo = cell.memoTextField.text
-            
+            todo.memo = cell.memoTextView.text
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {

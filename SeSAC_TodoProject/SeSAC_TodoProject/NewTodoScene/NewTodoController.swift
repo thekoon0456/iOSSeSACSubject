@@ -40,6 +40,17 @@ final class NewTodoController: BaseViewController {
         notiAddObserver(name: "우선순위")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        postNotification(name: "추가", userInfo: nil)
+
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Selectors
     
     @objc func cancelButtonTapped() {
@@ -60,7 +71,13 @@ final class NewTodoController: BaseViewController {
     
     // MARK: - Helpers
     
-    func addRealm<T: Object>(data: T) {
+    private func postNotification(name: String, userInfo: [String: Any]?) {
+        NotificationCenter.default.post(name: NSNotification.Name(name),
+                                        object: nil,
+                                        userInfo: userInfo)
+    }
+    
+    private func addRealm<T: Object>(data: T) {
         let realm = try! Realm()
 
         try! realm.write {
@@ -68,7 +85,7 @@ final class NewTodoController: BaseViewController {
         }
     }
     
-    func notiAddObserver(name: String) {
+    private func notiAddObserver(name: String) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(receivedNotification(notification:)),
                                                name: NSNotification.Name(name),

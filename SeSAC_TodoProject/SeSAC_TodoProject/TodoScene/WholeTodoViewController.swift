@@ -53,11 +53,18 @@ final class WholeTodoViewController: BaseViewController {
         super.viewDidLoad()
         
         todoList = setRealm(type: Todo.self)
+        notiAddObserver(name: "추가")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(todoList)
+    func notiAddObserver(name: String) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receivedNotification(notification:)),
+                                               name: NSNotification.Name(name),
+                                               object: nil)
+    }
+    
+    @objc func receivedNotification(notification: NSNotification) {
+        todoCollectionView.reloadData()
     }
     
     // MARK: - Selectors
@@ -123,7 +130,21 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        cell.configureCell(data: TodoSection.allCases[indexPath.item])
+        let count: Int?
+        switch indexPath.item {
+        case 0:
+            count = todoList.where { $0.endDate == Date() }.count
+        case 1:
+            count = todoList.filter { $0.endDate ?? Date() > Date() }.count
+        case 2:
+            count = todoList.count
+        case 3:
+            count = todoList.filter { $0.isFlag == true }.count
+        default:
+            count = nil
+        }
+
+        cell.configureCell(data: TodoSection.allCases[indexPath.item], count: count)
         return cell
     }
 }

@@ -34,6 +34,8 @@
 		7C66448D2B7CCC2800FAAD8D /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */; };
 		7C6644902B7CCF2900FAAD8D /* WholeTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */; };
 		7C6A9DE02B7E1C5B00433551 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DDF2B7E1C5B00433551 /* DetailViewController.swift */; };
+		7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DE12B7E2EC700433551 /* DetailCell.swift */; };
+		7C6A9DE52B7E335400433551 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DE42B7E335400433551 /* DateFormatterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeTodoCell.swift; sourceTree = "<group>"; };
 		7C6A9DDF2B7E1C5B00433551 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7C6A9DE12B7E2EC700433551 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		7C6A9DE42B7E335400433551 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			children = (
 				7C6644512B7C939600FAAD8D /* AppDelegate.swift */,
 				7C6644532B7C939600FAAD8D /* SceneDelegate.swift */,
+				7C6A9DE32B7E334900433551 /* Manager */,
 				7C4BA3772B7DFFCA006CC8D1 /* Model */,
 				7C6644662B7C93F800FAAD8D /* TodoScene */,
 				7C6644712B7C953400FAAD8D /* NewTodoScene */,
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */,
+				7C6A9DE12B7E2EC700433551 /* DetailCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -197,6 +203,14 @@
 				7C6A9DDF2B7E1C5B00433551 /* DetailViewController.swift */,
 			);
 			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		7C6A9DE32B7E334900433551 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7C6A9DE42B7E335400433551 /* DateFormatterManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +301,8 @@
 				7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */,
 				7C66446C2B7C94A200FAAD8D /* BaseView.swift in Sources */,
 				7C4BA3792B7DFFDA006CC8D1 /* Todo.swift in Sources */,
+				7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */,
+				7C6A9DE52B7E335400433551 /* DateFormatterManager.swift in Sources */,
 				7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */,
 				7C6644542B7C939600FAAD8D /* SceneDelegate.swift in Sources */,
 				7C6A9DE02B7E1C5B00433551 /* DetailViewController.swift in Sources */,

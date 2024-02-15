@@ -118,11 +118,18 @@ final class WholeTodoViewController: BaseViewController {
     
     private func getCount(idx: Int) -> Int? {
         let count: Int?
+        let dateManager = DateFormatterManager.shared
         switch TodoSection.allCases[idx] {
         case .today:
-            count = todoList.where { $0.endDate == Date() }.count
+            count = todoList.filter {
+                dateManager.dateToString($0.endDate, format: .dateAndHour)
+                == dateManager.dateToString(Date(), format: .dateAndHour)
+            }.count
         case .plan:
-            count = todoList.filter { $0.endDate ?? Date() > Date() }.count
+            count = todoList.filter {
+                dateManager.dateToString($0.endDate, format: .dateAndHour)
+                > dateManager.dateToString(Date(), format: .dateAndHour)
+            }.count
         case .whole:
             count = todoList.count
         case .flag:

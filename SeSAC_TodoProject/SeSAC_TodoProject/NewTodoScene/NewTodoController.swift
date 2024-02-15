@@ -91,15 +91,7 @@ final class NewTodoController: BaseViewController {
                                                name: NSNotification.Name(name),
                                                object: nil)
     }
-    
-    private func getDateString(_ date: Date?) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
-        formatter.dateFormat = "yyyy년 M월 d일 a hh:mm"
-        return formatter.string(from: date ?? Date())
-    }
-    
+
     override func configureHierarchy() {
         view.addSubviews(tableView)
     }
@@ -144,7 +136,8 @@ extension NewTodoController: UITextFieldDelegate {
 extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
     func setDate(date: Date?) {
-        InputSection.valueList[1] = getDateString(date)
+        let dateManager = DateFormatterManager.shared
+        InputSection.valueList[1] = dateManager.dateToString(date, format: .date)
         todo.endDate = date
         tableView.reloadData()
     }

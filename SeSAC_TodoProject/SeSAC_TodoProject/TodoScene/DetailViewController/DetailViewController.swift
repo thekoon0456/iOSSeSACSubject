@@ -23,8 +23,9 @@ final class DetailViewController: BaseViewController {
     private lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
-        $0.register(TextCell.self, forCellReuseIdentifier: TextCell.identifier)
+        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
         $0.backgroundColor = .clear
+        $0.rowHeight = UITableView.automaticDimension
     }
     
     private lazy var ellipsisButton = UIButton().then {
@@ -78,15 +79,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier, for: indexPath) as? TextCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell,
               let list = todoList else {
             return UITableViewCell()
         }
         
-        cell.configureCell(title: list[indexPath.row].title, value: list[indexPath.row].memo)
-        
+        cell.configureCell(data: list[indexPath.row])
         return cell
     }
-    
-    
 }

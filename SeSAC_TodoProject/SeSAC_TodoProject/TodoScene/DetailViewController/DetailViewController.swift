@@ -28,17 +28,13 @@ final class DetailViewController: BaseViewController {
     }
     
     private lazy var ellipsisButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        $0.addTarget(self, action: #selector(ellipsisButtonTapped), for: .touchUpInside)
+        let image = UIImage(systemName: "ellipsis.circle")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 20)))
+        $0.setImage(image, for: .normal)
         $0.showsMenuAsPrimaryAction = true
-    }
-    
-    // MARK: - Helpers
-    
-    @objc private func ellipsisButtonTapped() {
+        
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
         let list = try! Realm().objects(Todo.self)
-        ellipsisButton.menu = UIMenu(children: (0..<menus.count).map { idx in
+        $0.menu = UIMenu(children: (0..<menus.count).map { idx in
             UIAction(title: menus[idx]) { _ in
                 switch menus[idx] {
                 case menus[0]:
@@ -53,6 +49,8 @@ final class DetailViewController: BaseViewController {
             }
         })
     }
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         view.addSubview(tableView)

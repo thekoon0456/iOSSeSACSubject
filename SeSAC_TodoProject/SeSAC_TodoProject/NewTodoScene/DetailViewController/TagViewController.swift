@@ -14,9 +14,9 @@ final class TagViewController: BaseViewController {
     private let tagTextField = UITextField().then {
         $0.placeholder = "태그를 입력해주세요"
         $0.leftPadding(8)
-        $0.tintColor = .white
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.white.cgColor
+        $0.backgroundColor = .secondarySystemGroupedBackground
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
     }
     
     var getTag: ((String?) -> Void)?
@@ -37,7 +37,8 @@ final class TagViewController: BaseViewController {
     override func configureLayout() {
         tagTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(50)
         }
     }

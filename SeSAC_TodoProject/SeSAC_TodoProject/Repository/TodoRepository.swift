@@ -15,6 +15,10 @@ final class TodoRepository {
     
     private let realm = try! Realm()
     
+    func printURL() {
+        print(realm.configuration.fileURL)
+    }
+    
     func createItem(_ item: T) {
         do {
             try realm.write {
@@ -100,10 +104,10 @@ final class TodoRepository {
         }
     }
     
-    func updateComplete(_ item: T, isComplete: Bool) {
+    func updateComplete(_ item: T) {
         do {
             try realm.write {
-                item.isComplete = true
+                item.isComplete.toggle()
             }
         } catch {
             print(error.localizedDescription)

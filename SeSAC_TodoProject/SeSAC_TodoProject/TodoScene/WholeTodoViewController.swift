@@ -56,6 +56,12 @@ final class WholeTodoViewController: BaseViewController {
         
         todoList = todoRepo.fetch(type: Todo.self)
         notiAddObserver(name: "추가")
+//        todoRepo.printURL()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        todoCollectionView.reloadData()
     }
     
     func notiAddObserver(name: String) {
@@ -132,8 +138,9 @@ final class WholeTodoViewController: BaseViewController {
         case .flag:
             count = todoList.filter { $0.isFlag == true }.count
         case .complete:
-            count = nil
+            count = todoList.filter { $0.isComplete == true }.count
         }
+        
         return count
     }
 }

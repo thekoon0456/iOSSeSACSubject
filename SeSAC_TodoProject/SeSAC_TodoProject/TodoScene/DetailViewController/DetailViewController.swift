@@ -58,7 +58,23 @@ final class DetailViewController: BaseViewController {
         todoList = todoRepo.fetch(type: Todo.self)
     }
     
+    // MARK: - Selectors
+    
+    @objc func completeButtonTapped(sender: UIButton) {
+        sender.isSelected.toggle()
+        sender.tintColor = sender.isSelected ? .systemYellow : .white
+        todoRepo.updateComplete(todoList[sender.tag])
+    }
+    
     // MARK: - Helpers
+    
+    private func configureCompleteButton(button: UIButton, tag: Int) {
+        button.tag = tag
+        button.tintColor = button.isSelected ? .systemYellow : .white
+        button.addTarget(self,
+                         action: #selector(completeButtonTapped),
+                         for: .touchUpInside)
+    }
     
     override func configureHierarchy() {
         view.addSubview(tableView)
@@ -90,8 +106,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
               let list = todoList else {
             return UITableViewCell()
         }
-        
         cell.configureCell(data: list[indexPath.row])
+        configureCompleteButton(button: cell.completeButton, tag: indexPath.row)
         return cell
     }
 }

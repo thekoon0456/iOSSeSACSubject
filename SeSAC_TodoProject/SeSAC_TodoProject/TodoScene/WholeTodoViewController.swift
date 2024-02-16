@@ -16,6 +16,8 @@ final class WholeTodoViewController: BaseViewController {
     
     private var todoList: Results<Todo>!
     
+    private let todoRepo = TodoRepository()
+    
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
         $0.setImage(image, for: .normal)
@@ -52,7 +54,7 @@ final class WholeTodoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todoList = readRealm(type: Todo.self)
+        todoList = todoRepo.fetch(type: Todo.self)
         notiAddObserver(name: "추가")
     }
     
@@ -86,11 +88,6 @@ final class WholeTodoViewController: BaseViewController {
     }
     
     // MARK: - Helpers
-    
-    func readRealm<T: Object>(type: T.Type) -> Results<T> {
-        let realm = try! Realm()
-        return realm.objects(type.self)
-    }
     
     override func configureHierarchy() {
         view.addSubview(todoCollectionView)
@@ -161,7 +158,6 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.todoList = todoList
         vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
         navigationController?.pushViewController(vc, animated: true)
     }

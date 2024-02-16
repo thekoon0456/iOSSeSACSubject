@@ -13,12 +13,8 @@ import SnapKit
 final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
-    
-    var todoList: Results<Todo>? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private let todoRepo = TodoRepository()
+    private var todoList: Results<Todo>!
     
     private lazy var tableView = UITableView().then {
         $0.delegate = self
@@ -34,21 +30,32 @@ final class DetailViewController: BaseViewController {
         $0.showsMenuAsPrimaryAction = true
         
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
-        let list = try! Realm().objects(Todo.self)
+        let list = todoRepo.fetch(type: Todo.self)
         $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
             UIAction(title: menus[idx]) { _ in
                 switch menus[idx] {
                 case menus[0]:
                     self.todoList = list.sorted(byKeyPath: "endDate", ascending: true)
+                    self.tableView.reloadData()
                 case menus[1]:
                     self.todoList = list.sorted(byKeyPath: "title", ascending: true)
+                    self.tableView.reloadData()
                 case menus[2]:
                     self.todoList = list.where { $0.priority == 0 }
+                    self.tableView.reloadData()
                 default:
                     break
                 }
             }
         })
+    }
+    
+    // MARK: - Lifecycles
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        todoList = todoRepo.fetch(type: Todo.self)
     }
     
     // MARK: - Helpers

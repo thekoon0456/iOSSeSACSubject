@@ -82,8 +82,4 @@ final class DetailCell: BaseTableViewCell {
             make.trailing.bottom.equalToSuperview().offset(-8)
         }
     }
-    
-    override func configureView() {
-        
-    }
 }

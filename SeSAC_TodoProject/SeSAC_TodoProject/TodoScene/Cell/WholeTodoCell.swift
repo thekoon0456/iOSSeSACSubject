@@ -7,13 +7,6 @@
 
 import UIKit
 
-struct WholeTodo {
-    let color: UIColor
-    let imageName: String
-    let title: String
-    let count: Int?
-}
-
 final class WholeTodoCell: BaseCollectionViewCell {
     
     // MARK: - Properties
@@ -49,7 +42,6 @@ final class WholeTodoCell: BaseCollectionViewCell {
         setImageView(systemName: data.imageName)
         titleLabel.text = data.title
         
-        //TODO: -count 연동
         guard let count else { return }
         countLabel.text = String(count)
     }
@@ -82,6 +74,5 @@ final class WholeTodoCell: BaseCollectionViewCell {
     
     override func configureView() {
         super.configureView()
-        
     }
 }

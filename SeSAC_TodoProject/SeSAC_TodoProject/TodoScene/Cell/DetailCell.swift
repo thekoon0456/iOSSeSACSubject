@@ -11,13 +11,12 @@ final class DetailCell: BaseTableViewCell {
     
     // MARK: - Properties
     
-    private lazy var completeButton = UIButton().then {
+    lazy var completeButton = UIButton().then {
         let image = UIImage(systemName: "circle")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 24)))
         let filledImage = UIImage(systemName: "circle.fill")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 24)))
         $0.setImage(image, for: .normal)
         $0.setImage(filledImage, for: .selected)
         $0.tintColor = .white
-        $0.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }
     
     private let titleLabel = UILabel().then {
@@ -50,21 +49,25 @@ final class DetailCell: BaseTableViewCell {
     
     // MARK: - Helpers
     
-    @objc func completeButtonTapped(sender: UIButton) {
-        sender.isSelected.toggle()
-        
-        sender.tintColor = sender.isSelected == true ? .systemYellow : .white
-    }
-    
-    // MARK: - Helpers
-    
     func configureCell(data: Todo) {
         let dateManager = DateFormatterManager.shared
-        titleLabel.text = data.title
+        titleLabel.text = pointMark(data.priority) + data.title
         memoLabel.text = data.memo
         tagLabel.text = data.tag
         priorityLabel.text = Priority.allCases[data.priority ?? 1].title
         dateLabel.text = dateManager.dateToString(data.endDate, format: .dateAndHour)
+        completeButton.isSelected = data.isComplete ? true : false
+    }
+    
+    private func pointMark(_ priority: Int?) -> String {
+        switch Priority.allCases[priority ?? 1] {
+        case .low:
+            return "! "
+        case .medium:
+            return "!! "
+        case .high:
+            return "!!! "
+        }
     }
     
     override func configureHierarchy() {

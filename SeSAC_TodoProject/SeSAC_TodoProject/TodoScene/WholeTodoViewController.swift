@@ -56,7 +56,7 @@ final class WholeTodoViewController: BaseViewController {
         
         todoList = todoRepo.fetch(type: Todo.self)
         notiAddObserver(name: "추가")
-//        todoRepo.printURL()
+        //        todoRepo.printURL()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,21 +124,15 @@ final class WholeTodoViewController: BaseViewController {
         let dateManager = DateFormatterManager.shared
         switch TodoSection.allCases[idx] {
         case .today:
-            count = todoList.filter {
-                dateManager.dateToString($0.endDate, format: .dateAndHour)
-                == dateManager.dateToString(Date(), format: .dateAndHour)
-            }.count
+            count = todoRepo.fetchToday(type: Todo.self).count
         case .plan:
-            count = todoList.filter {
-                dateManager.dateToString($0.endDate, format: .dateAndHour)
-                > dateManager.dateToString(Date(), format: .dateAndHour)
-            }.count
+            count = todoRepo.fetchPlan(type: Todo.self).count
         case .whole:
-            count = todoList.count
+            count = todoRepo.fetch(type: Todo.self).count
         case .flag:
-            count = todoList.filter { $0.isFlag == true }.count
+            count = todoRepo.fetchFlag(type: Todo.self).count
         case .complete:
-            count = todoList.filter { $0.isComplete == true }.count
+            count = todoRepo.fetchComplete(type: Todo.self).count
         }
         
         return count
@@ -166,6 +160,20 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
+        
+        switch TodoSection.allCases[indexPath.item] {
+        case .today:
+            vc.todoList = todoRepo.fetchToday(type: Todo.self)
+        case .plan:
+            vc.todoList = todoRepo.fetchPlan(type: Todo.self)
+        case .whole:
+            vc.todoList = todoRepo.fetch(type: Todo.self)
+        case .flag:
+            vc.todoList = todoRepo.fetchFlag(type: Todo.self)
+        case .complete:
+            vc.todoList = todoRepo.fetchComplete(type: Todo.self)
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -14,7 +14,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
     private let todoRepo = TodoRepository()
-    private var todoList: Results<Todo>!
+    var todoList: Results<Todo>!
     
     private lazy var tableView = UITableView().then {
         $0.delegate = self
@@ -48,14 +48,6 @@ final class DetailViewController: BaseViewController {
                 }
             }
         })
-    }
-    
-    // MARK: - Lifecycles
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        todoList = todoRepo.fetch(type: Todo.self)
     }
     
     // MARK: - Selectors

@@ -33,6 +33,27 @@ final class TodoRepository {
     func fetch(type: T.Type) -> Results<T> {
         return realm.objects(T.self)
     }
+
+    func fetchToday(type: T.Type) -> Results<T> {
+        let today = Date()
+        let yesterDay = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        return realm.objects(Todo.self).filter("endDate > %@ AND endDate < %@", yesterDay, tomorrow)
+    }
+    
+    func fetchPlan(type: T.Type) -> Results<T> {
+        let today = Date()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        return realm.objects(Todo.self).filter("endDate >= %@", tomorrow)
+    }
+    
+    func fetchFlag(type: T.Type) -> Results<T> {
+        return realm.objects(T.self).where { $0.isFlag == true }
+    }
+    
+    func fetchComplete(type: T.Type) -> Results<T> {
+        return realm.objects(T.self).where { $0.isComplete == true }
+    }
     
     func updateTitle(_ item: T, title: String) {
         do {

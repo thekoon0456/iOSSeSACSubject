@@ -121,7 +121,6 @@ final class WholeTodoViewController: BaseViewController {
     
     private func getCount(idx: Int) -> Int? {
         let count: Int?
-        let dateManager = DateFormatterManager.shared
         switch TodoSection.allCases[idx] {
         case .today:
             count = todoRepo.fetchToday(type: Todo.self).count
@@ -134,7 +133,6 @@ final class WholeTodoViewController: BaseViewController {
         case .complete:
             count = todoRepo.fetchComplete(type: Todo.self).count
         }
-        
         return count
     }
 }

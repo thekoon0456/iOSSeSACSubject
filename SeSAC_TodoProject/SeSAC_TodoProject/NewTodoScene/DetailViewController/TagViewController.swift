@@ -11,12 +11,13 @@ final class TagViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let tagTextField = UITextField().then {
+    private lazy var tagTextField = UITextField().then {
         $0.placeholder = "태그를 입력해주세요"
         $0.leftPadding(8)
         $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
+        $0.delegate = self
     }
     
     var getTag: ((String?) -> Void)?
@@ -45,5 +46,16 @@ final class TagViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
+    }
+}
+
+extension TagViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let input = textField.text,
+              input.count < 10 else { return false }
+        let text = (input as NSString).replacingCharacters(in: range, with: string)
+        textField.text = text
+        return true
     }
 }

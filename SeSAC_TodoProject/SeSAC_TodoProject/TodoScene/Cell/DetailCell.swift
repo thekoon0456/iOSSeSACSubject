@@ -53,7 +53,9 @@ final class DetailCell: BaseTableViewCell {
         let dateManager = DateFormatterManager.shared
         titleLabel.text = pointMark(data.priority) + data.title
         memoLabel.text = data.memo
-        tagLabel.text = data.tag
+        if let tag = data.tag {
+            tagLabel.text = "#" + tag
+        }
         priorityLabel.text = Priority.allCases[data.priority ?? 1].title
         dateLabel.text = dateManager.dateToString(data.endDate, format: .dateAndHour)
         completeButton.isSelected = data.isComplete ? true : false
@@ -95,13 +97,13 @@ final class DetailCell: BaseTableViewCell {
         tagLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.width.equalTo(50)
-            make.bottom.equalToSuperview().offset(-12)
+            make.width.equalTo(50).priority(.low)
         }
         
         priorityLabel.snp.makeConstraints { make in
             make.top.equalTo(tagLabel)
-            make.leading.equalTo(tagLabel.snp.trailing).offset(8)
+            make.leading.equalTo(tagLabel.snp.trailing).offset(12)
+            make.bottom.equalToSuperview().offset(-8)
         }
         
         dateLabel.snp.makeConstraints { make in

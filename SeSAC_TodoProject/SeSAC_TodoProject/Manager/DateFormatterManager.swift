@@ -10,8 +10,8 @@ import Foundation
 final class DateFormatterManager {
     
     enum DateStyle: String {
-        case dateAndHour = "yyyy월 M월 d일 a HH:mm"
-        case date = "yyyy월 M월 d일"
+        case dateAndHour = "yyyy년 M월 d일 a h시"
+        case date = "yyyy년 M월 d일"
     }
     
     static let shared = DateFormatterManager()

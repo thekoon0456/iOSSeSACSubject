@@ -34,6 +34,7 @@ class Todo: Object {
     @Persisted var tag: String?
     @Persisted var priority: Int? //0 낮음, 1 보통, 2 높음
     @Persisted var image: Data?
+    @Persisted var isComplete: Bool
     @Persisted var isFlag: Bool
     
     convenience init(
@@ -43,6 +44,7 @@ class Todo: Object {
         tag: String?,
         priority: Int? = 1,
         image: Data?,
+        isComplete: Bool = false,
         isFlag: Bool = false
     ) {
         self.init()
@@ -52,6 +54,7 @@ class Todo: Object {
         self.tag = tag
         self.priority = priority
         self.image = image
+        self.isComplete = isComplete
         self.isFlag = isFlag
     }
 }

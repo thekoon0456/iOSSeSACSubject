@@ -100,6 +100,16 @@ final class TodoRepository {
         }
     }
     
+    func updateComplete(_ item: T, isComplete: Bool) {
+        do {
+            try realm.write {
+                item.isComplete = true
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func updateAll(key: String, value: Any) {
         do {
             try realm.write {

@@ -31,6 +31,8 @@ final class NewTodoController: BaseViewController {
         $0.register(InputHeaderCell.self, forCellReuseIdentifier: InputHeaderCell.identifier)
     }
     
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -48,8 +50,14 @@ final class NewTodoController: BaseViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     // MARK: - Selectors
+
+    
+    @objc func viewTapped() {
+        view.endEditing(true)
+        removeGesture()
+    }
     
     @objc func cancelButtonTapped() {
         navigationController?.dismiss(animated: true)
@@ -69,6 +77,14 @@ final class NewTodoController: BaseViewController {
     }
     
     // MARK: - Helpers
+    
+    func addTapGesture() {
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func removeGesture() {
+        view.removeGestureRecognizer(tapGesture)
+    }
     
     private func postNotification(name: String, userInfo: [String: Any]?) {
         NotificationCenter.default.post(name: NSNotification.Name(name),
@@ -107,6 +123,11 @@ final class NewTodoController: BaseViewController {
 
 extension NewTodoController: UITextFieldDelegate {
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        addTapGesture()
+        return true
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let input = textField.text else { return false }
         
@@ -121,11 +142,22 @@ extension NewTodoController: UITextFieldDelegate {
         todoRepo.updateTitle(todo, title: text)
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        removeGesture()
+        return true
+    }
 }
 
 // MARK: - TextView
 
 extension NewTodoController: UITextViewDelegate {
+
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        addTapGesture()
+        return true
+    }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "텍스트를 여기에 입력하세요." {

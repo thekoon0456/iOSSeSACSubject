@@ -11,6 +11,15 @@ final class DetailCell: BaseTableViewCell {
     
     // MARK: - Properties
     
+    private lazy var completeButton = UIButton().then {
+        let image = UIImage(systemName: "circle")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 24)))
+        let filledImage = UIImage(systemName: "circle.fill")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 24)))
+        $0.setImage(image, for: .normal)
+        $0.setImage(filledImage, for: .selected)
+        $0.tintColor = .white
+        $0.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+    }
+    
     private let titleLabel = UILabel().then {
         $0.font = .boldSystemFont(ofSize: 16)
         $0.textColor = .white
@@ -41,6 +50,14 @@ final class DetailCell: BaseTableViewCell {
     
     // MARK: - Helpers
     
+    @objc func completeButtonTapped(sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        sender.tintColor = sender.isSelected == true ? .systemYellow : .white
+    }
+    
+    // MARK: - Helpers
+    
     func configureCell(data: Todo) {
         let dateManager = DateFormatterManager.shared
         titleLabel.text = data.title
@@ -51,24 +68,30 @@ final class DetailCell: BaseTableViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews(titleLabel, memoLabel, tagLabel, priorityLabel, dateLabel)
+        contentView.addSubviews(completeButton, titleLabel, memoLabel, tagLabel, priorityLabel, dateLabel)
     }
     
     override func configureLayout() {
-        titleLabel.snp.makeConstraints { make in
+        completeButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(12)
+            make.size.equalTo(40)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.leading.equalTo(completeButton.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-8)
         }
         
         memoLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(8)
+            make.leading.equalTo(titleLabel.snp.leading)
             make.trailing.equalToSuperview().offset(-8)
         }
         
         tagLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(8)
+            make.leading.equalTo(titleLabel.snp.leading)
             make.width.equalTo(50)
             make.bottom.equalToSuperview().offset(-12)
         }

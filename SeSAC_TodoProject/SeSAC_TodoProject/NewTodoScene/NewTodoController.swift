@@ -12,9 +12,8 @@ import RealmSwift
 final class NewTodoController: BaseViewController {
     
     // MARK: - Properties
-    
+    private let todoRepo = TodoRepository()
     private var todo = Todo()
-    
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
                                                     target: self,
@@ -57,7 +56,7 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
-        addRealm(data: todo)
+        todoRepo.createItem(todo)
         dismiss(animated: true)
     }
     
@@ -65,8 +64,8 @@ final class NewTodoController: BaseViewController {
         if let data = notification.userInfo?["우선순위"] as? Int {
             InputSection.valueList[3] = Priority.allCases[data].title
             todo.priority = data
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     // MARK: - Helpers
@@ -75,14 +74,6 @@ final class NewTodoController: BaseViewController {
         NotificationCenter.default.post(name: NSNotification.Name(name),
                                         object: nil,
                                         userInfo: userInfo)
-    }
-    
-    private func addRealm<T: Object>(data: T) {
-        let realm = try! Realm()
-
-        try! realm.write {
-            realm.add(data)
-        }
     }
     
     private func notiAddObserver(name: String) {
@@ -127,7 +118,7 @@ extension NewTodoController: UITextFieldDelegate {
             addButton.isEnabled = true
         }
         
-        self.todo.title = text
+        todoRepo.updateTitle(todo, title: text)
         return true
     }
 }
@@ -144,12 +135,16 @@ extension NewTodoController: UITextViewDelegate {
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        guard let text = textView.text else { return }
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = "텍스트를 여기에 입력하세요."
             textView.textColor = .lightText
         }
+
+        let result = text == "텍스트를 여기에 입력하세요." ? "" : text
         
-        self.todo.memo = textView.text! == "텍스트를 여기에 입력하세요." ? "" : textView.text!
+        // MARK: - 추가버튼 누를때 여기가 한번 더 실행되서 transaction문제 발생. write구문 안에 넣어서 보장하기
+        todoRepo.updateMemo(todo, memo: result)
     }
 }
 
@@ -222,6 +217,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             vc.getTag = { tag in
                 InputSection.valueList[2] = tag ?? ""
                 self.todo.tag = tag
+
                 self.tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)

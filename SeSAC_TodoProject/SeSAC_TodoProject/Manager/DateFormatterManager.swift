@@ -12,7 +12,6 @@ final class DateFormatterManager {
     enum DateStyle: String {
         case dateAndHour = "yyyy월 M월 d일 a HH:mm"
         case date = "yyyy월 M월 d일"
-        case today = "오늘"
     }
     
     static let shared = DateFormatterManager()
@@ -20,7 +19,6 @@ final class DateFormatterManager {
     private init() { }
     
     let formatter = DateFormatter()
-    private lazy var today = dateToString(Date(), format: .today)
     private var krLocale = Locale(identifier: "ko_kr")
     
     // MARK: - 최종적인 format결과
@@ -42,9 +40,5 @@ final class DateFormatterManager {
         formatter.dateFormat = format.rawValue
         let result = formatter.date(from: stringDate)
         return result
-    }
-    
-    func todayString() -> String {
-        today
     }
 }

@@ -11,8 +11,8 @@ extension NSObject: Then {}
 protocol Then {}
 
 extension Then where Self: AnyObject {
-    func then(_ action: (Self) -> Void) -> Self {
-        action(self)
+    func then(_ configure: (Self) -> Void) -> Self {
+        configure(self)
         return self
     }
 }

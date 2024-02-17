@@ -12,6 +12,7 @@ import RealmSwift
 final class NewTodoController: BaseViewController {
     
     // MARK: - Properties
+    
     private let todoRepo = TodoRepository()
     private var todo = Todo()
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
@@ -37,7 +38,7 @@ final class NewTodoController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        todoRepo.printURL()
         notiAddObserver(name: "우선순위")
     }
     
@@ -70,8 +71,12 @@ final class NewTodoController: BaseViewController {
     
     @objc func receivedNotification(notification: NSNotification) {
         if let data = notification.userInfo?["우선순위"] as? Int {
-            InputSection.valueList[3] = Priority.allCases[data].title
             todo.priority = data
+            tableView.reloadData()
+        }
+        
+        if let data = notification.userInfo?["tag"] as? String {
+            todo.tag = data
             tableView.reloadData()
         }
     }
@@ -186,8 +191,6 @@ extension NewTodoController: UITextViewDelegate {
 extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
     func setDate(date: Date?) {
-        let dateManager = DateFormatterManager.shared
-        InputSection.valueList[1] = dateManager.dateToString(date, format: .date)
         todo.endDate = date
         tableView.reloadData()
     }
@@ -212,9 +215,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
     
     //tableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.section {
-        case 0:
+        switch InputSection.allCases[indexPath.section] {
+        case .input:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
                 return UITableViewCell()
             }
@@ -222,13 +224,40 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             cell.titleTextField.delegate = self
             cell.memoTextView.delegate = self
             return cell
-        default:
+        case .endDate:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
+                return UITableViewCell()
+            }
+            let dateManager = DateFormatterManager.shared
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               value: dateManager.dateToString(todo.endDate, format: .dateAndHour))
+            
+            return cell
+        case .tag:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
                 return UITableViewCell()
             }
             
             cell.configureCell(title: InputSection.allCases[indexPath.section].title,
-                               value: InputSection.allCases[indexPath.section].value)
+                               value: todo.tag)
+            
+            return cell
+        case .priority:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
+                return UITableViewCell()
+            }
+            
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               value: Priority.allCases[todo.priority ?? 0].title)
+            
+            return cell
+        case .addImage:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
+                return UITableViewCell()
+            }
+            
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               value: "")
             
             return cell
         }
@@ -246,12 +275,6 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
         case .tag:
             //closure
             let vc = TagViewController()
-            vc.getTag = { tag in
-                InputSection.valueList[2] = tag ?? ""
-                self.todo.tag = tag
-
-                self.tableView.reloadData()
-            }
             navigationController?.pushViewController(vc, animated: true)
         case .priority:
             //notificationCenter

@@ -102,4 +102,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         configureCompleteButton(button: cell.completeButton, tag: indexPath.row)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoRepo.delete(todoList[indexPath.row])
+            tableView.reloadData()
+        }
+    }
 }

@@ -60,10 +60,12 @@ extension TagViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let input = textField.text,
-              input.count < 10 else { return false }
-        let text = (input as NSString).replacingCharacters(in: range, with: string)
+              input.count < 10
+        else { return false }
         
-        tagTextField.text = text
-        return true
+        let updateText = (input as NSString).replacingCharacters(in: range, with: string)
+        let trimmedText = updateText.trimmingCharacters(in: .whitespaces)
+        let hasWhiteSpace = updateText != trimmedText
+        return !hasWhiteSpace
     }
 }

@@ -9,23 +9,6 @@ import Foundation
 
 import RealmSwift
 
-enum Priority: Int, CaseIterable {
-    case low
-    case medium
-    case high
-    
-    var title: String {
-        switch self {
-        case .low:
-            "낮음"
-        case .medium:
-            "보통"
-        case .high:
-            "높음"
-        }
-    }
-}
-
 class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
@@ -56,5 +39,24 @@ class Todo: Object {
         self.image = image
         self.isComplete = isComplete
         self.isFlag = isFlag
+    }
+}
+
+// MARK: - Priority
+
+enum Priority: Int, CaseIterable {
+    case low
+    case medium
+    case high
+    
+    var title: String {
+        switch self {
+        case .low:
+            "낮음"
+        case .medium:
+            "보통"
+        case .high:
+            "높음"
+        }
     }
 }

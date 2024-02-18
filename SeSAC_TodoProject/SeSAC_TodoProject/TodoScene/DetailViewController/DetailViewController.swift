@@ -72,9 +72,9 @@ final class DetailViewController: BaseViewController {
     
     private func configureSearchBar() {
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.placeholder = "할 일을 검색해주세요"
         searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
     }

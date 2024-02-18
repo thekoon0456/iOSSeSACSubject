@@ -19,6 +19,8 @@ final class TodoRepository {
         print(realm.configuration.fileURL)
     }
     
+    // MARK: - Create
+    
     func createItem(_ item: T) {
         do {
             try realm.write {
@@ -29,6 +31,8 @@ final class TodoRepository {
             print(error.localizedDescription)
         }
     }
+    
+    // MARK: - Read
     
     func fetch(type: T.Type) -> Results<T> {
         return realm.objects(T.self)
@@ -54,6 +58,8 @@ final class TodoRepository {
     func fetchComplete(type: T.Type) -> Results<T> {
         return realm.objects(T.self).where { $0.isComplete == true }
     }
+    
+    // MARK: - Update
     
     func updateTitle(_ item: T, title: String) {
         do {
@@ -144,6 +150,8 @@ final class TodoRepository {
             print(error.localizedDescription)
         }
     }
+    
+    // MARK: - Delete
     
     func delete(_ item: T) {
         do {

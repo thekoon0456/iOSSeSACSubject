@@ -31,12 +31,9 @@ final class DateFormatterManager {
     func dateToString(_ date: Date?, format: DateStyle) -> String? {
         formatter.locale = krLocale
         formatter.dateFormat = format.rawValue
-        if let date {
-            let result = formatter.string(from: date)
-            return result
-        } else {
-            return nil
-        }
+        guard let date else { return nil }
+        let result = formatter.string(from: date)
+        return result
     }
     
     func stringToDate(_ stringDate: String, format: DateStyle) -> Date? {
@@ -46,3 +43,4 @@ final class DateFormatterManager {
         return result
     }
 }
+

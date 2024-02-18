@@ -23,16 +23,20 @@ final class DateFormatterManager {
     
     // MARK: - 최종적인 format결과
     
-    func formattedDate(input: String, inputFormat: DateStyle, outputFormat: DateStyle) -> String {
+    func formattedDate(input: String, inputFormat: DateStyle, outputFormat: DateStyle) -> String? {
         let date = stringToDate(input, format: inputFormat)
         return dateToString(date, format: outputFormat)
     }
     
-    func dateToString(_ date: Date?, format: DateStyle) -> String {
+    func dateToString(_ date: Date?, format: DateStyle) -> String? {
         formatter.locale = krLocale
         formatter.dateFormat = format.rawValue
-        let result = formatter.string(from: date ?? Date())
-        return result
+        if let date {
+            let result = formatter.string(from: date)
+            return result
+        } else {
+            return nil
+        }
     }
     
     func stringToDate(_ stringDate: String, format: DateStyle) -> Date? {

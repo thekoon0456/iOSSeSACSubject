@@ -215,50 +215,37 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
     
     //tableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
+            return UITableViewCell()
+        }
+        
         switch InputSection.allCases[indexPath.section] {
         case .input:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
                 return UITableViewCell()
             }
-            
             cell.titleTextField.delegate = self
             cell.memoTextView.delegate = self
             return cell
         case .endDate:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
-                return UITableViewCell()
-            }
             let dateManager = DateFormatterManager.shared
             cell.configureCell(title: InputSection.allCases[indexPath.section].title,
                                value: dateManager.dateToString(todo.endDate, format: .dateAndHour))
             
             return cell
         case .tag:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
-                return UITableViewCell()
-            }
-            
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
-                               value: todo.tag)
-            
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: todo.tag)
             return cell
         case .priority:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
-                return UITableViewCell()
+            if let priority = todo.priority {
+                cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                                   value: Priority.allCases[priority].title)
+            } else {
+                cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: nil)
             }
-            
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
-                               value: Priority.allCases[todo.priority ?? 0].title)
-            
             return cell
         case .addImage:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextCell.identifier) as? TextCell else {
-                return UITableViewCell()
-            }
-            
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
-                               value: "")
-            
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: "")
             return cell
         }
     }

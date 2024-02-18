@@ -30,7 +30,7 @@ final class DetailViewController: BaseViewController {
         $0.showsMenuAsPrimaryAction = true
         
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
-        let list = todoRepo.fetch(type: Todo.self)
+        guard let list = todoList else { return }
         $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
             UIAction(title: menus[idx]) { _ in
                 switch menus[idx] {

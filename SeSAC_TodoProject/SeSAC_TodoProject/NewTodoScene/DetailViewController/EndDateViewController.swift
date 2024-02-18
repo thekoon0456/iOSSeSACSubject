@@ -15,13 +15,12 @@ final class EndDateViewController: BaseViewController {
     
     // MARK: - Properties
     
+    var delegate: EndDateDelegate?
     private let datePicker = UIDatePicker().then {
         $0.preferredDatePickerStyle = .wheels
         $0.locale = Locale(identifier: "ko_kr")
         $0.minimumDate = Date()
     }
-    
-    var delegate: EndDateDelegate?
     
     // MARK: - Lifecycles
     

@@ -115,7 +115,7 @@ final class TodoRepository {
         }
     }
     
-    func updateFlag(_ item: T, isFlag: Bool) {
+    func updateFlag(_ item: T) {
         do {
             try realm.write {
                 item.isFlag.toggle()

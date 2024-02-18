@@ -103,6 +103,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // MARK: - Delete
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true
     }
@@ -112,5 +114,21 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             todoRepo.delete(todoList[indexPath.row])
             tableView.reloadData()
         }
+    }
+    
+    // MARK: - leading
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let flag = UIContextualAction(style: .normal,
+                                      title: "Flag") { action, view, completion in
+            self.todoRepo.updateFlag(self.todoList[indexPath.row])
+            completion(true)
+        }
+        
+        let imageName = self.todoList[indexPath.row].isFlag ? "flag.fill" : "flag"
+        flag.image = UIImage(systemName: imageName)
+        flag.backgroundColor = .systemOrange
+        
+        return UISwipeActionsConfiguration(actions: [flag])
     }
 }

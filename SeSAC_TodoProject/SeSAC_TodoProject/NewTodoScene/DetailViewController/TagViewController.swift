@@ -42,6 +42,8 @@ final class TagViewController: BaseViewController {
     }
 }
 
+// MARK: - TextField
+
 extension TagViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

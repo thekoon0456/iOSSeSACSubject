@@ -24,17 +24,11 @@ final class PriorityViewController: BaseViewController {
                          userInfo: ["우선순위": Priority.allCases[primarySeg.selectedSegmentIndex].rawValue])
     }
     
-    // MARK: - Helpers
-    
-    func postNotification(name: String, userInfo: [String: Any]?) {
-        NotificationCenter.default.post(name: NSNotification.Name(name),
-                                        object: nil,
-                                        userInfo: userInfo)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    // MARK: - Helpers
     
     override func configureHierarchy() {
         view.addSubview(primarySeg)

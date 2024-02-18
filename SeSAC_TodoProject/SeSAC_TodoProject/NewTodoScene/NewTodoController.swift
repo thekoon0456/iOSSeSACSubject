@@ -15,6 +15,7 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     private var todo = Todo()
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
                                                     target: self,
@@ -31,8 +32,6 @@ final class NewTodoController: BaseViewController {
         $0.register(TextCell.self, forCellReuseIdentifier: TextCell.identifier)
         $0.register(InputHeaderCell.self, forCellReuseIdentifier: InputHeaderCell.identifier)
     }
-    
-    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
     
     // MARK: - Lifecycles
     
@@ -83,20 +82,6 @@ final class NewTodoController: BaseViewController {
     
     // MARK: - Helpers
     
-    func addTapGesture() {
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    func removeGesture() {
-        view.removeGestureRecognizer(tapGesture)
-    }
-    
-    private func postNotification(name: String, userInfo: [String: Any]?) {
-        NotificationCenter.default.post(name: NSNotification.Name(name),
-                                        object: nil,
-                                        userInfo: userInfo)
-    }
-    
     private func notiAddObserver(name: String) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(receivedNotification(notification:)),
@@ -121,6 +106,19 @@ final class NewTodoController: BaseViewController {
         navigationItem.rightBarButtonItem = addButton
         view.backgroundColor = .secondarySystemBackground
         addButton.isEnabled = false
+    }
+}
+
+// MARK: - Gesture
+
+extension NewTodoController {
+    
+    private func addTapGesture() {
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func removeGesture() {
+        view.removeGestureRecognizer(tapGesture)
     }
 }
 

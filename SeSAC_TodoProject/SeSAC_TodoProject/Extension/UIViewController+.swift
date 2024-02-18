@@ -14,4 +14,15 @@ extension UIViewController {
                                         object: nil,
                                         userInfo: userInfo)
     }
+    
+    func notiAddObserver(name: String) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receivedNotification(notification:)),
+                                               name: NSNotification.Name(name),
+                                               object: nil)
+    }
+    
+    @objc func receivedNotification(notification: NSNotification) {
+        
+    }
 }

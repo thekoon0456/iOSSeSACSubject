@@ -15,7 +15,9 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     private let todoRepo = TodoRepository()
     var todoList: Results<Todo>!
+    var filteredList: Results<Todo>!
     
+    let searchController = UISearchController(searchResultsController: nil)
     private lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
@@ -50,6 +52,14 @@ final class DetailViewController: BaseViewController {
         })
     }
     
+    // MARK: - Lifecycles
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        filteredList = todoList
+        configureSearchBar()
+    }
+    
     // MARK: - Selectors
     
     @objc func completeButtonTapped(sender: UIButton) {
@@ -59,6 +69,15 @@ final class DetailViewController: BaseViewController {
     }
     
     // MARK: - Helpers
+    
+    private func configureSearchBar() {
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "할 일을 검색해주세요"
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+    }
     
     private func configureCompleteButton(button: UIButton, tag: Int) {
         button.tag = tag
@@ -85,17 +104,34 @@ final class DetailViewController: BaseViewController {
     
 }
 
+// MARK: - SearchViewController
+
+extension DetailViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text,
+              !text.isEmpty else { return }
+        filteredList = todoRepo.fetch(type: Todo.self).where { $0.title.contains(text, options: .caseInsensitive) }
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        filteredList = todoList
+        tableView.reloadData()
+    }
+}
+
 // MARK: - TableView
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoList?.count ?? 0
+        filteredList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell,
-              let list = todoList else {
+              let list = filteredList else {
             return UITableViewCell()
         }
         cell.configureCell(data: list[indexPath.row])
@@ -111,7 +147,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoRepo.delete(todoList[indexPath.row])
+            todoRepo.delete(filteredList[indexPath.row])
             tableView.reloadData()
         }
     }
@@ -121,11 +157,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flag = UIContextualAction(style: .normal,
                                       title: "Flag") { action, view, completion in
-            self.todoRepo.updateFlag(self.todoList[indexPath.row])
+            self.todoRepo.updateFlag(self.filteredList[indexPath.row])
             completion(true)
         }
         
-        let imageName = self.todoList[indexPath.row].isFlag ? "flag.fill" : "flag"
+        let imageName = self.filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
         flag.image = UIImage(systemName: imageName)
         flag.backgroundColor = .systemOrange
         

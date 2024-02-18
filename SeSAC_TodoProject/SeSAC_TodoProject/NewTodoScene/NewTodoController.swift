@@ -68,26 +68,14 @@ final class NewTodoController: BaseViewController {
         dismiss(animated: true)
     }
     
-    @objc func receivedNotification(notification: NSNotification) {
+    @objc override func receivedNotification(notification: NSNotification) {
         if let data = notification.userInfo?["우선순위"] as? Int {
             todo.priority = data
-            tableView.reloadData()
-        }
-        
-        if let data = notification.userInfo?["tag"] as? String {
-            todo.tag = data
             tableView.reloadData()
         }
     }
     
     // MARK: - Helpers
-    
-    private func notiAddObserver(name: String) {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(receivedNotification(notification:)),
-                                               name: NSNotification.Name(name),
-                                               object: nil)
-    }
 
     override func configureHierarchy() {
         view.addSubviews(tableView)

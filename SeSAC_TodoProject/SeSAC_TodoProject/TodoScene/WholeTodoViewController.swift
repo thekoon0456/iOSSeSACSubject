@@ -64,21 +64,13 @@ final class WholeTodoViewController: BaseViewController {
         todoCollectionView.reloadData()
     }
     
-    func notiAddObserver(name: String) {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(receivedNotification(notification:)),
-                                               name: NSNotification.Name(name),
-                                               object: nil)
-    }
+    // MARK: - Selectors
     
-    @objc func receivedNotification(notification: NSNotification) {
+    @objc override func receivedNotification(notification: NSNotification) {
         todoCollectionView.reloadData()
     }
     
-    // MARK: - Selectors
-    
     @objc func newTodoButtonTapped() {
-        print(#function)
         let vc = NewTodoController()
         let nav = UINavigationController(rootViewController: vc)
         
@@ -175,3 +167,4 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+

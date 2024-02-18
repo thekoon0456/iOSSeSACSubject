@@ -262,6 +262,10 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
         case .tag:
             //closure
             let vc = TagViewController()
+            vc.tag = { tag in
+                self.todo.tag = tag
+                self.tableView.reloadData()
+            }
             navigationController?.pushViewController(vc, animated: true)
         case .priority:
             //notificationCenter

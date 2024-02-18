@@ -20,21 +20,7 @@ final class TagViewController: BaseViewController {
         $0.delegate = self
     }
     
-    // MARK: - Lifecycles
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        postNotification(name: "우선순위",
-                         userInfo: ["tag": tagTextField.text])
-    }
-    
-    // MARK: - Helpers
-    
-    func postNotification(name: String, userInfo: [String: Any]?) {
-        NotificationCenter.default.post(name: NSNotification.Name(name),
-                                        object: nil,
-                                        userInfo: userInfo)
-    }
+    var tag: ((String?) -> Void)?
     
     // MARK: - Helpers
     
@@ -66,6 +52,7 @@ extension TagViewController: UITextFieldDelegate {
         let updateText = (input as NSString).replacingCharacters(in: range, with: string)
         let trimmedText = updateText.trimmingCharacters(in: .whitespaces)
         let hasWhiteSpace = updateText != trimmedText
+        tag?(updateText)
         return !hasWhiteSpace
     }
 }

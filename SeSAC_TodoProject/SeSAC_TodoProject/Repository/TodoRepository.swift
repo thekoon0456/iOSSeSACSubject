@@ -39,10 +39,9 @@ final class TodoRepository {
     }
 
     func fetchToday(type: T.Type) -> Results<T> {
-        let today = Date()
-        let yesterDay = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+        let today = Calendar.current.startOfDay(for: Date())
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        return realm.objects(Todo.self).filter("endDate > %@ AND endDate < %@", yesterDay, tomorrow)
+        return realm.objects(Todo.self).filter("endDate >= %@ AND endDate < %@", today, tomorrow)
     }
     
     func fetchPlan(type: T.Type) -> Results<T> {

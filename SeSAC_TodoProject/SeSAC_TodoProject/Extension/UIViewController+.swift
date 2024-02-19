@@ -22,7 +22,5 @@ extension UIViewController {
                                                object: nil)
     }
     
-    @objc func receivedNotification(notification: NSNotification) {
-        
-    }
+    @objc func receivedNotification(notification: NSNotification) { }
 }

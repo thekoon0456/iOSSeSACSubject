@@ -64,7 +64,7 @@ extension WebViewController {
     
     private func setLayout() {
         webView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
         
         indicator.snp.makeConstraints { make in

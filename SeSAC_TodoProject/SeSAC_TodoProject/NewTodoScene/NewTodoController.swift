@@ -84,7 +84,8 @@ final class NewTodoController: BaseViewController {
     
     override func configureLayout() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.bottom.equalToSuperview()
         }
     }
     

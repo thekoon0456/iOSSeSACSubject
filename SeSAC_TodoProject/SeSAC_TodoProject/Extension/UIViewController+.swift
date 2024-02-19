@@ -24,7 +24,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .actionSheet)
-        alert.view.tintColor = .white
+        alert.view.tintColor = .tintColor
         
         let primaryButton = UIAlertAction(title: primaryButtonTitle, style: .default, handler: primaryAction)
         let secondButton = UIAlertAction(title: secondButtonTitle, style: .default, handler: secondAction)

@@ -263,9 +263,28 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             let vc = PriorityViewController()
             navigationController?.pushViewController(vc, animated: true)
         case .addImage:
-            let vc = UIImagePickerController()
-            vc.delegate = self
-            navigationController?.present(vc, animated: true)
+            let photoVc = UIImagePickerController()
+            photoVc.delegate = self
+            
+            showActionSheet(title: "사진 선택하기",
+                            message: "",
+                            primaryButtonTitle: "갤러리에서 선택하기",
+                            secondButtonTitle: "사진 촬영하기",
+                            thirdButtonTitle: "웹에서 이미지 검색") { [weak self] _ in
+                guard let self else { return }
+                navigationController?.present(photoVc, animated: true)
+            } secondAction: { [weak self]  _ in
+                guard let self else { return }
+                photoVc.sourceType = .camera
+                navigationController?.present(photoVc, animated: true)
+            } thirdAction: { [weak self] _ in
+                guard let self else { return }
+                let webVc = WebViewController()
+                navigationController?.present(webVc, animated: true)
+            } cancleAction: { [weak self] _ in
+                guard let self else { return }
+                dismiss(animated: true)
+            }
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

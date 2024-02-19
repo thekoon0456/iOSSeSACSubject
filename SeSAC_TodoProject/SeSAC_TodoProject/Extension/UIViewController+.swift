@@ -7,6 +7,41 @@
 
 import UIKit
 
+// MARK: - ActionSheet
+
+extension UIViewController {
+    func showActionSheet(title: String,
+                         message: String,
+                         primaryButtonTitle: String,
+                         secondButtonTitle: String,
+                         thirdButtonTitle: String,
+                         okButtonTitle: String = "확인",
+                         primaryAction: @escaping (UIAlertAction) -> Void,
+                         secondAction: @escaping (UIAlertAction) -> Void,
+                         thirdAction: @escaping (UIAlertAction) -> Void,
+                         cancleAction: @escaping (UIAlertAction) -> Void) {
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .actionSheet)
+        alert.view.tintColor = .white
+        
+        let primaryButton = UIAlertAction(title: primaryButtonTitle, style: .default, handler: primaryAction)
+        let secondButton = UIAlertAction(title: secondButtonTitle, style: .default, handler: secondAction)
+        let thirdButton = UIAlertAction(title: thirdButtonTitle, style: .default, handler: thirdAction)
+        let okButton = UIAlertAction(title: okButtonTitle, style: .destructive, handler: cancleAction)
+        
+        alert.addAction(primaryButton)
+        alert.addAction(secondButton)
+        alert.addAction(thirdButton)
+        alert.addAction(okButton)
+        
+        navigationController?.present(alert, animated: true)
+    }
+}
+
+
+
 // MARK: - Notification
 
 extension UIViewController {

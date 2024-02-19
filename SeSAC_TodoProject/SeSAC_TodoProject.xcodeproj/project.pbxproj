@@ -32,7 +32,7 @@
 		7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */; };
 		7C6644892B7CCC0F00FAAD8D /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */; };
 		7C66448B2B7CCC1D00FAAD8D /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448A2B7CCC1D00FAAD8D /* PriorityViewController.swift */; };
-		7C66448D2B7CCC2800FAAD8D /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */; };
+		7C66448D2B7CCC2800FAAD8D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448C2B7CCC2700FAAD8D /* WebViewController.swift */; };
 		7C6644902B7CCF2900FAAD8D /* WholeTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */; };
 		7C6A9DE02B7E1C5B00433551 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DDF2B7E1C5B00433551 /* DetailViewController.swift */; };
 		7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DE12B7E2EC700433551 /* DetailCell.swift */; };
@@ -69,7 +69,7 @@
 		7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateViewController.swift; sourceTree = "<group>"; };
 		7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		7C66448A2B7CCC1D00FAAD8D /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
-		7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
+		7C66448C2B7CCC2700FAAD8D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7C66448F2B7CCF2900FAAD8D /* WholeTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeTodoCell.swift; sourceTree = "<group>"; };
 		7C6A9DDF2B7E1C5B00433551 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7C6A9DE12B7E2EC700433551 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 				7C6644862B7CCC0500FAAD8D /* EndDateViewController.swift */,
 				7C6644882B7CCC0F00FAAD8D /* TagViewController.swift */,
 				7C66448A2B7CCC1D00FAAD8D /* PriorityViewController.swift */,
-				7C66448C2B7CCC2700FAAD8D /* AddImageViewController.swift */,
+				7C66448C2B7CCC2700FAAD8D /* WebViewController.swift */,
 			);
 			path = DetailInputView;
 			sourceTree = "<group>";
@@ -353,7 +353,7 @@
 			files = (
 				7C4BA37D2B7E08A2006CC8D1 /* InputSection.swift in Sources */,
 				7C66446E2B7C94BA00FAAD8D /* BaseTableViewCell.swift in Sources */,
-				7C66448D2B7CCC2800FAAD8D /* AddImageViewController.swift in Sources */,
+				7C66448D2B7CCC2800FAAD8D /* WebViewController.swift in Sources */,
 				7C6644702B7C94D600FAAD8D /* BaseCollectionViewCell.swift in Sources */,
 				7C66446A2B7C945000FAAD8D /* WholeTodoViewController.swift in Sources */,
 				7C10FC632B8239A800D12F7D /* UIViewController+.swift in Sources */,

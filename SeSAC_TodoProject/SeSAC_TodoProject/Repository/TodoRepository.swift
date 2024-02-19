@@ -110,7 +110,7 @@ final class TodoRepository {
         }
     }
     
-    func updateImage(_ item: T, image: Data?) {
+    func updateImage(_ item: T, image: String?) {
         do {
             try realm.write {
                 item.image = image

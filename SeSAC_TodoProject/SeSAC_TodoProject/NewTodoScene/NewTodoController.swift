@@ -15,6 +15,7 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     private var todo = Todo()
+    private var selectedImage: UIImage?
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
@@ -31,6 +32,7 @@ final class NewTodoController: BaseViewController {
         $0.delegate = self
         $0.register(TextCell.self, forCellReuseIdentifier: TextCell.identifier)
         $0.register(InputHeaderCell.self, forCellReuseIdentifier: InputHeaderCell.identifier)
+        $0.register(ImageSelectCell.self, forCellReuseIdentifier: ImageSelectCell.identifier)
     }
     
     // MARK: - Lifecycles
@@ -231,7 +233,10 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             }
             return cell
         case .addImage:
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: "")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageSelectCell.identifier, for: indexPath) as? ImageSelectCell else {
+                return UITableViewCell()
+            }
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: selectedImage)
             return cell
         }
     }
@@ -258,19 +263,44 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             let vc = PriorityViewController()
             navigationController?.pushViewController(vc, animated: true)
         case .addImage:
-            let vc = AddImageViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let vc = UIImagePickerController()
+            vc.delegate = self
+            navigationController?.present(vc, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 150
-        default:
-            return 50
+        switch InputSection.allCases[indexPath.section] {
+        case .input:
+            150
+        case .endDate:
+            50
+        case .tag:
+            50
+        case .priority:
+            50
+        case .addImage:
+            150
         }
     }
 }
+
+// MARK: - Photo
+
+extension NewTodoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        todo.image = nil
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.selectedImage = selectedImage
+        tableView.reloadRows(at: [IndexPath.SubSequence(row: 0, section: 4)], with: .automatic)
+        dismiss(animated: true)
+    }
+}
+

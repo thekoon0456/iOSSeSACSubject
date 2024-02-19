@@ -16,7 +16,7 @@ class Todo: Object {
     @Persisted var endDate: Date?
     @Persisted var tag: String?
     @Persisted var priority: Int? //0 낮음, 1 보통, 2 높음
-    @Persisted var image: Data?
+    @Persisted var image: String?
     @Persisted var isComplete: Bool
     @Persisted var isFlag: Bool
     
@@ -26,7 +26,7 @@ class Todo: Object {
         endDate: Date?,
         tag: String?,
         priority: Int? = 1,
-        image: Data?,
+        image: String?,
         isComplete: Bool = false,
         isFlag: Bool = false
     ) {

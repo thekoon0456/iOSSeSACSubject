@@ -41,6 +41,7 @@
 		7C7D88052B7F2F1A00038946 /* TodoRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */; };
 		7C8CD0982B833A81000C0449 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7C8CD0972B833A81000C0449 /* FSCalendar */; };
 		7C8CD09D2B833B6E000C0449 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */; };
+		7C8CD09F2B8350AD000C0449 /* imageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		7C7D88022B7F2E6200038946 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
 		7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			children = (
 				7C66447E2B7CAC1200FAAD8D /* InputHeaderCell.swift */,
 				7C6644832B7CC88B00FAAD8D /* TextCell.swift */,
+				7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				7C6644702B7C94D600FAAD8D /* BaseCollectionViewCell.swift in Sources */,
 				7C66446A2B7C945000FAAD8D /* WholeTodoViewController.swift in Sources */,
 				7C10FC632B8239A800D12F7D /* UIViewController+.swift in Sources */,
+				7C8CD09F2B8350AD000C0449 /* imageSelectCell.swift in Sources */,
 				7C7D88052B7F2F1A00038946 /* TodoRepositoryProtocol.swift in Sources */,
 				7C6644522B7C939600FAAD8D /* AppDelegate.swift in Sources */,
 				7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */,

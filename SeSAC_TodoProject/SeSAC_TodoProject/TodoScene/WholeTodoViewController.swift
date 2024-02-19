@@ -77,6 +77,11 @@ final class WholeTodoViewController: BaseViewController {
         navigationController?.present(nav, animated: true)
     }
     
+    @objc func calendarButtonTapped() {
+        let vc = CalendarViewController()
+        navigationController?.present(vc, animated: true)
+    }
+    
     @objc func addListButtonTapped() {
         print(#function)
     }
@@ -108,6 +113,10 @@ final class WholeTodoViewController: BaseViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(ellipsisButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(calendarButtonTapped))
         toolbarItems = [newTodoButton, newListButton]
     }
     

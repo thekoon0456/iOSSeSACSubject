@@ -81,6 +81,12 @@ extension UIResponder {
     func getFileURL(fileName: String) -> URL? {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory,
                                                                in: .userDomainMask).first else { return nil }
+        let photoDirectoryURL = documentDirectory.appendingPathComponent("images")
+        do {
+            try FileManager.default.createDirectory(at: photoDirectoryURL, withIntermediateDirectories: true)
+        } catch {
+            print("photoDirectory 생성 오류")
+        }
         let fileURL = documentDirectory.appendingPathComponent("/images/\(fileName).jpg")
         return fileURL
     }

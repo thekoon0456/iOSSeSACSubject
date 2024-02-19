@@ -56,11 +56,11 @@ final class WholeTodoViewController: BaseViewController {
         
         todoList = todoRepo.fetch(type: Todo.self)
         notiAddObserver(name: "추가")
-        //        todoRepo.printURL()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
         todoCollectionView.reloadData()
     }
     
@@ -73,7 +73,9 @@ final class WholeTodoViewController: BaseViewController {
     @objc func newTodoButtonTapped() {
         let vc = NewTodoController()
         let nav = UINavigationController(rootViewController: vc)
-        
+        vc.navigationItem.title = "새로운 할 일"
+        vc.navigationItem.leftBarButtonItem = vc.cancelButton
+        vc.navigationItem.rightBarButtonItem = vc.addButton
         navigationController?.present(nav, animated: true)
     }
     
@@ -106,7 +108,6 @@ final class WholeTodoViewController: BaseViewController {
         super.configureView()
         navigationItem.title = "전체"
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemGray]
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.isToolbarHidden = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"),
@@ -159,7 +160,7 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
-        
+
         switch TodoSection.allCases[indexPath.item] {
         case .today:
             vc.todoList = todoRepo.fetchToday(type: Todo.self)

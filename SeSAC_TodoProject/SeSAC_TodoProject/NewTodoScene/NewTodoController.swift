@@ -14,17 +14,23 @@ final class NewTodoController: BaseViewController {
     // MARK: - Properties
     
     private let todoRepo = TodoRepository()
-    private var todo = Todo()
-    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-    private lazy var cancelButton = UIBarButtonItem(title: "취소",
+    var todo = Todo()
+    lazy var tapGesture = UITapGestureRecognizer(target: self,
+                                                 action: #selector(viewTapped))
+    lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
                                                     target: self,
                                                     action: #selector(cancelButtonTapped))
     
-    private lazy var addButton = UIBarButtonItem(title: "추가",
+    lazy var addButton = UIBarButtonItem(title: "추가",
                                                  style: .plain,
                                                  target: self,
                                                  action: #selector(addButtonTapped))
+    
+    lazy var editButton = UIBarButtonItem(title: "수정하기",
+                                                 style: .plain,
+                                                 target: self,
+                                                 action: #selector(editButtonTapped))
     
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.dataSource = self
@@ -62,11 +68,18 @@ final class NewTodoController: BaseViewController {
     
     @objc func cancelButtonTapped() {
         navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func addButtonTapped() {
         todoRepo.createItem(todo)
         dismiss(animated: true)
+    }
+    
+    @objc func editButtonTapped() {
+        print(#function)
+        todoRepo.updateTodo(todo)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc override func receivedNotification(notification: NSNotification) {
@@ -91,9 +104,6 @@ final class NewTodoController: BaseViewController {
     
     override func configureView() {
         super.configureView()
-        navigationItem.title = "새로운 할 일"
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = addButton
         view.backgroundColor = .secondarySystemBackground
         addButton.isEnabled = false
     }
@@ -214,6 +224,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             }
             cell.titleTextField.delegate = self
             cell.memoTextView.delegate = self
+            cell.titleTextField.text = todo.title
+            cell.memoTextView.text = todo.memo
             return cell
         case .endDate:
             let dateManager = DateFormatterManager.shared
@@ -319,7 +331,7 @@ extension NewTodoController: UINavigationControllerDelegate, UIImagePickerContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         saveImageToDocument(image: selectedImage, fileName: todo.id.stringValue)
-        todo.imageName = todo.id.stringValue
+        todoRepo.updateImage(todo, image: todo.id.stringValue)
         tableView.reloadRows(at: [IndexPath.SubSequence(row: 0, section: 4)], with: .automatic)
         dismiss(animated: true)
     }

@@ -60,6 +60,16 @@ final class TodoRepository {
     
     // MARK: - Update
     
+    func updateTodo(_ item: T) {
+        do {
+            try realm.write {
+                realm.add(item, update: .modified)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func updateTitle(_ item: T, title: String) {
         do {
             try realm.write {

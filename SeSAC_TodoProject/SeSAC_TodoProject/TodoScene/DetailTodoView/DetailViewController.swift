@@ -60,6 +60,11 @@ final class DetailViewController: BaseViewController {
         configureSearchBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: - Selectors
     
     @objc func completeButtonTapped(sender: UIButton) {
@@ -98,8 +103,9 @@ final class DetailViewController: BaseViewController {
     }
     
     override func configureView() {
+        super.configureView()
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: ellipsisButton)
-        view.backgroundColor = .black
     }
     
 }
@@ -137,6 +143,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(data: list[indexPath.row])
         configureCompleteButton(button: cell.completeButton, tag: indexPath.row)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = NewTodoController()
+        vc.navigationItem.title = "할 일"
+        vc.navigationItem.rightBarButtonItem = vc.editButton
+        vc.todo = todoList[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Delete

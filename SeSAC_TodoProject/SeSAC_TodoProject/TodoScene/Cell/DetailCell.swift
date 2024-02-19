@@ -47,6 +47,11 @@ final class DetailCell: BaseTableViewCell {
         $0.textColor = .systemGray
     }
     
+    private let selectedImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
+    
     // MARK: - Helpers
     
     func configureCell(data: Todo) {
@@ -59,6 +64,7 @@ final class DetailCell: BaseTableViewCell {
         priorityLabel.text = Priority.allCases[data.priority ?? 1].title
         dateLabel.text = dateManager.dateToString(data.endDate, format: .dateAndHour)
         completeButton.isSelected = data.isComplete ? true : false
+        selectedImageView.image = loadImageToDocument(fileName: data.id.stringValue)
     }
     
     private func pointMark(_ priority: Int?) -> String {
@@ -73,7 +79,7 @@ final class DetailCell: BaseTableViewCell {
     }
     
     override func configureHierarchy() {
-        contentView.addSubviews(completeButton, titleLabel, memoLabel, tagLabel, priorityLabel, dateLabel)
+        contentView.addSubviews(completeButton, titleLabel, memoLabel, tagLabel, priorityLabel, dateLabel, selectedImageView)
     }
     
     override func configureLayout() {
@@ -108,6 +114,14 @@ final class DetailCell: BaseTableViewCell {
         
         dateLabel.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview().offset(-8)
+        }
+        
+        selectedImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(4)
+            make.trailing.equalToSuperview().offset(-4)
+            make.bottom.equalTo(dateLabel.snp.top).offset(-4)
+            make.height.equalTo(50)
+            make.width.equalTo(100)
         }
     }
 }

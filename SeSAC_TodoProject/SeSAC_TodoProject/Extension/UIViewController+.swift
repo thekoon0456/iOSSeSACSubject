@@ -7,9 +7,9 @@
 
 import UIKit
 
+// MARK: - Notification
+
 extension UIViewController {
-    
-    // MARK: - Notification
     
     func postNotification(name: String, userInfo: [String: Any]?) {
         NotificationCenter.default.post(name: NSNotification.Name(name),
@@ -25,13 +25,53 @@ extension UIViewController {
     }
     
     @objc func receivedNotification(notification: NSNotification) { }
-    
-    // MARK: - Predicate
+}
+
+// MARK: - Predicate
+
+extension UIViewController {
     
     func getTodayPredicate(date: Date) -> NSPredicate {
         let start = Calendar.current.startOfDay(for: date)
         let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
         return NSPredicate(format: "endDate >= %@ && endDate < %@ ",
                            start as NSDate, end as NSDate)
+    }
+}
+
+// MARK: - FileManager
+
+extension UIResponder {
+    //fileURL 가져오기
+    func getFileURL(fileName: String) -> URL? {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                               in: .userDomainMask).first else { return nil }
+        let fileURL = documentDirectory.appendingPathComponent("/images/\(fileName).jpg")
+        return fileURL
+    }
+    
+    //document이미지 로드하기
+    func loadImageToDocument(fileName: String) -> UIImage? {
+        guard let fileURL = getFileURL(fileName: fileName) else { return nil }
+        
+        if FileManager.default.fileExists(atPath: fileURL.path()) {
+            return UIImage(contentsOfFile: fileURL.path())
+        } else {
+            return nil
+        }
+    }
+    
+    //document 폴더에 저장하기
+    func saveImageToDocument(image: UIImage?, fileName: String) {
+        guard let fileURL = getFileURL(fileName: fileName),
+              let data = image?.jpegData(compressionQuality: 0.5)
+        else { return }
+        
+        do {
+            try data.write(to: fileURL)
+        } catch {
+            //파일 저장 실패시
+            print("DEBUG: file save error", error)
+        }
     }
 }

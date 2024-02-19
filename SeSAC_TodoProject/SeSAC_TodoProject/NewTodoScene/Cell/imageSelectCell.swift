@@ -24,9 +24,9 @@ final class ImageSelectCell: BaseTableViewCell {
     
     // MARK: - Helpers
     
-    func configureCell(title: String, value: UIImage?) {
+    func configureCell(title: String, image: String) {
         titleLabel.text = title
-        selectedImageView.image = value
+        selectedImageView.image = loadImageToDocument(fileName: image)
     }
     
     override func configureHierarchy() {
@@ -41,9 +41,10 @@ final class ImageSelectCell: BaseTableViewCell {
         }
         
         selectedImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.leading.equalTo(titleLabel.snp.trailing).offset(12)
-            make.trailing.bottom.equalToSuperview().offset(-12)
+            make.top.equalToSuperview().offset(24)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(36)
+            make.trailing.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-24)
         }
     }
     

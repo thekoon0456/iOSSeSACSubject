@@ -15,7 +15,6 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     private var todo = Todo()
-    private var selectedImage: UIImage?
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
     private lazy var cancelButton = UIBarButtonItem(title: "취소",
                                                     style: .plain,
@@ -236,7 +235,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageSelectCell.identifier, for: indexPath) as? ImageSelectCell else {
                 return UITableViewCell()
             }
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: selectedImage)
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               image: todo.id.stringValue)
             return cell
         }
     }
@@ -292,13 +292,14 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
 extension NewTodoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        todo.image = nil
+        todo.imageName = nil
         dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        self.selectedImage = selectedImage
+        saveImageToDocument(image: selectedImage, fileName: todo.id.stringValue)
+        todo.imageName = todo.id.stringValue
         tableView.reloadRows(at: [IndexPath.SubSequence(row: 0, section: 4)], with: .automatic)
         dismiss(animated: true)
     }

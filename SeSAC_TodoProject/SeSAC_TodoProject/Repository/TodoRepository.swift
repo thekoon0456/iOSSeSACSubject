@@ -113,7 +113,7 @@ final class TodoRepository {
     func updateImage(_ item: T, image: String?) {
         do {
             try realm.write {
-                item.image = image
+                item.imageName = image
             }
         } catch {
             print(error.localizedDescription)

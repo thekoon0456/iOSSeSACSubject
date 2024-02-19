@@ -79,7 +79,7 @@ final class WholeTodoViewController: BaseViewController {
     
     @objc func calendarButtonTapped() {
         let vc = CalendarViewController()
-        navigationController?.present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func addListButtonTapped() {

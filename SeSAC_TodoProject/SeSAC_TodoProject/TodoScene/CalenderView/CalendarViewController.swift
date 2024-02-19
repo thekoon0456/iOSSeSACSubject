@@ -24,10 +24,13 @@ final class CalendarViewController: BaseViewController {
         $0.appearance.titleDefaultColor = .label
         $0.appearance.eventDefaultColor = .label
         $0.appearance.headerTitleColor = .label
-        $0.appearance.titleWeekendColor = .label
+        $0.appearance.titleWeekendColor = .lightGray
         $0.appearance.weekdayTextColor = .label
         $0.appearance.selectionColor = .systemRed
         $0.appearance.todaySelectionColor = .systemBlue
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(calenderScrolled))
+        gesture.direction = [.up, .down]
+        $0.addGestureRecognizer(gesture)
     }
     private lazy var tableView = UITableView().then {
         $0.delegate = self
@@ -42,6 +45,16 @@ final class CalendarViewController: BaseViewController {
         list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: Date()))
     }
     
+    // MARK: - Selectors
+    
+    @objc func calenderScrolled(sender: UISwipeGestureRecognizer) {
+        if calendar.scope == .week {
+            calendar.scope = .month
+        } else {
+            calendar.scope = .week
+        }
+    }
+    
     // MARK: - Helpers
     
     override func configureHierarchy() {
@@ -50,8 +63,7 @@ final class CalendarViewController: BaseViewController {
     
     override func configureLayout() {
         calendar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.horizontalEdges.equalToSuperview()
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(300)
         }
         
@@ -63,7 +75,7 @@ final class CalendarViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
-        sheetPresentationController?.prefersGrabberVisible = true
+        navigationItem.title = "캘린더"
     }
 }
 

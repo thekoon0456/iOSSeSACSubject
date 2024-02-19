@@ -39,7 +39,7 @@ final class CalendarViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        list = todoRepo.fetch(type: Todo.self)
+        list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: Date()))
     }
     
     // MARK: - Helpers
@@ -50,7 +50,8 @@ final class CalendarViewController: BaseViewController {
     
     override func configureLayout() {
         calendar.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.horizontalEdges.equalToSuperview()
             make.height.equalTo(300)
         }
         
@@ -62,7 +63,7 @@ final class CalendarViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
-        
+        sheetPresentationController?.prefersGrabberVisible = true
     }
 }
 
@@ -71,21 +72,11 @@ final class CalendarViewController: BaseViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let start = Calendar.current.startOfDay(for: date)
-        let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
-        let predicate = NSPredicate(format: "endDate >= %@ && endDate < %@ ",
-                                    start as NSDate, end as NSDate)
-        
-        return todoRepo.fetch(type: Todo.self).filter(predicate).count
+        return todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: date)).count
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let start = Calendar.current.startOfDay(for: date)
-        let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
-        let predicate = NSPredicate(format: "endDate >= %@ && endDate < %@ ",
-                                    start as NSDate, end as NSDate)
-        
-        list = todoRepo.fetch(type: Todo.self).filter(predicate)
+        list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: date))
         tableView.reloadData()
     }
 }

@@ -226,6 +226,9 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             cell.memoTextView.delegate = self
             cell.titleTextField.text = todo.title
             cell.memoTextView.text = todo.memo
+            if !cell.memoTextView.text.isEmpty && cell.memoTextView.text != "텍스트를 여기에 입력하세요." {
+                cell.memoTextView.textColor = .white
+            }
             return cell
         case .endDate:
             let dateManager = DateFormatterManager.shared

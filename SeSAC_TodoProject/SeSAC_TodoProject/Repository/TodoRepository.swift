@@ -16,7 +16,7 @@ final class TodoRepository {
     private let realm = try! Realm()
     
     func printURL() {
-        print(realm.configuration.fileURL)
+        print(realm.configuration.fileURL ?? "")
     }
     
     // MARK: - Create
@@ -40,13 +40,13 @@ final class TodoRepository {
 
     func fetchToday(type: T.Type) -> Results<T> {
         let today = Calendar.current.startOfDay(for: Date())
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? Date()
         return realm.objects(Todo.self).filter("endDate >= %@ AND endDate < %@", today, tomorrow)
     }
     
     func fetchPlan(type: T.Type) -> Results<T> {
-        let today = Date()
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        let today = Calendar.current.startOfDay(for: Date())
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? Date()
         return realm.objects(Todo.self).filter("endDate >= %@", tomorrow)
     }
     

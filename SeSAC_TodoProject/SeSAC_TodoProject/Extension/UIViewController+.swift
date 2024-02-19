@@ -40,8 +40,6 @@ extension UIViewController {
     }
 }
 
-
-
 // MARK: - Notification
 
 extension UIViewController {

@@ -10,6 +10,7 @@ import UIKit
 final class PriorityViewController: BaseViewController {
     
     // MARK: - Properties
+    
     let items = Priority.allCases.map { $0.title }
     private lazy var primarySeg = UISegmentedControl(items: items).then {
         $0.selectedSegmentIndex = 1
@@ -45,5 +46,4 @@ final class PriorityViewController: BaseViewController {
     override func configureView() {
         super.configureView()
     }
-    
 }

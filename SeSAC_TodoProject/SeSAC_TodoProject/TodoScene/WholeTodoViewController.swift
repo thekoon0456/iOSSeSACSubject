@@ -15,9 +15,7 @@ final class WholeTodoViewController: BaseViewController {
     // MARK: - Properties
     
     private var todoList: Results<Todo>!
-    
     private let todoRepo = TodoRepository()
-    
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
         $0.setImage(image, for: .normal)

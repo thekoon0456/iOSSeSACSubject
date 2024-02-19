@@ -21,12 +21,10 @@ final class NewTodoController: BaseViewController {
                                                     style: .plain,
                                                     target: self,
                                                     action: #selector(cancelButtonTapped))
-    
     lazy var addButton = UIBarButtonItem(title: "추가",
                                                  style: .plain,
                                                  target: self,
                                                  action: #selector(addButtonTapped))
-    
     lazy var editButton = UIBarButtonItem(title: "수정하기",
                                                  style: .plain,
                                                  target: self,
@@ -60,7 +58,6 @@ final class NewTodoController: BaseViewController {
 
     // MARK: - Selectors
 
-    
     @objc func viewTapped() {
         view.endEditing(true)
         removeGesture()
@@ -234,7 +231,6 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             let dateManager = DateFormatterManager.shared
             cell.configureCell(title: InputSection.allCases[indexPath.section].title,
                                value: dateManager.dateToString(todo.endDate, format: .dateAndHour))
-            
             return cell
         case .tag:
             cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: todo.tag)
@@ -269,9 +265,10 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
         case .tag:
             //closure
             let vc = TagViewController()
-            vc.tag = { tag in
-                self.todo.tag = tag
-                self.tableView.reloadData()
+            vc.tag = { [weak self] tag in
+                guard let self else { return }
+                todo.tag = tag
+                tableView.reloadData()
             }
             navigationController?.pushViewController(vc, animated: true)
         case .priority:
@@ -310,14 +307,10 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
         switch InputSection.allCases[indexPath.section] {
         case .input:
             150
-        case .endDate:
-            50
-        case .tag:
-            50
-        case .priority:
-            50
         case .addImage:
             150
+        default:
+            50
         }
     }
 }

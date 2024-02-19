@@ -34,17 +34,18 @@ final class DetailViewController: BaseViewController {
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
         guard let list = todoList else { return }
         $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
-            UIAction(title: menus[idx]) { _ in
+            UIAction(title: menus[idx]) { [weak self] _ in
+                guard let self else { return }
                 switch menus[idx] {
                 case menus[0]:
-                    self.todoList = list.sorted(byKeyPath: "endDate", ascending: true)
-                    self.tableView.reloadData()
+                    filteredList = list.sorted(byKeyPath: "endDate", ascending: true)
+                    tableView.reloadData()
                 case menus[1]:
-                    self.todoList = list.sorted(byKeyPath: "title", ascending: true)
-                    self.tableView.reloadData()
+                    filteredList = list.sorted(byKeyPath: "title", ascending: true)
+                    tableView.reloadData()
                 case menus[2]:
-                    self.todoList = list.where { $0.priority == 0 }
-                    self.tableView.reloadData()
+                    filteredList = list.where { $0.priority == 0 }
+                    tableView.reloadData()
                 default:
                     break
                 }
@@ -76,8 +77,8 @@ final class DetailViewController: BaseViewController {
     // MARK: - Helpers
     
     private func configureSearchBar() {
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "할 일을 검색해주세요"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -107,7 +108,6 @@ final class DetailViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: ellipsisButton)
     }
-    
 }
 
 // MARK: - SearchViewController
@@ -170,12 +170,13 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flag = UIContextualAction(style: .normal,
-                                      title: "Flag") { action, view, completion in
-            self.todoRepo.updateFlag(self.filteredList[indexPath.row])
+                                      title: "Flag") { [weak self] action, view, completion in
+            guard let self else { return }
+            todoRepo.updateFlag(filteredList[indexPath.row])
             completion(true)
         }
         
-        let imageName = self.filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
+        let imageName = filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
         flag.image = UIImage(systemName: imageName)
         flag.backgroundColor = .systemOrange
         

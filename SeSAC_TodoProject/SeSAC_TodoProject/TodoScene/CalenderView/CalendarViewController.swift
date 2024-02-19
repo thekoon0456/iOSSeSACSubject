@@ -42,6 +42,7 @@ final class CalendarViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: Date()))
     }
     
@@ -103,7 +104,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
-        
         cell.configureCell(data: list[indexPath.row])
         return cell
     }

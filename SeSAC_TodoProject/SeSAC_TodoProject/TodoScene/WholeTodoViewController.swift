@@ -166,7 +166,7 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
 extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.filteredList.count
+        todoRepo.fetchCurrentFilteredList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

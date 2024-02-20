@@ -47,6 +47,14 @@ final class TodoRepository: TodoRepositoryProtocol {
     func fetch() -> Results<T> {
         return realm.objects(T.self)
     }
+    
+    func fetchCurrentList() -> Results<T> {
+        return list
+    }
+    
+    func fetchCurrentFilteredList() -> Results<T> {
+        return filteredList
+    }
 
     func fetchToday() -> Results<T> {
         let today = Calendar.current.startOfDay(for: Date())

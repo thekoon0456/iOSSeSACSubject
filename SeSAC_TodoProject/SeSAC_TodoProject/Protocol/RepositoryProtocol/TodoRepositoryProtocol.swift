@@ -18,3 +18,5 @@ protocol TodoRepositoryProtocol {
     func delete(_: T) //delete
     func deleteAll(_: T)
 }
+
+

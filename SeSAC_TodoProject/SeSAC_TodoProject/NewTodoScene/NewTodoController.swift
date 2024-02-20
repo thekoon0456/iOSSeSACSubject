@@ -230,9 +230,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
         
         switch InputSection.allCases[indexPath.section] {
         case .input:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else {
-                return UITableViewCell()
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InputHeaderCell.identifier, for: indexPath) as? InputHeaderCell else { return UITableViewCell() }
             cell.titleTextField.delegate = self
             cell.memoTextView.delegate = self
             cell.titleTextField.text = todo.title
@@ -247,7 +245,8 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
                                value: dateManager.dateToString(todo.endDate, format: .dateAndHour))
             return cell
         case .tag:
-            cell.configureCell(title: InputSection.allCases[indexPath.section].title, value: todo.tag)
+            cell.configureCell(title: InputSection.allCases[indexPath.section].title,
+                               value: todo.tag)
             return cell
         case .priority:
             if let priority = todo.priority {
@@ -258,9 +257,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
             }
             return cell
         case .addImage:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageSelectCell.identifier, for: indexPath) as? ImageSelectCell else {
-                return UITableViewCell()
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageSelectCell.identifier, for: indexPath) as? ImageSelectCell else { return UITableViewCell() }
             cell.configureCell(title: InputSection.allCases[indexPath.section].title,
                                image: todo.id.stringValue)
             return cell

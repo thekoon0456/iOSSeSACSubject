@@ -94,7 +94,7 @@ final class DetailViewController: BaseViewController {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.filteredList?.count ?? 0
+        todoRepo.fetchCurrentFilteredList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

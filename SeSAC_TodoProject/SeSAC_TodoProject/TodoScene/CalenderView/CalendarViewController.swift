@@ -97,7 +97,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.list.count
+        todoRepo.fetchCurrentList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

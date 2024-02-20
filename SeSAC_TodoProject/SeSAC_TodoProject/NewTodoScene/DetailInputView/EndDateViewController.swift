@@ -7,6 +7,7 @@
 
 import UIKit
 
+//값 전달
 protocol EndDateDelegate {
     func setDate(date: Date?)
 }

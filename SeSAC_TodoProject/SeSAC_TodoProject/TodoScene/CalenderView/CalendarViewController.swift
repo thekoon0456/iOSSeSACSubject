@@ -15,7 +15,6 @@ final class CalendarViewController: BaseViewController {
     // MARK: - Properties
     
     private let todoRepo = TodoRepository()
-//    private var list: Results<Todo>!
     private lazy var calendar = FSCalendar().then {
         $0.delegate = self
         $0.dataSource = self
@@ -42,7 +41,7 @@ final class CalendarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todoRepo.list = todoRepo.fetch().filter(getTodayPredicate(date: Date()))
+        todoRepo.fetchToday(date: Date())
     }
     
     // MARK: - Selectors
@@ -84,11 +83,11 @@ final class CalendarViewController: BaseViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return todoRepo.fetch().filter(getTodayPredicate(date: date)).count
+        return todoRepo.list.count
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        todoRepo.list = todoRepo.fetch().filter(getTodayPredicate(date: date))
+        todoRepo.fetchToday(date: date)
         tableView.reloadData()
     }
 }

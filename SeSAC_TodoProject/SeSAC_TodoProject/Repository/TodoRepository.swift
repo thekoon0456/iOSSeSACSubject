@@ -68,6 +68,40 @@ final class TodoRepository: TodoRepositoryProtocol {
         return realm.objects(T.self).where { $0.isComplete == true }
     }
     
+    //searchFetch
+    
+    func fetchSearch(title: String) {
+        filteredList = realm.objects(T.self).where { $0.title.contains(title, options: .caseInsensitive)}
+    }
+    
+    func fetchSearchReset() {
+        filteredList = realm.objects(T.self)
+    }
+    
+    //calendarFetch
+    
+    func fetchToday(date: Date) {
+        list = realm.objects(T.self).filter(getTodayPredicate(date: date))
+    }
+    
+    //DetailFetch
+    
+    func fetchSorted(keyPath: String, ascending: Bool) -> Results<T> {
+        return realm.objects(T.self).sorted(byKeyPath: keyPath, ascending: ascending)
+    }
+    
+    func fetchEndDate() {
+        filteredList = fetchSorted(keyPath: "endDate", ascending: true)
+    }
+    
+    func fetchTitle() {
+        filteredList = fetchSorted(keyPath: "title", ascending: true)
+    }
+    
+    func fetchLowPriority() {
+        filteredList = realm.objects(T.self).where { $0.priority == 0 }
+    }
+    
     // MARK: - Update
     
     func update(_ item: T) {
@@ -192,3 +226,37 @@ final class TodoRepository: TodoRepositoryProtocol {
         }
     }
 }
+
+// MARK: - Helper
+
+extension TodoRepository {
+    
+    //collectionView Counter
+    func getCellCount(idx: Int) -> Int? {
+        let count: Int?
+        switch TodoSection.allCases[idx] {
+        case .today:
+            count = fetchToday().count
+        case .plan:
+            count = fetchPlan().count
+        case .whole:
+            count = fetch().count
+        case .flag:
+            count = fetchFlag().count
+        case .complete:
+            count = fetchComplete().count
+        }
+        return count
+    }
+    
+    //calendar filter
+    func getTodayPredicate(date: Date) -> NSPredicate {
+        let start = Calendar.current.startOfDay(for: date)
+        let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
+        return NSPredicate(format: "endDate >= %@ && endDate < %@ ",
+                           start as NSDate, end as NSDate)
+    }
+
+}
+
+//                todoRepo.filteredList = .list.where { $0.priority == 0 }

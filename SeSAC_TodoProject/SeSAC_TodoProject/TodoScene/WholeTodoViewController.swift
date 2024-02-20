@@ -12,8 +12,8 @@ import SnapKit
 final class WholeTodoViewController: BaseViewController {
     
     // MARK: - Properties
-    //repository에서
-    //필터를 뷰에서?
+    //import realmSwift는 repository에서만!
+    //필터를 뷰에서X, repository에서 하고 뷰는 받기만 함
     private let todoRepo = TodoRepository()
     private lazy var searchController = UISearchController(searchResultsController: searchResultTableVC)
     private lazy var plusButton = UIButton().then {
@@ -142,23 +142,6 @@ final class WholeTodoViewController: BaseViewController {
                                                            action: #selector(calendarButtonTapped))
         toolbarItems = [newTodoButton, newListButton]
     }
-    
-    private func getCellCount(idx: Int) -> Int? {
-        let count: Int?
-        switch TodoSection.allCases[idx] {
-        case .today:
-            count = todoRepo.fetchToday().count
-        case .plan:
-            count = todoRepo.fetchPlan().count
-        case .whole:
-            count = todoRepo.fetch().count
-        case .flag:
-            count = todoRepo.fetchFlag().count
-        case .complete:
-            count = todoRepo.fetchComplete().count
-        }
-        return count
-    }
 }
 
 // MARK: - SearchViewController
@@ -168,12 +151,12 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text,
               !text.isEmpty else { return }
-        todoRepo.filteredList = todoRepo.fetch().where { $0.title.contains(text, options: .caseInsensitive) }
+        todoRepo.fetchSearch(title: text)
         searchResultTableVC.tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        todoRepo.filteredList = todoRepo.fetch()
+        todoRepo.fetchSearchReset()
         searchResultTableVC.tableView.reloadData()
     }
 }
@@ -216,7 +199,7 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         cell.configureCell(data: TodoSection.allCases[indexPath.item],
-                           count: getCellCount(idx: indexPath.item))
+                           count: todoRepo.getCellCount(idx: indexPath.item))
         return cell
     }
     

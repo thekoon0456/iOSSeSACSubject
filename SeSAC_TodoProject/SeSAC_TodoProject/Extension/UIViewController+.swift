@@ -60,18 +60,6 @@ extension UIViewController {
     @objc func receivedNotification(notification: NSNotification) { }
 }
 
-// MARK: - Predicate
-
-extension UIViewController {
-    
-    func getTodayPredicate(date: Date) -> NSPredicate {
-        let start = Calendar.current.startOfDay(for: date)
-        let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
-        return NSPredicate(format: "endDate >= %@ && endDate < %@ ",
-                           start as NSDate, end as NSDate)
-    }
-}
-
 // MARK: - FileManager
 
 extension UIResponder {

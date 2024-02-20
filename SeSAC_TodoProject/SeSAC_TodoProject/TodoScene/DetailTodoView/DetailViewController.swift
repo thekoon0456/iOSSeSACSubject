@@ -29,33 +29,25 @@ final class DetailViewController: BaseViewController {
         $0.showsMenuAsPrimaryAction = true
         
         let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
-        guard let list = todoRepo.list else { return }
         $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
             UIAction(title: menus[idx]) { [weak self] _ in
                 guard let self else { return }
                 switch menus[idx] {
                 case menus[0]:
-                    todoRepo.filteredList = list.sorted(byKeyPath: "endDate", ascending: true)
-                    tableView.reloadData()
+                    todoRepo.fetchEndDate()
                 case menus[1]:
-                    todoRepo.filteredList = list.sorted(byKeyPath: "title", ascending: true)
-                    tableView.reloadData()
+                    todoRepo.fetchTitle()
                 case menus[2]:
-//                    todoRepo.filteredList =
-                    tableView.reloadData()
+                    todoRepo.fetchLowPriority()
                 default:
                     break
                 }
+                tableView.reloadData()
             }
         })
     }
     
     // MARK: - Lifecycles
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        todoRepo.filteredList = todoRepo.list
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

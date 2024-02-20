@@ -128,6 +128,7 @@
 				7C7D88002B7F2E4500038946 /* Repository */,
 				7C6644662B7C93F800FAAD8D /* TodoScene */,
 				7C6644712B7C953400FAAD8D /* NewTodoScene */,
+				7CFCD1A92B84817400B590BE /* Protocol */,
 				7C6644652B7C93F100FAAD8D /* Base */,
 				7C6644742B7C963900FAAD8D /* Extension */,
 				7C8CD09A2B833ABF000C0449 /* Recources */,
@@ -230,7 +231,6 @@
 		7C7D88002B7F2E4500038946 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				7C7D88012B7F2E5000038946 /* RepositoryProtocol */,
 				7C7D88022B7F2E6200038946 /* TodoRepository.swift */,
 			);
 			path = Repository;
@@ -268,6 +268,14 @@
 				7C6644532B7C939600FAAD8D /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		7CFCD1A92B84817400B590BE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				7C7D88012B7F2E5000038946 /* RepositoryProtocol */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

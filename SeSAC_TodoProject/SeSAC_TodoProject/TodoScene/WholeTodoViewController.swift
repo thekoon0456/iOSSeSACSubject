@@ -69,11 +69,8 @@ final class WholeTodoViewController: BaseViewController {
     }
     
     @objc func newTodoButtonTapped() {
-        let vc = NewTodoController()
+        let vc = NewTodoController(isModal: true)
         let nav = UINavigationController(rootViewController: vc)
-        vc.navigationItem.title = "새로운 할 일"
-        vc.navigationItem.leftBarButtonItem = vc.cancelButton
-        vc.navigationItem.rightBarButtonItem = vc.addButton
         navigationController?.present(nav, animated: true)
     }
     

@@ -15,6 +15,8 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     var todo = Todo()
+    var isModal: Bool
+    
     lazy var tapGesture = UITapGestureRecognizer(target: self,
                                                  action: #selector(viewTapped))
     lazy var cancelButton = UIBarButtonItem(title: "취소",
@@ -39,6 +41,12 @@ final class NewTodoController: BaseViewController {
     }
     
     // MARK: - Lifecycles
+    
+    init(todo: Todo = Todo(), isModal: Bool) {
+        self.todo = todo
+        self.isModal = isModal
+        super.init()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +111,15 @@ final class NewTodoController: BaseViewController {
         super.configureView()
         view.backgroundColor = .secondarySystemBackground
         addButton.isEnabled = false
+        
+        if isModal {
+            navigationItem.title = "새로운 할 일"
+            navigationItem.leftBarButtonItem = cancelButton
+            navigationItem.rightBarButtonItem = addButton
+        } else {
+            navigationItem.title = "할 일"
+            navigationItem.rightBarButtonItem = editButton
+        }
     }
 }
 

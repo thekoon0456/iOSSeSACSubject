@@ -15,7 +15,7 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     private let todoRepo = TodoRepository()
     var todoList: Results<Todo>!
-    var filteredList: Results<Todo>!
+    private var filteredList: Results<Todo>!
     
     let searchController = UISearchController(searchResultsController: nil)
     private lazy var tableView = UITableView().then {
@@ -140,16 +140,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
               let list = filteredList else {
             return UITableViewCell()
         }
+        
         cell.configureCell(data: list[indexPath.row])
         configureCompleteButton(button: cell.completeButton, tag: indexPath.row)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController()
-        vc.navigationItem.title = "할 일"
-        vc.navigationItem.rightBarButtonItem = vc.editButton
-        vc.todo = todoList[indexPath.row]
+        let vc = NewTodoController(todo: todoList[indexPath.row], isModal: false)
+
         navigationController?.pushViewController(vc, animated: true)
     }
     

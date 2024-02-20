@@ -8,7 +8,6 @@
 import UIKit
 
 import FSCalendar
-import RealmSwift
 import SnapKit
 
 final class CalendarViewController: BaseViewController {
@@ -16,7 +15,7 @@ final class CalendarViewController: BaseViewController {
     // MARK: - Properties
     
     private let todoRepo = TodoRepository()
-    private var list: Results<Todo>!
+//    private var list: Results<Todo>!
     private lazy var calendar = FSCalendar().then {
         $0.delegate = self
         $0.dataSource = self
@@ -43,7 +42,7 @@ final class CalendarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: Date()))
+        todoRepo.list = todoRepo.fetch().filter(getTodayPredicate(date: Date()))
     }
     
     // MARK: - Selectors
@@ -85,11 +84,11 @@ final class CalendarViewController: BaseViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: date)).count
+        return todoRepo.fetch().filter(getTodayPredicate(date: date)).count
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        list = todoRepo.fetch(type: Todo.self).filter(getTodayPredicate(date: date))
+        todoRepo.list = todoRepo.fetch().filter(getTodayPredicate(date: date))
         tableView.reloadData()
     }
 }
@@ -99,12 +98,12 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
+        todoRepo.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
-        cell.configureCell(data: list[indexPath.row])
+        cell.configureCell(data: todoRepo.list[indexPath.row])
         return cell
     }
 }

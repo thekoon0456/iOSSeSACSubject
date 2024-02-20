@@ -10,10 +10,11 @@ import UIKit
 import RealmSwift
 
 protocol TodoRepositoryProtocol {
-    var realm: Realm { get }
-    func createItem(_: Todo) //create
-    func fetch(type: Todo) -> Results<Todo> //read
-    func update(item: Todo) //update
-    func delete(item: Todo) //delete
-    func deleteAll(_: Todo)
+    associatedtype T: Todo
+    
+    func createItem(_: T) //create
+    func fetch() -> Results<T> //read
+    func update(_: T) //update
+    func delete(_: T) //delete
+    func deleteAll(_: T)
 }

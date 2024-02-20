@@ -7,8 +7,6 @@
 
 import UIKit
 
-import RealmSwift
-
 final class NewTodoController: BaseViewController {
     
     // MARK: - Properties
@@ -82,8 +80,7 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func editButtonTapped() {
-        print(#function)
-        todoRepo.updateTodo(todo)
+        todoRepo.update(todo)
         navigationController?.popViewController(animated: true)
     }
     

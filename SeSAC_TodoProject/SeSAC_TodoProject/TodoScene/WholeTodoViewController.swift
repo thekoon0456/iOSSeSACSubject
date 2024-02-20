@@ -7,16 +7,14 @@
 
 import UIKit
 
-import RealmSwift
 import SnapKit
 
 final class WholeTodoViewController: BaseViewController {
     
     // MARK: - Properties
-    
-    private var todoList: Results<Todo>!
+    //repository에서
+    //필터를 뷰에서?
     private let todoRepo = TodoRepository()
-    private var searchResultList: Results<Todo>!
     private lazy var searchController = UISearchController(searchResultsController: searchResultTableVC)
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
@@ -61,17 +59,16 @@ final class WholeTodoViewController: BaseViewController {
         $0.tableView.rowHeight = UITableView.automaticDimension
     }
     
-//    private lazy var listTableView = UITableView().then {
-//        $0.delegate = self
-//        $0.dataSource = self
-//    }
+    private lazy var listTableView = UITableView().then {
+        $0.delegate = self
+        $0.dataSource = self
+    }
     
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoList = todoRepo.fetch(type: Todo.self)
-        searchResultList = todoRepo.fetch(type: Todo.self)
+        
         configureSearchBar()
         notiAddObserver(name: "추가")
     }
@@ -150,15 +147,15 @@ final class WholeTodoViewController: BaseViewController {
         let count: Int?
         switch TodoSection.allCases[idx] {
         case .today:
-            count = todoRepo.fetchToday(type: Todo.self).count
+            count = todoRepo.fetchToday().count
         case .plan:
-            count = todoRepo.fetchPlan(type: Todo.self).count
+            count = todoRepo.fetchPlan().count
         case .whole:
-            count = todoRepo.fetch(type: Todo.self).count
+            count = todoRepo.fetch().count
         case .flag:
-            count = todoRepo.fetchFlag(type: Todo.self).count
+            count = todoRepo.fetchFlag().count
         case .complete:
-            count = todoRepo.fetchComplete(type: Todo.self).count
+            count = todoRepo.fetchComplete().count
         }
         return count
     }
@@ -171,12 +168,12 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text,
               !text.isEmpty else { return }
-        searchResultList = todoRepo.fetch(type: Todo.self).where { $0.title.contains(text, options: .caseInsensitive) }
+        todoRepo.filteredList = todoRepo.fetch().where { $0.title.contains(text, options: .caseInsensitive) }
         searchResultTableVC.tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchResultList = todoList
+        todoRepo.filteredList = todoRepo.fetch()
         searchResultTableVC.tableView.reloadData()
     }
 }
@@ -186,7 +183,7 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
 extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        searchResultList.count
+        todoRepo.filteredList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -194,12 +191,12 @@ extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configureCell(data: searchResultList[indexPath.row])
+        cell.configureCell(data: todoRepo.filteredList[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(todo: searchResultList[indexPath.row], isModal: false)
+        let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], isModal: false)
         navigationController?.pushViewController(vc, animated: true)
         vc.navigationController?.navigationBar.prefersLargeTitles = false
     }
@@ -229,15 +226,15 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
 
         switch TodoSection.allCases[indexPath.item] {
         case .today:
-            vc.todoList = todoRepo.fetchToday(type: Todo.self)
+            vc.todoRepo.list = todoRepo.fetchToday()
         case .plan:
-            vc.todoList = todoRepo.fetchPlan(type: Todo.self)
+            vc.todoRepo.list = todoRepo.fetchPlan()
         case .whole:
-            vc.todoList = todoRepo.fetch(type: Todo.self)
+            vc.todoRepo.list = todoRepo.fetch()
         case .flag:
-            vc.todoList = todoRepo.fetchFlag(type: Todo.self)
+            vc.todoRepo.list = todoRepo.fetchFlag()
         case .complete:
-            vc.todoList = todoRepo.fetchComplete(type: Todo.self)
+            vc.todoRepo.list = todoRepo.fetchComplete()
         }
         
         navigationController?.pushViewController(vc, animated: true)

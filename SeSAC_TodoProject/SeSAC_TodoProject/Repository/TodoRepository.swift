@@ -9,11 +9,21 @@ import UIKit
 
 import RealmSwift
 
-final class TodoRepository {
+//객체의 역할을 나누고 고민해보기!
+//데이터를 변환하는 작업까지 여기서
+final class TodoRepository: TodoRepositoryProtocol {
     
     typealias T = Todo
     
     private let realm = try! Realm()
+    
+    var list: Results<T>!
+    var filteredList: Results<T>!
+    
+    init() {
+        self.list = realm.objects(T.self)
+        self.filteredList = realm.objects(T.self)
+    }
     
     func printURL() {
         print(realm.configuration.fileURL ?? "")
@@ -34,33 +44,33 @@ final class TodoRepository {
     
     // MARK: - Read
     
-    func fetch(type: T.Type) -> Results<T> {
+    func fetch() -> Results<T> {
         return realm.objects(T.self)
     }
 
-    func fetchToday(type: T.Type) -> Results<T> {
+    func fetchToday() -> Results<T> {
         let today = Calendar.current.startOfDay(for: Date())
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? Date()
         return realm.objects(Todo.self).filter("endDate >= %@ AND endDate < %@", today, tomorrow)
     }
     
-    func fetchPlan(type: T.Type) -> Results<T> {
+    func fetchPlan() -> Results<T> {
         let today = Calendar.current.startOfDay(for: Date())
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) ?? Date()
         return realm.objects(Todo.self).filter("endDate >= %@", tomorrow)
     }
     
-    func fetchFlag(type: T.Type) -> Results<T> {
+    func fetchFlag() -> Results<T> {
         return realm.objects(T.self).where { $0.isFlag == true }
     }
     
-    func fetchComplete(type: T.Type) -> Results<T> {
+    func fetchComplete() -> Results<T> {
         return realm.objects(T.self).where { $0.isComplete == true }
     }
     
     // MARK: - Update
     
-    func updateTodo(_ item: T) {
+    func update(_ item: T) {
         do {
             try realm.write {
                 realm.add(item, update: .modified)
@@ -182,4 +192,3 @@ final class TodoRepository {
         }
     }
 }
-

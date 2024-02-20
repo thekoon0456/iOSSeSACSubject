@@ -110,8 +110,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], isModal: false)
-        print(#function)
-
         navigationController?.pushViewController(vc, animated: true)
     }
     

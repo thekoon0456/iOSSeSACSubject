@@ -209,15 +209,15 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
 
         switch TodoSection.allCases[indexPath.item] {
         case .today:
-            vc.todoRepo.list = todoRepo.fetchToday()
+            vc.todoRepo.filteredList = todoRepo.fetchToday()
         case .plan:
-            vc.todoRepo.list = todoRepo.fetchPlan()
+            vc.todoRepo.filteredList = todoRepo.fetchPlan()
         case .whole:
-            vc.todoRepo.list = todoRepo.fetch()
+            vc.todoRepo.filteredList = todoRepo.fetch()
         case .flag:
-            vc.todoRepo.list = todoRepo.fetchFlag()
+            vc.todoRepo.filteredList = todoRepo.fetchFlag()
         case .complete:
-            vc.todoRepo.list = todoRepo.fetchComplete()
+            vc.todoRepo.filteredList = todoRepo.fetchComplete()
         }
         
         navigationController?.pushViewController(vc, animated: true)

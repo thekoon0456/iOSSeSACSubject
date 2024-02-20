@@ -42,6 +42,11 @@
 		7C8CD0982B833A81000C0449 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7C8CD0972B833A81000C0449 /* FSCalendar */; };
 		7C8CD09D2B833B6E000C0449 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */; };
 		7C8CD09F2B8350AD000C0449 /* imageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */; };
+		7CFCD1AC2B84BF2F00B590BE /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1AB2B84BF2F00B590BE /* NewListViewController.swift */; };
+		7CFCD1AF2B84C2A400B590BE /* InputTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1AE2B84C2A400B590BE /* InputTitleCell.swift */; };
+		7CFCD1B12B84C2C100B590BE /* SelectCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */; };
+		7CFCD1B32B84C52B00B590BE /* SelectConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */; };
+		7CFCD1B52B84C84B00B590BE /* CircleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +83,11 @@
 		7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectCell.swift; sourceTree = "<group>"; };
+		7CFCD1AB2B84BF2F00B590BE /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
+		7CFCD1AE2B84C2A400B590BE /* InputTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTitleCell.swift; sourceTree = "<group>"; };
+		7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCircleCell.swift; sourceTree = "<group>"; };
+		7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectConfigureCell.swift; sourceTree = "<group>"; };
+		7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +138,7 @@
 				7C7D88002B7F2E4500038946 /* Repository */,
 				7C6644662B7C93F800FAAD8D /* TodoScene */,
 				7C6644712B7C953400FAAD8D /* NewTodoScene */,
+				7CFCD1AA2B84BF0F00B590BE /* NewListScene */,
 				7CFCD1A92B84817400B590BE /* Protocol */,
 				7C6644652B7C93F100FAAD8D /* Base */,
 				7C6644742B7C963900FAAD8D /* Extension */,
@@ -278,6 +289,26 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		7CFCD1AA2B84BF0F00B590BE /* NewListScene */ = {
+			isa = PBXGroup;
+			children = (
+				7CFCD1AB2B84BF2F00B590BE /* NewListViewController.swift */,
+				7CFCD1AD2B84C29700B590BE /* Cell */,
+			);
+			path = NewListScene;
+			sourceTree = "<group>";
+		};
+		7CFCD1AD2B84C29700B590BE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7CFCD1AE2B84C2A400B590BE /* InputTitleCell.swift */,
+				7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */,
+				7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */,
+				7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,8 +391,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4BA37D2B7E08A2006CC8D1 /* InputSection.swift in Sources */,
+				7CFCD1B52B84C84B00B590BE /* CircleConfig.swift in Sources */,
 				7C66446E2B7C94BA00FAAD8D /* BaseTableViewCell.swift in Sources */,
+				7CFCD1AF2B84C2A400B590BE /* InputTitleCell.swift in Sources */,
+				7CFCD1B12B84C2C100B590BE /* SelectCircleCell.swift in Sources */,
 				7C66448D2B7CCC2800FAAD8D /* WebViewController.swift in Sources */,
+				7CFCD1AC2B84BF2F00B590BE /* NewListViewController.swift in Sources */,
 				7C6644702B7C94D600FAAD8D /* BaseCollectionViewCell.swift in Sources */,
 				7C66446A2B7C945000FAAD8D /* WholeTodoViewController.swift in Sources */,
 				7C10FC632B8239A800D12F7D /* UIViewController+.swift in Sources */,
@@ -369,6 +404,7 @@
 				7C7D88052B7F2F1A00038946 /* TodoRepositoryProtocol.swift in Sources */,
 				7C6644522B7C939600FAAD8D /* AppDelegate.swift in Sources */,
 				7C6644782B7C988E00FAAD8D /* UIView+.swift in Sources */,
+				7CFCD1B32B84C52B00B590BE /* SelectConfigureCell.swift in Sources */,
 				7C66446C2B7C94A200FAAD8D /* BaseView.swift in Sources */,
 				7C4BA3792B7DFFDA006CC8D1 /* Todo.swift in Sources */,
 				7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */,

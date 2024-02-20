@@ -99,6 +99,9 @@ final class WholeTodoViewController: BaseViewController {
     
     @objc func addListButtonTapped() {
         print(#function)
+        let vc = NewListViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        navigationController?.present(nav, animated: true)
     }
     
     @objc func ellipsisButtonTapped() {

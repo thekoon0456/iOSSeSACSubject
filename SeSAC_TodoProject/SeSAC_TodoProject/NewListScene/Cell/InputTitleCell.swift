@@ -34,19 +34,15 @@ final class InputTitleCell: BaseTableViewCell {
         circleImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
             make.centerX.equalToSuperview()
-            make.size.equalTo(100)
+            make.height.width.equalTo(100)
         }
         
         textField.snp.makeConstraints { make in
+            make.height.equalTo(50)
             make.top.equalTo(circleImageView.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
             make.bottom.equalToSuperview().offset(-24)
         }
     }
-    
-    override func configureView() {
-    }
-    
 }

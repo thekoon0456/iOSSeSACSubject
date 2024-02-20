@@ -19,11 +19,11 @@ final class SelectConfigureCell: BaseTableViewCell {
     
     private lazy var collectionView = {
         let layout = UICollectionViewFlowLayout()
-        let width = ((cellWidth - (56 / 2)) / 6)
+        let width = ((cellWidth - 28) / 6)
         layout.itemSize = .init(width: width, height: width)
-        layout.minimumLineSpacing = 8
-        layout.sectionInset = .init(top: 8, left: 8, bottom: 8, right: 8)
-        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 4
+        layout.sectionInset = .init(top: 4, left: 4, bottom: 4, right: 4)
+        layout.scrollDirection = .vertical
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
@@ -41,8 +41,9 @@ final class SelectConfigureCell: BaseTableViewCell {
     
     override func configureLayout() {
         collectionView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(100)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(50)
+            make.centerY.equalToSuperview()
         }
     }
     
@@ -50,6 +51,7 @@ final class SelectConfigureCell: BaseTableViewCell {
 }
 
 extension SelectConfigureCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         list.count
     }
@@ -61,6 +63,6 @@ extension SelectConfigureCell: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print(list[indexPath.item].self)
     }
 }

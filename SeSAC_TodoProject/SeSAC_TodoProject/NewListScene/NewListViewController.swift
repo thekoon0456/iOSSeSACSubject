@@ -19,6 +19,8 @@ final class NewListViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private let todoRepo = TodoRepository()
+    
     let colorList = [CircleConfig(color: .systemRed),
                      CircleConfig(color: .systemOrange),
                      CircleConfig(color: .systemYellow),
@@ -62,6 +64,7 @@ final class NewListViewController: BaseViewController {
     
     @objc func addButtonTapped() {
         //        todoRepo.createItem(todo)
+//        todoRepo.createItem()
         dismiss(animated: true)
     }
     
@@ -104,24 +107,31 @@ extension NewListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
+        
         switch NewListSection.allCases[indexPath.section] {
         case .inputTitle:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputTitleCell.identifier, for: indexPath) as? InputTitleCell else { return UITableViewCell() }
             cell.textField.delegate = self
             return cell
         case .colors:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
             cell.list = colorList
             return cell
         case .icons:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
             cell.list = imageList
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        switch NewListSection.allCases[indexPath.section] {
+        case .inputTitle:
+            72 + 150
+        case .colors:
+            100
+        case .icons:
+            100
+        }
     }
 }
 
@@ -131,7 +141,8 @@ extension NewListViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let input = textField.text,
-              input.count < 10 else { return false }
+              input.count < 10
+        else { return false }
         
         let text = (input as NSString).replacingCharacters(in: range, with: string)
         let trimmedText = text.trimmingCharacters(in: .whitespaces)

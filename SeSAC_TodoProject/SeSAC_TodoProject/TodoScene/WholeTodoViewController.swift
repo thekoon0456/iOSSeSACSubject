@@ -62,6 +62,7 @@ final class WholeTodoViewController: BaseViewController {
     private lazy var listTableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
+        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
     }
     
     // MARK: - Lifecycles
@@ -120,12 +121,18 @@ final class WholeTodoViewController: BaseViewController {
     }
     
     override func configureHierarchy() {
-        view.addSubview(todoCollectionView)
+        view.addSubviews(todoCollectionView, listTableView)
     }
     
     override func configureLayout() {
         todoCollectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.5)
+        }
+        
+        listTableView.snp.makeConstraints { make in
+            make.top.equalTo(todoCollectionView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     

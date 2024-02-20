@@ -14,6 +14,7 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     
     let todoRepo = TodoRepository()
+    let todoListSectionRepo = TodoListSectionRepository()
     
     lazy var tableView = UITableView().then {
         $0.delegate = self

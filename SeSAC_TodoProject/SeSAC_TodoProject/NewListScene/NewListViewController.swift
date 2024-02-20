@@ -19,8 +19,8 @@ final class NewListViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let todoRepo = TodoRepository()
-    
+    private let todoListSectionRepo = TodoListSectionRepository()
+    var inputText: String = ""
     let colorList = [CircleConfig(color: .systemRed),
                      CircleConfig(color: .systemOrange),
                      CircleConfig(color: .systemYellow),
@@ -65,6 +65,7 @@ final class NewListViewController: BaseViewController {
     @objc func addButtonTapped() {
         //        todoRepo.createItem(todo)
 //        todoRepo.createItem()
+        todoListSectionRepo.createItem(TodoListSection(todoListTitle: inputText))
         dismiss(animated: true)
     }
     
@@ -107,17 +108,17 @@ extension NewListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
-        
         switch NewListSection.allCases[indexPath.section] {
         case .inputTitle:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputTitleCell.identifier, for: indexPath) as? InputTitleCell else { return UITableViewCell() }
             cell.textField.delegate = self
             return cell
         case .colors:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
             cell.list = colorList
             return cell
         case .icons:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
             cell.list = imageList
             return cell
         }
@@ -154,6 +155,7 @@ extension NewListViewController: UITextFieldDelegate {
             addButton.isEnabled = true
         }
         
+        self.inputText = text
         return !hasWhiteSpace
     }
 }

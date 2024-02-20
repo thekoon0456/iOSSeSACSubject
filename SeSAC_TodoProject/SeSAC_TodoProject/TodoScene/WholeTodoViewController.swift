@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import RealmSwift
 
 final class WholeTodoViewController: BaseViewController {
     
@@ -15,6 +16,7 @@ final class WholeTodoViewController: BaseViewController {
     //import realmSwift는 repository에서만!
     //필터를 뷰에서X, repository에서 하고 뷰는 받기만 함
     private let todoRepo = TodoRepository()
+    private let todoSectionListRepo = TodoListSectionRepository()
     private lazy var searchController = UISearchController(searchResultsController: searchResultTableVC)
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
@@ -59,10 +61,10 @@ final class WholeTodoViewController: BaseViewController {
         $0.tableView.rowHeight = UITableView.automaticDimension
     }
     
-    private lazy var listTableView = UITableView().then {
+    private lazy var listTableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.delegate = self
         $0.dataSource = self
-        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        $0.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
     
     // MARK: - Lifecycles
@@ -78,6 +80,7 @@ final class WholeTodoViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        listTableView.reloadData()
         todoCollectionView.reloadData()
     }
     
@@ -175,23 +178,46 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
 
 extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.fetchCurrentFilteredList().count
+        if tableView == listTableView {
+            todoSectionListRepo.list.count
+        } else {
+            todoRepo.fetchCurrentFilteredList().count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else {
-            return UITableViewCell()
+        if tableView == listTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell") else { return UITableViewCell() }
+            //TODO: -CustomCell로 변환
+            cell.accessoryType = .disclosureIndicator
+            cell.imageView?.image = UIImage(systemName: "list.bullet")?.withTintColor(.white).withRenderingMode(.alwaysOriginal)
+            cell.textLabel?.text = todoSectionListRepo.list[indexPath.row].todoListTitle
+            cell.detailTextLabel?.text = String(todoSectionListRepo.list[indexPath.row].todo.count)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else { return UITableViewCell() }
+            cell.configureCell(data: todoRepo.filteredList[indexPath.row])
+            return cell
         }
-        
-        cell.configureCell(data: todoRepo.filteredList[indexPath.row])
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], isModal: false)
-        navigationController?.pushViewController(vc, animated: true)
-        vc.navigationController?.navigationBar.prefersLargeTitles = false
+        if tableView == listTableView {
+            let vc = DetailViewController()
+            //TODO: -List로 변환
+//            vc.todoRepo.filteredList
+            navigationController?.pushViewController(vc, animated: true)
+            vc.navigationController?.navigationBar.prefersLargeTitles = false
+        } else {
+            let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], isModal: false)
+            navigationController?.pushViewController(vc, animated: true)
+            vc.navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
 }
 

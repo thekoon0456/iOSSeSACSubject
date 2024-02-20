@@ -9,18 +9,6 @@ import Foundation
 
 import RealmSwift
 
-class TodoList: Object {
-    @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var todoListTitle: String
-    @Persisted var todo: List<Todo>
-    
-    convenience init(todoListTitle: String, todo: List<Todo>) {
-        self.init()
-        self.todoListTitle = todoListTitle
-        self.todo = todo
-    }
-}
-
 class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
@@ -31,7 +19,8 @@ class Todo: Object {
     @Persisted var imageName: String?
     @Persisted var isComplete: Bool
     @Persisted var isFlag: Bool
-    
+//    @Persisted(originProperty: "todo") var main: LinkingObjects<TodoListSection>
+
     convenience init(
         title: String,
         memo: String?,

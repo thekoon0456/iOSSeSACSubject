@@ -17,7 +17,7 @@ final class InputTitleCell: BaseTableViewCell {
         $0.backgroundColor = .systemGray
     }
     
-    private let textField = UITextField().then {
+    let textField = UITextField().then {
         $0.placeholder = "목록 이름"
         $0.backgroundColor = .darkGray
         $0.textAlignment = .center

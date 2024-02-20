@@ -11,7 +11,7 @@ struct CircleConfig {
     let imageName: String
     let color: UIColor
     
-    init(imageName: String, color: UIColor = .systemGray) {
+    init(imageName: String = "", color: UIColor = .systemGray) {
         self.imageName = imageName
         self.color = color
     }

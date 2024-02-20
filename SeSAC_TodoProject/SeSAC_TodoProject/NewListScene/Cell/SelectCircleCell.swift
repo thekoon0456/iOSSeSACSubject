@@ -14,13 +14,13 @@ final class SelectCircleCell: BaseCollectionViewCell {
     private lazy var cellWidth = contentView.frame.width
     
     private lazy var bgView = UIView().then {
-        $0.isUserInteractionEnabled = true
         $0.layer.cornerRadius = (cellWidth - 8) / 2
         $0.clipsToBounds = true
     }
     
     private lazy var circleImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
+        $0.tintColor = .white
     }
     
     // MARK: - Helpers

@@ -59,4 +59,8 @@ extension SelectConfigureCell: UICollectionViewDelegate, UICollectionViewDataSou
         cell.condifureCell(list[indexPath.item])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }

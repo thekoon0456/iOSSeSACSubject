@@ -19,14 +19,28 @@ final class NewListViewController: BaseViewController {
     
     // MARK: - Properties
     
+    let colorList = [CircleConfig(color: .systemRed),
+                     CircleConfig(color: .systemOrange),
+                     CircleConfig(color: .systemYellow),
+                     CircleConfig(color: .systemGreen),
+                     CircleConfig(color: .systemCyan),
+                     CircleConfig(color: .systemBlue)]
+    
+    let imageList = [CircleConfig(imageName: "list.bullet"),
+                     CircleConfig(imageName: "bookmark"),
+                     CircleConfig(imageName: "mappin"),
+                     CircleConfig(imageName: "gift"),
+                     CircleConfig(imageName: "birthday.cake"),
+                     CircleConfig(imageName: "graduationcap")]
+    
     lazy var cancelButton = UIBarButtonItem(title: "취소",
-                                                    style: .plain,
-                                                    target: self,
-                                                    action: #selector(cancelButtonTapped))
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(cancelButtonTapped))
     lazy var addButton = UIBarButtonItem(title: "추가",
-                                                 style: .plain,
-                                                 target: self,
-                                                 action: #selector(addButtonTapped))
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(addButtonTapped))
     
     private let titleItems = ["새로운 목록", "템플릿"]
     private lazy var primarySeg = UISegmentedControl(items: titleItems).then {
@@ -47,7 +61,7 @@ final class NewListViewController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
-//        todoRepo.createItem(todo)
+        //        todoRepo.createItem(todo)
         dismiss(animated: true)
     }
     
@@ -93,29 +107,42 @@ extension NewListViewController: UITableViewDelegate, UITableViewDataSource {
         switch NewListSection.allCases[indexPath.section] {
         case .inputTitle:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputTitleCell.identifier, for: indexPath) as? InputTitleCell else { return UITableViewCell() }
+            cell.textField.delegate = self
             return cell
         case .colors:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
-            cell.list = [CircleConfig(imageName: "", color: .systemRed),
-                         CircleConfig(imageName: "", color: .systemOrange),
-                         CircleConfig(imageName: "", color: .systemYellow),
-                         CircleConfig(imageName: "", color: .systemGreen),
-                         CircleConfig(imageName: "", color: .systemCyan),
-                         CircleConfig(imageName: "", color: .systemBlue)]
+            cell.list = colorList
             return cell
         case .icons:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
-            cell.list = [CircleConfig(imageName: "list.bullet"),
-                         CircleConfig(imageName: "bookmark"),
-                         CircleConfig(imageName: "mappin"),
-                         CircleConfig(imageName: "gift"),
-                         CircleConfig(imageName: "birthday.cake"),
-                         CircleConfig(imageName: "graduationcap")]
+            cell.list = imageList
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+// MARK: - TextField
+
+extension NewListViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let input = textField.text,
+              input.count < 10 else { return false }
+        
+        let text = (input as NSString).replacingCharacters(in: range, with: string)
+        let trimmedText = text.trimmingCharacters(in: .whitespaces)
+        let hasWhiteSpace = text != trimmedText
+        
+        if text.isEmpty {
+            addButton.isEnabled = false
+        } else {
+            addButton.isEnabled = true
+        }
+        
+        return !hasWhiteSpace
     }
 }

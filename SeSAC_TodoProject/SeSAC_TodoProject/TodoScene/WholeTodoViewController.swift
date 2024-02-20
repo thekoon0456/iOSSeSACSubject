@@ -16,19 +16,25 @@ final class WholeTodoViewController: BaseViewController {
     
     private var todoList: Results<Todo>!
     private let todoRepo = TodoRepository()
+    private var searchResultList: Results<Todo>!
+    private lazy var searchController = UISearchController(searchResultsController: searchResultTableVC)
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
         $0.setImage(image, for: .normal)
         $0.setTitle("새로운 할 일", for: .normal)
         $0.setTitleColor(.tintColor, for: .normal)
         $0.imageEdgeInsets = .init(top: 0, left: -8, bottom: 0, right: 8)
-        $0.addTarget(self, action: #selector(newTodoButtonTapped), for: .touchUpInside)
+        $0.addTarget(self,
+                     action: #selector(newTodoButtonTapped),
+                     for: .touchUpInside)
     }
     
     private lazy var addListButton = UIButton().then {
         $0.setTitle("목록 추가", for: .normal)
         $0.setTitleColor(.tintColor, for: .normal)
-        $0.addTarget(self, action: #selector(addListButtonTapped), for: .touchUpInside)
+        $0.addTarget(self,
+                     action: #selector(addListButtonTapped),
+                     for: .touchUpInside)
     }
     
     private lazy var newTodoButton = UIBarButtonItem(customView: plusButton)
@@ -47,17 +53,32 @@ final class WholeTodoViewController: BaseViewController {
         return cv
     }()
     
+    lazy var searchResultTableVC = UITableViewController().then {
+        $0.tableView.delegate = self
+        $0.tableView.dataSource = self
+        $0.tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        $0.tableView.backgroundColor = .black
+        $0.tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+//    private lazy var listTableView = UITableView().then {
+//        $0.delegate = self
+//        $0.dataSource = self
+//    }
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         todoList = todoRepo.fetch(type: Todo.self)
+        searchResultList = todoRepo.fetch(type: Todo.self)
+        configureSearchBar()
         notiAddObserver(name: "추가")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         todoCollectionView.reloadData()
     }
@@ -89,6 +110,15 @@ final class WholeTodoViewController: BaseViewController {
     
     // MARK: - Helpers
     
+    private func configureSearchBar() {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "할 일을 검색해주세요"
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+    }
+    
     override func configureHierarchy() {
         view.addSubview(todoCollectionView)
     }
@@ -116,7 +146,7 @@ final class WholeTodoViewController: BaseViewController {
         toolbarItems = [newTodoButton, newListButton]
     }
     
-    private func getCount(idx: Int) -> Int? {
+    private func getCellCount(idx: Int) -> Int? {
         let count: Int?
         switch TodoSection.allCases[idx] {
         case .today:
@@ -134,6 +164,47 @@ final class WholeTodoViewController: BaseViewController {
     }
 }
 
+// MARK: - SearchViewController
+
+extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text,
+              !text.isEmpty else { return }
+        searchResultList = todoRepo.fetch(type: Todo.self).where { $0.title.contains(text, options: .caseInsensitive) }
+        searchResultTableVC.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchResultList = todoList
+        searchResultTableVC.tableView.reloadData()
+    }
+}
+
+// MARK: - TableView
+
+extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        searchResultList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else {
+            return UITableViewCell()
+        }
+        
+        cell.configureCell(data: searchResultList[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = NewTodoController(todo: searchResultList[indexPath.row], isModal: false)
+        navigationController?.pushViewController(vc, animated: true)
+        vc.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+}
+
 // MARK: - CollectionView
 
 extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -148,7 +219,7 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         cell.configureCell(data: TodoSection.allCases[indexPath.item],
-                           count: getCount(idx: indexPath.item))
+                           count: getCellCount(idx: indexPath.item))
         return cell
     }
     

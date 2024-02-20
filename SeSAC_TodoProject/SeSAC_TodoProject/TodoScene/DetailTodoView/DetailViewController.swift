@@ -13,12 +13,12 @@ import SnapKit
 final class DetailViewController: BaseViewController {
     
     // MARK: - Properties
+    
     private let todoRepo = TodoRepository()
     var todoList: Results<Todo>!
     private var filteredList: Results<Todo>!
     
-    let searchController = UISearchController(searchResultsController: nil)
-    private lazy var tableView = UITableView().then {
+    lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
         $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
@@ -58,7 +58,6 @@ final class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filteredList = todoList
-        configureSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,15 +74,6 @@ final class DetailViewController: BaseViewController {
     }
     
     // MARK: - Helpers
-    
-    private func configureSearchBar() {
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
-        searchController.searchBar.placeholder = "할 일을 검색해주세요"
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-    }
     
     private func configureCompleteButton(button: UIButton, tag: Int) {
         button.tag = tag
@@ -110,23 +100,6 @@ final class DetailViewController: BaseViewController {
     }
 }
 
-// MARK: - SearchViewController
-
-extension DetailViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text,
-              !text.isEmpty else { return }
-        filteredList = todoRepo.fetch(type: Todo.self).where { $0.title.contains(text, options: .caseInsensitive) }
-        tableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        filteredList = todoList
-        tableView.reloadData()
-    }
-}
-
 // MARK: - TableView
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -147,7 +120,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(todo: todoList[indexPath.row], isModal: false)
+        let vc = NewTodoController(todo: filteredList[indexPath.row], isModal: false)
+        print(#function)
 
         navigationController?.pushViewController(vc, animated: true)
     }

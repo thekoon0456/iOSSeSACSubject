@@ -74,7 +74,8 @@ final class DetailTodoListViewController: BaseViewController {
     @objc func newTodoButtonTapped() {
         //TODO: - Main 넣어주기
         guard let index else { return }
-        let vc = AddTodoViewController(main: todoListSectionRepo.fetch()[index])
+//        let vc = AddTodoViewController(main: todoListSectionRepo.fetch()[index])
+        let vc = NewTodoController(main: todoListSectionRepo.fetch()[index], isModal: true)
         vc.index = index
         vc.dismissView = {
             self.viewWillAppear(true)

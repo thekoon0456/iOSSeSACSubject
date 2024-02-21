@@ -13,7 +13,7 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     private let todoLiseSectionRepo = TodoListSectionRepository()
-    var todo = Todo()
+    var todo: Todo
     var main: TodoListSection?
     var index: Int?
     var isModal: Bool
@@ -84,7 +84,8 @@ final class NewTodoController: BaseViewController {
     
     @objc func addButtonTapped() {
         if let main = main {
-            todoLiseSectionRepo.updateTodoList(main, todo: todo)
+        guard let index else { return }
+            todoLiseSectionRepo.updateTodoList(todoLiseSectionRepo.fetch()[index], todo: todo)
         } else {
             todoRepo.createItem(todo)
         }

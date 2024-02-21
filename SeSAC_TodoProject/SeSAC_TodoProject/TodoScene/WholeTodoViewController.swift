@@ -18,6 +18,7 @@ final class WholeTodoViewController: BaseViewController {
     private let todoRepo = TodoRepository()
     private let todoSectionListRepo = TodoListSectionRepository()
     private lazy var searchController = UISearchController(searchResultsController: searchResultTableVC)
+    
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
         $0.setImage(image, for: .normal)
@@ -73,7 +74,6 @@ final class WholeTodoViewController: BaseViewController {
         super.viewDidLoad()
         
         configureSearchBar()
-        notiAddObserver(name: "추가")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +92,9 @@ final class WholeTodoViewController: BaseViewController {
     
     @objc func newTodoButtonTapped() {
         let vc = NewTodoController(isModal: true)
+        vc.dismissView = {
+            self.viewWillAppear(true)
+        }
         let nav = UINavigationController(rootViewController: vc)
         navigationController?.present(nav, animated: true)
     }
@@ -178,6 +181,35 @@ extension WholeTodoViewController: UISearchResultsUpdating, UISearchBarDelegate 
 
 extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == listTableView {
+            return todoSectionListRepo.list.first?.todoListTitle
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == listTableView {
+            let titleLabel = UILabel().then {
+                $0.text = "목록"
+                $0.font = .boldSystemFont(ofSize: 30)
+                $0.textColor = .lightGray
+            }
+            return titleLabel
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == listTableView {
+            return 48
+        } else {
+            return 0
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -211,6 +243,7 @@ extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = DetailViewController()
             //TODO: -List로 변환
 //            vc.todoRepo.filteredList
+            navigationController?.isToolbarHidden = false
             navigationController?.pushViewController(vc, animated: true)
             vc.navigationController?.navigationBar.prefersLargeTitles = false
         } else {
@@ -256,6 +289,7 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
             vc.todoRepo.filteredList = todoRepo.fetchComplete()
         }
         
+        navigationController?.isToolbarHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -16,6 +16,19 @@ final class DetailViewController: BaseViewController {
     let todoRepo = TodoRepository()
     let todoListSectionRepo = TodoListSectionRepository()
     
+    private lazy var plusButton = UIButton().then {
+        let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
+        $0.setImage(image, for: .normal)
+        $0.setTitle("새로운 할 일", for: .normal)
+        $0.setTitleColor(.tintColor, for: .normal)
+        $0.imageEdgeInsets = .init(top: 0, left: -8, bottom: 0, right: 8)
+        $0.addTarget(self,
+                     action: #selector(newTodoButtonTapped),
+                     for: .touchUpInside)
+    }
+    
+    private lazy var newTodoButton = UIBarButtonItem(customView: plusButton)
+    
     lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
@@ -57,6 +70,15 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Selectors
     
+    @objc func newTodoButtonTapped() {
+        let vc = NewTodoController(isModal: true)
+        vc.dismissView = {
+            self.viewWillAppear(true)
+        }
+        let nav = UINavigationController(rootViewController: vc)
+        navigationController?.present(nav, animated: true)
+    }
+    
     @objc func completeButtonTapped(sender: UIButton) {
         sender.isSelected.toggle()
         sender.tintColor = sender.isSelected ? .systemYellow : .white
@@ -87,6 +109,11 @@ final class DetailViewController: BaseViewController {
         super.configureView()
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: ellipsisButton)
+        
+
+        if navigationController?.isToolbarHidden == false {
+            toolbarItems = [newTodoButton, UIBarButtonItem()]
+        }
     }
 }
 

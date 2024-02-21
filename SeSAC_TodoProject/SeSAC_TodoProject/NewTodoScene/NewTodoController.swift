@@ -14,6 +14,7 @@ final class NewTodoController: BaseViewController {
     private let todoRepo = TodoRepository()
     var todo = Todo()
     var isModal: Bool
+    var dismissView: (() -> Void)?
     
     lazy var tapGesture = UITapGestureRecognizer(target: self,
                                                  action: #selector(viewTapped))
@@ -55,7 +56,7 @@ final class NewTodoController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        postNotification(name: "추가", userInfo: nil)
+        dismissView?()
     }
     
     deinit {

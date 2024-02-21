@@ -14,7 +14,8 @@ final class SelectConfigureCell: BaseTableViewCell {
     // MARK: - Properties
     
     var list: [CircleConfig] = []
-    
+    var selectItem: ((CircleConfig) -> Void)?
+
     private lazy var cellWidth = contentView.frame.width
     
     private lazy var collectionView = {
@@ -63,6 +64,7 @@ extension SelectConfigureCell: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectItem?(list[indexPath.item])
         print(list[indexPath.item].self)
     }
 }

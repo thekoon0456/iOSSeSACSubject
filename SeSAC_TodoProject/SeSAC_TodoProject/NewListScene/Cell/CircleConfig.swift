@@ -8,8 +8,8 @@
 import UIKit
 
 struct CircleConfig {
-    let imageName: String
-    let color: UIColor
+    var imageName: String
+    var color: UIColor
     
     init(imageName: String = "", color: UIColor = .systemGray) {
         self.imageName = imageName

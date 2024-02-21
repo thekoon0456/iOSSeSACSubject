@@ -20,6 +20,11 @@ final class NewListViewController: BaseViewController {
     // MARK: - Properties
     
     private let todoListSectionRepo = TodoListSectionRepository()
+    var circleConfig = CircleConfig(imageName: "", color: .systemGray) {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var dismissView: (() -> Void)?
     var inputText: String = ""
     let colorList = [CircleConfig(color: .systemRed),
@@ -71,8 +76,6 @@ final class NewListViewController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
-        //        todoRepo.createItem(todo)
-//        todoRepo.createItem()
         todoListSectionRepo.createItem(TodoListSection(todoListTitle: inputText))
         dismiss(animated: true)
     }
@@ -119,14 +122,22 @@ extension NewListViewController: UITableViewDelegate, UITableViewDataSource {
         switch NewListSection.allCases[indexPath.section] {
         case .inputTitle:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputTitleCell.identifier, for: indexPath) as? InputTitleCell else { return UITableViewCell() }
+            cell.bgView.backgroundColor = circleConfig.color
+            cell.circleImageView.image = UIImage(systemName: circleConfig.imageName)
             cell.textField.delegate = self
             return cell
         case .colors:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
+            cell.selectItem = { config in
+                self.circleConfig.color = config.color
+            }
             cell.list = colorList
             return cell
         case .icons:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
+            cell.selectItem = { config in
+                self.circleConfig.imageName = config.imageName
+            }
             cell.list = imageList
             return cell
         }

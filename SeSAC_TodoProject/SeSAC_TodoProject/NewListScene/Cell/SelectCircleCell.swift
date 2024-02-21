@@ -27,7 +27,7 @@ final class SelectCircleCell: BaseCollectionViewCell {
     
     func condifureCell(_ data: CircleConfig) {
         circleImageView.image = UIImage(systemName: data.imageName)
-        bgView.backgroundColor = data.color
+        bgView.backgroundColor = data.colorName.toUIColor()
     }
     
     override func configureHierarchy() {

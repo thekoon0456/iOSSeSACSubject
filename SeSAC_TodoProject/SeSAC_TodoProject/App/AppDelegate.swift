@@ -7,11 +7,21 @@
 
 import UIKit
 
+import RealmSwift
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+            //이미지, 컬러 추가
+            if oldSchemaVersion < 1 {
+                
+            }
+        }
+        
+        Realm.Configuration.defaultConfiguration = config
         return true
     }
 

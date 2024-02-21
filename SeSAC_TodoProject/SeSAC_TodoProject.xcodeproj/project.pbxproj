@@ -41,6 +41,7 @@
 		7C7D88052B7F2F1A00038946 /* TodoRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */; };
 		7C7F0FC52B85EDAE00A0489D /* TodoListSectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FC42B85EDAE00A0489D /* TodoListSectionRepository.swift */; };
 		7C7F0FC82B85F45A00A0489D /* DetailTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FC72B85F45A00A0489D /* DetailTodoListViewController.swift */; };
+		7C7F0FD12B86239E00A0489D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FD02B86239E00A0489D /* UIColor+.swift */; };
 		7C8CD0982B833A81000C0449 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7C8CD0972B833A81000C0449 /* FSCalendar */; };
 		7C8CD09D2B833B6E000C0449 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */; };
 		7C8CD09F2B8350AD000C0449 /* imageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */; };
@@ -87,6 +88,7 @@
 		7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7C7F0FC42B85EDAE00A0489D /* TodoListSectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListSectionRepository.swift; sourceTree = "<group>"; };
 		7C7F0FC72B85F45A00A0489D /* DetailTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoListViewController.swift; sourceTree = "<group>"; };
+		7C7F0FD02B86239E00A0489D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectCell.swift; sourceTree = "<group>"; };
 		7CFCD1AB2B84BF2F00B590BE /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
@@ -116,8 +118,7 @@
 		7C4BA3772B7DFFCA006CC8D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7C4BA3782B7DFFDA006CC8D1 /* Todo.swift */,
-				7CFCD1BA2B850D8A00B590BE /* TodoListSection.swift */,
+				7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +145,7 @@
 				7C8CD09B2B833B3A000C0449 /* App */,
 				7C6A9DE32B7E334900433551 /* Manager */,
 				7C4BA3772B7DFFCA006CC8D1 /* Model */,
+				7C7F0FCD2B86189A00A0489D /* realmModel */,
 				7C7D88002B7F2E4500038946 /* Repository */,
 				7C6644662B7C93F800FAAD8D /* TodoScene */,
 				7C7F0FC92B86057A00A0489D /* TodoLIstScene */,
@@ -199,6 +201,7 @@
 				7C6644772B7C988E00FAAD8D /* UIView+.swift */,
 				7C6644802B7CC70200FAAD8D /* UITextField+.swift */,
 				7C10FC622B8239A800D12F7D /* UIViewController+.swift */,
+				7C7F0FD02B86239E00A0489D /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -283,6 +286,15 @@
 			path = TodoLIstScene;
 			sourceTree = "<group>";
 		};
+		7C7F0FCD2B86189A00A0489D /* realmModel */ = {
+			isa = PBXGroup;
+			children = (
+				7C4BA3782B7DFFDA006CC8D1 /* Todo.swift */,
+				7CFCD1BA2B850D8A00B590BE /* TodoListSection.swift */,
+			);
+			path = realmModel;
+			sourceTree = "<group>";
+		};
 		7C8CD0992B833A8D000C0449 /* CalenderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,7 +341,6 @@
 		7CFCD1AD2B84C29700B590BE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */,
 				7CFCD1AE2B84C2A400B590BE /* InputTitleCell.swift */,
 				7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */,
 				7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */,
@@ -441,6 +452,7 @@
 				7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */,
 				7C6A9DE52B7E335400433551 /* DateFormatterManager.swift in Sources */,
 				7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */,
+				7C7F0FD12B86239E00A0489D /* UIColor+.swift in Sources */,
 				7C7F0FC52B85EDAE00A0489D /* TodoListSectionRepository.swift in Sources */,
 				7C6644542B7C939600FAAD8D /* SceneDelegate.swift in Sources */,
 				7C6A9DE02B7E1C5B00433551 /* DetailViewController.swift in Sources */,

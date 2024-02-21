@@ -20,19 +20,19 @@ final class NewListViewController: BaseViewController {
     // MARK: - Properties
     
     private let todoListSectionRepo = TodoListSectionRepository()
-    var circleConfig = CircleConfig(imageName: "", color: .systemGray) {
+    var circleConfig = CircleConfig(imageName: "", colorName: "systemGray") {
         didSet {
             tableView.reloadData()
         }
     }
     var dismissView: (() -> Void)?
     var inputText: String = ""
-    let colorList = [CircleConfig(color: .systemRed),
-                     CircleConfig(color: .systemOrange),
-                     CircleConfig(color: .systemYellow),
-                     CircleConfig(color: .systemGreen),
-                     CircleConfig(color: .systemCyan),
-                     CircleConfig(color: .systemBlue)]
+    let colorList = [CircleConfig(colorName: "systemRed"),
+                     CircleConfig(colorName: "systemOrange"),
+                     CircleConfig(colorName: "systemYellow"),
+                     CircleConfig(colorName: "systemGreen"),
+                     CircleConfig(colorName: "systemCyan"),
+                     CircleConfig(colorName: "systemBlue")]
     
     let imageList = [CircleConfig(imageName: "list.bullet"),
                      CircleConfig(imageName: "bookmark"),
@@ -122,14 +122,14 @@ extension NewListViewController: UITableViewDelegate, UITableViewDataSource {
         switch NewListSection.allCases[indexPath.section] {
         case .inputTitle:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InputTitleCell.identifier, for: indexPath) as? InputTitleCell else { return UITableViewCell() }
-            cell.bgView.backgroundColor = circleConfig.color
+            cell.bgView.backgroundColor = circleConfig.colorName.toUIColor()
             cell.circleImageView.image = UIImage(systemName: circleConfig.imageName)
             cell.textField.delegate = self
             return cell
         case .colors:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectConfigureCell.identifier, for: indexPath) as? SelectConfigureCell else { return UITableViewCell() }
             cell.selectItem = { config in
-                self.circleConfig.color = config.color
+                self.circleConfig.colorName = config.colorName
             }
             cell.list = colorList
             return cell

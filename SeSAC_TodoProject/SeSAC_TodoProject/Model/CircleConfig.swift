@@ -9,10 +9,10 @@ import UIKit
 
 struct CircleConfig {
     var imageName: String
-    var color: UIColor
+    var colorName: String
     
-    init(imageName: String = "", color: UIColor = .systemGray) {
+    init(imageName: String = "", colorName: String = "systemGray") {
         self.imageName = imageName
-        self.color = color
+        self.colorName = colorName
     }
 }

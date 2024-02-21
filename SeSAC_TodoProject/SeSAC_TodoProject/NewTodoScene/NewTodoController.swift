@@ -13,10 +13,10 @@ final class NewTodoController: BaseViewController {
     
     private let todoRepo = TodoRepository()
     private let todoLiseSectionRepo = TodoListSectionRepository()
-    var todo: Todo
-    var main: TodoListSection?
-    var index: Int?
-    var isModal: Bool
+    private var todo: Todo
+    private var main: TodoListSection?
+    private var index: Int?
+    private var isModal: Bool
     var dismissView: (() -> Void)?
     
     lazy var tapGesture = UITapGestureRecognizer(target: self,
@@ -47,9 +47,10 @@ final class NewTodoController: BaseViewController {
     
     // MARK: - Lifecycles
     
-    init(todo: Todo = Todo(), main: TodoListSection?, isModal: Bool) {
+    init(todo: Todo = Todo(), main: TodoListSection?, index: Int? = nil, isModal: Bool) {
         self.todo = todo
         self.main = main
+        self.index = index
         self.isModal = isModal
         super.init()
     }
@@ -94,8 +95,12 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func editButtonTapped() {
-        main?.todo.append(todo)
-        todoRepo.update(todo)
+        if let main = main {
+        guard let index else { return }
+            todoLiseSectionRepo.updateTodoList(todoLiseSectionRepo.fetch()[index], todo: todo)
+        } else {
+            todoRepo.update(todo)
+        }
         navigationController?.popViewController(animated: true)
     }
     

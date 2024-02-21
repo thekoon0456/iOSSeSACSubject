@@ -74,9 +74,7 @@ final class DetailTodoListViewController: BaseViewController {
     @objc func newTodoButtonTapped() {
         //TODO: - Main 넣어주기
         guard let index else { return }
-//        let vc = AddTodoViewController(main: todoListSectionRepo.fetch()[index])
-        let vc = NewTodoController(main: todoListSectionRepo.fetch()[index], isModal: true)
-        vc.index = index
+        let vc = NewTodoController(main: todoListSectionRepo.fetch()[index], index: index, isModal: true)
         vc.dismissView = {
             self.viewWillAppear(true)
         }
@@ -146,8 +144,11 @@ extension DetailTodoListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(main: todoListSectionRepo.list[indexPath.row],isModal: false)
-        
+        guard let index else { return }
+        let vc = NewTodoController(todo: todoListSectionRepo.list[index].todo[indexPath.row],
+                                   main: todoListSectionRepo.list[index],
+                                   index: index,
+                                   isModal: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     

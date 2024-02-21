@@ -1,22 +1,20 @@
 //
-//  NewTodoController.swift
+//  AddTodoViewController.swift
 //  SeSAC_TodoProject
 //
-//  Created by Deokhun KIM on 2/14/24.
+//  Created by Deokhun KIM on 2/21/24.
 //
 
 import UIKit
 
-final class NewTodoController: BaseViewController {
+final class AddTodoViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let todoRepo = TodoRepository()
     private let todoLiseSectionRepo = TodoListSectionRepository()
     var todo = Todo()
     var main: TodoListSection?
     var index: Int?
-    var isModal: Bool
     var dismissView: (() -> Void)?
     
     lazy var tapGesture = UITapGestureRecognizer(target: self,
@@ -32,11 +30,6 @@ final class NewTodoController: BaseViewController {
                                          target: self,
                                          action: #selector(addButtonTapped))
     
-    lazy var editButton = UIBarButtonItem(title: "수정하기",
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(editButtonTapped))
-    
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.dataSource = self
         $0.delegate = self
@@ -47,16 +40,15 @@ final class NewTodoController: BaseViewController {
     
     // MARK: - Lifecycles
     
-    init(todo: Todo = Todo(), main: TodoListSection?, isModal: Bool) {
+    init(todo: Todo = Todo(), main: TodoListSection?) {
         self.todo = todo
         self.main = main
-        self.isModal = isModal
         super.init()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoRepo.printURL()
+        
         notiAddObserver(name: "우선순위")
     }
     
@@ -69,9 +61,9 @@ final class NewTodoController: BaseViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     // MARK: - Selectors
-
+    
     @objc func viewTapped() {
         view.endEditing(true)
         removeGesture()
@@ -83,19 +75,13 @@ final class NewTodoController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
+        guard let index else { return }
+        
         if let main = main {
-            todoLiseSectionRepo.updateTodoList(main, todo: todo)
-        } else {
-            todoRepo.createItem(todo)
+            todoLiseSectionRepo.updateTodoList(todoLiseSectionRepo.fetch()[index], todo: todo)
         }
-
+        
         dismiss(animated: true)
-    }
-    
-    @objc func editButtonTapped() {
-        main?.todo.append(todo)
-        todoRepo.update(todo)
-        navigationController?.popViewController(animated: true)
     }
     
     @objc override func receivedNotification(notification: NSNotification) {
@@ -106,7 +92,7 @@ final class NewTodoController: BaseViewController {
     }
     
     // MARK: - Helpers
-
+    
     override func configureHierarchy() {
         view.addSubviews(tableView)
     }
@@ -122,21 +108,15 @@ final class NewTodoController: BaseViewController {
         super.configureView()
         view.backgroundColor = .secondarySystemBackground
         addButton.isEnabled = false
-        
-        if isModal {
-            navigationItem.title = "새로운 할 일"
-            navigationItem.leftBarButtonItem = cancelButton
-            navigationItem.rightBarButtonItem = addButton
-        } else {
-            navigationItem.title = "할 일"
-            navigationItem.rightBarButtonItem = editButton
-        }
+        navigationItem.title = "새로운 할 일"
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = addButton
     }
 }
 
 // MARK: - Gesture
 
-extension NewTodoController {
+extension AddTodoViewController {
     
     private func addTapGesture() {
         view.addGestureRecognizer(tapGesture)
@@ -149,7 +129,7 @@ extension NewTodoController {
 
 // MARK: - TextField
 
-extension NewTodoController: UITextFieldDelegate {
+extension AddTodoViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         addTapGesture()
@@ -167,7 +147,7 @@ extension NewTodoController: UITextFieldDelegate {
             addButton.isEnabled = true
         }
         
-        todoRepo.updateTitle(todo, title: text)
+        todoLiseSectionRepo.updateTitle(todo, title: text)
         return true
     }
     
@@ -180,38 +160,38 @@ extension NewTodoController: UITextFieldDelegate {
 
 // MARK: - TextView
 
-extension NewTodoController: UITextViewDelegate {
-
+extension AddTodoViewController: UITextViewDelegate {
+    
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         addTapGesture()
         return true
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "텍스트를 여기에 입력하세요." {
             textView.text = nil
             textView.textColor = .white
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         guard let text = textView.text else { return }
         if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = "텍스트를 여기에 입력하세요."
             textView.textColor = .lightText
         }
-
+        
         let result = text == "텍스트를 여기에 입력하세요." ? "" : text
         
         // MARK: - 추가버튼 누를때 여기가 한번 더 실행되서 transaction문제 발생. write구문 안에 넣어서 보장하기
-        todoRepo.updateMemo(todo, memo: result)
+        todoLiseSectionRepo.updateMemo(todo, memo: result)
     }
 }
 
 
 // MARK: - TableView
 
-extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
+extension AddTodoViewController: UITableViewDelegate, UITableViewDataSource, EndDateDelegate {
     //endDate업데이트
     func setDate(date: Date?) {
         todo.endDate = date
@@ -342,7 +322,7 @@ extension NewTodoController: UITableViewDelegate, UITableViewDataSource, EndDate
 
 // MARK: - Photo
 
-extension NewTodoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension AddTodoViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         todo.imageName = nil
@@ -352,9 +332,8 @@ extension NewTodoController: UINavigationControllerDelegate, UIImagePickerContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         saveImageToDocument(image: selectedImage, fileName: todo.id.stringValue)
-        todoRepo.updateImage(todo, image: todo.id.stringValue)
+        todoLiseSectionRepo.updateImage(todo, image: todo.id.stringValue)
         tableView.reloadRows(at: [IndexPath.SubSequence(row: 0, section: 4)], with: .automatic)
         dismiss(animated: true)
     }
 }
-

@@ -19,7 +19,7 @@ class Todo: Object {
     @Persisted var imageName: String?
     @Persisted var isComplete: Bool
     @Persisted var isFlag: Bool
-//    @Persisted(originProperty: "todo") var main: LinkingObjects<TodoListSection>
+    @Persisted(originProperty: "todo") var main: LinkingObjects<TodoListSection>
 
     convenience init(
         title: String,

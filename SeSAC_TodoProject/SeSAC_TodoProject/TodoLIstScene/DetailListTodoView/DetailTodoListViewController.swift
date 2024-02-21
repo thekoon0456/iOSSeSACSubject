@@ -1,19 +1,21 @@
 //
-//  DetailViewController.swift
+//  DetailListTodoViewController.swift
 //  SeSAC_TodoProject
 //
-//  Created by Deokhun KIM on 2/15/24.
+//  Created by Deokhun KIM on 2/21/24.
 //
 
 import UIKit
 
 import SnapKit
 
-final class DetailViewController: BaseViewController {
+final class DetailTodoListViewController: BaseViewController {
     
     // MARK: - Properties
     
-    let todoRepo = TodoRepository()
+    let todoListSectionRepo = TodoListSectionRepository()
+    //results<TodoListSection>에 접근하는 index
+    var index: Int?
     
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
@@ -36,29 +38,29 @@ final class DetailViewController: BaseViewController {
         $0.rowHeight = UITableView.automaticDimension
     }
     
-    private lazy var ellipsisButton = UIButton().then {
-        let image = UIImage(systemName: "ellipsis.circle")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 20)))
-        $0.setImage(image, for: .normal)
-        $0.showsMenuAsPrimaryAction = true
+//    private lazy var ellipsisButton = UIButton().then {
+//        let image = UIImage(systemName: "ellipsis.circle")?.applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 20)))
+//        $0.setImage(image, for: .normal)
+//        $0.showsMenuAsPrimaryAction = true
         
-        let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
-        $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
-            UIAction(title: menus[idx]) { [weak self] _ in
-                guard let self else { return }
-                switch menus[idx] {
-                case menus[0]:
-                    todoRepo.fetchEndDate()
-                case menus[1]:
-                    todoRepo.fetchTitle()
-                case menus[2]:
-                    todoRepo.fetchLowPriority()
-                default:
-                    break
-                }
-                tableView.reloadData()
-            }
-        })
-    }
+//        let menus = ["마감일 순으로 보기", "제목 순으로 보기", "우선순위 낮음만 보기"]
+//        $0.menu = UIMenu(title: "필터", children: (0..<menus.count).map { idx in
+//            UIAction(title: menus[idx]) { [weak self] _ in
+//                guard let self else { return }
+//                switch menus[idx] {
+//                case menus[0]:
+//                    todoRepo.fetchEndDate()
+//                case menus[1]:
+//                    todoRepo.fetchTitle()
+//                case menus[2]:
+//                    todoRepo.fetchLowPriority()
+//                default:
+//                    break
+//                }
+//                tableView.reloadData()
+//            }
+//        })
+//    }
     
     // MARK: - Lifecycles
     
@@ -70,7 +72,10 @@ final class DetailViewController: BaseViewController {
     // MARK: - Selectors
     
     @objc func newTodoButtonTapped() {
-        let vc = NewTodoController(main: nil, isModal: true)
+        //TODO: - Main 넣어주기
+        guard let index else { return }
+        let vc = AddTodoViewController(main: todoListSectionRepo.fetch()[index])
+        vc.index = index
         vc.dismissView = {
             self.viewWillAppear(true)
         }
@@ -81,7 +86,7 @@ final class DetailViewController: BaseViewController {
     @objc func completeButtonTapped(sender: UIButton) {
         sender.isSelected.toggle()
         sender.tintColor = sender.isSelected ? .systemYellow : .white
-        todoRepo.updateComplete(todoRepo.list[sender.tag])
+//        todoRepo.updateComplete(todoRepo.list[sender.tag])
     }
     
     // MARK: - Helpers
@@ -107,9 +112,8 @@ final class DetailViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: ellipsisButton)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: ellipsisButton)
         
-
         if navigationController?.isToolbarHidden == false {
             toolbarItems = [newTodoButton, UIBarButtonItem()]
         }
@@ -118,25 +122,31 @@ final class DetailViewController: BaseViewController {
 
 // MARK: - TableView
 
-extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension DetailTodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.fetchCurrentFilteredList().count
+        if let index {
+            todoListSectionRepo.fetch()[index].todo.count
+        } else {
+            0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell,
-              let list = todoRepo.filteredList else {
+              let index
+        else {
             return UITableViewCell()
         }
         
-        cell.configureCell(data: list[indexPath.row])
+        cell.configureCell(data:todoListSectionRepo.fetch()[index].todo[indexPath.row])
         configureCompleteButton(button: cell.completeButton, tag: indexPath.row)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], main: nil, isModal: false)
+        let vc = NewTodoController(main: todoListSectionRepo.list[indexPath.row],isModal: false)
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -148,7 +158,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoRepo.delete(todoRepo.filteredList[indexPath.row])
+//            todoListSectionRepo.delete(todoListSectionRepo.filteredList[indexPath.section].todo[indexPath.row])
             tableView.reloadData()
         }
     }
@@ -159,14 +169,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let flag = UIContextualAction(style: .normal,
                                       title: "Flag") { [weak self] action, view, completion in
             guard let self else { return }
-            todoRepo.updateFlag(todoRepo.filteredList[indexPath.row])
+//            todoListSectionRepo.updateFlag(todoRepo.filteredList[indexPath.section])
             tableView.reloadData()
             completion(true)
         }
         
-        let imageName = todoRepo.filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
-        flag.image = UIImage(systemName: imageName)
-        flag.backgroundColor = .systemOrange
+//        let imageName = todoRepo.filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
+//        flag.image = UIImage(systemName: imageName)
+//        flag.backgroundColor = .systemOrange
         
         return UISwipeActionsConfiguration(actions: [flag])
     }

@@ -39,6 +39,9 @@
 		7C6A9DE52B7E335400433551 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6A9DE42B7E335400433551 /* DateFormatterManager.swift */; };
 		7C7D88032B7F2E6200038946 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D88022B7F2E6200038946 /* TodoRepository.swift */; };
 		7C7D88052B7F2F1A00038946 /* TodoRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */; };
+		7C7F0FC52B85EDAE00A0489D /* TodoListSectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FC42B85EDAE00A0489D /* TodoListSectionRepository.swift */; };
+		7C7F0FC82B85F45A00A0489D /* DetailTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FC72B85F45A00A0489D /* DetailTodoListViewController.swift */; };
+		7C7F0FCC2B8605C300A0489D /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F0FCB2B8605C300A0489D /* AddTodoViewController.swift */; };
 		7C8CD0982B833A81000C0449 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7C8CD0972B833A81000C0449 /* FSCalendar */; };
 		7C8CD09D2B833B6E000C0449 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */; };
 		7C8CD09F2B8350AD000C0449 /* imageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */; };
@@ -47,7 +50,6 @@
 		7CFCD1B12B84C2C100B590BE /* SelectCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */; };
 		7CFCD1B32B84C52B00B590BE /* SelectConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */; };
 		7CFCD1B52B84C84B00B590BE /* CircleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */; };
-		7CFCD1B72B8508DD00B590BE /* TodoListSectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B62B8508DD00B590BE /* TodoListSectionRepository.swift */; };
 		7CFCD1B92B85093500B590BE /* TodoListSectionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1B82B85093500B590BE /* TodoListSectionRepositoryProtocol.swift */; };
 		7CFCD1BB2B850D8A00B590BE /* TodoListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCD1BA2B850D8A00B590BE /* TodoListSection.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,9 @@
 		7C6A9DE42B7E335400433551 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		7C7D88022B7F2E6200038946 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
 		7C7D88042B7F2F1A00038946 /* TodoRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepositoryProtocol.swift; sourceTree = "<group>"; };
+		7C7F0FC42B85EDAE00A0489D /* TodoListSectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListSectionRepository.swift; sourceTree = "<group>"; };
+		7C7F0FC72B85F45A00A0489D /* DetailTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoListViewController.swift; sourceTree = "<group>"; };
+		7C7F0FCB2B8605C300A0489D /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		7C8CD09C2B833B6E000C0449 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7C8CD09E2B8350AD000C0449 /* imageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectCell.swift; sourceTree = "<group>"; };
 		7CFCD1AB2B84BF2F00B590BE /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +96,6 @@
 		7CFCD1B02B84C2C100B590BE /* SelectCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCircleCell.swift; sourceTree = "<group>"; };
 		7CFCD1B22B84C52B00B590BE /* SelectConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectConfigureCell.swift; sourceTree = "<group>"; };
 		7CFCD1B42B84C84B00B590BE /* CircleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleConfig.swift; sourceTree = "<group>"; };
-		7CFCD1B62B8508DD00B590BE /* TodoListSectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListSectionRepository.swift; path = ../../../../../TodoListSectionRepository.swift; sourceTree = "<group>"; };
 		7CFCD1B82B85093500B590BE /* TodoListSectionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSectionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		7CFCD1BA2B850D8A00B590BE /* TodoListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +148,7 @@
 				7C4BA3772B7DFFCA006CC8D1 /* Model */,
 				7C7D88002B7F2E4500038946 /* Repository */,
 				7C6644662B7C93F800FAAD8D /* TodoScene */,
+				7C7F0FC92B86057A00A0489D /* TodoLIstScene */,
 				7C6644712B7C953400FAAD8D /* NewTodoScene */,
 				7CFCD1AA2B84BF0F00B590BE /* NewListScene */,
 				7CFCD1A92B84817400B590BE /* Protocol */,
@@ -249,7 +254,7 @@
 		7C7D88002B7F2E4500038946 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				7CFCD1B62B8508DD00B590BE /* TodoListSectionRepository.swift */,
+				7C7F0FC42B85EDAE00A0489D /* TodoListSectionRepository.swift */,
 				7C7D88022B7F2E6200038946 /* TodoRepository.swift */,
 			);
 			path = Repository;
@@ -262,6 +267,31 @@
 				7CFCD1B82B85093500B590BE /* TodoListSectionRepositoryProtocol.swift */,
 			);
 			path = RepositoryProtocol;
+			sourceTree = "<group>";
+		};
+		7C7F0FC62B85F44400A0489D /* DetailListTodoView */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F0FC72B85F45A00A0489D /* DetailTodoListViewController.swift */,
+			);
+			path = DetailListTodoView;
+			sourceTree = "<group>";
+		};
+		7C7F0FC92B86057A00A0489D /* TodoLIstScene */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F0FC62B85F44400A0489D /* DetailListTodoView */,
+				7C7F0FCA2B86059C00A0489D /* AddTodoView */,
+			);
+			path = TodoLIstScene;
+			sourceTree = "<group>";
+		};
+		7C7F0FCA2B86059C00A0489D /* AddTodoView */ = {
+			isa = PBXGroup;
+			children = (
+				7C7F0FCB2B8605C300A0489D /* AddTodoViewController.swift */,
+			);
+			path = AddTodoView;
 			sourceTree = "<group>";
 		};
 		7C8CD0992B833A8D000C0449 /* CalenderView */ = {
@@ -400,11 +430,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4BA37D2B7E08A2006CC8D1 /* InputSection.swift in Sources */,
+				7C7F0FC82B85F45A00A0489D /* DetailTodoListViewController.swift in Sources */,
 				7CFCD1B52B84C84B00B590BE /* CircleConfig.swift in Sources */,
 				7C66446E2B7C94BA00FAAD8D /* BaseTableViewCell.swift in Sources */,
 				7CFCD1AF2B84C2A400B590BE /* InputTitleCell.swift in Sources */,
 				7CFCD1B12B84C2C100B590BE /* SelectCircleCell.swift in Sources */,
-				7CFCD1B72B8508DD00B590BE /* TodoListSectionRepository.swift in Sources */,
 				7C66448D2B7CCC2800FAAD8D /* WebViewController.swift in Sources */,
 				7CFCD1AC2B84BF2F00B590BE /* NewListViewController.swift in Sources */,
 				7C6644702B7C94D600FAAD8D /* BaseCollectionViewCell.swift in Sources */,
@@ -422,6 +452,7 @@
 				7C6A9DE22B7E2EC700433551 /* DetailCell.swift in Sources */,
 				7C6A9DE52B7E335400433551 /* DateFormatterManager.swift in Sources */,
 				7C6644872B7CCC0500FAAD8D /* EndDateViewController.swift in Sources */,
+				7C7F0FC52B85EDAE00A0489D /* TodoListSectionRepository.swift in Sources */,
 				7C6644542B7C939600FAAD8D /* SceneDelegate.swift in Sources */,
 				7C6A9DE02B7E1C5B00433551 /* DetailViewController.swift in Sources */,
 				7C6644902B7CCF2900FAAD8D /* WholeTodoCell.swift in Sources */,
@@ -435,6 +466,7 @@
 				7C8CD09D2B833B6E000C0449 /* CalendarViewController.swift in Sources */,
 				7C6644682B7C940900FAAD8D /* BaseViewController.swift in Sources */,
 				7C6644762B7C964700FAAD8D /* Then+.swift in Sources */,
+				7C7F0FCC2B8605C300A0489D /* AddTodoViewController.swift in Sources */,
 				7C4BA37B2B7E087B006CC8D1 /* TodoSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

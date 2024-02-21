@@ -20,6 +20,7 @@ final class NewListViewController: BaseViewController {
     // MARK: - Properties
     
     private let todoListSectionRepo = TodoListSectionRepository()
+    var dismissView: (() -> Void)?
     var inputText: String = ""
     let colorList = [CircleConfig(color: .systemRed),
                      CircleConfig(color: .systemOrange),
@@ -54,6 +55,13 @@ final class NewListViewController: BaseViewController {
         $0.delegate = self
         $0.register(InputTitleCell.self, forCellReuseIdentifier: InputTitleCell.identifier)
         $0.register(SelectConfigureCell.self, forCellReuseIdentifier: SelectConfigureCell.identifier)
+    }
+    
+    // MARK: - Lifecycles
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissView?()
     }
     
     // MARK: - Selectors

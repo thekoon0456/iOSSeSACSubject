@@ -18,6 +18,8 @@ final class TodoRepository: TodoRepositoryProtocol {
     private let realm = try! Realm()
     
     var list: Results<T>!
+    
+    //DetailViewController 필터링 리스트
     var filteredList: Results<T>!
     
     init() {
@@ -98,17 +100,29 @@ final class TodoRepository: TodoRepositoryProtocol {
         return realm.objects(T.self).sorted(byKeyPath: keyPath, ascending: ascending)
     }
     
-    func fetchEndDate() {
-        filteredList = fetchSorted(keyPath: "endDate", ascending: true)
+    func fetchEndDate() -> Results<T> {
+        fetchSorted(keyPath: "endDate", ascending: true)
     }
     
-    func fetchTitle() {
-        filteredList = fetchSorted(keyPath: "title", ascending: true)
+    func fetchTitle() -> Results<T> {
+        fetchSorted(keyPath: "title", ascending: true)
     }
     
-    func fetchLowPriority() {
-        filteredList = realm.objects(T.self).where { $0.priority == 0 }
+    func fetchLowPriority() -> Results<T> {
+        realm.objects(T.self).where { $0.priority == 0 }
     }
+    
+//    func fetchEndDate() -> Results<T> {
+//        filteredList = fetchSorted(keyPath: "endDate", ascending: true)
+//    }
+//    
+//    func fetchTitle() {
+//        filteredList = fetchSorted(keyPath: "title", ascending: true)
+//    }
+//    
+//    func fetchLowPriority() {
+//        filteredList = realm.objects(T.self).where { $0.priority == 0 }
+//    }
     
     // MARK: - Update
     

@@ -267,22 +267,21 @@ extension WholeTodoViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
-
+        var list: [Todo] = []
         switch TodoSection.allCases[indexPath.item] {
         case .today:
-            vc.todoRepo.filteredList = todoRepo.fetchToday()
+            list = Array(todoRepo.fetchToday())
         case .plan:
-            vc.todoRepo.filteredList = todoRepo.fetchPlan()
+            list = Array(todoRepo.fetchPlan())
         case .whole:
-            vc.todoRepo.filteredList = todoRepo.fetch()
+            list = Array(todoRepo.fetch())
         case .flag:
-            vc.todoRepo.filteredList = todoRepo.fetchFlag()
+            list = Array(todoRepo.fetchFlag())
         case .complete:
-            vc.todoRepo.filteredList = todoRepo.fetchComplete()
+            list = Array(todoRepo.fetchComplete())
         }
-        
+        let vc = DetailViewController(list: list)
+        vc.navigationItem.title = TodoSection.allCases[indexPath.item].title
         navigationController?.isToolbarHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -14,6 +14,16 @@ final class DetailViewController: BaseViewController {
     // MARK: - Properties
     
     let todoRepo = TodoRepository()
+    var list: [Todo] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    init(list: [Todo]) {
+        self.list = list
+        super.init()
+    }
     
     private lazy var plusButton = UIButton().then {
         let image = UIImage(systemName: "plus.circle.fill")?.applyingSymbolConfiguration(.init(font: .boldSystemFont(ofSize: 24)))
@@ -47,15 +57,14 @@ final class DetailViewController: BaseViewController {
                 guard let self else { return }
                 switch menus[idx] {
                 case menus[0]:
-                    todoRepo.fetchEndDate()
+                    list = Array(todoRepo.fetchEndDate())
                 case menus[1]:
-                    todoRepo.fetchTitle()
+                    list = Array(todoRepo.fetchTitle())
                 case menus[2]:
-                    todoRepo.fetchLowPriority()
+                    list = Array(todoRepo.fetchLowPriority())
                 default:
                     break
                 }
-                tableView.reloadData()
             }
         })
     }
@@ -81,6 +90,7 @@ final class DetailViewController: BaseViewController {
     @objc func completeButtonTapped(sender: UIButton) {
         sender.isSelected.toggle()
         sender.tintColor = sender.isSelected ? .systemYellow : .white
+        
         todoRepo.updateComplete(todoRepo.list[sender.tag])
     }
     
@@ -121,12 +131,11 @@ final class DetailViewController: BaseViewController {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoRepo.fetchCurrentFilteredList().count
+        list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell,
-              let list = todoRepo.filteredList else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else {
             return UITableViewCell()
         }
         
@@ -136,7 +145,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = NewTodoController(todo: todoRepo.filteredList[indexPath.row], main: nil, isModal: false)
+        let vc = NewTodoController(todo: list[indexPath.row], main: nil, isModal: false)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -148,7 +157,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoRepo.delete(todoRepo.filteredList[indexPath.row])
+            todoRepo.delete(list[indexPath.row])
             tableView.reloadData()
         }
     }
@@ -159,12 +168,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let flag = UIContextualAction(style: .normal,
                                       title: "Flag") { [weak self] action, view, completion in
             guard let self else { return }
-            todoRepo.updateFlag(todoRepo.filteredList[indexPath.row])
+            todoRepo.updateFlag(list[indexPath.row])
             tableView.reloadData()
             completion(true)
         }
         
-        let imageName = todoRepo.filteredList[indexPath.row].isFlag ? "flag.fill" : "flag"
+        let imageName = list[indexPath.row].isFlag ? "flag.fill" : "flag"
         flag.image = UIImage(systemName: imageName)
         flag.backgroundColor = .systemOrange
         

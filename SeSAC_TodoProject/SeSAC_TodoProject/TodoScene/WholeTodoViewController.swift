@@ -64,7 +64,8 @@ final class WholeTodoViewController: BaseViewController {
     private lazy var listTableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.delegate = self
         $0.dataSource = self
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        $0.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.identifier)
+        $0.rowHeight = 60
     }
     
     // MARK: - Lifecycles
@@ -199,7 +200,7 @@ extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == listTableView {
-            return 48
+            return 60
         } else {
             return 0
         }
@@ -219,12 +220,10 @@ extension WholeTodoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == listTableView {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell") else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.identifier, for: indexPath) as? TodoListCell else { return UITableViewCell() }
             //TODO: -CustomCell로 변환
             cell.accessoryType = .disclosureIndicator
-            cell.imageView?.image = UIImage(systemName: "list.bullet")?.withTintColor(.white).withRenderingMode(.alwaysOriginal)
-            cell.textLabel?.text = todoListSectionRepo.list[indexPath.row].todoListTitle
-            cell.detailTextLabel?.text = String(todoListSectionRepo.list[indexPath.row].todo.count)
+            cell.configureCell(todoListSectionRepo.list[indexPath.row])
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier, for: indexPath) as? DetailCell else { return UITableViewCell() }

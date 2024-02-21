@@ -76,7 +76,9 @@ final class NewListViewController: BaseViewController {
     }
     
     @objc func addButtonTapped() {
-        todoListSectionRepo.createItem(TodoListSection(todoListTitle: inputText))
+        todoListSectionRepo.createItem(TodoListSection(colorName: circleConfig.colorName,
+                                                       imageName: circleConfig.imageName,
+                                                       todoListTitle: inputText))
         dismiss(animated: true)
     }
     

@@ -14,7 +14,7 @@ final class LoginViewController: BaseViewController {
     // MARK: - Properties
     
     let viewModel = LoginViewModel()
-    
+
     private let titleLabel = UILabel().then {
         $0.text = "JACKFLIX"
         $0.textColor = .red
@@ -86,7 +86,6 @@ final class LoginViewController: BaseViewController {
         $0.setTitleColor(.systemGray, for: .disabled)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .white
-        $0.isEnabled = false
     }
     
     // MARK: - Lifecycles
@@ -175,7 +174,7 @@ final class LoginViewController: BaseViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
-
+        
         joinButton.snp.makeConstraints { make in
             make.height.equalTo(40)
             make.top.equalTo(recommendCodeTextField.snp.bottom).offset(16)
@@ -213,5 +212,9 @@ extension LoginViewController: UITextFieldDelegate {
         default:
             break
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        viewModel.isCountValidation(textField.text)
     }
 }

@@ -56,4 +56,12 @@ final class LoginViewModel {
         
         return text
     }
+    
+    func isCountValidation(_ text: String?) -> Bool {
+        guard let input = text,
+              input.count < 10
+        else { return false }
+        
+        return true
+    }
 }

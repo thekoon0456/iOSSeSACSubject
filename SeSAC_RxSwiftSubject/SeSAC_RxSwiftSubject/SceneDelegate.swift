@@ -17,8 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
 //        let vc = SimpleTableViewController()
+        let vc = SimplePickerViewController()
 //        let vc = NumbersViewController()
-        let vc = SimpleValidationViewController()
+//        let vc = SimpleValidationViewController()
         let nav = UINavigationController(rootViewController: vc)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

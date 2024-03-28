@@ -53,6 +53,7 @@ class PasswordViewController: UIViewController {
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
                 print("showAlert")
+                owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -63,8 +64,8 @@ class PasswordViewController: UIViewController {
     
     func configureLayout() {
         view.addSubview(passwordTextField)
-        view.addSubview(nextButton)
         view.addSubview(descriptionLabel)
+        view.addSubview(nextButton)
          
         passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(50)
